@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>Ancient &amp; Medieval Japan - Culture（中世日本 - 文化）</name>
+  <author>sucRo0629</author>
+  <packageId>sucro.ancientmedievaljapan.culture</packageId>
+  <supportedVersions>
+    <li>1.6</li>
+  </supportedVersions>
+  <modVersion>0.1.0-dev</modVersion>
+  <description>Development prototype. Makes the mood effect of AteWithoutTable neutral (0). Does not change meal Jobs, tables, seats, Comfort or dining-room benefits. RimWorld 1.6 runtime behavior has not yet been verified.
+
+開発用試作。テーブルなしで食事した心情効果を0にする。食事Job、テーブル、座席、快適性、食堂の心情効果は変更しない。RimWorld 1.6での実機動作は未検証。</description>
+</ModMetaData>
