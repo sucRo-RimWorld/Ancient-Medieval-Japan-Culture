@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <!-- Suppress random assignment without deleting the TraitDef or affecting existing pawns. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/TraitDef[defName="Transhumanist"]/commonality</xpath>
+    <value>
+      <commonality>0</commonality>
+    </value>
+  </Operation>
+  <!-- Forced backstory traits bypass random commonality. -->
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/BackstoryDef[defName="FerventResearcher72"]/forcedTraits/li[def="Transhumanist"]</xpath>
+  </Operation>
+</Patch>
