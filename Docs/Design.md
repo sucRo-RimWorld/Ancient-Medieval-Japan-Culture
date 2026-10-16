@@ -34,3 +34,13 @@ Do not substitute XML parsing or the Project's retired stool proof-of-concept fo
 `Patches/AteWithoutTable.xml` contains exactly one `PatchOperationReplace` aimed at `Defs/ThoughtDef[defName="AteWithoutTable"]/stages/li/baseMoodEffect`, with a single `baseMoodEffect` element and text `0`. `About/About.xml` declares only RimWorld `1.6` until runtime validation.
 
 **Status (2026-10-16):** Source-only, XML static validation. No actual native 1.6/1.7 loaded-game or gameplay evidence; not approved for Workshop publication.
+
+## Transhumanist new-pawn restriction (source candidate)
+
+**Intended gameplay outcome:** New Vanilla/MO pawns should not acquire culturally inappropriate mechanical body-modification desire. This is a narrowly scoped Culture rule, not a global removal of prosthetics, medicine or body-related traits.
+
+`Patches/TranshumanistGeneration.xml` keeps the `Transhumanist` TraitDef but replaces its `commonality` with 0 for ordinary random trait selection. It separately removes the `Transhumanist` forced-trait entry from Vanilla adult backstory `FerventResearcher72`, because forced background traits bypass random commonality. The background itself and its other properties are left intact until the historical background audit decides whether it should be available at all.
+
+Existing pawn traits and `ProsthophileNoProsthetic`, `ProsthophileHappy`, `TranshumanistAppreciation` remain unchanged. `BodyPurist`, prosthetic recipes and treatment are unchanged. Mods which explicitly assign `Transhumanist` from other sources are outside this first patch's guarantee.
+
+**Acceptance:** Verify target XPath exists on authentic Core 1.6 loaded source, loaded Trait commonality=0 and backstory forced-trait entry absent, create one representative ordinary and MO pawn successfully, confirm zero attributable runtime errors. A missing XPath is a real test failure rather than a reason to report a PASS. This source edit is **not** runtime acceptance and does not authorize release.
