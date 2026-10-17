@@ -99,11 +99,21 @@ source in `Source/AMJ.Culture/TablelessChairMealPatch.cs` is compiled against
 isolated original RimWorld 1.6 Managed/Harmony and its matching DLL is staged
 under `Assemblies/AMJ.Culture.dll` (source commit `aab06d25fd35c0eecdc3c818e06c90bf6a43fbca`,
 Project build-only [run #38995487716](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/38995487716),
-SHA-256 `609f8d2b2d4f9bc48f6ee86474f2b0e15c5d7abb2f342bd855dac526250a4dbb`). **Compilation is not runtime acceptance.**
-Next perform **one consolidated focused** acceptance (table-free chair, table
-priority, no-chair fallback, Comfort, meal completion, existing Thought and
-dining-room positives, zero runtime ERROR); test 1.7 only separately for
-claimed compatibility. No new research harness, repeated game startup or
+SHA-256 `609f8d2b2d4f9bc48f6ee86474f2b0e15c5d7abb2f342bd855dac526250a4dbb`). **Actual scoped 1.6 game acceptance:** After fixing an unrelated invalid
+Backstory XPath via Culture PR #15, the matching production DLL completed
+[Project native run #39002811535](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39002811535) on original 1.6.4871 rev598 (Culture source
+`2bcfdc9343b3ea5c94c216893a74cdf2a7d40f30`, DLL SHA above). Actual
+Vanilla `Stool` without any adjacent table was chosen during normal Ingest;
+pawn Comfort increased and the meal was consumed. Pickle 1/1 PASS,
+`native_errors=0`, `raw_log_error_entries=0`, exit 0, original game unchanged.
+The earlier initial [run #38995788200](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/38995788200)
+passed the meal but was overall FAIL on the now-removed unrelated XPath.
+**Do not overgeneralize:** valid table-adjacent chair precedence, no-chair
+fallback, other furniture/MO, dining-room bonuses and 1.7 compatibility
+were not exercised by this one-scenario acceptance. The old 1.7 temporary
+proof is not proof of current Culture 1.7 support. Verify remaining items
+only when a relevant functional change, reported conflict or release gate
+requires them; no repeated game launches solely to increase test coverage. No new research harness, repeated game startup or
 furniture texture work before usable implementation. Any conflict with other
 Ingest patches needs an actual identified mod/behavior, not speculative
 open-ended audits.
