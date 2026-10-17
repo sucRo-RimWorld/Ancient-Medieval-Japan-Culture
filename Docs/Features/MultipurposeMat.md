@@ -6,7 +6,7 @@
 
 - **中世日本の生活の抽象化:** 室内に敷く筵・菰を、睡眠専用家具でも食事専用家具でもなく、**昼夜で使う一つの生活道具**として表す。庶民が毎朝必ず敷物を片付けていた、あるいは全階層・全時代が同じ生活をしていた、と断定しない。
 - **確認可能な歴史的根拠:** 『日本大百科全書』[寝具](https://kotobank.jp/word/%E5%AF%9D%E5%85%B7-81512)は、菰・筵を庶民の敷寝具として述べ、9世紀ごろの畳について**昼は円座を置いて座り夜は寝具に使った**例を記す。後者は直接「鎌倉・室町のすべての庶民が同一の筵で毎日食べて寝た」を証明するわけではない。実装は史実の忠実な生活動作再現ではなく、用途兼用の合理的な抽象化。
-- **単一物体:** 1×2マス程度の**同じ建造物実体**が通常の寝具であり、日中は座って食事できる場所にもなる。朝晩の撤去・運搬・建築・設置を必要としない。物体を透明化したり別のイスを重ねて二重配置するのを製品必須構成にしない。
+- **単一物体・確定寸法（2026-10-18）：** **正確に1×2マス**の同じ建造物実体が通常の寝具であり、日中は座って食事できる場所にもなる。**縦置き・横置きとも建築時の回転で設置可能**。物理占有2セル・就寝方向・表示方向・食事時の座るセル/予約範囲は回転後に整合すること。朝晩の撤去・運搬・建築・設置を必要としない。別のイスを重ねて二重配置するのを製品必須構成にしない。
 - **プレイヤーに見える利益:** 別々の寝台(1×2)と食事用座具(1×1)を設置しなくても**同じ敷物の上で眠り、食事ができる**。ポーンの朝夕の余分なJob/TPSコストもない。単なる休息効率・Comfortの微量差や、未確認のRoom.Space増加を主な売りにしない。
 - **住居内に据え置くことを基本**とする。持ち運べる構造であっても**毎日の自動収納は実装の必須条件から除外**。専用櫃、押し入れ、個別の寝所位置MapComponent、収納専用Job、収納先の所有者同期は、この第一次多用途機能には追加しない。旧PoCを製品へ移植しない。
 
@@ -14,10 +14,10 @@
 
 | Scene | Expected effect / boundary |
 | --- | --- |
-| 建設・所持 | Culture独立で利用可能な1×2敷物。Vanilla `Hay`、MO導入時は既存`DankPyon_Straw`**または**Hayが使える（AND要求禁止）。制作コストは未確定 |
+| 建設・所持 | Culture独立で利用可能な**1×2敷物。縦横に回転設置でき、どちらでも睡眠と食事を行える**。Vanilla `Hay`、MO導入時は既存`DankPyon_Straw`**または**Hayが使える（AND要求禁止）。制作コストは未確定 |
 | 就寝 | 通常の`Building_Bed`として元の就寝Job、休息効率・Comfort、所有者割当を使用。毎晩の配置Jobは不要 |
 | 昼の食事 | 通常の`Ingest`が同じ実体の上に座り、実際のComfort取得・食事完了に至る。専用の食事用椅子の増設を要求しない |
-| 他にテーブル隣接の椅子がある | **既存Cultureのテーブル優先の着席規則を維持**。多用途の敷物を必ず最優先にすることはしない |
+| 囲炉裏・食卓・床食が競合 | **施設名の固定順位は設けず、当該ポーンが実際に得られる既存の正の心情バフが大きい候補を優先**。囲炉裏周辺、低い食卓（利用可能な既存家具）、所有者の敷物での床食を対象に、そもそも食事に使える条件と既存バフを評価する。バフ同値なら食事中のComfort、さらに同値なら移動/予約コストを優先する。テーブル隣接椅子の**無条件優先はC-06候補との比較について上書き**し、通常椅子だけの既存C-03動作は変更しない |
 | 睡眠中の敷物 | **本人だけが座るので他人との食事・就寝競合は設計上抑止**。ただし同じポーンの予約・食事Job中断・寝床への切替、2セル座席選択は製品で実際に確認する。囚人・医療など所有者なしの状態では座具選択しない |
 | **所有者専用の食事座具** | **既存ベッドの所有者割当だけを使う**。`pawn.ownership.OwnedBed == mat` かつ `mat` が通常寝具として使用可能なときのみ食事の座具候補。他人は座れない。所有者未設定では食事用の候補にならない（通常の未指定寝具としての就寝機能は維持）。追加のイス専用所有者UI／保存データは不要 |
 | **通常の入植者用寝具に限定** | 専用Culture敷物は通常の入植者用ベッドとして就寝・座具兼食事を両立。通常の所有者割当は維持。**初期版では敷物の囚人用／医療用切替は非対応**。囚人・患者には既存のVanilla/MO対応寝具を使用する | 
@@ -27,6 +27,18 @@
 **形態の区別:** ばらばらの草・藁を床に敷くだけの**敷草**と、編んで使う**筵・菰**は別物。多用途は座って使える**編んだ敷物**を第一候補にする。草敷き寝床は追加する価値・製作容易性がMOの丸太ベッドと比較して未確定であり、この機能の実装条件とはしない。素材・休息効率/Comfortと腐敗/耐久の設定は[旧検討](FoldableBedding.md#rest-and-comfort-balance-boundary--wooden-beds-are-not-automatically-superior-2026-10-18-author-decision)を踏まえるが、新しい数値は確定しない。硬い木材にクッションがない以上、敷草/筵を丸太ベッドより必ず低Comfortと扱わない。
 
 **MOとのコスト比較:** MOで丸太45のベッドを作りやすいという作者の実ゲーム指摘を重視する。Hayの採集歩数と収穫手間、MO Strawの脱穀による供給を評価し、**安い初期寝具**だけを訴求しない。専用座具＋寝台の**2用途を1品で代替**することを優位性とし、製作材料と作業時間を後で比較する。Hay→Strawの新しい乾燥レシピやMO必須依存は追加しない。
+
+## Meal-location selection — actual existing buffs, no fixed irori/table/floor ranking (2026-10-18 author decision)
+
+**Three approved constraints:** (1) dedicated mat is exactly **1×2 cells**, (2) both North/South and East/West installation orientations work without changing bed ownership or eating behavior, and (3) when an actual valid **囲炉裏・低い食卓・床食** location competes, use the one offering the **greater existing in-game buff to the eater**. Do **not** grant the irori, a chabudai-style table, or the mat arbitrary new meal Mood stages or give one furniture class an unconditional precedence.
+
+**What "buff" means in the current original-game and Culture:** `Toils_Ingest.FinalizeIngest` evaluates the meal location's `RoomStatDefOf.Impressiveness` for `ThoughtDefOf.AteInImpressiveDiningRoom` and can issue `AteWithoutTable` for certain standing meals. Culture already neutralizes the latter to **0**. An ordinary table doesn't inherently add a positive mood Thought just by being a table; similarly, an irori does not gain a separate meal buff merely from its label. Calculate the **existing positive room/meal Thought that actually applies at that destination** for that pawn from the final loaded Defs and current room and activity conditions. Include actual Modded buffs **only when demonstrably defined by the loaded game**, not guesses about warmth, recreation or architectural labels. The same good room may produce the same reward whether seated at a table or at one's own mat.
+
+**Selection contract:** first filter viable and reservable normal dining candidates *within the existing Ingest chair-search radius* (table+valid seat; functioning existing irori-related eating place if supported by the active Mod; this pawn's **own** normal nonmedical/nonprison mat cell). Never invent an independent seated dining interaction for an irori or a nonexistent new chabudai. For the competing viable destinations, prioritize the **greater applicable positive mood effect**; if equal, higher obtainable seated `Comfort`; then shorter/reasonable path/reservation cost. Don't reduce the current room Thought, replace standard food Jobs, make diners traverse the entire map for a bonus, or override a hazardous/forbidden/reserved destination. Keep the old C-03 ordinary table-adjacent-chair-first path unchanged **when the special Culture mat is not one of the valid candidates**. Where it is, the old absolute table priority is specifically superseded by this higher-existing-benefit rule. This feature only changes selection for the **dedicated multiuse mat's owner**, not the seat search policy of every colonist.
+
+**Practical uncertainty / engineering guard:** RimWorld's room Thought may be determined at ingestion *completion*, so a pre-job score is a prediction based on loaded room stats and known Thought stages, not a guarantee of all downstream effects. An irori might be warmth-producing furniture rather than a native dining seat, and a "ちゃぶ台" isn't a universal ancient-to-medieval ThingDef. Avoid inferring a bonus from the furniture name. If exact Mod-specific effects cannot be computed safely, preserve the vanilla/Culture seat-selection behavior rather than invent a score. Compute only when a pawn starts a real `Ingest` action, reuse already-found local candidates and avoid per-tick global searches. Final design can choose an equivalent bounded mechanism once target Def behavior is inspected.
+
+**Required player-facing acceptance (not yet tested):** both physical rotations keep identical sleep+owner and sitting conditions; with two valid locations that yield demonstrably unequal real meal Mood, the owner chooses the higher one (whether that means table or their mat), and when equal selects higher Comfort then shorter path. Check the ordinary chair-only/no-mat path still preserves its accepted table preference, plus other-owned and unowned mats remain ineligible. Validate `AteInImpressiveDiningRoom` / `AteWithoutTable=0` on the exact loaded 1.6/1.7 game instead of assuming an irori buff is present. The earlier one-bed 1.6 PoC never tested rotation or best-buff competition.
 
 ## Prison/medical boundary — standard bedding only (2026-10-18 author-approved fallback)
 
@@ -52,7 +64,7 @@
 
 **Existing precedent (research only, not runtime dependency):** [Get Out Of My Chair! (Workshop 3119651616)](https://steamcommunity.com/sharedfiles/filedetails/?id=3119651616) provides private assigned chairs, while [This Is Mine (Continued) (Workshop 2560584629)](https://steamcommunity.com/sharedfiles/filedetails/?id=2560584629) restricts other furniture by a bed's owner. These independently support the player UX concept; neither verifies the exact Culture mat source path or replaces a loaded-game check. No mandatory dependency on either Mod.
 
-**Acceptance distinctions:** the owner must naturally choose **their own** mat for normal Ingest, consume food, gain Comfort and later lie down with the original bed assignment; another ordinary colonist with an unassigned/other bed must **not** select that mat even when it is nearer or a table is next to it; unassigned mat must not be selected as a dining chair; existing table-adjacent chairs still take priority; medical/prison state cannot leak seat permission. Compare this exact behavior on at least the targeted native product version(s). The previous PoC PASS only showed one owner's successful seat+bed roundtrip under a global `isSittable=true` tweak; it did **not** verify owner-only enforcement or the new `isSittable=false` design.
+**Acceptance distinctions:** the owner must naturally choose **their own** mat for normal Ingest when its **existing applicable meal buff is greater than alternatives** (or wins the specified tie-break), consume food, gain Comfort and later lie down with the original bed assignment; another ordinary colonist with an unassigned/other bed must **not** select that mat even when it is nearer or a table is next to it; unassigned mat must not be selected as a dining chair; existing table-adjacent chair preference remains for ordinary chair-only C-03, but does **not** take absolute priority over an owner's better-scoring mat; medical/prison state cannot leak seat permission. Compare this exact behavior on at least the targeted native product version(s). The previous PoC PASS only showed one owner's successful seat+bed roundtrip under a global `isSittable=true` tweak; it did **not** verify owner-only enforcement or the new `isSittable=false` design.
 
 ## Existing Culture and original-game technical path
 
@@ -65,6 +77,6 @@
 
 1. **実装準備:** 用途兼用の1×2 Culture敷物1種類を最小単位とし、Vanillaのみでも材料・就寝・食事が成立。**ベッドの既存所有者だけが食事にも使用できる**。無主の敷物は食事座具として選ばない。専用ThingDefは `isSittable=false` を優先し、既存`TablelessChairMealPatch`に **専用Def/OwnedBed限定の座具候補**を追加する。囚人/医療用にした場合の座具機能は常に無効。特殊モード切替は安全が証明できなければ提供しない既存の縮小仕様を維持。画像と呼称は別途決定する。
 2. **段階的実装:** 製品ThingDef/C#で就寝と座具の両用を実装し、MO追加資材は任意のパッチだけ。現存するCulture C-03の円座は用途の違う独立候補であり、重複した円座を自動増設しない。
-3. **最後の実ゲーム受入:** 割当所有者は通常`Ingest`で**自分の**敷物を選び、Comfort上昇と完食後に同じ物体で就寝・所有者維持。他のポーンや無主の敷物では座具として選ばず、通常の座具/立ち食いへフォールバック。近くにテーブルと椅子がある場合は従来の優先順位。**医療・囚人モードでは座具として使用できず**、既存の医療/囚人ベッドは改変しない。特別モード切替は技術的に安全な場合だけ任意対応、無理なら切替不可で受入可能。実DefのVanilla材料・MO任意材料、1.6/1.7版、ゲームエラーを確認する。古い1.6 PoCを製品受入に転用しない。
+3. **最後の実ゲーム受入:** **縦横2方向**で1×2の割当所有者は通常`Ingest`にて、囲炉裏/既存の食卓/自己の敷物など実際に食事利用可能な候補の**実在するバフが最大の場所**（同点ならComfort、距離）を選び、敷物を使う場合はComfort上昇と完食後に同じ物体で就寝・所有者維持。他のポーンや無主の敷物では座具として選ばず、通常の座具/立ち食いへフォールバック。普通のイスだけの場合は既存C-03の食卓優先を保つ。**医療・囚人モードでは座具として使用できず**、既存の医療/囚人ベッドは改変しない。特別モード切替は技術的に安全な場合だけ任意対応、無理なら切替不可で受入可能。実DefのVanilla材料・MO任意材料、1.6/1.7版、ゲームエラーを確認する。古い1.6 PoCを製品受入に転用しない。
 4. **見送り:** 櫃・押し入れ・自動収納/運搬/再設置、`Cramped interior`のボーナス/軽減、日中の作業台兼用や娯楽設備兼用は**本段階に含まない**。その後、実際の遊びで明確な利益がある場合にだけ独立機能として再検討する。
 
