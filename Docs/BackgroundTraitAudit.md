@@ -207,3 +207,19 @@ These are **optional source cohorts**, not a single installed pool, not Culture 
 | `DrugDesire` | `DischargedSoldier53` `=2`、Solid幼少 `MechanoidHacker93` `=1`、`VideoGamer16` `=2` | 幼少2件は既存ゲート24件に含まれる。成人は既存歴史的改稿済み。ドラッグの全面停止を行わず、娯楽・緊急心情対処・依存・離脱の既存効果と強制付与を維持。嗜好品・薬物の変更が確定した時に関連仕様を照合する。 |
 
 `BodyPurist`、`DrugDesire` の強制付与を全削除すると、セーブ済みPawn・意図された強制特性・DrugPolicyのプレイ面に副作用が出る。よってPhase 2の文章以外の技術判断は**元のTrait効果・強制経路維持**とする。元のTraitの日本語表示や歴史語義の改稿案は他の背景本文と一括確認する。既に修正した `Greedy` / `Jealous` の共同寝所効果、MOの戦士・古参兵Thought処理は変更しない。新規日本独自特性は第3段階まで追加しない。
+
+## 第2段階・第5修正群 — 追加のSF研究・技術職5件の通常生成制限（2026-10-17）
+
+元の保存済み**正規Vanilla Core 1.6.4871 / 1.7.4977 schema-v2メタデータ**（Project source audit #38797500765）を対象行だけ参照し、5件とも `BackstoryDefs/Solid/Solid_Adult.xml` の `Adulthood`、`spawnCategories` 明示、1.6/1.7同一であることを確認。物語の時代不整合は[Ludeonのアーカイブ英語原文コメント](https://github.com/Ludeon/RimWorld-Finnish/blob/master/Backstories/Backstories.xml)で個別に確認。現在の配布Core長文本文とアーカイブが文字列一致することは**未立証**であり、断定しない。
+
+| DefName | 元カテゴリ | 旧原文で時代不整合を起こす要素 | 扱い |
+|---|---|---|---|
+| `NeuroScientist19` | Offworld | 全脳マッピングと改造人類の脳研究 | 元の医療・知性技能を保持し、史実的医療役への改稿まで通常抽選を止める |
+| `SoftwareDeveloper84` | Offworld; Pirate | 自動化技術で教育・労働から離れるソフトウェア職 | 技術職自体の一般否定ではなく、現代の自動化経歴を除外 |
+| `ExiledResearcher44` | Offworld; Pirate; ImperialCommon; Cult | ロボット研究と技術忌避の星間帝国による破門 | 史実上の追放・技術師職を今後改稿できるよう元Defを維持 |
+| `EnergyResearcher89` | Offworld; Pirate | 遠距離即時通信装置研究と研究施設の大爆発 | 当時の伝令・烽火・学術は別途転用できるが元の技術説明は出さない |
+| `MadScientist31` | Offworld; Pirate | 遺伝子研究所での違法な人体実験と惑星刑務所 | 元の技能・作業禁止を保存し、日本史に転用可能な医術・禁忌の話は最終原稿判断へ |
+
+対象5件は原Core上で**強制Trait、開始所持品、禁止Traitを持たない**。既存の別々のSF背景制限と重複なし。新しいカテゴリ変換は `Patches/AnachronisticAdultBackstories.xml` に追記しただけで、各 `BackstoryDef` の削除・値変更、強制Traitや旧セーブへの変換は行わない。一般の学究・医師・技術師という職能は他の既存Defで維持する。この制限は、日本語の史実改稿が一括承認された場合に対象Defを復帰できる暫定措置である。
+
+**新計数：成人**72**（成人生成カテゴリのXML71＋独立 `FerventResearcher72` 1）、幼少**27**（Solid幼少ゲート24＋Shuffled幼少カテゴリ3）、生成制限総数**99**。歴史的改稿済み34件、別途作者の一括確認待ち日本語改稿原稿35件はいずれも変更なし。新規日本独自BackstoryDef/TraitDefは作っていない。1.6/1.7現在の長文本文一致、ロード済み生成挙動、旧セーブ読込、MO 1.7対応は未検証。個別の実ゲーム起動・CI発火は行わない。
