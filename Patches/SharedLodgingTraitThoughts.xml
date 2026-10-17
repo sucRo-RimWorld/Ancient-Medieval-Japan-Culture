@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <!-- Room ownership remains Vanilla. C# changes how Greedy and Jealous
+       assess shared barracks, not trait generation or the existing mood
+       stage values. These descriptions reflect the revised meaning. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/TraitDef[defName="Greedy"]/degreeDatas/li[1]/description</xpath>
+    <value><description>[PAWN_nameDef] demands impressive sleeping quarters. [PAWN_pronoun] dislikes poor accommodation whether it is shared or private.</description></value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/TraitDef[defName="Jealous"]/degreeDatas/li[1]/description</xpath>
+    <value><description>[PAWN_nameDef] envies people who sleep in more impressive quarters, whether shared or private.</description></value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThoughtDef[defName="Greedy"]/stages/li[1]/label</xpath>
+    <value><label>greedy for impressive quarters</label></value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThoughtDef[defName="Greedy"]/stages/li[1]/description</xpath>
+    <value><description>My sleeping quarters should be far more impressive.</description></value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThoughtDef[defName="Greedy"]/stages/li[2]/label</xpath>
+    <value><label>greedy for impressive quarters</label></value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThoughtDef[defName="Greedy"]/stages/li[2]/description</xpath>
+    <value><description>These sleeping quarters are miserable. I deserve better.</description></value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThoughtDef[defName="Greedy"]/stages/li[3]/label</xpath>
+    <value><label>greedy for impressive quarters</label></value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThoughtDef[defName="Greedy"]/stages/li[3]/description</xpath>
+    <value><description>These sleeping quarters are far too plain for me.</description></value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThoughtDef[defName="Greedy"]/stages/li[4]/label</xpath>
+    <value><label>greedy for impressive quarters</label></value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThoughtDef[defName="Greedy"]/stages/li[4]/description</xpath>
+    <value><description>These sleeping quarters are not nearly good enough.</description></value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThoughtDef[defName="Greedy"]/stages/li[5]/label</xpath>
+    <value><label>greedy for impressive quarters</label></value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThoughtDef[defName="Greedy"]/stages/li[5]/description</xpath>
+    <value><description>My sleeping quarters are still less impressive than I would like.</description></value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThoughtDef[defName="Jealous"]/stages/li[1]/label</xpath>
+    <value><label>jealous of {0}'s sleeping quarters</label></value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThoughtDef[defName="Jealous"]/stages/li[1]/description</xpath>
+    <value><description>Someone else has a more impressive place to sleep. Why should I settle for less?</description></value>
+  </Operation>
+</Patch>
