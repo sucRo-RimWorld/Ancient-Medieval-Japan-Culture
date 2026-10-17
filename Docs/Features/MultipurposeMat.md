@@ -20,12 +20,27 @@
 | 他にテーブル隣接の椅子がある | **既存Cultureのテーブル優先の着席規則を維持**。多用途の敷物を必ず最優先にすることはしない |
 | 睡眠中の敷物 | その敷物の就寝中・予約中に別のポーンの食事が重ならないようにする。2セルに別Pawnが座る可能性と予約方式は製品実装の要検証事項 |
 | 非所有者・共同用 | 寝所の所有者を食事で解除しない。日中の共有利用は空き状態かつ予約に抵触しない場合を候補とし、他人・囚人・患者の就寝権を侵さない |
-| 時代的に違う施設 | 通常のVanilla/MOベッド、既存Sleeping Spot、医療/囚人寝床の`isSittable`等は**一律に変更しない**。専用Culture ThingDefのみに限定 |
+| **通常の入植者用寝具に限定** | 専用Culture敷物は通常の入植者用ベッドとして就寝・座具兼食事を両立。通常の所有者割当は維持。**初期版では敷物の囚人用／医療用切替は非対応**。囚人・患者には既存のVanilla/MO対応寝具を使用する | 
+| 時代的に違う施設 | Vanilla/MOの通常ベッド、既存Sleeping Spot、囚人・医療用ベッドの`isSittable`などは**一律に変更しない**。専用Culture ThingDefのみ座具兼用を許す |
 | 部屋・心情・清潔 | `AteWithoutTable`の既存Culture 0処理、共同寝所/Greedy・Jealous、Shared Sleepingの責務を変更しない。部屋品質上昇、新しいMoodボーナス、自動洗浄、日中のレクリエーション自動追加は保証しない |
 
 **形態の区別:** ばらばらの草・藁を床に敷くだけの**敷草**と、編んで使う**筵・菰**は別物。多用途は座って使える**編んだ敷物**を第一候補にする。草敷き寝床は追加する価値・製作容易性がMOの丸太ベッドと比較して未確定であり、この機能の実装条件とはしない。素材・休息効率/Comfortと腐敗/耐久の設定は[旧検討](FoldableBedding.md#rest-and-comfort-balance-boundary--wooden-beds-are-not-automatically-superior-2026-10-18-author-decision)を踏まえるが、新しい数値は確定しない。硬い木材にクッションがない以上、敷草/筵を丸太ベッドより必ず低Comfortと扱わない。
 
 **MOとのコスト比較:** MOで丸太45のベッドを作りやすいという作者の実ゲーム指摘を重視する。Hayの採集歩数と収穫手間、MO Strawの脱穀による供給を評価し、**安い初期寝具**だけを訴求しない。専用座具＋寝台の**2用途を1品で代替**することを優位性とし、製作材料と作業時間を後で比較する。Hay→Strawの新しい乾燥レシピやMO必須依存は追加しない。
+
+## Prison/medical boundary — standard bedding only (2026-10-18 author-approved fallback)
+
+**Author decision:** When safe compatibility with `囚人用` and `医療用` bed modes is technically burdensome, **it is acceptable and preferred to ship only the normal colonist-bed multipurpose function**. Those modes are **not product requirements and must not block implementation**. For the initial dedicated Culture mat, **do not offer functional prison or medical bed modes**; retain all existing Vanilla/MO medical/prison beds, prisoner rescue/treatment and ordinary medical-bed behavior unchanged.
+
+**Technical reason:** Original `Building_Bed.ForPrisoners` and `Building_Bed.Medical` are **per-instance state**, but `ThingDef.building.isSittable` is **shared across all instances of the same Def**. Changing the Def-level flag when *one* mat switches modes would affect every mat, not just that instance. The existing Culture seat finder checks `isSittable`, reservations and danger, but not the bed's medical/prison flag; Vanilla's normal table-adjacent seat picker also uses the shared flag. **Adding a predicate only to `TablelessChairMealPatch` is not enough** to guarantee safety if a mat can be designated prison/medical and the normal Vanilla seat-selection path still sees it. Do not claim it is safe by just clearing ownership.
+
+**Minimum product contract:**
+- A single **dedicated Culture ThingDef** is a normal, owning `Building_Bed` plus a daytime sitting place; no new global patch that makes all Vanilla/MO beds sittable.
+- Ensure the **prisoner/medical switching UI and any automatic room-based promotion** cannot turn this dedicated mat into an active prisoner/medical bed. A version-safe restrictive design (e.g., only allowing normal use and suppressing incompatible selectors) is preferable to modifying Vanilla global seat selection. Avoid consuming a bed silently as a seat while a patient/prisoner is using it.
+- If a RimWorld version or external Mod nevertheless attempts to switch/assign such a use, preserve safe normal bed behavior or block the incompatible conversion **without removing a prisoner/patient, duplicating a bed, corrupting ownership or causing repeat jobs**. The detailed safeguard belongs in the production implementation and the final, narrow regression check.
+- **Not required for acceptance:** switching this Culture mat between normal/prison/medical modes, seated eating on prison/medical beds, or custom hospital/prison UI. Vanilla/MO furniture remains the correct choice for those roles.
+
+**Evidence status:** One originally tested Bedroll `isSittable=true` in 1.6 Vanilla proved daytime Ingest+Comfort and later LayDown as a normal owned bed; **it did not verify any prison/medical toggle, new dedicated Def or versioned production safeguard**. The above narrows the required scope; do not add an exploratory prison/medical test matrix as a substitute for the approved normal-bed product.
 
 ## Existing Culture and original-game technical path
 
@@ -36,8 +51,8 @@
 
 ## Production and acceptance gates
 
-1. **実装準備:** 用途兼用の1×2 Culture敷物1種類を最小単位とし、Vanillaのみでも材料・就寝・食事が成立。画像と呼称は追加検討。既存`TablelessChairMealPatch`を丸ごと別実装に置き換えない。必要なら専用Defへの限定と睡眠中の座席抑止を追加。
+1. **実装準備:** 通常の入植者用に限定した用途兼用の1×2 Culture敷物1種類を最小単位とし、Vanillaのみでも材料・就寝・食事が成立。**専用敷物は囚人・医療用への切替を求めず、既存の対応寝具に任せる**。画像と呼称は追加検討。既存`TablelessChairMealPatch`を丸ごと別実装に置き換えない。専用Defへの限定と、睡眠中の座席抑止・切替防止を製品機構で扱う。
 2. **段階的実装:** 製品ThingDef/C#で就寝と座具の両用を実装し、MO追加資材は任意のパッチだけ。現存するCulture C-03の円座は用途の違う独立候補であり、重複した円座を自動増設しない。
-3. **最後の実ゲーム受入:** 一つの本物の敷物でプレイヤーの手動切替なしに食事・Comfort・就寝。睡眠中の他人の食事・寝所割当/共同寝所、テーブル隣接の椅子優先、囚人/医療用非干渉、実DefのVanilla材料およびMO任意材料、1.6/1.7バージョン、ゲームエラー。前の1.6 PoCをそのまま製品受入に転用しない。
+3. **最後の実ゲーム受入:** 通常の入植者向け一つの本物の敷物で、プレイヤーの手動切替なしに食事・Comfort・就寝。睡眠中の他人の食事・寝所割当/共同寝所、テーブル隣接の椅子優先を維持。**この敷物の囚人/医療用転用が有効にならず、既存の囚人/医療用ベッドが従来通り働くこと**を確認する（特殊モードの動作実装は求めない）。実DefのVanilla材料・MO任意材料、1.6/1.7版、ゲームエラー。前の1.6 PoCを製品受入に転用しない。
 4. **見送り:** 櫃・押し入れ・自動収納/運搬/再設置、`Cramped interior`のボーナス/軽減、日中の作業台兼用や娯楽設備兼用は**本段階に含まない**。その後、実際の遊びで明確な利益がある場合にだけ独立機能として再検討する。
 
