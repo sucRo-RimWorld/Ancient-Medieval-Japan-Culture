@@ -499,6 +499,20 @@ The existing `LoadFolders.xml` selects these version-specific assemblies. The 1.
 
 **2026-10-17 正規RimWorld 1.6＋MO実ゲームのロード済みDef受け入れ PASS：** [Project Actions #39025744804](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39025744804)。検証対象のCulture製品コミット `d08eb3d530f5517370c4257b6c3f1634d76b1a9b`、1.6用DLL SHA256 `0895332d4a817bf4227b00bf4d707943e793fc15c379b9950df76ec2112c9458`、RimWorld `1.6.4871 rev598`、原MO `1.6.2.2` とVEF/SYR、隔離コピー内のMO音声だけWAV変換。ロード済みThoughtDefの7対象から当該Fighter/Veteranの `nullifyingTraits` が消えていること、`ObservedLayingCorpse` の両特性による耐性が維持されていることを実ゲーム内で確認。合わせて既存のMO派閥・PawnKind・生成経路の単一シナリオも成功。Pickle 1/1、`AMJ_CULTURE_MO_THOUGHTS16_OK` 1回、Unity ERROR 0、終了コード0、元ゲーム変更なし。**実際の死亡・処刑・追放イベントを発生させてMood値を確認したテストではない。** 元MP3の未加工実行、1.7＋MO、旧セーブの実読み込みもこの実行では未確認。**別系統の背景・特性Stage2で後に追加された87件の生成制限については、このテストが受け入れを示すものではない。** XML静的確認の結果も維持。Steam未アップロード。
 
+## 寝具収納・多目的住居と狭さの心情 — Culture側の責務（2026-10-18、未実装）
+
+**作者の方向性:** 中世日本の寝具は、就寝時に敷き、起床後に片付ける生活様式を優先して実現可能性を探る。昼間の食事・作業と夜間の就寝で床を兼用することが実際のゲーム的な利益であり、万年床も任意に選べる。単なる「布団があるだけ」の心情ボーナスや、すべての住民がどの部屋でも狭さを苦にしない一律変更は承認されていない。寝具の家具・配置・回収処理を所有するModはまだ未決定で、Project [Ideas](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/blob/main/Docs/Ideas.md#foldable-bedding--寝具を敷く畳む生活習慣) が企画正本。
+
+**Vanillaの二つの独立判定（公開仕様による確認、オリジナル1.6/1.7のnative実測なし）:**
+- `Room.Space` は実際の部屋内の立てるセルを1セルおよそ1.4点、歩いて通れるが立てない家具セルをおよそ0.5点として評価し、Impressivenessにも寄与する。通常の1×2寝具を本当に撤去し、元の2セルを空ければ、一般的条件ではSpace評価が合計およそ1.8点改善する。寝具を非表示にするだけ、収納物が同じ床を塞ぐだけでは実利益にならない。
+- `Cramped interior`（-5）、`Confined interior`（-10）、`Spacious interior`（+5）は、部屋の`Room.Space`ではなく**ポーン周囲半径7セルの到達可能・通行可能セル**に基づくSpace need / Thoughtの系統。通行できるベッドは設置中でも数えられるため、寝具の物理的な撤去だけで-5/-10が改善するとは限らない。[RimWorld Wiki Space](https://rimworldwiki.com/wiki/Space)、[Thoughts](https://rimworldwiki.com/wiki/Thoughts)。
+
+**条件付きCulture補正の候補（現在ゲーム未実装、数値未確定）:** まず寝具の実際の自動展開・収納とVanilla Room.Spaceの結果を確認する。その後、なお文化的な不整合があれば、寝具を実際に畳んで用途転換しているコンパクトな居住空間に限って `Cramped interior` を局所的に軽減する。前案の `-5 → -2` は試算候補であり確定したバランス・XMLではない。極端な閉塞を示す `Confined interior`（-10）を一律緩和しない。常設ベッド、寝床枠だけの囚人用・医療用ベッド、当該生活機能に参加しない住民、無関係な室内には無条件で適用しない。
+
+**実装境界:** 物理寝具の実装担当は未決定。Cultureが担当し得るのは、実際に参照可能な敷設・収納・生活空間の状態と連携する文化的Thoughtの局所判定のみ。既存のShared Sleepingの寝所品質評価、Greedy/Jealousの既存共同寝所修正、Vanillaの寝具所有権、救急・囚人収容、旧セーブのDef参照を壊さない。汎用 `ThoughtDef` のmood値をXMLで書き換えると寝具に無関係な全員へ影響するため採用しない。具体的なC#実装方法・負荷・再計算タイミング・対象者条件は寝具オーナーの実装後に決める。
+
+**実ゲーム検証は未実施。** 寝具実体の敷設/撤去で同じ部屋のSpace評価が正しく変わること、ポーン狭さThoughtが別系統であること、部屋役割・就寝割当・共同寝所の効果・セーブ・TPSを最小の同一テストで必要な範囲だけ確認する。ゲームを自動起動するWorkflowは追加しない。
+
 ## 第2段階 — 既存Vanilla/MO人物背景・特性の時代不整合修正（2026-10-17開始）
 
 **実装原則：** 第1段階の829件台帳を既存の作業索引とし、新しい全件棚卸しを行わない。通常Pawn生成で実際に選択可能な原背景だけを対象とし、固有Pawn専用定義を除外する。日本独自の新規背景・特性は第2段階が完了するまで追加しない。元のDef名、旧セーブ参照、強制Trait、技能・作業制限は、個別設計を変更しない限り保存する。歴史的に転用可能な職業は、制限よりも史実に合う改稿を優先する。日本語新規本文は承認手順を維持し、未承認のままゲームに追加しない。
