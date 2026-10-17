@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
-  <!-- Vanilla Core 1.6/1.7: these sixty adult BackstoryDefs have existing
+  <!-- Vanilla Core 1.6/1.7: these sixty-three adult BackstoryDefs have existing
        spawnCategories. Keep the BackstoryDef identities, traits, stats, skills
        and saved-pawn references. Restrict ordinary new generation only.
        This does not modify category-less Solid_Child biographies or forcibly
@@ -433,6 +433,24 @@
   </Operation>
   <Operation Class="PatchOperationReplace">
     <xpath>Defs/BackstoryDef[defName="WhiteHatHacker82"]/spawnCategories</xpath>
+    <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
+  </Operation>
+  <!-- Stage 2 follow-up: three era-incompatible original adult narratives
+       missed by the first lexical screen. The original Core 1.6 and 1.7
+       source metadata confirms existing adulthood categories for each.
+       Keep all original Defs, work limitations, skills and old-save links;
+       do not change or disallow ordinary historical haulage, healing or
+       combat-survivor roles from other background Defs. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="AlcoholicTrucker93"]/spawnCategories</xpath>
+    <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="BloodgameSurvivor6"]/spawnCategories</xpath>
+    <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="MedicalScientist16"]/spawnCategories</xpath>
     <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
   </Operation>
 </Patch>

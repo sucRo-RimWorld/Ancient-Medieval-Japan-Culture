@@ -153,3 +153,19 @@ These are **optional source cohorts**, not a single installed pool, not Culture 
 **改稿優先で保留する候補：** `Architect28`（建築）、`BountyHunter41`（追捕）、`Castaway81`（漂流）、`CharityWorker36`（救恤）、`CorporateBuilder58`（建設）、`ExpertHandyman8`（修繕）、`FurnitureBuilder83`（木工）、`LanguageAnalyst27`（語学・文書）、`MasterChef48`（調理）、`MedicSoldier54`（軍医）、`MilitaryOfficer17`（軍人）、`Minister88`（政治職）、`NinjaAssassin31`（間諜）、`Novelist7`（著述）、`PlanetaryDiplomat7`（外交）、`PrisonerOfWar2`（捕虜）、`ReligiousHierarch16`（宗教職）、`Sculptor63`（彫刻）、`StationSecurity38`（警備）などはSF原文のまま採用できないが、前近代に転用可能な役割があるため**自動一括除外しない**。本文と技能・作業禁止・強制特性が合う日本語改稿を作成し、必要な史実・編集承認後に英訳・実装する。13件も将来改稿可能であり永久削除ではない。
 
 **次の段階内作業：** なお残る該当SF候補、通常経路が確認できる `Solid_Child` 候補、Traitの時代不整合（`BodyPurist` / `DrugDesire` 等）を原文・使用経路と対で処理する。固有Pawn専用定義は除外。新規日本独自BackstoryDef/TraitDefは第3段階まで作らない。実ゲームはここでは起動しない。
+
+## 第2段階・第2修正群 — 一次分類で見逃されたSF背景3件の生成制限（2026-10-17）
+
+**製品ソース：** `Patches/AnachronisticAdultBackstories.xml`。元の第1段階台帳で暫定的に時代不整合なし、または現代制度要確認とされた成人3件について、[公式アーカイブの英語原文コメント](https://github.com/Ludeon/RimWorld-Finnish/blob/master/Backstories/Backstories.xml)と第1段階で取得済みの正規1.6/1.7 Core schema-v2メタデータ（Project #38797500765）を個別突合した。現行ライセンスCore長文が同じであることは**未立証**であり、この証拠水準は第1修正群と同じ。
+
+| Def | 旧英語原文の具体的不整合 | 元の成人生成カテゴリ | 既存付随条件 |
+|---|---|---|---|
+| `AlcoholicTrucker93` | 宇宙貨物運送会社、ナノ遺伝子治療後の肉体変容 | `Offworld` | Caring / Social / Intellectual / Artistic / Cleaning 無効 |
+| `BloodgameSurvivor6` | 企業による星系規模の配信型殺人娯楽番組と武装カメラドローン | `Offworld;Pirate` | Crafting 無効 |
+| `MedicalScientist16` | 異星人と星間船で行う遺伝子研究 | `Offworld;Pirate` | 研究・医療技能を維持 |
+
+3件とも `BackstoryDefs/Solid/Solid_Adult.xml` 内の `Adulthood`、カテゴリ明示あり。取得済み正規メタデータは1.6・1.7で同一。既存Defの削除・技能/作業制限/特性改変・旧セーブ変換は行わず、通常のカテゴリ選択のみ `AMJ_CultureExcluded` へ制限する。一般的な運送人・戦闘生存者・医者の職業そのものを禁止する判断ではない。将来、妥当な日本語原文が承認された場合は、同じDefの史実改稿で再利用する余地を残す。
+
+**合計更新：** 先行第1段階74件＋第2段階初回13件＋今回3件＝**90件**（成人64、幼少26）。改稿34件、初期所持品置換6件、MO特性と既存Thought補正は変更しない。既存XMLの成人カテゴリ制限は63件、独立 `FerventResearcher72` 1件。ロード済みカテゴリ・実ゲーム発生率・MO 1.7は未検証。新規背景/特性を追加しない。
+
+**改稿優先で保留：** `EnergyResearcher89`（学問・実験）、`MindwipedAssassin50`（暗殺・諜報）、`MuffaloResearcher67`（畜産・医術）、`ProstituteIdol28`（性産業史・創作と表示の整理）などの職能まで機械的に消すことは避ける。現在の未来的な原文と歴史的に移せる仕事内容を区別し、日本語本文の承認手順と効果整合が揃ったものから改稿する。
