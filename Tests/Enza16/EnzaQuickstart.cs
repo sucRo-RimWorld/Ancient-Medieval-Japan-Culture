@@ -12,5 +12,11 @@ namespace AMJ.Culture.Test
         }
         public override int mapSize { get { return 50; } }
         public override string seed { get { return "AMJ-CULTURE-ENZA-16"; } }
+        public static bool IsPostLoaded { get; private set; }
+        public override void PostLoaded()
+        {
+            IsPostLoaded = true;
+            Log.Message("AMJ_CULTURE_ENZA16_QUICKSTART_READY");
+        }
     }
 }
