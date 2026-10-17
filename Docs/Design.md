@@ -605,6 +605,7 @@ Cultureは人物背景・特性・心情・食事習慣・嗜好品・玄関の�
 - **対象ポーン・Job**：従来どおり管理下の人型のみ、90tickの擬似キャスト、Job予約/経路は維持。緊急時は妨げない。エリア編集時は途中のキャストを取り消す。進入記録は一時データ、ポーンの土足状態は既存GameComponentに保存する（変更せず推測で同期しない）。
 - **軽量化**：各セルが玄関／土足禁止かはHashSetで判定し、玄関がない／禁止エリアがないマップ、玄関から離れた移動を早期終了する。配置中の連続玄関セル探索と警告通知は**編集時のみ**、通常の移動tickでは行わない。イベント介入点の再検討・TPS実測は第3実装の両製品DLL構築と実ゲーム機能受け入れの**後**、別途記録する。
 - **確認待ち**：1.6/1.7の実ゲームでの指定UI、警告、斜め／間隔／両側同属性、同一Jobでの複数玄関通過、保存とロード、予約・泥/血の取り扱いを確認する。ビルド成功と実ゲームPASSは別の事実として扱う。
+- **最新ソースの製品DLLビルド済（実ゲーム未受入）**：Culture実装ソース `96dedd1e3df1c23f55a09fe04d713834c2e3b0a5` を正式な各ゲーム版のManaged参照でコンパイルし、それぞれCultureバージョン別Assembliesに収録した。RimWorld 1.6 [Project build-only #39039921469](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39039921469) SUCCESS、DLL 24,064 bytes／SHA-256 `edafc7fd37ab1f0f588ccd03bfa8dfb883ef7cac4e8015bafc9c1e55bb39f757`。RimWorld 1.7 [Project build-only #39040425332](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39040425332) SUCCESS、DLL 24,064 bytes／SHA-256 `f94fa23f9b80b8d9abb28d96e955874b74dafafd63a00f2d514bb4fb9ff847db`。両版はコンパイル成功のみであり、Harmony/Zone UI/警告/セーブ・実際の経路処理/TPSのPASSを意味しない。
 
 ### 玄関機能の実装完了後に行うTPS影響確認（2026-10-17 作者指定）
 
