@@ -17,7 +17,22 @@ The generic `isSittable` meal route is unchanged since [Culture PR #9](https://g
 
 **Latest actual 1.6 result:** [Project run #39005539686](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39005539686) SUCCESS, 1.6.4871 rev598, Culture source `1f806e962abcc5c2437b85fed81121519492c948`, matching DLL. One-game test covers table-free Vanilla Stool eating with Comfort gain and meal completion; a farther table-adjacent Stool preferred to the closer table-free Stool; and standing food consumption with no chair after removing furniture. Pickle 1/1, runtime and raw log ERROR0, exit0, original game unchanged. The first attempt [#39005451249](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39005451249) was blocked before launching RimWorld due to obsolete expected binary hash, fixed by [Project PR #588](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/pull/588). The prior [one-chair PASS #39002811535](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39002811535) used the earlier 7,680-byte DLL, now superseded.
 
-**Not automatically scheduled:** MO/third-party furniture, dining-room positive Thoughts or RimWorld 1.7 compatibility are untested by this narrow scenario. Do not expand tests merely for more PASS counts; no PR-triggered native workflow or Steam Workshop authorization follows. Independent Culture Background status is maintained above and must not be conflated with this seat acceptance.
+**MO furniture check (separate snapshot):** [Project #39007512785](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39007512785)
+SUCCESS, original staged Medieval Overhaul 1.6.2.2 + VEF + SYR, authentic
+RimWorld 1.6.4871 rev598, Culture source `6902a96870e3ed32f05b2d633b9dbfbcfd970e69`,
+8,704-byte production DLL SHA-256
+`2fa6ab6429bd9f81d48633bea0998b47c7255fbb8658b73addc697d8ddf24010`.
+A single original `DankPyon_RusticStool` was used without an eating table;
+Comfort increased and a normal meal finished; Pickle 1/1, Unity/raw ERROR0,
+exit0, originals unchanged. Only the **disposable clone** converted two known
+MO/SYR unsupported MP3 files to WAV; the original MP3 profile is **not**
+ERROR-zero certified. The newly compiled **9,216-byte main DLL** above was
+not exercised by this MO run, although the chair C# source is unchanged.
+The real-game test-only [Culture PR #25](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Culture/pull/25)
+and manual [Project PR #591](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/pull/591)
+are merged, no new chair production code.
+
+**Not automatically scheduled:** Other MO/third-party furniture, dining-room positive Thoughts, original MP3 ERROR-zero or RimWorld 1.7 compatibility remain untested by this narrow check. Do not expand tests merely for more PASS counts; no PR-triggered native workflow or Steam Workshop authorization follows. Independent Culture Background status is maintained above and must not be conflated with this seat acceptance.
 
 ## CULTURE-NO-TABLE-MINIMAL-20261016
 
