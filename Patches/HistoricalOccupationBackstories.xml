@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <!-- Only historically portable careers. Preserve each BackstoryDef identifier,
+       category, slot, forced Traits, skills, work rules and possessions. English
+       source narrative is rewritten here; Japanese DefInjected is supplied below. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceMerchant97"]/title</xpath>
+    <value>
+      <title>coastal merchant</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceMerchant97"]/titleShort</xpath>
+    <value>
+      <titleShort>merchant</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceMerchant97"]/baseDesc</xpath>
+    <value>
+      <baseDesc>As a coastal trader, [PAWN_nameDef] moved goods between ports and market towns, bargaining for cargo and hiring boats when no vessel was available. Negotiation and practical repairs mattered as much as keeping an eye on rivals.</baseDesc>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceSmuggler6"]/title</xpath>
+    <value>
+      <title>smuggler's child</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceSmuggler6"]/titleShort</xpath>
+    <value>
+      <titleShort>smuggler</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceSmuggler6"]/baseDesc</xpath>
+    <value>
+      <baseDesc>As a child, [PAWN_nameDef] carried untaxed goods for the family, slipping past checkpoints and river crossings. The work taught bargaining, fighting to protect cargo, and tending wounds when a journey turned violent.</baseDesc>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpacePirate55"]/title</xpath>
+    <value>
+      <title>sea raider</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpacePirate55"]/titleShort</xpath>
+    <value>
+      <titleShort>raider</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpacePirate55"]/baseDesc</xpath>
+    <value>
+      <baseDesc>When the authorities could not secure the coastal sea lanes, [PAWN_nameDef] joined a band that attacked merchant vessels and seized their cargo. Raids demanded skill with bows and blades and a willingness to fight for plunder.</baseDesc>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceHunter79"]/title</xpath>
+    <value>
+      <title>mountain hunter</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceHunter79"]/titleShort</xpath>
+    <value>
+      <titleShort>hunter</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceHunter79"]/baseDesc</xpath>
+    <value>
+      <baseDesc>[PAWN_nameDef] made a living tracking elusive game through mountains and deep forests. Long journeys called for skill with bows and traps, as well as the ability to prepare meals, repair tools, and tend wounds in camp.</baseDesc>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceStationCook63"]/title</xpath>
+    <value>
+      <title>ship's cook</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceStationCook63"]/titleShort</xpath>
+    <value>
+      <titleShort>cook</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceStationCook63"]/baseDesc</xpath>
+    <value>
+      <baseDesc>A short-handed crew aboard a coastal trading vessel relied on [PAWN_nameDef] to prepare meals from limited stores. [PAWN_nameDef] learned to cook well, but constant complaints from the crew left little patience for other people's demands.</baseDesc>
+    </value>
+  </Operation>
+</Patch>

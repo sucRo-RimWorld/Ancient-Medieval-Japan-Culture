@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- Deliberate Japanese overrides of the five rewritten vanilla BackstoryDefs.
+       description and baseDesc are both supplied because RimWorld uses a resolved
+       description at runtime as well as the original translatable base field. -->
+  <SpaceMerchant97.title>廻船商人</SpaceMerchant97.title>
+  <SpaceMerchant97.titleShort>商人</SpaceMerchant97.titleShort>
+  <SpaceMerchant97.baseDesc>[PAWN_nameDef]は湊と市を結ぶ廻船商人として、品物の仕入れと運送を担った。自前の船がないときは船を雇い、値決めから荷の修繕まで取り仕切った。利益のためには情に流されなかった。</SpaceMerchant97.baseDesc>
+  <SpaceMerchant97.description>[PAWN_nameDef]は湊と市を結ぶ廻船商人として、品物の仕入れと運送を担った。自前の船がないときは船を雇い、値決めから荷の修繕まで取り仕切った。利益のためには情に流されなかった。</SpaceMerchant97.description>
+  <SpaceSmuggler6.title>密荷運びの子</SpaceSmuggler6.title>
+  <SpaceSmuggler6.titleShort>密荷運び</SpaceSmuggler6.titleShort>
+  <SpaceSmuggler6.baseDesc>[PAWN_nameDef]は幼い頃から、関所や湊の目を避けて荷を運ぶ家業を手伝った。小柄な体で荷に紛れ、取り締まりに遭えば言葉で切り抜け、時には荷を守るため武器を取った。旅の負傷者を手当てする術も覚えた。</SpaceSmuggler6.baseDesc>
+  <SpaceSmuggler6.description>[PAWN_nameDef]は幼い頃から、関所や湊の目を避けて荷を運ぶ家業を手伝った。小柄な体で荷に紛れ、取り締まりに遭えば言葉で切り抜け、時には荷を守るため武器を取った。旅の負傷者を手当てする術も覚えた。</SpaceSmuggler6.description>
+  <SpacePirate55.title>海上の略奪者</SpacePirate55.title>
+  <SpacePirate55.titleShort>略奪者</SpacePirate55.titleShort>
+  <SpacePirate55.baseDesc>[PAWN_nameDef]は沿岸の航路で商船を襲い、積荷を奪う一味に加わった。海上の襲撃では弓と刃物を使い、力ずくで富を手に入れた。</SpacePirate55.baseDesc>
+  <SpacePirate55.description>[PAWN_nameDef]は沿岸の航路で商船を襲い、積荷を奪う一味に加わった。海上の襲撃では弓と刃物を使い、力ずくで富を手に入れた。</SpacePirate55.description>
+  <SpaceHunter79.title>山野の猟師</SpaceHunter79.title>
+  <SpaceHunter79.titleShort>猟師</SpaceHunter79.titleShort>
+  <SpaceHunter79.baseDesc>[PAWN_nameDef]は獣の痕跡を追い、山野を渡り歩く猟師として暮らした。弓と罠を使い、野営の炊事や道具の手入れ、傷の手当ても自分で行った。</SpaceHunter79.baseDesc>
+  <SpaceHunter79.description>[PAWN_nameDef]は獣の痕跡を追い、山野を渡り歩く猟師として暮らした。弓と罠を使い、野営の炊事や道具の手入れ、傷の手当ても自分で行った。</SpaceHunter79.description>
+  <SpaceStationCook63.title>船中の炊事役</SpaceStationCook63.title>
+  <SpaceStationCook63.titleShort>炊事役</SpaceStationCook63.titleShort>
+  <SpaceStationCook63.baseDesc>[PAWN_nameDef]は人手の足りない廻船で炊事を任された。限られた水と食材で船乗りの食事を用意し、腕は上げたが、不満や小言に苦しんだ。以来、人付き合いは不得手になった。</SpaceStationCook63.baseDesc>
+  <SpaceStationCook63.description>[PAWN_nameDef]は人手の足りない廻船で炊事を任された。限られた水と食材で船乗りの食事を用意し、腕は上げたが、不満や小言に苦しんだ。以来、人付き合いは不得手になった。</SpaceStationCook63.description>
+</LanguageData>
