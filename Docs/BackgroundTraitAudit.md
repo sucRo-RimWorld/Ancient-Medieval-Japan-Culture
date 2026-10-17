@@ -169,3 +169,16 @@ These are **optional source cohorts**, not a single installed pool, not Culture 
 **合計更新：** 先行第1段階74件＋第2段階初回13件＋今回3件＝**90件**（成人64、幼少26）。改稿34件、初期所持品置換6件、MO特性と既存Thought補正は変更しない。既存XMLの成人カテゴリ制限は63件、独立 `FerventResearcher72` 1件。ロード済みカテゴリ・実ゲーム発生率・MO 1.7は未検証。新規背景/特性を追加しない。
 
 **改稿優先で保留：** `EnergyResearcher89`（学問・実験）、`MindwipedAssassin50`（暗殺・諜報）、`MuffaloResearcher67`（畜産・医術）、`ProstituteIdol28`（性産業史・創作と表示の整理）などの職能まで機械的に消すことは避ける。現在の未来的な原文と歴史的に移せる仕事内容を区別し、日本語本文の承認手順と効果整合が揃ったものから改稿する。
+
+## 第2段階・第3修正群 — 生成経路が確定したShuffled背景2件（2026-10-17）
+
+**実装理由と判定：** 前回の90件に加えて、既存Vanilla 1.6/1.7 Coreの取得済みv2原XMLメタデータ（Project #38797500765）と公式の[旧英語原文コメント](https://github.com/Ludeon/RimWorld-Finnish/blob/master/Backstories/Backstories.xml)を対象IDだけ照合。両バージョンで原ファイル／各項目は同一。ただし現在のライセンスCore本文との一致までは確認していない。以下2件はいずれも通常カテゴリを持つ**Shuffled**であり、カテゴリ未指定Solid幼少期の推測を混入させていない。
+
+| 元Def | 原の経路・技能等 | 時代不整合／処理 |
+|---|---|---|
+| `TestSubject15` | 幼少期、`BackstoryDefs/Shuffled/Offworld_Specific_Child.xml`、カテゴリ `Offworld;Pirate;Madman;Cult`、`Shooting +4`、Social / Caring / Firefighting制限、強制Trait・所持品なし | 旧原文は産業惑星の密閉施設で出生時から超兵士用に行う人体実験。古代〜中世日本の一般的児童経歴へ**原文のまま**入れない。既存 `Patches/AnachronisticShuffledChildBackstories.xml` のカテゴリ置換を追加。 |
+| `IllegalShipwright76` | 成人期、`BackstoryDefs/Shuffled/Pirate_Adult.xml`、カテゴリ `Pirate`、`Construction +7`、`ManualSkilled`必須、強制Trait・所持品なし | 旧原文は違法なテラワット級エネルギー兵器を貨物宇宙船に偽装搭載する造船者。既存 `Patches/AnachronisticAdultBackstories.xml` にカテゴリ置換を追加。歴史的な**船大工・舟大工**は有用であり、将来日本語史実改稿で同じDefを再使用し得るが、当面未来兵装を通常経歴に出さない。 |
+
+**数値・ソース:** 既存成人64＋今回1＝**65**（成人XML64＋独立 `FerventResearcher72` 1）、既存幼少26＋今回1＝**27**（Solidゲート24＋Shuffled子3）。計 **90→92件**を通常生成制限。既存34件の英日改稿、六つの初期所持品置換、MOの2Traitと死亡・捕虜Thoughtの調整、Culture DLLは変更なし。元のDef名・技能・作業制限・強制Trait・既存セーブ参照、手動割当は維持する。1.6/1.7の実ゲーム最終ロード・MO併用・保存済みPawnのロードは今回**未検証**。
+
+**保留の歴史的転用：** `ChildStar74`（映像番組の子役→芸能の子弟）、`DeepSpaceMiner3`（宇宙鉱山→採掘職とOdyssey所持品）、`Architect28`（AI支援設計→歴史的な建築工事）などは、原の職業効果・作業タグが妥当であることを確認した上で日本語原稿を作成し、作者の歴史記述承認後に英語化する。これらをDef名やSF単語だけで一括禁止しない。カテゴリ不明のSolid幼少期・固有Pawn専用定義は、証拠なしにゲートへ追加しない。
