@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <!-- Vanilla Core 1.6/1.7: these thirty adult BackstoryDefs have existing
+       spawnCategories. Keep the BackstoryDef identities, traits, stats, skills
+       and saved-pawn references. Restrict ordinary new generation only.
+       This does not modify category-less Solid_Child biographies or forcibly
+       assigned backgrounds, and does not claim protection from external mods. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="AerospaceEngineer44"]/spawnCategories</xpath>
+    <value>
+      <spawnCategories>
+        <li>AMJ_CultureExcluded</li>
+      </spawnCategories>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="ComputerEngineer10"]/spawnCategories</xpath>
+    <value>
+      <spawnCategories>
+        <li>AMJ_CultureExcluded</li>
+      </spawnCategories>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="ComputerEngineer36"]/spawnCategories</xpath>
+    <value>
+      <spawnCategories>
+        <li>AMJ_CultureExcluded</li>
+      </spawnCategories>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="DeepSpaceSurveyor1"]/spawnCategories</xpath>
+    <value>
+      <spawnCategories>
+        <li>AMJ_CultureExcluded</li>
+      </spawnCategories>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="GlitterworldSurgeon15"]/spawnCategories</xpath>
+    <value>
+      <spawnCategories>
+        <li>AMJ_CultureExcluded</li>
+      </spawnCategories>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="OrbitalReservist22"]/spawnCategories</xpath>
+    <value>
+      <spawnCategories>
+        <li>AMJ_CultureExcluded</li>
+      </spawnCategories>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceMarine51"]/spawnCategories</xpath>
+    <value>
+      <spawnCategories>
+        <li>AMJ_CultureExcluded</li>
+      </spawnCategories>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceMarineMedic10"]/spawnCategories</xpath>
+    <value>
+      <spawnCategories>
+        <li>AMJ_CultureExcluded</li>
+      </spawnCategories>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceNavyTech37"]/spawnCategories</xpath>
+    <value>
+      <spawnCategories>
+        <li>AMJ_CultureExcluded</li>
+      </spawnCategories>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceResearcher25"]/spawnCategories</xpath>
+    <value>
+      <spawnCategories>
+        <li>AMJ_CultureExcluded</li>
+      </spawnCategories>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceTechnician29"]/spawnCategories</xpath>
+    <value>
+      <spawnCategories>
+        <li>AMJ_CultureExcluded</li>
+      </spawnCategories>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceshipSalesman34"]/spawnCategories</xpath>
+    <value>
+      <spawnCategories>
+        <li>AMJ_CultureExcluded</li>
+      </spawnCategories>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="StarshipJanitor33"]/spawnCategories</xpath>
+    <value>
+      <spawnCategories>
+        <li>AMJ_CultureExcluded</li>
+      </spawnCategories>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="AIProgrammer22"]/spawnCategories</xpath>
+    <value>
+      <spawnCategories>
+        <li>AMJ_CultureExcluded</li>
+      </spawnCategories>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="AIResearcher94"]/spawnCategories</xpath>
+    <value>
+      <spawnCategories>
+        <li>AMJ_CultureExcluded</li>
+      </spawnCategories>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="AceFighterPilot54"]/spawnCategories</xpath>
+    <value>
+      <spawnCategories>
+        <li>AMJ_CultureExcluded</li>
+      </spawnCategories>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="ArchotechSpy75"]/spawnCategories</xpath>
+    <value>
+      <spawnCategories>
+        <li>AMJ_CultureExcluded</li>
+      </spawnCategories>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="BattleMechanic27"]/spawnCategories</xpath>
+    <value>
+      <spawnCategories>
+        <li>AMJ_CultureExcluded</li>
+      </spawnCategories>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="BattlefieldTech52"]/spawnCategories</xpath>
+    <value>
+      <spawnCategories>
+        <li>AMJ_CultureExcluded</li>
+      </spawnCategories>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="CombatMedtech59"]/spawnCategories</xpath>
+    <value>
+      <spawnCategories>
+        <li>AMJ_CultureExcluded</li>
+      </spawnCategories>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="CorpResearcher71"]/spawnCategories</xpath>
+    <value>
+      <spawnCategories>
+        <li>AMJ_CultureExcluded</li>
+      </spawnCategories>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="EngineeredPilot75"]/spawnCategories</xpath>
+    <value>
+      <spawnCategories>
+        <li>AMJ_CultureExcluded</li>
+      </spawnCategories>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="GeneticEngineer89"]/spawnCategories</xpath>
+    <value>
+      <spawnCategories>
+        <li>AMJ_CultureExcluded</li>
+      </spawnCategories>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="GeneticScientist66"]/spawnCategories</xpath>
+    <value>
+      <spawnCategories>
+        <li>AMJ_CultureExcluded</li>
+      </spawnCategories>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="MechWarVeteran77"]/spawnCategories</xpath>
+    <value>
+      <spawnCategories>
+        <li>AMJ_CultureExcluded</li>
+      </spawnCategories>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="NetworkEngineer34"]/spawnCategories</xpath>
+    <value>
+      <spawnCategories>
+        <li>AMJ_CultureExcluded</li>
+      </spawnCategories>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Roboticist1"]/spawnCategories</xpath>
+    <value>
+      <spawnCategories>
+        <li>AMJ_CultureExcluded</li>
+      </spawnCategories>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Roboticist41"]/spawnCategories</xpath>
+    <value>
+      <spawnCategories>
+        <li>AMJ_CultureExcluded</li>
+      </spawnCategories>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="RocketEngineer53"]/spawnCategories</xpath>
+    <value>
+      <spawnCategories>
+        <li>AMJ_CultureExcluded</li>
+      </spawnCategories>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="RocketPioneer19"]/spawnCategories</xpath>
+    <value>
+      <spawnCategories>
+        <li>AMJ_CultureExcluded</li>
+      </spawnCategories>
+    </value>
+  </Operation>
+</Patch>
