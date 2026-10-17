@@ -2,6 +2,14 @@
 
 Authoritative coordination file: `main:Docs/Coordination.md`. Confirmed scope and acceptance conditions belong in `Docs/Design.md`; the actual Thought modification belongs in `Patches/AteWithoutTable.xml`.
 
+## CULTURE-CHARACTER-BACKGROUNDS-20261017
+
+**Status: SOURCE IMPLEMENTED / REAL VANILLA 1.6 SCOPED NATIVE PASS / MO AND EXISTING-SAVE LOAD OPEN.** The existing compiled 8,704-byte `AMJ.Culture.dll` SHA-256 `2fa6ab6429bd9f81d48633bea0998b47c7255fbb8658b73addc697d8ddf24010` and 31 adult-category + 12 Solid-child generator restrictions are on Culture main; accepted behavior and evidence are documented in `Docs/Design.md`, implementation in `Patches/AnachronisticAdultBackstories.xml`, `Patches/TranshumanistGeneration.xml`, `Source/AMJ.Culture/SolidChildBioGatePatch.cs`.
+
+[Actual isolated original 1.6 acceptance #39005480093](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39005480093): loaded adult categories **31/31**; preserved childhood Def IDs **12/12**; real `Transhumanist` private commonality zero; Harmony installed; one excluded `MechanoidNerd10` Solid Bio rejected, one ordinary `FallenProdigy40` retained; a new normal player pawn generated without banned histories; Pickle **1/1**, Unity/raw log ERROR **0**, exit 0, original game hashes unchanged. Tested source exact `18636756e1a722466009a013ad17d6e8997ce40d`, matching already packaged production DLL. Initial [#39005233520](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39005233520) was a test-only C# compile failure and did not start RimWorld; fixed by private-field reflection without production source changes.
+
+Do not infer that all twelve blocked children were individually selected in gameplay, that the shuffled fallback was deliberately forced during the test, that a saved pawn was reloaded, or that MO/1.7 passed. This is not a reason to repeat native tests, add a broad matrix or claim Culture feature/release completeness. All required exact expected outcomes, implementation boundaries and evidence belong to `Docs/Design.md`.
+
 ## CULTURE-CHAIR-ONLY-MEAL-20261017
 
 **Status: IMPLEMENTED / MATCHING 1.6 DLL MERGED / ONE-SCENARIO NATIVE PASS (2026-10-17).** Production source and compiled `Assemblies/AMJ.Culture.dll` (7,680 bytes, SHA-256 `609f8d2b2d4f9bc48f6ee86474f2b0e15c5d7abb2f342bd855dac526250a4dbb`) reached Culture main via [PR #9](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Culture/pull/9), original merge `832e2ba3d2e342372a67520feeb91d1397453af2`. Current `Source/AMJ.Culture/TablelessChairMealPatch.cs` and the DLL match the actual tested implementation; formal expected behavior and evidence live in `Docs/Design.md`.
