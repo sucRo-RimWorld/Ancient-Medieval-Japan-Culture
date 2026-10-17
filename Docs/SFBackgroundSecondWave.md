@@ -49,4 +49,4 @@
 
 ## 受け入れ・公開の境界
 
-既存 [Vanilla 1.6 #39005480093](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39005480093) のPASSは一次43件までが対象。二次追加24件の loaded-Def / 実抽選は**未検証**。再ビルドが必要な幼少期のDLLは、元ゲーム1.6とHarmonyを使用したビルドで更新し、製品DLLを同じGitHub PRで格納する。実装途中で追加のRimWorld起動・PR自動ゲーム実行・広域サンプリングはしない。最終的な統合受け入れは他の未変更の既知PASSを使い回し、新たな機能に絞る。MO・RimWorld 1.7・旧セーブロード・任意の外部直接代入は未検証。
+既存 [Vanilla 1.6 #39005480093](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39005480093) のPASSは一次43件までが対象。二次追加24件の loaded-Def / 実抽選は**未検証**。幼少期のDLLは元ゲーム1.6とHarmonyを使用した[ビルド専用ジョブ #39007502577](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39007502577)で更新済み（9,216バイト、SHA-256 `0d944eb47a1e648acdbc13ca75948e075e5ccfd71fefe1d4196c54d5a6c5be03`）。製品DLLを同じGitHub PRに格納した。ゲーム起動はしていない。実装途中で追加のRimWorld起動・PR自動ゲーム実行・広域サンプリングはしない。最終的な統合受け入れは他の未変更の既知PASSを使い回し、新たな機能に絞る。MO・RimWorld 1.7・旧セーブロード・任意の外部直接代入は未検証。
