@@ -2,6 +2,9 @@
 
 ## CULTURE-FOLDABLE-BEDDING-SPACE-20261018 — native F1–F4 PASS; F5 queued; product OPEN
 
+**Author follow-up 2026-10-18 — storage route:** Folded beds must go to a **nearby eligible stockpile/supported storage** (optional bedding-specific 櫃 candidate) rather than permanently consuming pawns' ordinary inventory. The current 1.6 PoC uses pawn inventory briefly as installation handoff only, not final storage design. An Edo-style built-in 押し入れ is historically out of scope; possible medieval 櫃/納戸 analogue and detailed fallback/priority/owner rules are in **[Features/FoldableBedding.md](Features/FoldableBedding.md#storage-destination-and-hauling-policy-2026-10-18-author-direction)** (canonical). Implement independent fold→haul→retrieve acceptance after F5 gate, but don't label original native F1–F4 result as storage PASS. No new built furniture/production code or native test this decision alone. 
+
+
 **Owner / official spec:** Culture is one Mod with per-feature specification-first development. Bedding + optional localized Cramped custom are Culture-owned; [Features/FoldableBedding.md](Features/FoldableBedding.md) is canonical, [FeatureImplementationPlan.md](FeatureImplementationPlan.md) routes individual features.
 
 **Latest genuine native 1.6 proof:** [Project Actions #39052567400](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39052567400) PASS 1 Pickle scenario, errors0, exit0, Culture test-only source `43367d8fc4b9ecbebebd2ba98bae5f7d2aa8ad9d`. One pawn claimed Bedroll, truly LayDown, native Uninstall produced minified item, 1×2 floor freed, existing item reinstalled by a controlled test Job at same owner/site. Initial failed [#39052398389](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39052398389) corrected by Culture #109 when transferring spawned item. This is *not* fully automatic production bedding or save/reload acceptance.

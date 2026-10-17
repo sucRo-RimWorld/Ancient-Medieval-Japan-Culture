@@ -23,8 +23,8 @@
 | Condition | Expected behavior |
 | --- | --- |
 | 寝所を配置・寝具を製作 | 個人用寝所と実体としての寝具が対応し、オーナーを割り当て可能 |
-| 就寝要求（自動収納モード） | 寝所の1×2セルが設置可能で在庫に寝具がある場合、ポーンが敷設してその寝所で休む |
-| 起床・不要になった場合 | 同じ寝具を適切なJobで畳み、収納物へ戻す。元の2セルが空き床になる |
+| 就寝要求（自動収納モード） | 寝所の1×2セルが使用可能なら、近くの収納場所から割当済みの実体寝具を取り出し、敷設して寝る。材料を無から補充しない |
+| 起床・不要になった場合 | 近くの有効な寝具対応ストレージを確保してからJobで畳み、収納物をそこへ運搬する。寝具はインベントリに常駐せず、元の2セルが空き床になる |
 | 万年床モード | 寝具を自動的には片付けない。設定はセーブ後にも維持 |
 | 指定場所が使用中、予約中、塞がっている | 他人の家具やJobを強制消去しない。安全に延期または通常就寝へのフォールバック。無限設置/撤去・食事/睡眠Jobのスパムなし |
 | 寝具が紛失・入手不可 | 寝所/所有者の記録は保全し、寝具を無から増殖させない。プレイヤーに検知できる失敗で復帰可能 |
@@ -32,7 +32,24 @@
 | 囚人・医療用Sleeping Spot、緊急治療 | **Vanillaのまま**。新規寝具の勝手な収納処理を掛けない |
 | Shared Sleeping／Culture Greedy・Jealous | 共同寝所評価と寝室割当が収納を理由に無条件に失われない。既存の独立Mod/既存Thoughtの値を一律には変更しない |
 
-**収納先の詳細はPoCの技術判定項目:** 畳んだ寝具が自分の持ち物か、通常備蓄/棚か、共有収納物かは現時点で固定しない。どの方式でも寝所位置・個人割当・実体アイテム（数量）の同一性・床の解放が必須。リザーブ競合や就寝Job衝突がある方式を採用しない。昼間に寝所セルへ別の**恒久家具**を設置した場合の完全自動片付けは約束しない。
+## Storage destination and hauling policy (2026-10-18 author direction)
+
+**New confirmed gameplay requirement:** A folded bed is **stored at a nearby player-allowed stockpile/storage location**, rather than residing in the pawn's ordinary inventory between sleep periods. The existing disposable PoC moves a minified bed into pawn inventory solely for the controlled installation Job. That behavior is **not** the intended production storage loop. A carrier may temporarily hold the object while actively hauling or installing it, but must release it at completion/interruption; do not permanently reduce the pawn's carrying capacity.
+
+1. **Default route without a new furniture dependency:** fold/uninstall a bed using a real Job, then haul the *same* MinifiedThing to a **nearby reachable stockpile** that accepts this bedding item. Where an existing supported shelf or storage building **actually accepts and holds** that item, it may also be used. Respect stockpile filters, reserves, forbidden settings and material/bed owner identity. Whether Vanilla/MO storage filters actually accept MinifiedThing beds must be verified in code/loaded Defs; don't claim all shelves work as-is.
+2. **Location preference:** prefer an optional player-linked bedding store for that sleeping place; otherwise pick the nearest reachable, permitted bedding-accepting storage destination with adequate free capacity, subject to Vanilla storage rules and competing item reservations. Avoid searching every storage cell, bed and pawn every Tick. Keep sleep-site → exact bed item identity even if another hauling Job or a user moves the item between storage locations. The stored bed remains a real item, not an abstract infinite charge.
+3. **Restore for rest:** the assigned pawn (or valid helper during hauling) takes that exact minified bed from storage for a short active installation job, installs it at the original stable 1×2 sleeping site, then sleeps there; no permanent carried bed or teleportation. Do not steal another pawn's sleeping item. Use a safe fallback if access/path, room use or reservations obstruct retrieval or placement.
+4. **No storage / full storage:** check for an acceptable storage destination **before** scheduling automatic folding. When none exists, leave the bed **laid out** (like 万年床) and do not burden the pawn with a packed bed or start an install/fold loop. If storage becomes unavailable midway, release the item at a valid nonblocking fallback cell and retry only on a bounded future event; do not lose/duplicate it or force-erase another structure. If the bed has already been uninstalled and no destination remains, require a recoverable visible object/state rather than silent loss.
+5. **Saving and multipawn integrity:** retain owner, site, fold/keep mode, stored item reference, location (or storage-association lookup) through game save/load, forbidden/priority changes, emptying a container, pawn absence and map transitions. A large colony of night/day shift workers must not generate competing haul jobs or global per-tick scanning.
+6. **Storage performance and advantage:** the storage has its own occupied footprint and should typically be compact enough that folding several 1×2 beds into one store **actually saves floor space**. Do not add a free room-impressiveness or Cramped mood bonus merely because a chest exists. Final furniture footprint, capacity, work time, costs, bed count and player UI are **balance/implementation decisions**, not approved numbers.
+
+### Historically appropriate optional storage object (not yet implemented)
+
+The author would like something analogous to an **押し入れ** for convenience, but the standard built-in two-tier *oshiire* storage closet became common in the **Edo period**, outside the AMJ ancient–medieval scope. See [日本大百科全書／世界大百科事典「押入れ」](https://kotobank.jp/word/%E6%8A%BC%E5%85%A5%E3%82%8C-40233). For an era-appropriate dedicated bedding store, **櫃（ひつ）／仮称「寝具櫃」** is the leading small-storage furniture candidate; **納戸** is a documented medieval room for storing household goods (not an automatically built-in closet). Historical references: [「納戸」世界大百科事典](https://kotobank.jp/word/%E7%B4%8D%E6%88%B8-590642), [OMOYA LAB「近世庶民の住まいと調度」](https://www.shc.usp.ac.jp/omoya/lab/activities/articles/household-edo.html). Do not casually use the modern fitted closet or Edo-era large `長持` as the default medieval commoner's solution. The exact period/label/visual and construction requirements for a new **bedding-only** chest are pending content audit and author approval; this narrowly associated item could belong to Culture without absorbing unrelated general furniture.
+
+**Implementation/acceptance gate separate from earlier native PoC:** Earlier F1–F4 PASS showed a real minified item, physical floor clearance and controlled reinstallation, **not** delivery to an actual stockpile or chest. Before product storage is accepted, check one real fold → nearby stockpile/container haul → retrieve → install → sleep roundtrip, full storage fallback, owner identity, and save/load if storage location changed. Fold-and-stow has its own behavioral evidence and must not inherit the standalone F1–F4 PASS. Do not start a new unrelated test matrix merely to record this decision.
+
+
 
 ## Mandatory feasibility test — BEFORE committing to the production installation architecture
 
