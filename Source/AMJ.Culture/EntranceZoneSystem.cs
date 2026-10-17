@@ -15,6 +15,8 @@ namespace AMJ.Culture
     {
         private List<IntVec3> cells = new List<IntVec3>();
         private HashSet<IntVec3> lookup = new HashSet<IntVec3>();
+        private List<IntVec3> noShoesCells = new List<IntVec3>();
+        private HashSet<IntVec3> noShoesLookup = new HashSet<IntVec3>();
 
         private static readonly Material ProgressFilled =
             SolidColorMaterials.SimpleSolidColorMaterial(new Color(0.76f, 0.72f, 0.45f));
@@ -25,10 +27,71 @@ namespace AMJ.Culture
 
         public bool Contains(IntVec3 cell) { return lookup.Contains(cell); }
         public List<IntVec3> Cells { get { return cells; } }
+        public List<IntVec3> NoShoesCells { get { return noShoesCells; } }
+        public bool IsNoShoes(IntVec3 cell) { return noShoesLookup.Contains(cell); }
+        public bool HasActiveArea { get { return cells.Count > 0 && noShoesCells.Count > 0; } }
+
+        public static bool TouchByEdge(IntVec3 a, IntVec3 b)
+        {
+            return Math.Abs(a.x - b.x) + Math.Abs(a.z - b.z) == 1;
+        }
+
+        public bool HasNoShoesNeighbor(IntVec3 cell)
+        {
+            return IsNoShoes(new IntVec3(cell.x + 1, 0, cell.z)) ||
+                   IsNoShoes(new IntVec3(cell.x - 1, 0, cell.z)) ||
+                   IsNoShoes(new IntVec3(cell.x, 0, cell.z + 1)) ||
+                   IsNoShoes(new IntVec3(cell.x, 0, cell.z - 1));
+        }
+
+        // Editor-only connectivity check. A multi-cell painted threshold can
+        // contact a no-shoes area at one end, not necessarily every cell.
+        public bool HasConnectedNoShoesContact(IntVec3 start)
+        {
+            if (!Contains(start) || noShoesCells.Count == 0) return false;
+            Queue<IntVec3> pending = new Queue<IntVec3>();
+            HashSet<IntVec3> seen = new HashSet<IntVec3>();
+            pending.Enqueue(start);
+            seen.Add(start);
+            while (pending.Count > 0)
+            {
+                IntVec3 cell = pending.Dequeue();
+                if (HasNoShoesNeighbor(cell)) return true;
+                AddConnected(cell.x + 1, cell.z, pending, seen);
+                AddConnected(cell.x - 1, cell.z, pending, seen);
+                AddConnected(cell.x, cell.z + 1, pending, seen);
+                AddConnected(cell.x, cell.z - 1, pending, seen);
+            }
+            return false;
+        }
+
+        private void AddConnected(int x, int z, Queue<IntVec3> pending, HashSet<IntVec3> seen)
+        {
+            IntVec3 cell = new IntVec3(x, 0, z);
+            if (Contains(cell) && seen.Add(cell)) pending.Enqueue(cell);
+        }
+
+        public void SetNoShoes(IntVec3 cell, bool enabled)
+        {
+            if (!cell.InBounds(map) || Contains(cell)) return;
+            if (enabled)
+            {
+                if (noShoesLookup.Add(cell)) noShoesCells.Add(cell);
+            }
+            else if (noShoesLookup.Remove(cell))
+                noShoesCells.Remove(cell);
+
+            Game game = Current.Game;
+            if (game != null)
+            {
+                EntranceFootwearState state = game.GetComponent<EntranceFootwearState>();
+                if (state != null) state.CancelOnMap(map);
+            }
+        }
 
         public void Set(IntVec3 cell, bool enabled)
         {
-            if (!cell.InBounds(map)) return;
+            if (!cell.InBounds(map) || IsNoShoes(cell)) return;
             if (enabled)
             {
                 if (lookup.Add(cell)) cells.Add(cell);
@@ -49,10 +112,14 @@ namespace AMJ.Culture
         {
             base.ExposeData();
             Scribe_Collections.Look(ref cells, "AMJCultureEntranceCells", LookMode.Value);
+            Scribe_Collections.Look(ref noShoesCells, "AMJCultureNoShoesCells", LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (cells == null) cells = new List<IntVec3>();
                 lookup = new HashSet<IntVec3>(cells);
+                if (noShoesCells == null) noShoesCells = new List<IntVec3>();
+                noShoesCells.RemoveAll(cell => lookup.Contains(cell));
+                noShoesLookup = new HashSet<IntVec3>(noShoesCells);
             }
         }
 
@@ -60,7 +127,7 @@ namespace AMJ.Culture
         {
             if (Current.Game == null || Find.CurrentMap != map) return;
             EntranceFootwearState state = Current.Game.GetComponent<EntranceFootwearState>();
-            if (state == null) return;
+            if (state == null || state.ActivePauses.Count == 0) return;
 
             int now = Find.TickManager.TicksGame;
             foreach (KeyValuePair<Pawn, EntrancePause> pair in state.ActivePauses)
@@ -105,13 +172,13 @@ namespace AMJ.Culture
     {
         public readonly Map Map;
         public readonly Job Job;
-        public readonly bool Indoor;
+        public readonly bool NoShoes;
 
-        public EntranceApproach(Pawn pawn, bool indoor)
+        public EntranceApproach(Pawn pawn, bool noShoes)
         {
             Map = pawn.Map;
             Job = pawn.CurJob;
-            Indoor = indoor;
+            NoShoes = noShoes;
         }
     }
 
@@ -149,23 +216,23 @@ namespace AMJ.Culture
                 barefootPawnIds.Remove(id);
         }
 
-        internal void NoteApproach(Pawn pawn, bool indoor)
+        internal void NoteApproach(Pawn pawn, bool noShoes)
         {
-            approaches[pawn] = new EntranceApproach(pawn, indoor);
+            approaches[pawn] = new EntranceApproach(pawn, noShoes);
         }
 
-        internal bool TryGetApproach(Pawn pawn, out bool indoor)
+        internal bool TryGetApproach(Pawn pawn, out bool noShoes)
         {
             EntranceApproach approach;
             if (approaches.TryGetValue(pawn, out approach) &&
                 approach.Map == pawn.Map && approach.Job == pawn.CurJob)
             {
-                indoor = approach.Indoor;
+                noShoes = approach.NoShoes;
                 return true;
             }
 
             approaches.Remove(pawn);
-            indoor = false;
+            noShoes = false;
             return false;
         }
 
@@ -204,6 +271,19 @@ namespace AMJ.Culture
         {
             pauses.Remove(pawn);
             approaches.Remove(pawn);
+        }
+
+        internal void CancelOnMap(Map map)
+        {
+            // Zone editing is rare: cancel only affected transient crossing data.
+            List<Pawn> affected = new List<Pawn>();
+            foreach (KeyValuePair<Pawn, EntrancePause> pair in pauses)
+                if (pair.Value.Map == map) affected.Add(pair.Key);
+            foreach (Pawn pawn in affected) CancelAndForget(pawn);
+            affected.Clear();
+            foreach (KeyValuePair<Pawn, EntranceApproach> pair in approaches)
+                if (pair.Value.Map == map) affected.Add(pair.Key);
+            foreach (Pawn pawn in affected) CancelAndForget(pawn);
         }
 
         internal void CancelAt(Map map, IntVec3 cell)
@@ -253,13 +333,6 @@ namespace AMJ.Culture
     [HarmonyPatch(typeof(Pawn_PathFollower), "PatherTick")]
     public static class EntrancePathPausePatch
     {
-        private static bool IsInterior(IntVec3 cell, Map map)
-        {
-            if (!cell.InBounds(map)) return false;
-            Room room = cell.GetRoom(map);
-            return room != null && !room.PsychologicallyOutdoors;
-        }
-
         private static bool IsEmergency(Pawn pawn)
         {
             if (pawn.Drafted || pawn.InMentalState || pawn.Downed ||
@@ -297,7 +370,17 @@ namespace AMJ.Culture
             if (game == null || !__instance.Moving) return true;
             EntranceFootwearState state = game.GetComponent<EntranceFootwearState>();
             EntranceZoneMap zone = pawn.Map.GetComponent<EntranceZoneMap>();
-            if (state == null || zone == null) return true;
+            if (state == null || zone == null || !zone.HasActiveArea) return true;
+
+            // Most movement is nowhere near a threshold. Only the two grid
+            // lookups below run before the hot-path exit, not danger/room scans.
+            bool here = zone.Contains(pawn.Position);
+            bool next = zone.Contains(__instance.nextCell);
+            if (!here && !next)
+            {
+                state.CancelAndForget(pawn);
+                return true;
+            }
 
             if (IsEmergency(pawn))
             {
@@ -308,14 +391,12 @@ namespace AMJ.Culture
             int tick = Find.TickManager.TicksGame;
             if (state.ProcessCast(pawn, tick)) return false;
 
-            // Capture the actual side BEFORE stepping onto the zone. At a
-            // door, the zone cell itself may already belong to the room.
-            bool here = zone.Contains(pawn.Position);
-            bool next = zone.Contains(__instance.nextCell);
+            // Capture the actual source-side cell before entering the zone.
             if (!here)
             {
                 if (next && pawn.Position != __instance.nextCell)
-                    state.NoteApproach(pawn, IsInterior(pawn.Position, pawn.Map));
+                    state.NoteApproach(pawn, zone.IsNoShoes(pawn.Position) &&
+                                             EntranceZoneMap.TouchByEdge(pawn.Position, __instance.nextCell));
                 else
                     state.ClearApproach(pawn);
                 return true;
@@ -326,13 +407,14 @@ namespace AMJ.Culture
             // enters via entrance A and later exits via entrance B in one Job.
             if (next || __instance.nextCell == pawn.Position) return true;
 
-            bool approachIndoor;
-            if (!state.TryGetApproach(pawn, out approachIndoor))
+            bool approachNoShoes;
+            if (!state.TryGetApproach(pawn, out approachNoShoes))
                 return true;
 
-            bool exitIndoor = IsInterior(__instance.nextCell, pawn.Map);
-            if (approachIndoor == exitIndoor ||
-                state.IsBarefoot(pawn) == exitIndoor)
+            bool exitNoShoes = zone.IsNoShoes(__instance.nextCell) &&
+                               EntranceZoneMap.TouchByEdge(pawn.Position, __instance.nextCell);
+            if (approachNoShoes == exitNoShoes ||
+                state.IsBarefoot(pawn) == exitNoShoes)
             {
                 state.ClearApproach(pawn);
                 return true;
@@ -341,7 +423,7 @@ namespace AMJ.Culture
             // Cast on the last threshold cell, immediately before leaving.
             // The completed cast changes the pawn state, so the same exit
             // cannot cast a second time, even if the path is processed again.
-            state.BeginCast(pawn, exitIndoor, tick);
+            state.BeginCast(pawn, exitNoShoes, tick);
             return false;
         }
     }
