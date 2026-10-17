@@ -581,4 +581,22 @@
       <description>[PAWN_nameDef] supervised workers and stores on a large estate, settling arguments and keeping the work on schedule. Success relied on a talent for accounts and persuasion, as well as maneuvering to take credit for others' achievements.</description>
     </value>
   </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="ApprenticeOracle83"]/title</xpath>
+    <value>
+      <title>shrine ritual apprentice</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="ApprenticeOracle83"]/titleShort</xpath>
+    <value>
+      <titleShort>ritual apprentice</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="ApprenticeOracle83"]/description</xpath>
+    <value>
+      <description>As a child, [PAWN_nameDef] was entrusted with learning the rites of a local shrine. [PAWN_pronoun] learned the words of offerings and the care of visitors, but an inquisitive temperament sometimes led to disputes with the elders over proper ceremonies.</description>
+    </value>
+  </Operation>
 </Patch>
