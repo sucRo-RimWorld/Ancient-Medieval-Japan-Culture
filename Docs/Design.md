@@ -113,11 +113,34 @@ was blocked **before game launch** by a stale binary SHA check,
 corrected via Project PR #588. Earlier single-chair PASS #39002811535
 remains valid for its explicitly older source and DLL identity.
 
-**Not verified by the chair-only test:** MO/other seats, dining-room
-positive Thoughts and RimWorld 1.7 production compatibility. These are
-not grounds for unsolicited broad native test matrices. Additional
-validation should follow actual feature changes, compatibility issues
-or release requirements.
+**Actual MO compatibility slice (2026-10-17):** An original MO 1.6.2.2
+`DankPyon_RusticStool` (`isSittable=true`, base Comfort 0.5) was used to
+complete a normal table-free Ingest Job with measurable Comfort gain in
+[Project run #39007512785](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39007512785).
+Source-pinned Culture `6902a96870e3ed32f05b2d633b9dbfbcfd970e69`,
+**8,704-byte DLL** SHA-256
+`2fa6ab6429bd9f81d48633bea0998b47c7255fbb8658b73addc697d8ddf24010`,
+original RimWorld 1.6.4871 rev598, MO+VEF+SYR, Pickle 1/1,
+Unity/raw ERROR 0, exit 0, no original game modification.
+**Sound caveat:** the two known external MO/SYR unsupported MP3 clips were
+converted to temporary 44.1kHz PCM WAV **only inside the disposable game
+clone**. The unmodified original-MP3 configuration did not establish
+ERROR-zero; never confuse the functional dining PASS with this separate
+external audio defect.
+
+Since that run, another Culture Backstory implementation compiled a
+**9,216-byte current main DLL**, SHA-256
+`0d944eb47a1e648acdbc13ca75948e075e5ccfd71fefe1d4196c54d5a6c5be03`.
+The chair production C# Git blob is still
+`04c1f579ee96a131d95e2aab47953fe5536a9844`, but **the current
+9,216-byte artifact was not the tested MO binary**. No extra MO test is
+warranted solely due to unrelated Backstory work; a later integrated
+release decision can assess the material risk.
+
+**Not verified by these scoped seat tests:** all other MO/third-party chairs,
+positive dining-room Thoughts and RimWorld 1.7 production compatibility.
+Validation must correspond to a real compatibility issue or release requirement,
+not a large speculative test matrix.
 
 **Boundary:** The historically appropriate enza is still an optional
 later furniture candidate requiring its own materials, artwork and balance

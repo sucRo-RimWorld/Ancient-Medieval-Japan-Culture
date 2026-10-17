@@ -1,17 +1,18 @@
 # Culture chair-only dining adapter
 
-**Implementation state:** RimWorld 1.6 production C# and matching compiled
-`Assemblies/AMJ.Culture.dll` are on main. The current production assembly
-(8,704 bytes; SHA-256
-`2fa6ab6429bd9f81d48633bea0998b47c7255fbb8658b73addc697d8ddf24010`)
-includes the unmodified chair adapter plus independently owned Backstory
-logic; it was compiled against licensed original RimWorld 1.6 references
-in [build-only #39004690614](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39004690614).
-[Real-game #39005539686](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39005539686)
-PASS: in one original 1.6 session the standalone Vanilla Stool meal/Comfort,
-table-adjacent stool priority, and no-chair standing fallback all succeeded
-(Pickle 1/1, ERROR 0, original files unchanged). MO, dining-room mood
-regression and 1.7 gameplay are not verified.
+**Implementation state:** The current RimWorld 1.6 main assembly is
+9,216 bytes (SHA-256
+`0d944eb47a1e648acdbc13ca75948e075e5ccfd71fefe1d4196c54d5a6c5be03`);
+the generic chair adapter source is unchanged. With the previous 8,704-byte
+DLL (SHA-256 `2fa6ab6429bd9f81d48633bea0998b47c7255fbb8658b73addc697d8ddf24010`),
+[Vanilla run #39005539686](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39005539686)
+proved free Stool eating/Comfort, table-adjacent seat precedence, and no-seat
+standing fallback in one authentic 1.6 game (Pickle 1/1, ERROR0).
+[Original MO run #39007512785](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39007512785)
+proved table-free eating and Comfort using `DankPyon_RusticStool` (Pickle 1/1,
+ERROR0, exit0) **only with two original MO/SYR clips temporarily WAV-converted
+in the disposable clone**. The current 9,216-byte DLL was not tested in that
+MO run, and original-MP3 ERROR-zero, 1.7 and dining-room mood remain open.
 
 
 The adapter patches only `Toils_Ingest.CarryIngestibleToChewSpot`. During a
