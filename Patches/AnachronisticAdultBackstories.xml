@@ -472,4 +472,30 @@
     <xpath>Defs/BackstoryDef[defName="CosmeticSurgeon36"]/spawnCategories</xpath>
     <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
   </Operation>
+  <!-- Stage 2: five remaining category-bearing Solid adulthood stories whose
+       original archived narratives depend on contemporary automated software,
+       brain mapping, robotics, high-technology communications or genetics.
+       Restrict ordinary category selection pending one author-approved batch
+       of historically adequate Japanese rewrites. Leave Def identity, skills,
+       disabled work, forced traits, starting possessions and old saves intact. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="NeuroScientist19"]/spawnCategories</xpath>
+    <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SoftwareDeveloper84"]/spawnCategories</xpath>
+    <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="ExiledResearcher44"]/spawnCategories</xpath>
+    <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="EnergyResearcher89"]/spawnCategories</xpath>
+    <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="MadScientist31"]/spawnCategories</xpath>
+    <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
+  </Operation>
 </Patch>
