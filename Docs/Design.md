@@ -4,7 +4,7 @@
 
 Culture's product goal is to remove historically incongruous **character generation, culturally contingent mood/social judgments, and intoxicant gameplay** from ancient-to-medieval Japanese settlement play **without breaking the useful Vanilla/MO gameplay roles**. One neutral meal Thought is a small completed slice, not the product goal. Culture combines Backstories, generic Pawn-generation interactions, Traits, relevant Needs/Thoughts and psychoactive Drug/effect/supply UX; Shared Sleeping, general furniture, medicinal remedies, brewing, and ordinary food Jobs remain other owners' responsibilities.
 
-**Actual implementation maturity:** the narrow `AteWithoutTable` zero-mood XML prototype, bounded `Transhumanist` and 31 original adult + 12 original child background exclusions are on `main`; the final ordinary-generation exclusion scope is 67, and the original 32 portable historical background candidates have all now received authored English/Japanese histories with six starting-item substitutions (see the latest section). The [second-wave source change](SFBackgroundSecondWave.md) adds a further 12 adult and 12 child rules; its updated production DLL and native acceptance are tracked separately below. The single real Vanilla 1.6 character-generation acceptance below passed, but complete MO/1.7 coverage and saved-game migration were not tested. The no-table prototype's static XML check passed; the generation source still needs focused loaded-Def/gameplay acceptance. Historical background/trait handling, drugs and minimum enza functionality have *approved ownership/boundaries or research candidates*, but **not** complete per-feature effect values, spawn handling, recipes, migration or final implementation specifications. Do not describe Culture overall as implemented or entering integration validation.
+**Actual implementation maturity:** the narrow `AteWithoutTable` zero-mood XML prototype, bounded `Transhumanist` and 31 original adult + 12 original child background exclusions are on `main`; the current ordinary-generation exclusion scope is 70, and 34 historical backgrounds have authored English/Japanese histories with six starting-item substitutions (see the latest section). The [second-wave source change](SFBackgroundSecondWave.md) adds a further 12 adult and 12 child rules; its updated production DLL and native acceptance are tracked separately below. The single real Vanilla 1.6 character-generation acceptance below passed, but complete MO/1.7 coverage and saved-game migration were not tested. The no-table prototype's static XML check passed; the generation source still needs focused loaded-Def/gameplay acceptance. Historical background/trait handling, drugs and minimum enza functionality have *approved ownership/boundaries or research candidates*, but **not** complete per-feature effect values, spawn handling, recipes, migration or final implementation specifications. Do not describe Culture overall as implemented or entering integration validation.
 
 **Next Culture specification work:** prioritize the user's high-execution-impact historical drug/intoxicant UX together with related `DrugDesire`/Need/Trait rules. Preserve the emergency mood-rescue role, addiction/withdrawal consistency and existing-save references. In the same bounded character-generation design effort, resolve the evidenced `Transhumanist` natural and forced-Backstory paths in Vanilla/MO, without indiscriminate TraitDef deletion or re-auditing all third-party backgrounds. Work from the existing Project [drug research](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/blob/main/Docs/Research/PsychoactiveSubstancesCandidate.md) and [character research](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/blob/main/Docs/Research/CultureCandidate.md); make each accepted final decision here before adding its source. Enza material/Comfort/job adapter and broader ethics/other backgrounds remain separate later decisions without fixed next-task precedence. This local sequencing does **not** override the Project-wide P0 Environment/Grains repair and closeout work. The approved drug UX review has elevated execution priority ahead of new Ironmaking expansion; general Culture reconstruction classification remains P2.
 
@@ -340,3 +340,44 @@ The thirty target DefNames: `AerospaceEngineer44`, `ComputerEngineer10`, `Comput
 **先行FAILと修正の区別：** 初回 [#39016338621](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39016338621) では上記のPickle処理はPASSしたが、人物説明文15件の無効 `/baseDesc` XPath によるERRORが15件あり総合FAIL。原定義[フィールド照合 #39016659873](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39016659873)に従い後続17件を含む全32件の正本XMLを `description` へ修正後、今回のERROR0 PASSを得た。C# DLLの再ビルドは不要だった。
 
 **未検証の切り分け：** 今回のERROR0はXMLロード時に失敗しなかった証拠だが、32件の説明文を個別に画面表示して英日確認したこと、6件の初期所持品を個別生成したこと、1.6の最新DLLとMOの総合、1.7のMO/他Mod、旧セーブ読み込み、DLC、食堂の正のThoughtを実ゲームで確認したことを意味しない。確定済みの食事先・人物生成の挙動を保ちながら、個別の変更に実益がある場合だけ追加確認する。
+
+
+## 背景からの強制特性・共同寝所の特性評価（2026-10-17）
+
+### SF設定を持つ強制特性の流入を最小限で止める
+
+実体参照はProject保存のオリジナル Vanilla Core 1.6/1.7 `BackstoryDef` 台帳。英語旧本文はLudeon公式翻訳に保存されたコメントを参照し、現行ゲーム本文との完全同一性は保証しない。
+
+| Def | 現行の職務・強制特性 | 新規普通生成だけに適用する処理 |
+|---|---|---|
+| `TestSubject90` 成人期 | 遺伝子治療の人体実験。Offworld/Outlander/Pirate/Cult、`BodyPurist=0`強制、射撃+6/格闘+8/社交−4 | `spawnCategories=AMJ_CultureExcluded`。強制Trait/旧セーブの参照は残す |
+| `HunterOfTheKing53` 成人期 | 遺伝子改変獣の襲来。Offworld、`BodyPurist=0`強制、射撃+6/格闘+4/医療+3 | 同上。狩猟と武士の一般的役割は削除対象ではなく、この未来設定のみ停止 |
+| `SpaceBartender0` 成人期 | 宇宙基地の酒場。Offworld/Pirate、`Kind=0`強制、`PsychiteTea ×3` 所持 | 同上。既存のKindや薬物Def、ドラッグ依存・既存品を変更しない。酒場経歴・初期品の歴史的改稿は薬物仕様の担当範囲に触れるため保留 |
+| `ApprenticeOracle83` 幼少期 | Cultカテゴリ、祭儀の訓練＋未来的な冷凍睡眠装置。研究+2/社交+3/医療+2 | 通常生成を維持し、神事見習いの子（shrine ritual apprentice）へ英日改稿。技術上のSF本文のみ置換 |
+| `DischargedSoldier53` 成人期 | Offworld/Pirate、`DrugDesire=2`・`TooSmart=0`強制、射撃+6/格闘+4/料理+2 | 通常生成を維持し、追放された足軽（expelled foot soldier）へ英日改稿。酩酊物への嗜好は意味を残す。薬物の定義・必要量・入手方法は変えない |
+
+前回の成人期43件＋今回の3件＝**成人期46件**、幼少期の生成除外**24件**は変更なし、通常生成制限は合計**70件**。従来の歴史改稿32件＋今回の2件＝**改稿34件**。生成制限と改稿が互いに重ならないこと、元背景・特性・技能・強制Traitの識別子が存続することが必要。Patch `Patches/AnachronisticAdultBackstories.xml`、`Patches/HistoricalOccupationBackstories.xml`、`Languages/Japanese/DefInjected/BackstoryDef/HistoricalOccupationBackstories.xml`が実装正本。
+
+`DrugDesire` はこのチャットでは**背景に付随する強制指定の維持だけ**を扱い、薬物アイテム・処方・入手・依存・特性効果の再設計は実施しない。一般的な`BodyPurist`の発生率や低技術義肢に関する好悪も無断変更しない。`Transhumanist`の生成制限と既存セーブの定義維持は従来通り。
+
+### Greedy/Jealous 共同寝所を認める特性効果
+
+**問題:** Vanilla `ThoughtWorker_Greedy` と `ThoughtWorker_BedroomJealous` は `Pawn_Ownership.OwnedRoom` を参照する。共同寝所では自分の寝具があるのに個室所有者とみなされず、Greedyは無条件に「寝室がない」の−8を受け、Jealousは質のよい他人の寝室との比較が0基準になる。共同就寝の実際の部屋の質を無視し、古代～中世日本の標準的な寝所を劣悪と決めつける。
+
+**実装正本:** `Source/AMJ.Culture/SharedLodgingTraitPatch.cs`、`Patches/SharedLodgingTraitThoughts.xml`、日本語`Languages/Japanese/DefInjected/TraitDef/SharedLodgingTraits.xml`と`ThoughtDef/SharedLodgingTraits.xml`。Harmony postfixで**個室のOwnedRoomがなく、割り当て済みの寝具（`ownership.Bedroom`）が`RoomRoleDefOf.Barracks`のときだけ**Sharedの部屋を利用する。Greedyは元の`Impressiveness`段階とMood値（最大−8→十分豪華なら0）を評価する。Jealousは**同じ寝所に寝る人を比較対象から除き**、自分より豪華な別の共同寝所または個室の住人への不満だけを残す。通常の個室・寝具なし・囚人・客人・非ColonistではVanillaを変更しない。RimWorldの部屋の質、Shared SleepingのBarracks Thought、食事・睡眠妨害、Royaltyの個室要求は変更しない。
+
+表示テキストは「個室が欲しい」ではなく「立派な寝所が欲しい」へ変更する。Greedy/JealousのTraitDef/ThoughtDef、負のMoodステージ値、固有Def名、自然発生率、Traitの相互排他関係、既存セーブ参照は保存する。既存の`Greedy`/ `Jealous` の趣旨とペナルティを消さず、共同寝所における判定だけ時代設定に適合させる。Harmonyの有無でDef読み込みの依存条件は従来通り。**C#新処理の1.6/1.7製品DLLへの再コンパイル必須**で、旧DLLでの座席・人物生成PASSをそのまま新処理のPASSと扱わない。
+
+**テスト前提／未検証:** 静的にオリジナル`Pawn_Ownership.Bedroom`/ `RoomRoleDefOf.Barracks`/ `ThoughtWorker`の公開APIと実装を参照した。コンパイル確認後、最後の一度の実ゲーム受け入れで、共同寝所（粗末・豪華）でGreedyの段階に差が出ること、全員同室でJealousが誤発火しないこと、より良い別室との比較は維持されること、個室・寝具なしの元挙動、英日名称の実際のロード、既存43/24→46/24除外と2件改稿を確認する。現時点の**実ゲーム効果・日本語表示・セーブ読込・MO互換は未検証**。テストだけを先に増やさない。
+
+
+### Two-version packaged production status (2026-10-17)
+
+The **same exact owner source commit** `b1bc7e5a43c1f2e3017369a111f3c1700d413a80` was compiled into both DLLs without launching RimWorld:
+
+| Version | Isolated build-only evidence | Packaged production path | Size | SHA-256 |
+|---|---|---|---|---|
+| 1.6 | [Project #39018173163](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39018173163), SUCCESS | `1.6/Assemblies/AMJ.Culture.dll` | 11,264 B | `0895332d4a817bf4227b00bf4d707943e793fc15c379b9950df76ec2112c9458` |
+| 1.7 | [Project #39018244508](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39018244508), SUCCESS | `1.7/Assemblies/AMJ.Culture.dll` | 11,264 B | `9005cd7a98f7eec02ce51fd0f4ec1d3dc804a212f62df651c8de32a2eb98138d` |
+
+The existing `LoadFolders.xml` selects these version-specific assemblies. The 1.6 SDK collects the new C# file implicitly; the 1.7 isolated builder's explicitly enumerated sources were updated in [Project PR #608](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/pull/608). Both binaries include the previously accepted chair source, existing Solid-child gate, and the new Greedy/Jealous harmony patches. **Only compilation was verified**, not actual mood values or loaded-game effects. Previously published Vanilla 1.7 real-game evidence #39016905072 relates to the *previous* 9,216-byte DLL and the 43+24 list, not the new 11,264-byte binaries and 46+24 restrictions.

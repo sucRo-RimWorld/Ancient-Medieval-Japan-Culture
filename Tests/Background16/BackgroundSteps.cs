@@ -25,7 +25,7 @@ namespace AMJ.Culture.Test
             "CorpResearcher71", "EngineeredPilot75", "GeneticEngineer89",
             "GeneticScientist66", "MechWarVeteran77", "NetworkEngineer34",
             "Roboticist1", "Roboticist41", "RocketEngineer53", "RocketPioneer19",
-            "CasketBuilder52",             "ChiefEngineer62",             "ColonyEngineer7",             "CorpResearcher93",             "ExecutiveOfficer5",             "BiosphereManager95",             "ArtifactHunter48",             "ShadowMarine63",             "GameTester77",             "Adventurer19",             "Explorer49",             "ExplorerWriter10"
+            "CasketBuilder52",             "ChiefEngineer62",             "ColonyEngineer7",             "CorpResearcher93",             "ExecutiveOfficer5",             "BiosphereManager95",             "ArtifactHunter48",             "ShadowMarine63",             "GameTester77",             "Adventurer19",             "Explorer49",             "ExplorerWriter10", "TestSubject90", "HunterOfTheKing53", "SpaceBartender0"
         };
 
         private static readonly HashSet<string> Child = new HashSet<string>
@@ -72,7 +72,7 @@ namespace AMJ.Culture.Test
             await ctx.WaitFrames(2);
             await OnGameThread(delegate
             {
-                ctx.Require(Adult.Length == 43 && Child.Count == 24,
+                ctx.Require(Adult.Length == 46 && Child.Count == 24,
                     "Incorrect feature population");
                 foreach (string id in Adult)
                 {

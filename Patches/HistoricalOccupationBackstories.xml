@@ -581,4 +581,40 @@
       <description>[PAWN_nameDef] supervised workers and stores on a large estate, settling arguments and keeping the work on schedule. Success relied on a talent for accounts and persuasion, as well as maneuvering to take credit for others' achievements.</description>
     </value>
   </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="ApprenticeOracle83"]/title</xpath>
+    <value>
+      <title>shrine ritual apprentice</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="ApprenticeOracle83"]/titleShort</xpath>
+    <value>
+      <titleShort>ritual apprentice</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="ApprenticeOracle83"]/description</xpath>
+    <value>
+      <description>As a child, [PAWN_nameDef] was entrusted with learning the rites of a local shrine. [PAWN_pronoun] learned the words of offerings and the care of visitors, but an inquisitive temperament sometimes led to disputes with the elders over proper ceremonies.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="DischargedSoldier53"]/title</xpath>
+    <value>
+      <title>expelled foot soldier</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="DischargedSoldier53"]/titleShort</xpath>
+    <value>
+      <titleShort>exile</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="DischargedSoldier53"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] spent hard-earned pay chasing intoxicants, then entered a warband in search of a steadier life. Campaigns taught [PAWN_nameDef] to fight and cook for companions. [PAWN_pronoun] repeatedly challenged commanders' decisions and was eventually expelled, but never lost the craving for intoxicating comforts.</description>
+    </value>
+  </Operation>
 </Patch>
