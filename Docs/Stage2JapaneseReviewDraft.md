@@ -9,7 +9,7 @@
 - 原定義に関する直接資料：過去のProject 原Core 1.6/1.7 metadata v2（[source audit](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/blob/main/Docs/Research/VanillaCoreCharacterDefsSourceAudit20261016.md)）で既存35件（成人32件・幼少期3件）の元スロット・生成カテゴリと技能を照合。追加54件についても同じ元Coreメタデータと旧公式英語原文コメントを個別照合した。元ファイルのメタデータは両版一致。これは通常生成での各Solid個体採用を個別立証するものではない。
 - 物語内容に関する参考：[Ludeonの旧英語原文コメント](https://github.com/Ludeon/RimWorld-Finnish/blob/master/Backstories/Backstories.xml)。**現在配布されているCore 1.6/1.7本文との完全一致は未立証。**
 - 既存35件と追加54件は従来の94件の生成制限、34件の実装済み英日改稿と**重複しない**。
-- 強制Traitとの一致が必要な候補：`MasterChef48` の `Gourmand=0`、`Minister88` の `Industriousness=1`、`Model99` の `Beauty=2`。その他のゲーム機構の数値は変更しない。
+- 元Core両版で強制Traitを持つ原稿候補は13件。`MasterChef48`（`Gourmand=0`）、`Minister88`（`Industriousness=1`）、`Model99`（`Beauty=2`）、`CaveworldIlluminator95`（`Undergrounder=0`）、`AspiringPopIdol28`（`Beauty=2`）、`DesertRat47`（`Ascetic=0`）、`EnergeticPopIdol61`（`Beauty=2;Greedy=0`）、`HedgeFundManager54`（`Greedy=0`）、`MadScientist47`（`Psychopath=0`）、`MindwipedAssassin50`（`Psychopath=0`）、`Nerd92`（`AnnoyingVoice=0`）、`Orphan15`（`Kind=0`）、`PyroAssistant82`（`Pyromaniac=0`）。これらのゲーム効果は変更しない。
 - 以下の本文は未承認の史実・ゲーム描写案であり、特定時代・地域の役職名や語感について最終作者レビュー後に調整する。薬物の具体的種類・商品・緊急対処の機構はここで確定しない。
 
 ## 日本語原稿案（既存35件・第一候補）
@@ -149,7 +149,7 @@
 ### 23. `Sculptor63`
 
 - **title案：** 石仏の彫り手
-- **titleShort案：** 石工
+- **titleShort案：** 石彫師
 - **description案：** [PAWN_nameDef]は石を削って仏像や記念の石造物を造り、やがて大きな岩壁を彫る仕事にも携わった。石の質を見極める目と彫りの腕を持つ一方、台所仕事や日用品の細工は不得手だった。
 
 ### 24. `SoleSurvivor85`
