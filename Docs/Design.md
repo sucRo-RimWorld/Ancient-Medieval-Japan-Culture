@@ -62,6 +62,14 @@ The follow-up [SFBackgroundIndividualAudit.md](SFBackgroundIndividualAudit.md) a
 
 This table **does not** approve each drug as historically appropriate. It specifies what must *not* be broken while the final replace/restrict/retain choice remains open. Source/class evidence: [psychoactive substance research](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/blob/main/Docs/Research/PsychoactiveSubstancesCandidate.md).
 
+### MO HappyPowder: emergency versus AI combat use (2026-10-17 narrow source step)
+
+**Implemented source, not full drug replacement:** `Patches/MedievalOverhaulHappyPowderCombatUse.xml` is an optional `PatchOperationFindMod` targeted only at original Medieval Overhaul `DankPyon_HappyPowder`'s `CompProperties_Drug.isCombatEnhancingDrug`. It changes the original `true` to `false` when that property exists. The original supplied MO 1.6.2.2 file `1.6/Defs/Drugs/Drug_HappyPowder.xml` has exactly one matching field; MO `DankPyon_Luhix` and `DankPyon_Stardust` already use `false`. The guard leaves Vanilla-only and MO revisions without the field untouched.
+
+**Gameplay intention and boundary:** HappyPowder remains a risky, player-usable emergency mood treatment while being excluded from AI selection **on the combat-drug flag route**. The change does **not** reduce or increase its high, rest/movement/pain effects, mood Thought (+45 in the referenced original), overdose chance, manual ingestion, current item/trader/recipe supply, DrugPolicy visibility, chemical identity, tolerance, addiction Need or withdrawal. Other combat drugs (BattleElixir, HornetHoney, go-juice, etc.) are unaffected. It is **not** a statement that HappyPowder is culturally appropriate or that its production has been Japanized. This narrow separation is reversible and must not be used as justification to suppress Vanilla yayo/flake or MO HappyPowder supply ahead of a viable historical mood rescue.
+
+**Verification:** Static original-XML XPath match against the supplied MO 1.6.2.2 is sufficient for the source scope. No automatic game launch or new binary is necessary for a single declarative optional patch; final 1.6/1.7 loaded Def and actual AI use remain **UNTESTED**. The optional guard deliberately does not claim that a future MO 1.7 source still contains the same property. This patch does not authorize any Steam update.
+
 ### Trait and Backstory decisions
 
 - **`DrugDesire` degree 2 / 1 / −1:** retain its identifiers, original effective behavior and save references for now. Interest/fascination/teetotaler must be evaluated as different dispositions, **not** renamed indiscriminately to "likes sake", alcohol tolerance or addiction. Any future behavior change must match the final set of usable substances, DrugPolicy and dependencies. 上戸／下戸 (physiological tolerance) and sake preference remain distinct proposals; no invented trait degrees, spawn weights or effect numbers.
