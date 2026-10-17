@@ -1,11 +1,18 @@
 # Culture chair-only dining adapter
 
-**Implementation state:** RimWorld 1.6 source and compiled matching binary are
-staged. **No actual loaded-game meal result is claimed**. The packaged
-`Assemblies/AMJ.Culture.dll` was built against licensed isolated original 1.6
-managed assemblies, source `aab06d25fd35c0eecdc3c818e06c90bf6a43fbca`, in the existing manual
-[Project build-only run #38995487716](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/38995487716).
-DLL SHA-256: `609f8d2b2d4f9bc48f6ee86474f2b0e15c5d7abb2f342bd855dac526250a4dbb`.
+**Implementation state:** RimWorld 1.6 production C# and matching compiled
+`Assemblies/AMJ.Culture.dll` are on main. The current production assembly
+(8,704 bytes; SHA-256
+`2fa6ab6429bd9f81d48633bea0998b47c7255fbb8658b73addc697d8ddf24010`)
+includes the unmodified chair adapter plus independently owned Backstory
+logic; it was compiled against licensed original RimWorld 1.6 references
+in [build-only #39004690614](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39004690614).
+[Real-game #39005539686](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39005539686)
+PASS: in one original 1.6 session the standalone Vanilla Stool meal/Comfort,
+table-adjacent stool priority, and no-chair standing fallback all succeeded
+(Pickle 1/1, ERROR 0, original files unchanged). MO, dining-room mood
+regression and 1.7 gameplay are not verified.
+
 
 The adapter patches only `Toils_Ingest.CarryIngestibleToChewSpot`. During a
 normal ingest Job it uses Vanilla travel if a valid table-adjacent chair exists,
@@ -30,4 +37,4 @@ mood/room effects, and complete strict ERROR-free log. The prior 1.7
 stool experiment is established technical evidence, **not** a production PASS.
 
 Enza textures, construction balance and new furniture are separate work.
-Do not claim runtime acceptance or publish before the actual loaded-game check.
+A focused original-game Vanilla 1.6 acceptance is complete. Do not claim MO, 1.7 or unrelated Backstory functionality was covered by the chair test, and do not publish without applicable release gates.

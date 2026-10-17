@@ -90,33 +90,41 @@ Toil. Do not edit `GenGrid.HasEatSurface`, globally change all furniture,
 alter `FinalizeIngest`, food radius, dining-room rewards, Comfort rates,
 or non-Ingest Jobs. The existing `AteWithoutTable=0` remains independent.
 
-**Evidence / remaining gate:** A one-pawn experimental chair-only ingestion
-route completed with Comfort gain and food consumption in actual 1.7 source
-run #38899711992 (Project research). PR #6's different enza-only 1.6
-implementation did not pass its first loaded-game scenario and is not an
-accepted candidate for this general seating requirement. The generalized
-source in `Source/AMJ.Culture/TablelessChairMealPatch.cs` is compiled against
-isolated original RimWorld 1.6 Managed/Harmony and its matching DLL is staged
-under `Assemblies/AMJ.Culture.dll` (source commit `aab06d25fd35c0eecdc3c818e06c90bf6a43fbca`,
-Project build-only [run #38995487716](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/38995487716),
-SHA-256 `609f8d2b2d4f9bc48f6ee86474f2b0e15c5d7abb2f342bd855dac526250a4dbb`). **Actual scoped 1.6 game acceptance:** After fixing an unrelated invalid
-Backstory XPath via Culture PR #15, the matching production DLL completed
-[Project native run #39002811535](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39002811535) on original 1.6.4871 rev598 (Culture source
-`2bcfdc9343b3ea5c94c216893a74cdf2a7d40f30`, DLL SHA above). Actual
-Vanilla `Stool` without any adjacent table was chosen during normal Ingest;
-pawn Comfort increased and the meal was consumed. Pickle 1/1 PASS,
-`native_errors=0`, `raw_log_error_entries=0`, exit 0, original game unchanged.
-The earlier initial [run #38995788200](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/38995788200)
-passed the meal but was overall FAIL on the now-removed unrelated XPath.
-**Do not overgeneralize:** valid table-adjacent chair precedence, no-chair
-fallback, other furniture/MO, dining-room bonuses and 1.7 compatibility
-were not exercised by this one-scenario acceptance. The old 1.7 temporary
-proof is not proof of current Culture 1.7 support. Verify remaining items
-only when a relevant functional change, reported conflict or release gate
-requires them; no repeated game launches solely to increase test coverage. No new research harness, repeated game startup or
-furniture texture work before usable implementation. Any conflict with other
-Ingest patches needs an actual identified mod/behavior, not speculative
-open-ended audits.
+**Implementation and tested evidence (2026-10-17):** The Culture
+`Source/AMJ.Culture/TablelessChairMealPatch.cs` adapter is unchanged since
+the first native PASS, and the current 1.6 production
+`Assemblies/AMJ.Culture.dll` additionally includes the independently
+implemented Background gate. The current DLL (8,704 bytes, SHA-256
+`2fa6ab6429bd9f81d48633bea0998b47c7255fbb8658b73addc697d8ddf24010`)
+was built from genuine isolated original 1.6 managed assemblies in
+[Project build-only #39004690614](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39004690614).
+The earlier 7,680-byte chair-only DLL was superseded, not reintroduced.
+
+**Native focused acceptance:** [Project run #39005539686](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39005539686)
+**SUCCESS** with Culture source `1f806e962abcc5c2437b85fed81121519492c948`,
+actual original RimWorld `1.6.4871 rev598`, and the current DLL SHA above.
+The **one** Pickle scenario asserts three distinct actual behaviors:
+(1) normal Ingest eats on an existing standalone Vanilla `Stool` with
+Comfort gain and food consumption; (2) when a nearer stool has no table
+but a more distant stool has an adjacent Vanilla `Table1x2c`, the
+pawn eats at the table-adjacent stool; (3) after removing all those
+seats, the pawn can ingest standing and finish the meal.
+Pickle 1/1, `native_errors=0`, `raw_log_error_entries=0`, game exit
+0, `original_game_modified=false`. No production C# or DLL changes were
+needed. Prior one-phase [#39002811535](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39002811535)
+remains valid for the old DLL; the first attempt at the expanded check
+[#39005451249](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39005451249)
+was correctly stopped **before any game launch** because the runner's
+expected hash still referred to that old DLL.
+
+**Still outside demonstrated scope:** MO or other third-party
+`isSittable` furniture, actual positive dining-room Thoughts and
+RimWorld 1.7 production compatibility. Existing source behavior
+preserves the default game handling of those systems; this does
+not claim that each is gameplay-tested. Do not launch broader
+test matrices or publish solely to expand PASS totals. Check only
+where an actual compatibility issue, feature change or release
+requirement makes it necessary.
 
 **Boundary:** The historically appropriate enza is still an optional
 later furniture candidate requiring its own materials, artwork and balance
