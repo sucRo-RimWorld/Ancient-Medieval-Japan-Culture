@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-  <!-- Deliberate Japanese overrides of the thirty-two rewritten vanilla BackstoryDefs.
+  <!-- Deliberate Japanese overrides of the thirty-three rewritten vanilla BackstoryDefs.
        description and baseDesc are both supplied because RimWorld uses a resolved
        description at runtime as well as the original translatable base field. -->
   <SpaceMerchant97.title>廻船商人</SpaceMerchant97.title>
@@ -131,4 +131,8 @@
   <CorporateManager76.titleShort>差配人</CorporateManager76.titleShort>
   <CorporateManager76.baseDesc>[PAWN_nameDef]は大きな荘園で人足と蔵を取り仕切り、仕事の割り振りや争いの仲裁を担った。勘定と口先に長け、他人の働きを自分の手柄として取り立てられることもあった。</CorporateManager76.baseDesc>
   <CorporateManager76.description>[PAWN_nameDef]は大きな荘園で人足と蔵を取り仕切り、仕事の割り振りや争いの仲裁を担った。勘定と口先に長け、他人の働きを自分の手柄として取り立てられることもあった。</CorporateManager76.description>
+  <ApprenticeOracle83.title>神事見習いの子</ApprenticeOracle83.title>
+  <ApprenticeOracle83.titleShort>神事見習い</ApprenticeOracle83.titleShort>
+  <ApprenticeOracle83.description>[PAWN_nameDef]は幼い頃から社の神事を学ぶよう託された。供え物の作法を覚え、参拝者の世話や簡単な手当てを手伝ったが、好奇心が強く、儀式のあり方を巡って年長者と衝突することもあった。</ApprenticeOracle83.description>
+  <ApprenticeOracle83.baseDesc>[PAWN_nameDef]は幼い頃から社の神事を学ぶよう託された。供え物の作法を覚え、参拝者の世話や簡単な手当てを手伝ったが、好奇心が強く、儀式のあり方を巡って年長者と衝突することもあった。</ApprenticeOracle83.baseDesc>
 </LanguageData>
