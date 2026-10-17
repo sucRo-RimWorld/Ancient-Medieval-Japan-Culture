@@ -44,6 +44,33 @@ namespace AMJ.Culture
                    IsNoShoes(new IntVec3(cell.x, 0, cell.z - 1));
         }
 
+        // Editor-only connectivity check. A multi-cell painted threshold can
+        // contact a no-shoes area at one end, not necessarily every cell.
+        public bool HasConnectedNoShoesContact(IntVec3 start)
+        {
+            if (!Contains(start) || noShoesCells.Count == 0) return false;
+            Queue<IntVec3> pending = new Queue<IntVec3>();
+            HashSet<IntVec3> seen = new HashSet<IntVec3>();
+            pending.Enqueue(start);
+            seen.Add(start);
+            while (pending.Count > 0)
+            {
+                IntVec3 cell = pending.Dequeue();
+                if (HasNoShoesNeighbor(cell)) return true;
+                AddConnected(cell.x + 1, cell.z, pending, seen);
+                AddConnected(cell.x - 1, cell.z, pending, seen);
+                AddConnected(cell.x, cell.z + 1, pending, seen);
+                AddConnected(cell.x, cell.z - 1, pending, seen);
+            }
+            return false;
+        }
+
+        private void AddConnected(int x, int z, Queue<IntVec3> pending, HashSet<IntVec3> seen)
+        {
+            IntVec3 cell = new IntVec3(x, 0, z);
+            if (Contains(cell) && seen.Add(cell)) pending.Enqueue(cell);
+        }
+
         public void SetNoShoes(IntVec3 cell, bool enabled)
         {
             if (!cell.InBounds(map) || Contains(cell)) return;
@@ -345,6 +372,16 @@ namespace AMJ.Culture
             EntranceZoneMap zone = pawn.Map.GetComponent<EntranceZoneMap>();
             if (state == null || zone == null || !zone.HasActiveArea) return true;
 
+            // Most movement is nowhere near a threshold. Only the two grid
+            // lookups below run before the hot-path exit, not danger/room scans.
+            bool here = zone.Contains(pawn.Position);
+            bool next = zone.Contains(__instance.nextCell);
+            if (!here && !next)
+            {
+                state.CancelAndForget(pawn);
+                return true;
+            }
+
             if (IsEmergency(pawn))
             {
                 state.CancelAndForget(pawn);
@@ -354,10 +391,7 @@ namespace AMJ.Culture
             int tick = Find.TickManager.TicksGame;
             if (state.ProcessCast(pawn, tick)) return false;
 
-            // Capture the actual side BEFORE stepping onto the zone. At a
-            // door, the zone cell itself may already belong to the room.
-            bool here = zone.Contains(pawn.Position);
-            bool next = zone.Contains(__instance.nextCell);
+            // Capture the actual source-side cell before entering the zone.
             if (!here)
             {
                 if (next && pawn.Position != __instance.nextCell)
