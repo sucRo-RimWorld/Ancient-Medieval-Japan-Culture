@@ -47,8 +47,15 @@ namespace AMJ.Culture.Test
         private static object Component(object owner, string className)
         {
             Type type = CultureType(className);
-            MethodInfo method = owner.GetType().GetMethod("GetComponent", BindingFlags.Instance | BindingFlags.Public);
-            if (method == null) throw new MissingMethodException(owner.GetType().FullName, "GetComponent");
+            MethodInfo method = null;
+            foreach (MethodInfo candidate in owner.GetType().GetMethods(BindingFlags.Instance | BindingFlags.Public))
+                if (candidate.Name == "GetComponent" && candidate.IsGenericMethodDefinition &&
+                    candidate.GetParameters().Length == 0)
+                {
+                    method = candidate;
+                    break;
+                }
+            if (method == null) throw new MissingMethodException(owner.GetType().FullName, "GetComponent<T>()");
             return method.MakeGenericMethod(type).Invoke(owner, null);
         }
 
