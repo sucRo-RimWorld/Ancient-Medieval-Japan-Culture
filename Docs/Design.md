@@ -2,7 +2,7 @@
 
 ## Development purpose, phase and priority (2026-10-16 review)
 
-Culture's product goal is to remove historically incongruous **character generation, culturally contingent mood/social judgments, and intoxicant gameplay** from ancient-to-medieval Japanese settlement play **without breaking the useful Vanilla/MO gameplay roles**. One neutral meal Thought is a small completed slice, not the product goal. Culture combines Backstories, generic Pawn-generation interactions, Traits, relevant Needs/Thoughts and psychoactive Drug/effect/supply UX; Shared Sleeping, general furniture, medicinal remedies, brewing, and ordinary food Jobs remain other owners' responsibilities.
+Culture's product goal is to remove historically incongruous **character generation, culturally contingent mood/social judgments, and intoxicant gameplay** from ancient-to-medieval Japanese settlement play **without breaking the useful Vanilla/MO gameplay roles**. One neutral meal Thought is a small completed slice, not the product goal. Culture combines Backstories, generic Pawn-generation interactions, Traits, relevant Needs/Thoughts, psychoactive Drug/effect/supply UX, and Japanese daily-life customs including indoor/outdoor footwear habits. **Culture is an integrated cultural overhaul; the author accepts it growing larger than other AMJ Mods. Module size alone is not a reason to split Culture-specific behavioral rules.** Shared Sleeping, general furniture, medicinal remedies, brewing, and ordinary food Jobs remain other owners' responsibilities.
 
 **Actual implementation maturity:** the narrow `AteWithoutTable` zero-mood XML prototype, bounded `Transhumanist` and 31 original adult + 12 original child background exclusions are on `main`; the current ordinary-generation exclusion scope is 70, and 34 historical backgrounds have authored English/Japanese histories with six starting-item substitutions (see the latest section). The [second-wave source change](SFBackgroundSecondWave.md) adds a further 12 adult and 12 child rules; its updated production DLL and native acceptance are tracked separately below. The single real Vanilla 1.6 character-generation acceptance below passed, but complete MO/1.7 coverage and saved-game migration were not tested. The no-table prototype's static XML check passed; the generation source still needs focused loaded-Def/gameplay acceptance. Historical background/trait handling, drugs and minimum enza functionality have *approved ownership/boundaries or research candidates*, but **not** complete per-feature effect values, spawn handling, recipes, migration or final implementation specifications. Do not describe Culture overall as implemented or entering integration validation.
 
@@ -492,3 +492,47 @@ The existing `LoadFolders.xml` selects these version-specific assemblies. The 1.
 正規Vanilla Core 1.6/1.7原メタデータで成人通常生成カテゴリが存在し、旧公式原文で**全脳マッピング・ソフトウェア自動化・ロボット工学・即時通信技術・遺伝子実験**が職歴の核をなす `NeuroScientist19` / `SoftwareDeveloper84` / `ExiledResearcher44` / `EnergyResearcher89` / `MadScientist31` を、`Patches/AnachronisticAdultBackstories.xml` でカテゴリ選択から暫定的に外す。原のバックストーリーDef、技能・workDisables・Trait・所持品・既存Pawnは変更しない。史実に転用できる医術・伝令・技術師等の職能を一律に排除する趣旨ではない。個別根拠：[BackgroundTraitAudit 第5修正群](BackgroundTraitAudit.md#第2段階第5修正群--追加のsf研究技術職5件の通常生成制限2026-10-17)。現行ゲームの原文完全一致や自然抽選は未実機検証。
 
 **現行の実装制限：成人72（成人カテゴリXML71＋独立1）、幼少27（Solidゲート24＋Shuffled3）、合計99。** 製品へ適用済み既存歴史改稿は34件、一括作者承認待ち日本語原稿は35件。原稿・翻訳の承認を得る前にゲームデータへ挿入せず、文章以外の残作業を先に進める。固有Pawn専用除外と旧セーブ参照維持の原則、現行Trait・薬物系並行開発の所有境界は維持する。
+
+
+## 玄関ゾーン・擬似履物脱着（2026-10-17 作者承認／未実装）
+
+### 文化的目的・責務
+
+屋外から屋内へ土足のまま移動するRimWorldの振る舞いを、日本での土間・板間・座敷の区別に合わせて変更する。中世の全住宅に独立した近代的玄関があったという設定にはしない。**玄関ゾーンは家具でも床材でもなく、土足と非土足の生活空間の境界**をプレイヤーが指定する仕組み。全面板張りの家屋でも指定できる。生活習慣に属するためCultureが所有し、Environmentの床材やShared Sleepingの寝所仕様には変更を加えない。
+
+Cultureは人物背景・特性・心情・食事習慣・嗜好品・玄関の生活作法を含む**総合的な日本文化オーバーホール**。この一貫した責務に属する限りCultureがAMJ内で最も大規模となっても許容し、Mod規模だけを理由に分割しない。ただし他の既存Modの実装責務を無条件に統合しない。
+
+### プレイヤーに見える確定方針
+
+1. 床や地形の種類に依存せず、任意の通行可能セルに重ねて設置できるプレイヤー指定「玄関ゾーン」を用意する。通常の建物運用で玄関なしでも問題なく移動・作業でき、倉庫・土間・作業場などは土足のまま使用できる。
+2. 対象ポーンが玄関ゾーンで屋外→屋内に移動するとき、その場で一時停止し**履物を脱ぐ擬似キャスト**を実行する。屋内→屋外では**履く擬似キャスト**を実行する。専用履物アイテムや実際の装備交換は行わず、進捗バーで動作を可視化する。
+3. 脱着完了後、ポーン単位の**擬似土足／裸足状態**を切り替えて、元の移動・仕事を再開する。単に同じゾーン内を歩く、同じ状態で再入場するなどで繰り返しキャストしない。
+4. 裸足状態では**屋外の履物が運ぶ土汚れ**が板間・座敷に持ち込まれることを抑える。血液、嘔吐、作業由来の汚れ、動物由来の汚れ等は変更しない。裸足なら屋外の土上でも絶対に汚れない、とはしない。
+5. 徴兵、戦闘、火災・脅威からの退避、緊急救助等では停止・キャストを強制せず、行動が阻害されないようにする。敵・動物への遅延効果も持たせない。
+6. 複数の出入口・屋根付き土間・廊下などを考慮し、**玄関を横切った方向と土足・非土足側**を適切に判定する。単なる屋根有無、床材、セル座標の固定方向だけで決めず、Zone配置・設計変更時に不整合を起こさない。
+
+### 実装時の初期設定と保留条件
+
+- キャスト時間の**試験用初期値は90 ticks（約1.5秒）**とする。これは確定バランス値ではなく、最終値はプレイ時の負担を見て決める。
+- 既存CultureのHarmony実装を再利用する。ゾーン定義・セーブ永続化・再ロード・マップ離脱/帰還・ゾーン撤去・キャスト中の割込みを扱う必要がある。
+- 移動Jobの強制置換による運搬・食事・予約喪失を避ける。具体的な停止・再開処理とRimWorld 1.6/1.7のFilthTrackerの安全な介入点は、両版の実ゲーム/参照ソースで確認してから製品実装する。通常通行のパフォーマンスとループ防止を優先する。
+- 初期はプレイヤー管理の人間系ポーンを対象とする。来客・訪問者・搬送中のポーン、既存Modの履物Apparel、裸足そのものの速度/温度効果は**初期の確定仕様に含めない**。後から必要なものだけ個別に検討する。
+- 仕様承認は**実装やテストの完了を意味しない**。Source、1.6/1.7両製品DLL、保存形式、Loaded-Gameの実装証拠はまだない。既存の別機能のPASSは流用しない。
+
+### 既存Modと独自実装の差分（2026-10-17、公開説明の先行比較）
+
+| 候補 | 確認範囲 | 玄関ゾーンとの差分 |
+|---|---|---|
+| Vanilla / Medieval Overhaul | 既存Culture所有の挙動と仕様 | 擬似的な脱着状態とゾーン境界による切替は未実装。床そのものの追加とは別 |
+| VE系の衣服追加 | 衣服・装備の外部追加は先行手法。最新版の全Defsは未監査 | 靴のアイテム化が必要なく、文化的な土足境界とキャストを扱う。VE内容Modは依存・公式互換対象外 |
+| [Doormats](https://steamcommunity.com/sharedfiles/filedetails/?id=3239838811)（1.5/1.6対応、旧[SYR](https://steamcommunity.com/sharedfiles/filedetails/?id=1508778962)） | 作者の公開説明：革・布の設置家具。通過したポーンの汚れを落とし減速。出血・徴兵・逃走等では減速しない | 「マットで足を拭く」清掃設備であり、履物脱着のキャスト、ゾーン、土足／裸足状態の持続は目的外 |
+| その他非VEの玄関・靴脱着Mod | 現時点で同等の配布済み動作を確認できていない。存在しないとは断定しない | 製品実装の前に近似候補の配布Defs/コード・依存・ライセンスを限定調査し、完全な代替がないか確定する |
+
+**独立機能の必要性:** Doormatsと汚れ軽減の結果は部分的に重なるが、Cultureは家具設置/清掃ではなく、床に依存しないゾーンの境界で文化的な脱着状態を切り替える。Doormatsを依存に追加・その機能を置換・新規家具を販売する方針ではない。既存実装のコード流用や互換性は未検証のため保証しない。
+
+### 実装後の最小受け入れ条件（RimWorld 1.6 / 1.7）
+
+- 玄関の往復で、それぞれ脱ぐ/履くキャストを一度だけ可視化し、移動・作業を失わず完了する。玄関ゾーンのない建物はVanilla動作を維持する。
+- 板張り住宅と土間付き住宅の両方で切替が成立し、土汚れのみ抑制される。血液などは抑制しない。
+- 徴兵・退避・救助中は着脱が行動阻害にならず、通常移動で経路探索が無限に反復しない。
+- ゾーン変更・セーブ/ロード後に状態が破綻しない。両対応版の正規製品DLLをビルドした後、機能一式についてまとめて最小限の実ゲーム受け入れを行う。PRごとの起動やテスト数の増加は行わない。
