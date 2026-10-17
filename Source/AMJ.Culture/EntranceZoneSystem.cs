@@ -16,6 +16,11 @@ namespace AMJ.Culture
         private List<IntVec3> cells = new List<IntVec3>();
         private HashSet<IntVec3> lookup = new HashSet<IntVec3>();
 
+        private static readonly Material ProgressFilled =
+            SolidColorMaterials.SimpleSolidColorMaterial(new Color(0.76f, 0.72f, 0.45f));
+        private static readonly Material ProgressEmpty =
+            SolidColorMaterials.SimpleSolidColorMaterial(new Color(0.18f, 0.18f, 0.18f));
+
         public EntranceZoneMap(Map map) : base(map) { }
 
         public bool Contains(IntVec3 cell) { return lookup.Contains(cell); }
@@ -63,7 +68,15 @@ namespace AMJ.Culture
                 Pawn pawn = pair.Key;
                 EntrancePause pause = pair.Value;
                 if (pawn != null && pawn.Spawned && pawn.Map == map)
-                    GenDraw.DrawProgressBar(pawn.DrawPos, Mathf.Clamp01((now - pause.StartTick) / (float)EntranceFootwearState.CastTicks));
+                    GenDraw.DrawFillableBar(new GenDraw.FillableBarRequest
+                    {
+                        center = pawn.DrawPos + new Vector3(0f, 0.1f, 0.7f),
+                        size = new Vector2(0.7f, 0.1f),
+                        fillPercent = Mathf.Clamp01((now - pause.StartTick) / (float)EntranceFootwearState.CastTicks),
+                        filledMat = ProgressFilled,
+                        unfilledMat = ProgressEmpty,
+                        margin = 0.07f
+                    });
             }
         }
     }
