@@ -2,6 +2,12 @@
 
 Authoritative coordination file: `main:Docs/Coordination.md`. Confirmed scope and acceptance conditions belong in `Docs/Design.md`; the actual Thought modification belongs in `Patches/AteWithoutTable.xml`.
 
+
+## CULTURE-CORPSE-EXPERIENCE-BACKSTORY-HANDOFF-20261017
+
+**Status: CANDIDATE / OWNED BY SEPARATE BACKGROUND-TRAIT WORKSTREAM; NOT APPROVED IMPLEMENTATION.** Author has de-scoped detailed funeral and burial rites, funerary equipment, special corpse disposal and general corpse-related Thought rewrites. Preserve existing Vanilla behavior. Author suggested an optional late-medieval/Sengoku ordinary Pawn **career/background** for a foot soldier, battle veteran or battlefield corpse handler habituated to seeing bodies. This is a concept only: no DefName, new trait, frequency, effect magnitude or implementation/test is authorized. Background/Trait workstream: evaluate the actual player-visible gap and historical career fit, check existing Vanilla routes and MO `DankPyon_Fighter` / `DankPyon_Veteran` corpse Thought nullifiers, and keep corpse exposure distinct from grief for family/comrades, rot, or approval of prisoner executions. Design rationale and limits live in owner `Docs/Design.md`, not in this handoff. Do not ask the user to relay this to another chat.
+
+
 ## CULTURE-1-7-IMPLEMENTATION-20261017
 
 **Status: 1.6/1.7 VERSION-SPLIT PRODUCT MERGED / GENUINE VANILLA 1.7 GAMEPLAY AND CHARACTER PASS.** RimWorld 1.7.4977 original-managed [build #39015931527](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39015931527) compiled exact Culture source `bd07ceb34619a992a934ca0a7add7be1f1ae8a8b` into 9,216-byte DLL SHA-256 `96a55e102c6ab0155f4c5336466afe6d398dbcefd915486bd31bd957cdf84e58`. 1.6 version stays its original 9,216-byte DLL SHA-256 `0d944eb47a1e648acdbc13ca75948e075e5ccfd71fefe1d4196c54d5a6c5be03`. Product layout/design is recorded in owner `Docs/Design.md`. The exact 1.7 source-compiled production DLL has now passed focused actual original 1.7 gameplay after correction of 32 historical description XML targets; details below. No extra test matrix or Steam publication.
