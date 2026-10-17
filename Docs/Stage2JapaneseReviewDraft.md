@@ -6,13 +6,13 @@
 
 下表はVanilla既存BackstoryDefの**同じDef名・技能・WorkDisables・requiredWorkTags・forcedTraits・initial possessions・spawnCategories**を維持し、元のSF・現代的叙述のみを古代～中世日本へ置き換える日本語原稿案である。新規日本専用Defではない。初期所持品が存在する定義は改稿確定時に別途史実素材への置換/維持を照合する（現時点で変更しない）。
 
-- 原定義に関する直接資料：過去のProject 原Core 1.6/1.7 metadata v2（[source audit](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/blob/main/Docs/Research/VanillaCoreCharacterDefsSourceAudit20261016.md)）で対象25件の`Adulthood`・生成カテゴリと技能を照合。元ファイルのメタデータは両版一致。これは通常生成での各Solid個体採用を個別立証するものではない。
+- 原定義に関する直接資料：過去のProject 原Core 1.6/1.7 metadata v2（[source audit](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/blob/main/Docs/Research/VanillaCoreCharacterDefsSourceAudit20261016.md)）で対象35件の`Adulthood`・生成カテゴリと技能を照合。元ファイルのメタデータは両版一致。これは通常生成での各Solid個体採用を個別立証するものではない。
 - 物語内容に関する参考：[Ludeonの旧英語原文コメント](https://github.com/Ludeon/RimWorld-Finnish/blob/master/Backstories/Backstories.xml)。**現在配布されているCore 1.6/1.7本文との完全一致は未立証。**
-- 対象25件は従来の94件の生成制限、34件の実装済み英日改稿と**重複しない**。
+- 対象35件は従来の94件の生成制限、34件の実装済み英日改稿と**重複しない**。
 - 強制Traitとの一致が必要な候補：`MasterChef48` の `Gourmand=0`、`Minister88` の `Industriousness=1`、`Model99` の `Beauty=2`。その他のゲーム機構の数値は変更しない。
 - 以下の本文は発見的な史実・ゲーム描写案であり、特定時代・地域の役職名や語感について最終作者レビュー後に調整する。薬物の具体的種類・商品・緊急対処の機構はここで確定しない。
 
-## 日本語原稿案（25件）
+## 日本語原稿案（35件）
 
 ### 01. `AddictionCounsel60`
 
@@ -163,6 +163,66 @@
 - **title案：** 関所の警固役
 - **titleShort案：** 警固役
 - **description案：** [PAWN_nameDef]は交通の要所に置かれた関所を守り、怪しい荷と人の出入りを見張った。争いを抑えるための武芸と交渉、けが人の手当ても覚えた。ある火事で手ひどい目に遭い、火を消す仕事だけは避けるようになった。
+
+### 26. `ChildStar74`
+
+- **title案：** 旅芸人の子
+- **titleShort案：** 芸人の子
+- **description案：** [PAWN_nameDef]は幼い頃から芸能の一座に加わり、歌や舞を人前で披露していた。多くの大人と接する機会に恵まれ、芸と人付き合いには慣れたが、文字や学問を教わる時間は少なかった。
+
+### 27. `CrashBaby32`
+
+- **title案：** 難破船の拾い子
+- **titleShort案：** 拾い子
+- **description案：** [PAWN_nameDef]は赤子の頃に船の難破に遭い、ただ一人生き残った。通りかかった人々に助けられ、その集落の子として育てられた。身寄りはないが、周囲に見守られながら新たな暮らしを覚えた。
+
+### 28. `UrbworldUrchin61`
+
+- **title案：** 町裏の孤児
+- **titleShort案：** 町の孤児
+- **description案：** [PAWN_nameDef]は人の多い町の片隅で育った。食べ物を得るために道端を歩き回り、ときには奪い合いになった。素早く身を守る術を身に付けたが、安らげる場所はほとんどなかった。
+
+### 29. `UrbworldDrone32`
+
+- **title案：** 普請場の苦役人
+- **titleShort案：** 苦役人
+- **description案：** [PAWN_nameDef]は自由を奪われ、普請場で土を掘り、石を運び、建物を組み上げることを強いられていた。ようやく束縛から逃れた後も、人に命じられた作業はこなせる一方、書物や芸事には馴染めず、人付き合いも苦手だった。
+
+### 30. `UrbworldEntrepreneur14`
+
+- **title案：** 町の商い頭
+- **titleShort案：** 商人
+- **description案：** [PAWN_nameDef]は市や湊で商いを広げ、物資の値動きと人のつながりを見極めて利益を上げてきた。約束や貸し借りを取りまとめるため、勘定と交渉の腕を磨き、時には有力者との関係も利用した。
+
+### 31. `ConstructionEngineer32`
+
+- **title案：** 普請の棟梁
+- **titleShort案：** 棟梁
+- **description案：** [PAWN_nameDef]は普請場で働く大工や人足を率い、家屋から大きな堂まで建ててきた。材の扱いと組み立てに通じる反面、炊事はいつも家人や周囲の者に任せていた。
+
+### 32. `MafiaBoss17`
+
+- **title案：** 町の顔役
+- **titleShort案：** 顔役
+- **description案：** [PAWN_nameDef]は町の荒くれ者たちを束ね、商いの取り分と貸し金の取り立てを仕切っていた。役人に取り入り、配下を従わせ、ときには力ずくで要求を通した。人の世話や家事には手を出さず、交渉と威圧を仕事とした。
+
+### 33. `ContractMiner86`
+
+- **title案：** 渡りの山師
+- **titleShort案：** 山師
+- **description案：** [PAWN_nameDef]は鉱山を渡り歩き、岩を砕いて鉱石や古い品を掘り出して暮らした。土と石にまみれる骨の折れる仕事だったが、自分の手で地中から価値あるものを見つけることに誇りを持っていた。
+
+### 34. `Taxonomist0`
+
+- **title案：** 草木と獣の調べ役
+- **titleShort案：** 調べ役
+- **description案：** [PAWN_nameDef]は山野を巡り、草木と獣の姿や習性を書き留めてきた。採れる場所や季節による違いを調べ、見聞をまとめることに心を砕いた。争いを好まず、生き物への関心から各地へ足を運んだ。
+
+### 35. `CaveworldIlluminator95`
+
+- **title案：** 坑道の道案内
+- **titleShort案：** 道案内
+- **description案：** [PAWN_nameDef]は地下の坑道に通じ、暗い道筋を覚えて掘るべき場所を示していた。灯りと目印を頼りに危険を察知し、働く者たちを導いた。岩の性質を見分ける力と、人々へ状況を伝える力を身に付けた。
 
 ## 承認後に必要な工程（現在は実施しない）
 
