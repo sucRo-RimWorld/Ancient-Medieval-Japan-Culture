@@ -93,4 +93,184 @@
       <baseDesc>A short-handed crew aboard a coastal trading vessel relied on [PAWN_nameDef] to prepare meals from limited stores. [PAWN_nameDef] learned to cook well, but constant complaints from the crew left little patience for other people's demands.</baseDesc>
     </value>
   </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Computer80"]/title</xpath>
+    <value>
+      <title>counting-board child</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Computer80"]/titleShort</xpath>
+    <value>
+      <titleShort>reckoner</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Computer80"]/baseDesc</xpath>
+    <value>
+      <baseDesc>As a child, [PAWN_nameDef] worked with counting rods, checking sums and keeping records for an estate's storehouses. Long hours spent alone with calculations sharpened practical skills but left little time for farming or making friends.</baseDesc>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="IndustrialOrphan13"]/title</xpath>
+    <value>
+      <title>mining orphan</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="IndustrialOrphan13"]/titleShort</xpath>
+    <value>
+      <titleShort>orphan</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="IndustrialOrphan13"]/baseDesc</xpath>
+    <value>
+      <baseDesc>[PAWN_nameDef] never knew the parents who left [PAWN_nameDef] behind. Childhood was spent hauling ore, sorting stones, and mending tools at a mine. There was little chance to learn letters, but plenty of hard work.</baseDesc>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceHumanitarian9"]/title</xpath>
+    <value>
+      <title>charitable caretaker</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceHumanitarian9"]/titleShort</xpath>
+    <value>
+      <titleShort>caretaker</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceHumanitarian9"]/baseDesc</xpath>
+    <value>
+      <baseDesc>After seeing people go hungry during years of poor harvests, [PAWN_nameDef] helped distribute food at a temple and cared for those who fell ill. Cooking for many mouths and preparing simple remedies became part of everyday life.</baseDesc>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceMarine16"]/title</xpath>
+    <value>
+      <title>naval boarding fighter</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceMarine16"]/titleShort</xpath>
+    <value>
+      <titleShort>boarder</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceMarine16"]/baseDesc</xpath>
+    <value>
+      <baseDesc>[PAWN_nameDef] fought with a band of coastal warriors who boarded enemy ships to take them intact. A skilled bow shot and fierce fighter with blades, [PAWN_nameDef] was often sent into the thick of a boarding attack.</baseDesc>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceRaider71"]/title</xpath>
+    <value>
+      <title>sea-raider captain</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceRaider71"]/titleShort</xpath>
+    <value>
+      <titleShort>captain</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceRaider71"]/baseDesc</xpath>
+    <value>
+      <baseDesc>[PAWN_nameDef] led a band that raided coastal settlements and merchant vessels. Knowing when to bargain and when to attack made the crew feared along the sea lanes.</baseDesc>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceTactician28"]/title</xpath>
+    <value>
+      <title>military strategist</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceTactician28"]/titleShort</xpath>
+    <value>
+      <titleShort>strategist</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceTactician28"]/baseDesc</xpath>
+    <value>
+      <baseDesc>[PAWN_nameDef] studied how formations, terrain, and archers could decide a battle. The work favored careful observation and practical experiments over negotiation or courtly arts.</baseDesc>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpacerOrphan77"]/title</xpath>
+    <value>
+      <title>shipwreck orphan</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpacerOrphan77"]/titleShort</xpath>
+    <value>
+      <titleShort>orphan</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpacerOrphan77"]/baseDesc</xpath>
+    <value>
+      <baseDesc>[PAWN_nameDef] survived a shipwreck that took the rest of the family. The years that followed demanded self-defense and practical repairs before another household finally offered shelter.</baseDesc>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="FactoryDrone58"]/title</xpath>
+    <value>
+      <title>workshop apprentice</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="FactoryDrone58"]/titleShort</xpath>
+    <value>
+      <titleShort>apprentice</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="FactoryDrone58"]/baseDesc</xpath>
+    <value>
+      <baseDesc>[PAWN_nameDef] was put to work in a crowded workshop while still young. Repairing fixtures, hauling materials, and repeating the same tasks through long days made [PAWN_nameDef] diligent, though there was little time for study or art.</baseDesc>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="FactoryWorker58"]/title</xpath>
+    <value>
+      <title>pack-train laborer</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="FactoryWorker58"]/titleShort</xpath>
+    <value>
+      <titleShort>laborer</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="FactoryWorker58"]/baseDesc</xpath>
+    <value>
+      <baseDesc>[PAWN_nameDef] earned a living carrying materials between storehouses and workshops, tending the packhorses used for heavier loads. The work called for steady hands and familiarity with animals rather than books, fine arts, or cooking.</baseDesc>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceyachtPilot89"]/title</xpath>
+    <value>
+      <title>boatman's apprentice</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceyachtPilot89"]/titleShort</xpath>
+    <value>
+      <titleShort>boatman</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceyachtPilot89"]/baseDesc</xpath>
+    <value>
+      <baseDesc>[PAWN_nameDef] grew up helping a boatman ferry wealthy passengers and local officials between ports. Dealing with demanding travelers taught tact and a willingness to defend the boat, but little of the daily cooking was left to [PAWN_nameDef].</baseDesc>
+    </value>
+  </Operation>
 </Patch>

@@ -246,7 +246,7 @@ The thirty target DefNames: `AerospaceEngineer44`, `ComputerEngineer10`, `Comput
 
 ## 中世日本へ転用可能なVanilla人物背景の改稿（2026-10-17）
 
-**実装済み第一群：5件。** 利用可能な仕事・人物の多様性を維持しつつ、SF世界での経歴を前近代日本で成立する物語へ置換する。ソース正本：`Patches/HistoricalOccupationBackstories.xml`（英語の`BackstoryDef` `title`・`titleShort`・`baseDesc`）、`Languages/Japanese/DefInjected/BackstoryDef/HistoricalOccupationBackstories.xml`（日本語の`title`・`titleShort`・`baseDesc`・解決後の`description`）。ゲームの `[PAWN_nameDef]` 変数を維持する。ゲーム本体の背景定義を**削除せず**、`defName`・`slot`・`spawnCategories`・能力ボーナス・`workDisables`・`requiredWorkTags`・強制Traits・所持品を変更しない。特定のSF DefNameが残っていても、通常表示のタイトルと経歴は史実相当へ置き換わる。本人が望む将来の改稿やほかの言語は別途対象にできる。
+**実装済み：15件（第一群5件＋第二群10件）。** 利用可能な仕事・人物の多様性を維持しつつ、SF世界での経歴を前近代日本で成立する物語へ置換する。ソース正本：`Patches/HistoricalOccupationBackstories.xml`（英語の`BackstoryDef` `title`・`titleShort`・`baseDesc`）、`Languages/Japanese/DefInjected/BackstoryDef/HistoricalOccupationBackstories.xml`（日本語の`title`・`titleShort`・`baseDesc`・解決後の`description`）。ゲームの `[PAWN_nameDef]` 変数を維持する。ゲーム本体の背景定義を**削除せず**、`defName`・`slot`・`spawnCategories`・能力ボーナス・`workDisables`・`requiredWorkTags`・強制Traits・所持品を変更しない。特定のSF DefNameが残っていても、通常表示のタイトルと経歴は史実相当へ置き換わる。本人が望む将来の改稿やほかの言語は別途対象にできる。
 
 | Vanilla defName／slot | 表示名・題材の変更 | 維持する実ゲーム上の元データと判断 |
 |---|---|---|
@@ -255,6 +255,23 @@ The thirty target DefNames: `AerospaceEngineer44`, `ComputerEngineer10`, `Comput
 | `SpacePirate55`／成人・シャッフル | 宇宙海賊 → **海上の略奪者**（Sea raider） | `Pirate`カテゴリと`Violent`必須、射撃・格闘各+4をそのまま使う。中世の商船への襲撃を説明 |
 | `SpaceHunter79`／成人・固定 | 宇宙猟師 → **山野の猟師**（Mountain hunter） | `Hunter`カテゴリ、射撃+5、製作+3、医療+2など。弓・罠・野営の作業を説明 |
 | `SpaceStationCook63`／成人・固定 | 宇宙基地の料理人 → **船中の炊事役**（Ship's cook） | 料理+6、格闘+4、`Caring, Social`不可。少ない水・食材を使う船の炊事、対人関係への不適応を説明 |
+
+### 第二群（追加10件）：歴史的な職種・境遇への置換
+
+| Vanilla defName／slot | 英日改稿の題材 | 維持するゲーム上の効果・制約 |
+|---|---|---|
+| `Computer80`／幼少・固定 | **算木使いの子**（Counting-board child） | 研究+4、製作+3、社交作業不可、栽培−3。荘園の物資勘定に従事 |
+| `IndustrialOrphan13`／幼少・シャッフル | **鉱山の孤児**（Mining orphan） | 採掘+3、製作+3、研究−2。鉱石運搬と道具の修繕に従事 |
+| `SpaceHumanitarian9`／成人・固定 | **施しの世話役**（Charitable caretaker） | 料理+4、医療+2、栽培+2、射撃−2。寺院での炊き出し・病人の世話 |
+| `SpaceMarine16`／成人・シャッフル | **水軍の切込兵**（Naval boarding fighter） | 射撃+7、格闘+5、`Violent`必須。敵船に乗り込む水軍の戦闘員 |
+| `SpaceRaider71`／成人・固定 | **海賊衆の頭領**（Sea-raider captain） | 射撃+8、社交+5、格闘+3。沿岸の襲撃者を率いる |
+| `SpaceTactician28`／成人・シャッフル | **兵法家**（Military strategist） | 研究+4、射撃+4、`Intellectual`必須、社交・芸術作業不可。兵法の研究に従事 |
+| `SpacerOrphan77`／幼少・固定 | **難船の孤児**（Shipwreck orphan） | 格闘+4、射撃+2、製作+2、芸術・採掘作業不可。難破後の自活 |
+| `FactoryDrone58`／幼少・固定 | **工房奉公の子**（Workshop apprentice） | 勤勉系特性`Industriousness=1`強制を維持、建築+3、製作+3、芸術不可 |
+| `FactoryWorker58`／成人・シャッフル | **荷運びの人足**（Pack-train laborer） | 調教+3、建築+3、製作+2、研究・芸術・料理作業不可。馬を使った荷運び |
+| `SpaceyachtPilot89`／幼少・固定 | **船頭見習い**（Boatman's apprentice） | 社交+4、格闘+2、料理作業不可。旅人や役人の舟運を手伝う |
+
+同じ`Patches/HistoricalOccupationBackstories.xml`と日本語`DefInjected`に追記。両群15件とも、**新規のDefを加えず**既存`BackstoryDef`の可視テキストのみ改稿し、67件の除外数、取得可能アイテム、ゲーム内薬物、座席C#、セーブ参照を変えない。原資料由来の`defName`には`Space`・`Factory`等の英字が残るが、英日表示の本文には未来技術を残さない。将来、その他の言語や他Modと競合する翻訳は別途判断する。第二群についてもゲーム内翻訳の採用順位・日本語描画は未検証。
 
 **選定条件:** Ludeonの旧英語原文コメント2系統とユーザー所有Core 1.6/1.7の正規メタデータ（`VanillaCoreCharacterDefsSourceAudit20261016.md`）の`slot`・生成カテゴリ・技能・職務制約を突き合わせた。英語コメントと現行版の原文が完全一致することは保証しない。許可した職業の「名称だけ」を変えず、各行の能力・不適性に説明文を合わせた。日本文化に固有でない職業名を史実性の根拠として自動採用しない。
 
