@@ -87,6 +87,17 @@ Two optional, MO 1.6.2.2 original-source-grounded `PatchOperationFindMod` XML fi
 
 **Evidence and acceptance limitation:** The 1.6 vanilla pawn-generation trace documents `GenerateInitialHediffs(Pawn, PawnGenerationRequest)` before scene `Scenario.Notify_NewPawnGenerating`; it avoids the high-cost universal `PawnGenerator.GeneratePawn` Postfix. Actual MO 1.6.2.2 `ChemicalDef` names and addiction/tolerance links were confirmed for all six MO candidates. The Vanilla chemical identities were checked against preserved Core XML source, not against both current licensed loaded Core distributions. A source C# change is NOT active gameplay until **both versioned production DLLs are genuinely rebuilt** from the exact accepted source and integrated through a protected PR. A compiled DLL by itself is NOT a loaded-game test. Intended consolidated tests: (1) fresh Vanilla/MO pawns with chemical-addiction chances yield no excluded addiction/tolerance; (2) alcohol addiction can still generate; (3) old preexisting dependency remains after save load; (4) manually consuming old banned drugs can still form addiction; (5) scenario-added hediffs are preserved; (6) 1.6 and 1.7 assemblies load with ERROR0. Do not run the complete game simply to multiply sample counts.
 
+### Compiled per-version dependency filter (2026-10-17)
+
+**Production binaries are integrated:** The real 1.6 and 1.7 `AMJ.Culture.dll` files were compiled using licensed RimWorld managed assemblies and the exact Culture source commit `009d36c75d0d9f557ab63563723e78efc6cfbc8c`. Both builds include `InitialDrugAddictionGenerationPatch.cs`, as well as the previously shipped seat, lodging and solid-child patches. `LoadFolders.xml` continues to choose the per-version assembly; no root assembly path was added.
+
+| Game | Project compile-only workflow | DLL SHA-256 | Bytes |
+|---|---|---|---|
+| 1.6 | [#39034597068](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39034597068) | `5e2f9a930210c6223b7a21259f8f689f39241d248887b2b2a3b419a9b252f77d` | 12,800 |
+| 1.7 | [#39034604350](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39034604350) | `a36d5a5774feb7b0304f40a378099b7d8fd170a16885b63146bfbdb576366234` | 12,800 |
+
+The production DLLs were supplied by the two authenticated builder jobs' Base64 transfer and stored as Git blobs on the Culture topic branch, not rebuilt in ChatGPT's local scratch space. **Compile-only SUCCESS is not native gameplay success.** A focused real-game acceptance remains pending for initial generated addiction, alcohol exception, old saved dependencies, deliberate scenario-created dependencies, and original loaded Vanilla/MO 1.6/1.7 behavior. Nothing here authorizes Steam release.
+
 ### Next implementation / acceptance boundary
 
 - Finish ordinary-generation exclusion only along demonstrated Vanilla/MO supply paths; prioritize newly generated drug-addicted pawns and explicit mixed-stock or reward pathways that still produce suppressed drugs.
