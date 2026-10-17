@@ -123,3 +123,33 @@ These are **optional source cohorts**, not a single installed pool, not Culture 
 **Targeted forced-Trait + sleeping thought implementation (2026-10-17):** Exact original Core metadata confirms `TestSubject90` and `HunterOfTheKing53` force `BodyPurist=0` in SF histories; both, plus `SpaceBartender0` (space station, `PsychiteTea ×3`), now have ordinary adult categories restricted without deleting any Trait/ThingDef or saved history. `DischargedSoldier53` retains its `DrugDesire=2;TooSmart=0` forced Traits and the actor's intoxication interest but is rewritten as expelled period infantry; `ApprenticeOracle83` retains existing child slot/Cult category and skills with shrine-ritual childhood in place of cryosleep. Adult no-generation total 46, children 24, total 70; complete rewrite total 34. For `Greedy`/`Jealous` the formal [Design](Design.md) now implements special treatment of assigned Barracks under original Impressiveness thresholds (not deletion/weight edits) and English/Japanese correction of private-room wording; ordinary private bedrooms remain Vanilla. New 1.6 and 1.7 production assemblies were compiled successfully and packaged (details/hashes in [Design.md](Design.md)); **actual loaded-game behavior of the 70 restrictions, two historical rewrites and shared lodging thoughts remains outstanding**. Do not turn this into a drug/effects or Shared Sleeping rewrite.
 
 **Audit output vs implementation:** This file records candidate decisions and already approved constraints. It does not create extra feature approval, does not prove all 784 narratives are culturally fit, does not assert MO 1.7 compatibility and cannot be used as a runtime-test PASS. The owner `Docs/Design.md` and actual patch code remain canonical for accepted behavior.
+
+## 第2段階・第1修正群 — 既存SF背景13件の通常生成制限（2026-10-17）
+
+**実装正本：** `Patches/AnachronisticAdultBackstories.xml`。第1段階の829定義台帳と、第1段階で取得済みの正規Vanilla Core 1.6/1.7 schema v2 CSV（Project Actions #38797500765、原ファイルのSHA一致）を再利用。追加のゲーム起動・Coreの再抽出は行っていない。
+
+**原文の証拠範囲：** [Ludeon公式の旧英語原文コメント](https://github.com/Ludeon/RimWorld-Finnish/blob/master/Backstories/Backstories.xml) にある各該当IDの `desc` 直前コメントを個別確認した。以下の内容要約はこの旧原文に基づく。**配布中の正規Core 1.6/1.7 `description` 本文と完全一致したとの証明ではない**（既取得の正規CSVはメタデータのみ）。厳密な現行原文同一性とロード後カテゴリは後の受け入れ対象。名前だけでSF判定したものではない。
+
+| 背景ID | 旧英語原文にある具体的な時代不整合 | 既存Core 1.6/1.7の通常カテゴリ |
+|---|---|---|
+| `ArmyScientist35` | 惑星軍の兵器システム研究 | Offworld / Pirate |
+| `CloneFarmer58` | クローン農場で生産された人間と宇宙への逃亡 | Offworld / Pirate |
+| `DoomsdayPariah18` | 惑星を滅ぼす古代装置と宇宙船 | Offworld / Cult |
+| `Gnomebiologist96` | グリッターワールド大学の異星生物学教授 | Offworld / Pirate |
+| `LazyProgrammer3` | ソフトウェア開発、企業、知財侵害 | Offworld |
+| `MilitaryEngineer45` | 軍事ドローン、メカノイドの装置の修理 | Offworld / Pirate |
+| `NavyScientist52` | 星間戦争、アーキテクト遺物、宇宙海軍研究所 | Offworld / Scientist / Researcher |
+| `RugbyPlayer71` | VRゲームからの切断による人格変化 | Offworld / Pirate |
+| `StarfighterPilot79` | 宇宙戦闘機、宇宙海賊 | Offworld / Pirate |
+| `Technician9` | IT技術者、冷凍睡眠装置、AI | Offworld / Pirate |
+| `TestSubject92` | 量子物理学等の未来的実験施設 | Offworld / Cult |
+| `UrbworldRebel56` | オンライン集合意識とそれへの反抗 | Offworld / Pirate |
+| `WhiteHatHacker82` | コンピュータからのオンラインセキュリティ活動 | Offworld / Outlander / Pirate |
+
+**生成経路・副作用：** 13件とも既取得の正規メタデータで `slot=Adulthood`、`spawnCategories` 存在、1.6/1.7完全一致。対象は `Solid_Adult` 11件、`Shuffled` 2件（`NavyScientist52`、`UrbworldRebel56`）。通常カテゴリ選択への制限のみで、`BackstoryDef` は維持する。 `RugbyPlayer71` の強制 `Brawler=0`、`DoomsdayPariah18` のAnomaly条件付き所持品、`NavyScientist52` のOdyssey条件付き所持品は削除・変更しない。直接割り当てられた固有Pawnと既存セーブも対象外。 `Solid_Child` のカテゴリ未設定候補をこの成人XMLへ混入させない。
+
+**合計：** 第1段階74件（成人48＝47+FerventResearcher72、Solid幼少24、Shuffled幼少2）＋今回成人13件＝**87件**（成人61、幼少26）の新規通常生成制限。歴史改稿34件、全43 Vanilla / 2 MO TraitDef、既存MO死亡Thought調整、DLL、所持品置換6件は変更しない。
+
+**改稿優先で保留する候補：** `Architect28`（建築）、`BountyHunter41`（追捕）、`Castaway81`（漂流）、`CharityWorker36`（救恤）、`CorporateBuilder58`（建設）、`ExpertHandyman8`（修繕）、`FurnitureBuilder83`（木工）、`LanguageAnalyst27`（語学・文書）、`MasterChef48`（調理）、`MedicSoldier54`（軍医）、`MilitaryOfficer17`（軍人）、`Minister88`（政治職）、`NinjaAssassin31`（間諜）、`Novelist7`（著述）、`PlanetaryDiplomat7`（外交）、`PrisonerOfWar2`（捕虜）、`ReligiousHierarch16`（宗教職）、`Sculptor63`（彫刻）、`StationSecurity38`（警備）などはSF原文のまま採用できないが、前近代に転用可能な役割があるため**自動一括除外しない**。本文と技能・作業禁止・強制特性が合う日本語改稿を作成し、必要な史実・編集承認後に英訳・実装する。13件も将来改稿可能であり永久削除ではない。
+
+**次の段階内作業：** なお残る該当SF候補、通常経路が確認できる `Solid_Child` 候補、Traitの時代不整合（`BodyPurist` / `DrugDesire` 等）を原文・使用経路と対で処理する。固有Pawn専用定義は除外。新規日本独自BackstoryDef/TraitDefは第3段階まで作らない。実ゲームはここでは起動しない。
