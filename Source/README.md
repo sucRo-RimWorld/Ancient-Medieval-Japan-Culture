@@ -1,4 +1,8 @@
-# Culture chair-only dining adapter
+# AMJ Culture — production source and per-version builds
+
+**Latest compilation-only status (2026-10-17):** The new-pawn excluded-chemical addiction/tolerance filter is in `Source/AMJ.Culture/InitialDrugAddictionGenerationPatch.cs` and both per-version product assemblies. Source commit: `009d36c75d0d9f557ab63563723e78efc6cfbc8c`; licensed 1.6 [build #39034597068](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39034597068) DLL `5e2f9a930210c6223b7a21259f8f689f39241d248887b2b2a3b419a9b252f77d`; licensed 1.7 [build #39034604350](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39034604350) DLL `a36d5a5774feb7b0304f40a378099b7d8fd170a16885b63146bfbdb576366234`. Existing 1.6/1.7 chair/background runtime PASS pertains to **older binaries**, not these newly compiled ones. One consolidated game-load, pawn generation and old-save test is still required for this new functionality before release. See the current [Design](../Docs/Design.md#initial-addiction-on-newly-generated-pawns--targeted-c-source-2026-10-17).
+
+## Historical chair adapter and prior runtime evidence
 
 **Implementation state:** Culture has version-selected 1.6 and 1.7 assemblies. The 1.7 DLL (SHA-256 `96a55e102c6ab0155f4c5336466afe6d398dbcefd915486bd31bd957cdf84e58`) was built from original RimWorld 1.7.4977 in [Project #39015931527](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39015931527); genuine Vanilla 1.7 gameplay acceptance [#39016905072](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39016905072) is PASS: table-free chair/Comfort, table-first, standing fallback, loaded 43+24 backgrounds and normal Pawn in one Pickle scenario with ERROR0, game exit0, original game unchanged. The existing RimWorld 1.6 assembly is
 9,216 bytes (SHA-256
