@@ -18,9 +18,9 @@
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/BackstoryDef[defName="SpaceMerchant97"]/baseDesc</xpath>
+    <xpath>Defs/BackstoryDef[defName="SpaceMerchant97"]/description</xpath>
     <value>
-      <baseDesc>As a coastal trader, [PAWN_nameDef] moved goods between ports and market towns, bargaining for cargo and hiring boats when no vessel was available. Negotiation and practical repairs mattered as much as keeping an eye on rivals.</baseDesc>
+      <description>As a coastal trader, [PAWN_nameDef] moved goods between ports and market towns, bargaining for cargo and hiring boats when no vessel was available. Negotiation and practical repairs mattered as much as keeping an eye on rivals.</description>
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
@@ -36,9 +36,9 @@
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/BackstoryDef[defName="SpaceSmuggler6"]/baseDesc</xpath>
+    <xpath>Defs/BackstoryDef[defName="SpaceSmuggler6"]/description</xpath>
     <value>
-      <baseDesc>As a child, [PAWN_nameDef] carried untaxed goods for the family, slipping past checkpoints and river crossings. The work taught bargaining, fighting to protect cargo, and tending wounds when a journey turned violent.</baseDesc>
+      <description>As a child, [PAWN_nameDef] carried untaxed goods for the family, slipping past checkpoints and river crossings. The work taught bargaining, fighting to protect cargo, and tending wounds when a journey turned violent.</description>
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
@@ -54,9 +54,9 @@
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/BackstoryDef[defName="SpacePirate55"]/baseDesc</xpath>
+    <xpath>Defs/BackstoryDef[defName="SpacePirate55"]/description</xpath>
     <value>
-      <baseDesc>When the authorities could not secure the coastal sea lanes, [PAWN_nameDef] joined a band that attacked merchant vessels and seized their cargo. Raids demanded skill with bows and blades and a willingness to fight for plunder.</baseDesc>
+      <description>When the authorities could not secure the coastal sea lanes, [PAWN_nameDef] joined a band that attacked merchant vessels and seized their cargo. Raids demanded skill with bows and blades and a willingness to fight for plunder.</description>
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
@@ -72,9 +72,9 @@
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/BackstoryDef[defName="SpaceHunter79"]/baseDesc</xpath>
+    <xpath>Defs/BackstoryDef[defName="SpaceHunter79"]/description</xpath>
     <value>
-      <baseDesc>[PAWN_nameDef] made a living tracking elusive game through mountains and deep forests. Long journeys called for skill with bows and traps, as well as the ability to prepare meals, repair tools, and tend wounds in camp.</baseDesc>
+      <description>[PAWN_nameDef] made a living tracking elusive game through mountains and deep forests. Long journeys called for skill with bows and traps, as well as the ability to prepare meals, repair tools, and tend wounds in camp.</description>
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
@@ -90,9 +90,9 @@
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/BackstoryDef[defName="SpaceStationCook63"]/baseDesc</xpath>
+    <xpath>Defs/BackstoryDef[defName="SpaceStationCook63"]/description</xpath>
     <value>
-      <baseDesc>A short-handed crew aboard a coastal trading vessel relied on [PAWN_nameDef] to prepare meals from limited stores. [PAWN_nameDef] learned to cook well, but constant complaints from the crew left little patience for other people's demands.</baseDesc>
+      <description>A short-handed crew aboard a coastal trading vessel relied on [PAWN_nameDef] to prepare meals from limited stores. [PAWN_nameDef] learned to cook well, but constant complaints from the crew left little patience for other people's demands.</description>
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
@@ -108,9 +108,9 @@
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/BackstoryDef[defName="Computer80"]/baseDesc</xpath>
+    <xpath>Defs/BackstoryDef[defName="Computer80"]/description</xpath>
     <value>
-      <baseDesc>As a child, [PAWN_nameDef] worked with counting rods, checking sums and keeping records for an estate's storehouses. Long hours spent alone with calculations sharpened practical skills but left little time for farming or making friends.</baseDesc>
+      <description>As a child, [PAWN_nameDef] worked with counting rods, checking sums and keeping records for an estate's storehouses. Long hours spent alone with calculations sharpened practical skills but left little time for farming or making friends.</description>
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
@@ -126,9 +126,9 @@
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/BackstoryDef[defName="IndustrialOrphan13"]/baseDesc</xpath>
+    <xpath>Defs/BackstoryDef[defName="IndustrialOrphan13"]/description</xpath>
     <value>
-      <baseDesc>[PAWN_nameDef] never knew the parents who left [PAWN_nameDef] behind. Childhood was spent hauling ore, sorting stones, and mending tools at a mine. There was little chance to learn letters, but plenty of hard work.</baseDesc>
+      <description>[PAWN_nameDef] never knew the parents who left [PAWN_nameDef] behind. Childhood was spent hauling ore, sorting stones, and mending tools at a mine. There was little chance to learn letters, but plenty of hard work.</description>
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
@@ -144,9 +144,9 @@
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/BackstoryDef[defName="SpaceHumanitarian9"]/baseDesc</xpath>
+    <xpath>Defs/BackstoryDef[defName="SpaceHumanitarian9"]/description</xpath>
     <value>
-      <baseDesc>After seeing people go hungry during years of poor harvests, [PAWN_nameDef] helped distribute food at a temple and cared for those who fell ill. Cooking for many mouths and preparing simple remedies became part of everyday life.</baseDesc>
+      <description>After seeing people go hungry during years of poor harvests, [PAWN_nameDef] helped distribute food at a temple and cared for those who fell ill. Cooking for many mouths and preparing simple remedies became part of everyday life.</description>
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
@@ -162,9 +162,9 @@
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/BackstoryDef[defName="SpaceMarine16"]/baseDesc</xpath>
+    <xpath>Defs/BackstoryDef[defName="SpaceMarine16"]/description</xpath>
     <value>
-      <baseDesc>[PAWN_nameDef] fought with a band of coastal warriors who boarded enemy ships to take them intact. A skilled bow shot and fierce fighter with blades, [PAWN_nameDef] was often sent into the thick of a boarding attack.</baseDesc>
+      <description>[PAWN_nameDef] fought with a band of coastal warriors who boarded enemy ships to take them intact. A skilled bow shot and fierce fighter with blades, [PAWN_nameDef] was often sent into the thick of a boarding attack.</description>
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
@@ -180,9 +180,9 @@
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/BackstoryDef[defName="SpaceRaider71"]/baseDesc</xpath>
+    <xpath>Defs/BackstoryDef[defName="SpaceRaider71"]/description</xpath>
     <value>
-      <baseDesc>[PAWN_nameDef] led a band that raided coastal settlements and merchant vessels. Knowing when to bargain and when to attack made the crew feared along the sea lanes.</baseDesc>
+      <description>[PAWN_nameDef] led a band that raided coastal settlements and merchant vessels. Knowing when to bargain and when to attack made the crew feared along the sea lanes.</description>
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
@@ -198,9 +198,9 @@
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/BackstoryDef[defName="SpaceTactician28"]/baseDesc</xpath>
+    <xpath>Defs/BackstoryDef[defName="SpaceTactician28"]/description</xpath>
     <value>
-      <baseDesc>[PAWN_nameDef] studied how formations, terrain, and archers could decide a battle. The work favored careful observation and practical experiments over negotiation or courtly arts.</baseDesc>
+      <description>[PAWN_nameDef] studied how formations, terrain, and archers could decide a battle. The work favored careful observation and practical experiments over negotiation or courtly arts.</description>
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
@@ -216,9 +216,9 @@
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/BackstoryDef[defName="SpacerOrphan77"]/baseDesc</xpath>
+    <xpath>Defs/BackstoryDef[defName="SpacerOrphan77"]/description</xpath>
     <value>
-      <baseDesc>[PAWN_nameDef] survived a shipwreck that took the rest of the family. The years that followed demanded self-defense and practical repairs before another household finally offered shelter.</baseDesc>
+      <description>[PAWN_nameDef] survived a shipwreck that took the rest of the family. The years that followed demanded self-defense and practical repairs before another household finally offered shelter.</description>
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
@@ -234,9 +234,9 @@
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/BackstoryDef[defName="FactoryDrone58"]/baseDesc</xpath>
+    <xpath>Defs/BackstoryDef[defName="FactoryDrone58"]/description</xpath>
     <value>
-      <baseDesc>[PAWN_nameDef] was put to work in a crowded workshop while still young. Repairing fixtures, hauling materials, and repeating the same tasks through long days made [PAWN_nameDef] diligent, though there was little time for study or art.</baseDesc>
+      <description>[PAWN_nameDef] was put to work in a crowded workshop while still young. Repairing fixtures, hauling materials, and repeating the same tasks through long days made [PAWN_nameDef] diligent, though there was little time for study or art.</description>
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
@@ -252,9 +252,9 @@
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/BackstoryDef[defName="FactoryWorker58"]/baseDesc</xpath>
+    <xpath>Defs/BackstoryDef[defName="FactoryWorker58"]/description</xpath>
     <value>
-      <baseDesc>[PAWN_nameDef] earned a living carrying materials between storehouses and workshops, tending the packhorses used for heavier loads. The work called for steady hands and familiarity with animals rather than books, fine arts, or cooking.</baseDesc>
+      <description>[PAWN_nameDef] earned a living carrying materials between storehouses and workshops, tending the packhorses used for heavier loads. The work called for steady hands and familiarity with animals rather than books, fine arts, or cooking.</description>
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
@@ -270,9 +270,9 @@
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/BackstoryDef[defName="SpaceyachtPilot89"]/baseDesc</xpath>
+    <xpath>Defs/BackstoryDef[defName="SpaceyachtPilot89"]/description</xpath>
     <value>
-      <baseDesc>[PAWN_nameDef] grew up helping a boatman ferry wealthy passengers and local officials between ports. Dealing with demanding travelers taught tact and a willingness to defend the boat, but little of the daily cooking was left to [PAWN_nameDef].</baseDesc>
+      <description>[PAWN_nameDef] grew up helping a boatman ferry wealthy passengers and local officials between ports. Dealing with demanding travelers taught tact and a willingness to defend the boat, but little of the daily cooking was left to [PAWN_nameDef].</description>
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
@@ -288,9 +288,9 @@
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/BackstoryDef[defName="DeepSpaceMiner3"]/baseDesc</xpath>
+    <xpath>Defs/BackstoryDef[defName="DeepSpaceMiner3"]/description</xpath>
     <value>
-      <baseDesc>[PAWN_nameDef] worked in a remote mine, digging ore from narrow tunnels and shoring up the workings. Hauling stone and mending supports called for steady hands; disputes among the miners sometimes ended in fights.</baseDesc>
+      <description>[PAWN_nameDef] worked in a remote mine, digging ore from narrow tunnels and shoring up the workings. Hauling stone and mending supports called for steady hands; disputes among the miners sometimes ended in fights.</description>
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
@@ -306,9 +306,9 @@
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/BackstoryDef[defName="Engineer40"]/baseDesc</xpath>
+    <xpath>Defs/BackstoryDef[defName="Engineer40"]/description</xpath>
     <value>
-      <baseDesc>[PAWN_nameDef] repaired tools and weapons at a busy market town. Merchants brought damaged goods to the forge, where practical craft and hard bargaining proved equally valuable. Cooking was never part of the trade.</baseDesc>
+      <description>[PAWN_nameDef] repaired tools and weapons at a busy market town. Merchants brought damaged goods to the forge, where practical craft and hard bargaining proved equally valuable. Cooking was never part of the trade.</description>
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
@@ -324,9 +324,9 @@
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/BackstoryDef[defName="GlitterworldEmpath26"]/baseDesc</xpath>
+    <xpath>Defs/BackstoryDef[defName="GlitterworldEmpath26"]/description</xpath>
     <value>
-      <baseDesc>[PAWN_nameDef] learned to hear each side of a quarrel and settle disputes between households. Trusted to care for the injured and calm the angry, [PAWN_nameDef] refused to take up arms against others.</baseDesc>
+      <description>[PAWN_nameDef] learned to hear each side of a quarrel and settle disputes between households. Trusted to care for the injured and calm the angry, [PAWN_nameDef] refused to take up arms against others.</description>
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
@@ -342,9 +342,9 @@
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/BackstoryDef[defName="GlitterworldOfficer60"]/baseDesc</xpath>
+    <xpath>Defs/BackstoryDef[defName="GlitterworldOfficer60"]/description</xpath>
     <value>
-      <baseDesc>[PAWN_nameDef] commanded a small band of retainers guarding a manor. Peacetime quarrels called for firm restraint and skill in close combat, while spare hours were spent practicing calligraphy and painting. Heavy manual chores were left to subordinates.</baseDesc>
+      <description>[PAWN_nameDef] commanded a small band of retainers guarding a manor. Peacetime quarrels called for firm restraint and skill in close combat, while spare hours were spent practicing calligraphy and painting. Heavy manual chores were left to subordinates.</description>
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
@@ -360,9 +360,9 @@
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/BackstoryDef[defName="GlitterworldRoyal24"]/baseDesc</xpath>
+    <xpath>Defs/BackstoryDef[defName="GlitterworldRoyal24"]/description</xpath>
     <value>
-      <baseDesc>[PAWN_nameDef] was raised in a warrior household and taught manners, letters, and the arts in preparation for a political marriage. An appearance considered unfavorable by prospective families spoiled the matches and left [PAWN_nameDef] resentful.</baseDesc>
+      <description>[PAWN_nameDef] was raised in a warrior household and taught manners, letters, and the arts in preparation for a political marriage. An appearance considered unfavorable by prospective families spoiled the matches and left [PAWN_nameDef] resentful.</description>
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
@@ -378,9 +378,9 @@
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/BackstoryDef[defName="HumanComputer83"]/baseDesc</xpath>
+    <xpath>Defs/BackstoryDef[defName="HumanComputer83"]/description</xpath>
     <value>
-      <baseDesc>[PAWN_nameDef] possessed a remarkable memory and talent for counting revenues and expenses. A powerful estate steward employed [PAWN_nameDef] to keep accounts of harvest dues and payments, a task demanding close study and vigilance.</baseDesc>
+      <description>[PAWN_nameDef] possessed a remarkable memory and talent for counting revenues and expenses. A powerful estate steward employed [PAWN_nameDef] to keep accounts of harvest dues and payments, a task demanding close study and vigilance.</description>
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
@@ -396,9 +396,9 @@
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/BackstoryDef[defName="SpaceExplorer53"]/baseDesc</xpath>
+    <xpath>Defs/BackstoryDef[defName="SpaceExplorer53"]/description</xpath>
     <value>
-      <baseDesc>[PAWN_nameDef] was stranded alone on a distant island. For years, survival meant raising shelters, finding food, quarrying stone and defending against strangers. Learning to negotiate with islanders helped [PAWN_nameDef] return, though the isolation left lasting scars.</baseDesc>
+      <description>[PAWN_nameDef] was stranded alone on a distant island. For years, survival meant raising shelters, finding food, quarrying stone and defending against strangers. Learning to negotiate with islanders helped [PAWN_nameDef] return, though the isolation left lasting scars.</description>
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
@@ -414,9 +414,9 @@
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/BackstoryDef[defName="SpaceMarine19"]/baseDesc</xpath>
+    <xpath>Defs/BackstoryDef[defName="SpaceMarine19"]/description</xpath>
     <value>
-      <baseDesc>[PAWN_nameDef] fought in a ruthless warrior band that valued victory above mercy. Fierce campaigns honed skill with bows and blades but left little patience for healing, friendly talk or delicate handiwork.</baseDesc>
+      <description>[PAWN_nameDef] fought in a ruthless warrior band that valued victory above mercy. Fierce campaigns honed skill with bows and blades but left little patience for healing, friendly talk or delicate handiwork.</description>
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
@@ -432,9 +432,9 @@
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/BackstoryDef[defName="SpaceMarine5"]/baseDesc</xpath>
+    <xpath>Defs/BackstoryDef[defName="SpaceMarine5"]/description</xpath>
     <value>
-      <baseDesc>[PAWN_nameDef] marched through many campaigns as a seasoned foot soldier. Years of fighting made [PAWN_nameDef] formidable with bow and blade, but repeated losses dulled compassion and the wish to mingle with others.</baseDesc>
+      <description>[PAWN_nameDef] marched through many campaigns as a seasoned foot soldier. Years of fighting made [PAWN_nameDef] formidable with bow and blade, but repeated losses dulled compassion and the wish to mingle with others.</description>
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
@@ -450,9 +450,9 @@
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/BackstoryDef[defName="SpaceMarine9"]/baseDesc</xpath>
+    <xpath>Defs/BackstoryDef[defName="SpaceMarine9"]/description</xpath>
     <value>
-      <baseDesc>[PAWN_nameDef] trained fiercely with a band of sworn warriors in the service of a lord. Shared oaths and rites gave the company resolve through brutal campaigns, though hardship left [PAWN_nameDef] ill at ease in polite company and uninterested in the arts.</baseDesc>
+      <description>[PAWN_nameDef] trained fiercely with a band of sworn warriors in the service of a lord. Shared oaths and rites gave the company resolve through brutal campaigns, though hardship left [PAWN_nameDef] ill at ease in polite company and uninterested in the arts.</description>
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
@@ -468,9 +468,9 @@
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/BackstoryDef[defName="SpaceMarine94"]/baseDesc</xpath>
+    <xpath>Defs/BackstoryDef[defName="SpaceMarine94"]/description</xpath>
     <value>
-      <baseDesc>[PAWN_nameDef] fought aboard armed boats, rushing onto enemy vessels to seize their cargo and crew. A reliable bow shot and fierce close fighter, [PAWN_nameDef] left the galley work to others.</baseDesc>
+      <description>[PAWN_nameDef] fought aboard armed boats, rushing onto enemy vessels to seize their cargo and crew. A reliable bow shot and fierce close fighter, [PAWN_nameDef] left the galley work to others.</description>
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
@@ -486,9 +486,9 @@
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/BackstoryDef[defName="SpaceNavyDoctor72"]/baseDesc</xpath>
+    <xpath>Defs/BackstoryDef[defName="SpaceNavyDoctor72"]/description</xpath>
     <value>
-      <baseDesc>[PAWN_nameDef] served as a healer aboard the boats of a coastal warband. Boarding skirmishes taught [PAWN_nameDef] to defend the wounded and dress deep cuts while helping commanders settle disputes among the crew.</baseDesc>
+      <description>[PAWN_nameDef] served as a healer aboard the boats of a coastal warband. Boarding skirmishes taught [PAWN_nameDef] to defend the wounded and dress deep cuts while helping commanders settle disputes among the crew.</description>
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
@@ -504,9 +504,9 @@
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/BackstoryDef[defName="SpaceshipChef41"]/baseDesc</xpath>
+    <xpath>Defs/BackstoryDef[defName="SpaceshipChef41"]/description</xpath>
     <value>
-      <baseDesc>[PAWN_nameDef] cooked meals for a travelling warband and helped its healer wash and bind wounds. The work made [PAWN_nameDef] skilled with food and basic treatment, though tidying and scrubbing camp equipment were always avoided.</baseDesc>
+      <description>[PAWN_nameDef] cooked meals for a travelling warband and helped its healer wash and bind wounds. The work made [PAWN_nameDef] skilled with food and basic treatment, though tidying and scrubbing camp equipment were always avoided.</description>
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
@@ -522,9 +522,9 @@
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/BackstoryDef[defName="StarshipDoctor37"]/baseDesc</xpath>
+    <xpath>Defs/BackstoryDef[defName="StarshipDoctor37"]/description</xpath>
     <value>
-      <baseDesc>[PAWN_nameDef] studied medical writings and refined methods for treating difficult wounds and illnesses. Absorbed in observation and study, [PAWN_nameDef] became a capable physician but remained awkward in conversation and unsuited to combat.</baseDesc>
+      <description>[PAWN_nameDef] studied medical writings and refined methods for treating difficult wounds and illnesses. Absorbed in observation and study, [PAWN_nameDef] became a capable physician but remained awkward in conversation and unsuited to combat.</description>
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
@@ -540,9 +540,9 @@
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/BackstoryDef[defName="VoidspaceRaider94"]/baseDesc</xpath>
+    <xpath>Defs/BackstoryDef[defName="VoidspaceRaider94"]/description</xpath>
     <value>
-      <baseDesc>After a killer scattered [PAWN_possessive] family, [PAWN_nameDef] joined a mountain outlaw band in pursuit of revenge. Years of raids taught scouting, fighting, field repairs and tending wounds; narrow escapes earned [PAWN_nameDef] a reputation for luck.</baseDesc>
+      <description>After a killer scattered [PAWN_possessive] family, [PAWN_nameDef] joined a mountain outlaw band in pursuit of revenge. Years of raids taught scouting, fighting, field repairs and tending wounds; narrow escapes earned [PAWN_nameDef] a reputation for luck.</description>
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
@@ -558,9 +558,9 @@
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/BackstoryDef[defName="WanderingHealer52"]/baseDesc</xpath>
+    <xpath>Defs/BackstoryDef[defName="WanderingHealer52"]/description</xpath>
     <value>
-      <baseDesc>[PAWN_nameDef] left a settled medical practice to travel between villages where healers were scarce. Treating the sick, preparing food for patients and speaking with anxious families mattered more than fighting or heavy labor.</baseDesc>
+      <description>[PAWN_nameDef] left a settled medical practice to travel between villages where healers were scarce. Treating the sick, preparing food for patients and speaking with anxious families mattered more than fighting or heavy labor.</description>
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
@@ -576,9 +576,9 @@
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/BackstoryDef[defName="CorporateManager76"]/baseDesc</xpath>
+    <xpath>Defs/BackstoryDef[defName="CorporateManager76"]/description</xpath>
     <value>
-      <baseDesc>[PAWN_nameDef] supervised workers and stores on a large estate, settling arguments and keeping the work on schedule. Success relied on a talent for accounts and persuasion, as well as maneuvering to take credit for others' achievements.</baseDesc>
+      <description>[PAWN_nameDef] supervised workers and stores on a large estate, settling arguments and keeping the work on schedule. Success relied on a talent for accounts and persuasion, as well as maneuvering to take credit for others' achievements.</description>
     </value>
   </Operation>
 </Patch>
