@@ -7,8 +7,6 @@
       <commonality>0</commonality>
     </value>
   </Operation>
-  <!-- Forced backstory traits bypass random commonality. -->
-  <Operation Class="PatchOperationRemove">
-    <xpath>Defs/BackstoryDef[defName="FerventResearcher72"]/forcedTraits</xpath>
-  </Operation>
+  <!-- Forced Backstory assignment cannot be removed with this 1.6 XML xpath.
+       Omit the failing operation until the actual Backstory storage path is fixed. -->
 </Patch>
