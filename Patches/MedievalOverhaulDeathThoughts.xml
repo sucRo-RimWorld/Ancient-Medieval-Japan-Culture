@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <!-- MO battlefield traits may still suppress ordinary corpse-sighting thoughts.
+       They must not also suppress grief or prisoner-treatment judgments. -->
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Medieval Overhaul</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThoughtDef[defName="PawnWithGoodOpinionDied"]/nullifyingTraits/li[.="DankPyon_Fighter" or .="DankPyon_Veteran"]</xpath>
+          <match Class="PatchOperationRemove">
+            <xpath>Defs/ThoughtDef[defName="PawnWithGoodOpinionDied"]/nullifyingTraits/li[.="DankPyon_Fighter" or .="DankPyon_Veteran"]</xpath>
+          </match>
+        </li>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThoughtDef[defName="KnowPrisonerDiedInnocent"]/nullifyingTraits/li[.="DankPyon_Fighter" or .="DankPyon_Veteran"]</xpath>
+          <match Class="PatchOperationRemove">
+            <xpath>Defs/ThoughtDef[defName="KnowPrisonerDiedInnocent"]/nullifyingTraits/li[.="DankPyon_Fighter" or .="DankPyon_Veteran"]</xpath>
+          </match>
+        </li>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThoughtDef[defName="KnowGuestExecuted"]/nullifyingTraits/li[.="DankPyon_Veteran"]</xpath>
+          <match Class="PatchOperationRemove">
+            <xpath>Defs/ThoughtDef[defName="KnowGuestExecuted"]/nullifyingTraits/li[.="DankPyon_Veteran"]</xpath>
+          </match>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+</Patch>
