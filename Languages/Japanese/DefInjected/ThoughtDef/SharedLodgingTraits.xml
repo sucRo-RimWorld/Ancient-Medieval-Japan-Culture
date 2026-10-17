@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <Greedy.stages.0.label>立派な寝所が欲しい</Greedy.stages.0.label>
+  <Greedy.stages.0.description>寝所はもっと立派であるべきだ。</Greedy.stages.0.description>
+  <Greedy.stages.1.label>立派な寝所が欲しい</Greedy.stages.1.label>
+  <Greedy.stages.1.description>こんな粗末な寝所では満足できない。</Greedy.stages.1.description>
+  <Greedy.stages.2.label>立派な寝所が欲しい</Greedy.stages.2.label>
+  <Greedy.stages.2.description>この寝所はみすぼらしすぎる。</Greedy.stages.2.description>
+  <Greedy.stages.3.label>立派な寝所が欲しい</Greedy.stages.3.label>
+  <Greedy.stages.3.description>この寝所では到底満足できない。</Greedy.stages.3.description>
+  <Greedy.stages.4.label>立派な寝所が欲しい</Greedy.stages.4.label>
+  <Greedy.stages.4.description>もう少し立派な寝所で休みたい。</Greedy.stages.4.description>
+  <Jealous.stages.0.label>{0}の寝所がうらやましい</Jealous.stages.0.label>
+  <Jealous.stages.0.description>ほかの者の寝所の方が立派なのは気に入らない。</Jealous.stages.0.description>
+</LanguageData>
