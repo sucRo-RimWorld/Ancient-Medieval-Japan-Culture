@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-  <!-- Deliberate Japanese overrides of the five rewritten vanilla BackstoryDefs.
+  <!-- Deliberate Japanese overrides of the fifteen rewritten vanilla BackstoryDefs.
        description and baseDesc are both supplied because RimWorld uses a resolved
        description at runtime as well as the original translatable base field. -->
   <SpaceMerchant97.title>廻船商人</SpaceMerchant97.title>
@@ -23,4 +23,44 @@
   <SpaceStationCook63.titleShort>炊事役</SpaceStationCook63.titleShort>
   <SpaceStationCook63.baseDesc>[PAWN_nameDef]は人手の足りない廻船で炊事を任された。限られた水と食材で船乗りの食事を用意し、腕は上げたが、不満や小言に苦しんだ。以来、人付き合いは不得手になった。</SpaceStationCook63.baseDesc>
   <SpaceStationCook63.description>[PAWN_nameDef]は人手の足りない廻船で炊事を任された。限られた水と食材で船乗りの食事を用意し、腕は上げたが、不満や小言に苦しんだ。以来、人付き合いは不得手になった。</SpaceStationCook63.description>
+  <Computer80.title>算木使いの子</Computer80.title>
+  <Computer80.titleShort>算木使い</Computer80.titleShort>
+  <Computer80.baseDesc>[PAWN_nameDef]は幼い頃から算木を使い、荘園の蔵に出入りする物資の勘定や記録を手伝った。ひとりで数を扱う時間が長く、手先と計算には長けたが、田畑の仕事や人付き合いには馴染めなかった。</Computer80.baseDesc>
+  <Computer80.description>[PAWN_nameDef]は幼い頃から算木を使い、荘園の蔵に出入りする物資の勘定や記録を手伝った。ひとりで数を扱う時間が長く、手先と計算には長けたが、田畑の仕事や人付き合いには馴染めなかった。</Computer80.description>
+  <IndustrialOrphan13.title>鉱山の孤児</IndustrialOrphan13.title>
+  <IndustrialOrphan13.titleShort>孤児</IndustrialOrphan13.titleShort>
+  <IndustrialOrphan13.baseDesc>[PAWN_nameDef]は親を知らず、鉱山で育った。幼い頃から鉱石を運び、石を選り分け、傷んだ道具を直した。文字や学問を習う機会は乏しかったが、力仕事は身に付いた。</IndustrialOrphan13.baseDesc>
+  <IndustrialOrphan13.description>[PAWN_nameDef]は親を知らず、鉱山で育った。幼い頃から鉱石を運び、石を選り分け、傷んだ道具を直した。文字や学問を習う機会は乏しかったが、力仕事は身に付いた。</IndustrialOrphan13.description>
+  <SpaceHumanitarian9.title>施しの世話役</SpaceHumanitarian9.title>
+  <SpaceHumanitarian9.titleShort>世話役</SpaceHumanitarian9.titleShort>
+  <SpaceHumanitarian9.baseDesc>凶作で食に困る人々を見た[PAWN_nameDef]は、寺での施しを手伝い、病人の世話もした。多くの人に食べさせるための炊事と、身近な草木を使った簡単な手当てが日々の務めになった。</SpaceHumanitarian9.baseDesc>
+  <SpaceHumanitarian9.description>凶作で食に困る人々を見た[PAWN_nameDef]は、寺での施しを手伝い、病人の世話もした。多くの人に食べさせるための炊事と、身近な草木を使った簡単な手当てが日々の務めになった。</SpaceHumanitarian9.description>
+  <SpaceMarine16.title>水軍の切込兵</SpaceMarine16.title>
+  <SpaceMarine16.titleShort>切込兵</SpaceMarine16.titleShort>
+  <SpaceMarine16.baseDesc>[PAWN_nameDef]は敵船に乗り込んで船を奪う水軍の一員だった。弓を射る腕と刃物を使う度胸を買われ、船を接舷させた後の切り込みを任された。</SpaceMarine16.baseDesc>
+  <SpaceMarine16.description>[PAWN_nameDef]は敵船に乗り込んで船を奪う水軍の一員だった。弓を射る腕と刃物を使う度胸を買われ、船を接舷させた後の切り込みを任された。</SpaceMarine16.description>
+  <SpaceRaider71.title>海賊衆の頭領</SpaceRaider71.title>
+  <SpaceRaider71.titleShort>頭領</SpaceRaider71.titleShort>
+  <SpaceRaider71.baseDesc>[PAWN_nameDef]は沿岸の村や商船を襲う一味を率いていた。交渉で荷を得るか、弓や刀で奪うかを見極める手腕により、海路で恐れられる頭領となった。</SpaceRaider71.baseDesc>
+  <SpaceRaider71.description>[PAWN_nameDef]は沿岸の村や商船を襲う一味を率いていた。交渉で荷を得るか、弓や刀で奪うかを見極める手腕により、海路で恐れられる頭領となった。</SpaceRaider71.description>
+  <SpaceTactician28.title>兵法家</SpaceTactician28.title>
+  <SpaceTactician28.titleShort>兵法家</SpaceTactician28.titleShort>
+  <SpaceTactician28.baseDesc>[PAWN_nameDef]は地形や陣形、弓兵の運用が合戦の勝敗を分けると考え、兵法を学び実戦で確かめてきた。戦いの理を考える一方、交渉や風雅な作法には関心が薄かった。</SpaceTactician28.baseDesc>
+  <SpaceTactician28.description>[PAWN_nameDef]は地形や陣形、弓兵の運用が合戦の勝敗を分けると考え、兵法を学び実戦で確かめてきた。戦いの理を考える一方、交渉や風雅な作法には関心が薄かった。</SpaceTactician28.description>
+  <SpacerOrphan77.title>難船の孤児</SpacerOrphan77.title>
+  <SpacerOrphan77.titleShort>孤児</SpacerOrphan77.titleShort>
+  <SpacerOrphan77.baseDesc>家族の乗った船が難破し、[PAWN_nameDef]だけが生き残った。身を守る術と壊れた道具を直す技を覚えながら暮らし、やがて別の家に引き取られた。</SpacerOrphan77.baseDesc>
+  <SpacerOrphan77.description>家族の乗った船が難破し、[PAWN_nameDef]だけが生き残った。身を守る術と壊れた道具を直す技を覚えながら暮らし、やがて別の家に引き取られた。</SpacerOrphan77.description>
+  <FactoryDrone58.title>工房奉公の子</FactoryDrone58.title>
+  <FactoryDrone58.titleShort>奉公人</FactoryDrone58.titleShort>
+  <FactoryDrone58.baseDesc>[PAWN_nameDef]は幼い頃から工房で奉公した。材料を運び、設備を直し、同じ仕事を長時間繰り返す暮らしで勤勉さが身に付いたが、学問や芸事に触れる余裕はなかった。</FactoryDrone58.baseDesc>
+  <FactoryDrone58.description>[PAWN_nameDef]は幼い頃から工房で奉公した。材料を運び、設備を直し、同じ仕事を長時間繰り返す暮らしで勤勉さが身に付いたが、学問や芸事に触れる余裕はなかった。</FactoryDrone58.description>
+  <FactoryWorker58.title>荷運びの人足</FactoryWorker58.title>
+  <FactoryWorker58.titleShort>人足</FactoryWorker58.titleShort>
+  <FactoryWorker58.baseDesc>[PAWN_nameDef]は蔵と作業場の間で荷を運び、重い荷を載せる馬の世話もした。力仕事と動物の扱いには慣れたが、学問や芸事、炊事には縁がなかった。</FactoryWorker58.baseDesc>
+  <FactoryWorker58.description>[PAWN_nameDef]は蔵と作業場の間で荷を運び、重い荷を載せる馬の世話もした。力仕事と動物の扱いには慣れたが、学問や芸事、炊事には縁がなかった。</FactoryWorker58.description>
+  <SpaceyachtPilot89.title>船頭見習い</SpaceyachtPilot89.title>
+  <SpaceyachtPilot89.titleShort>船頭</SpaceyachtPilot89.titleShort>
+  <SpaceyachtPilot89.baseDesc>[PAWN_nameDef]は船頭の手伝いとして育ち、裕福な旅人や役人を湊から湊へ送り届けた。気難しい船客への応対と船を守る術を学んだが、炊事はほとんど任されなかった。</SpaceyachtPilot89.baseDesc>
+  <SpaceyachtPilot89.description>[PAWN_nameDef]は船頭の手伝いとして育ち、裕福な旅人や役人を湊から湊へ送り届けた。気難しい船客への応対と船を守る術を学んだが、炊事はほとんど任されなかった。</SpaceyachtPilot89.description>
 </LanguageData>
