@@ -438,7 +438,7 @@ The existing `LoadFolders.xml` selects these version-specific assemblies. The 1.
 
 **維持するもの：** `ObservedLayingCorpse` のMO戦士・古参兵の例外は維持し、**通常の死体目撃への慣れ**を尊重する。`WitnessedDeathNonAlly` の他人・敵の死亡目撃、死に至らない追放、`DeniedJoining`、`ColonyPrisonerEscaped` に関するMO例外、VanillaのTraitDefと背景、全Thoughtの元の心情数値・発火条件は**変更しない**。腐敗した死体を見慣れることは、戦場経験から自動的には推定しない。Cultureの `About/About.xml` にMOの正確なPackage ID `DankPyon.Medieval.Overhaul` を任意の `loadAfter` として指定し、MO側の既存Patch適用後にCultureの修正を行う。Harmony以外の必須依存は追加しない。
 
-**検証状態：** 提供されたMO配布物の実XMLと7ターゲットの一致を確認。XML構文とXPath選択・選択したliのみの削除をローカル静的確認。**RimWorldを起動したロード済みThoughtDef・心情効果の確認は未実施**。実ゲーム確認をする場合は他の未検証Culture変更とまとめた必要最小限の1.6 MO構成を用い、旧いMO音声の別問題を混同しない。既存MOが同じ修正を行った将来版では条件付けにより無操作である。1.7上のMO併用は別途未検証。Steamアップロードは未承認。
+**2026-10-17 正規RimWorld 1.6＋MO実ゲームのロード済みDef受け入れ PASS：** [Project Actions #39025744804](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39025744804)。検証対象のCulture製品コミット `d08eb3d530f5517370c4257b6c3f1634d76b1a9b`、1.6用DLL SHA256 `0895332d4a817bf4227b00bf4d707943e793fc15c379b9950df76ec2112c9458`、RimWorld `1.6.4871 rev598`、原MO `1.6.2.2` とVEF/SYR、隔離コピー内のMO音声だけWAV変換。ロード済みThoughtDefの7対象から当該Fighter/Veteranの `nullifyingTraits` が消えていること、`ObservedLayingCorpse` の両特性による耐性が維持されていることを実ゲーム内で確認。合わせて既存のMO派閥・PawnKind・生成経路の単一シナリオも成功。Pickle 1/1、`AMJ_CULTURE_MO_THOUGHTS16_OK` 1回、Unity ERROR 0、終了コード0、元ゲーム変更なし。**実際の死亡・処刑・追放イベントを発生させてMood値を確認したテストではない。** 元MP3の未加工実行、1.7＋MO、旧セーブの実読み込みもこの実行では未確認。**別系統の背景・特性Stage2で後に追加された87件の生成制限については、このテストが受け入れを示すものではない。** XML静的確認の結果も維持。Steam未アップロード。
 
 ## 第2段階 — 既存Vanilla/MO人物背景・特性の時代不整合修正（2026-10-17開始）
 
