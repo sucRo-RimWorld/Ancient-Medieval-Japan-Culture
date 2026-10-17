@@ -12,6 +12,14 @@ Culture's product goal is to remove historically incongruous **character generat
 
 **Stage 1 baseline (2026-10-17):** The complete identified Vanilla 784 BackstoryDef / 43 TraitDef and MO 2 TraitDef input set has been indexed and conservatively sorted into Stage 2 working actions in [Stage1VanillaMOBackgroundTraitInventory.md](Stage1VanillaMOBackgroundTraitInventory.md) and [its 829-definition CSV](Data/VanillaMOBackgroundTraitStage1Screen.csv). This is exhaustive *inventory and triage*, **not** exhaustive verified Core-1.6/1.7 narrative judgment, proof of all pawn eligibility or permission to create new Japanese backgrounds. Stage 2 owns source-based final decisions and fixes; Stage 3 may add Japan-only content only after Stage 2. Preserve the approved unique-only exemption based on actual exclusive assignment, not mere name.
 
+## セーブ互換性・新規ゲーム推奨（2026-10-18 作者確定）
+
+**新規ゲーム（新規セーブ）推奨。** Cultureは背景・特性の通常生成、ポーンの初期状態・初期所持品、薬物の通常供給、玄関と土足禁止などの生活習慣を変更する。これらのうち生成時に確定する内容は、導入前から存在するポーン・アイテム・世界・シナリオへ遡及しない。機能を一貫して体験するには、新しくゲームを開始する。
+
+**既存セーブを直ちに破壊するという意味ではない。** 旧人物・薬物・依存症が参照する既存のDef名と所持品を可能な限り保持し、消去や自動治療は行わない。ただし既存セーブへ**途中導入・途中削除する安全性は未検証で、推奨しない**。既存ポーンの背景や初期薬物依存の生成を遡って修正せず、追加後に評価される心情・供給・習慣ルールは既存ゲームにも部分的に作用し得る。削除時の保存済み玄関・土足禁止状態や将来追加する専用コンポーネント等の安全性も保証しない。
+
+**受け入れ基準:** 対応するバニラ／MOの対象構成で、新規ゲームのPawn生成・生成制限・通常供給・実装済み生活習慣を必要な範囲で確認する。保存状態を持つ機能は**Culture導入済みで新しく開始したゲームの保存→再読込**を検証する。**Culture導入前の旧セーブの移行・読み込み／再保存を全面的に実証することは公開の一律必須条件としない。** ただし既存Def参照の保護は継続し、具体的な旧セーブ破損・互換性問題が報告または再現された場合は影響範囲に限って検証・修正する。旧セーブに関する従前の「要検証」は未実施事実として残るが、それだけで公開の独立ブロッカーにはしない。
+
 ## Historical background and trait audit (2026-10-17)
 
 **実装順序（作者確定、2026-10-17）：** **①VanillaとMedieval Overhaul（MO）の背景・特性を洗い出す → ②中世日本に不適切な既存背景・特性と関連する通常生成／強制付与・心情を必要な範囲で修正する → ③その後に初めて、中世日本独自の新規背景・特性を検討・実装する。** 第①②段階では原定義・人物生成経路・既存MO修正の重複／副作用を照合し、固有ポーン専用で通常生成されない背景・特性は対象外とする。既存の生成制限・史実向け改稿はこの第②段階の成果として保持し、無用な再作業はしない。戦場経験・死体目撃への習熟を表す中世日本独自の背景や新特性は第③段階まで**保留**する。既存Vanilla/MO特性の不適切な心情効果を必要最小限で修正すること自体は第②段階に含むが、その名目で中世日本独自の新規Defを先行追加しない。段階移行は第①②段階で確認された不整合が処理され、追加が必要な未充足の体験が残る場合だけ判断する。これは背景・特性系統内の順序であり、Cultureのイス・食事や他Modの工程・薬物設計の承認を変更しない。
