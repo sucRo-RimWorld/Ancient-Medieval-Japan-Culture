@@ -2,6 +2,14 @@
 
 Authoritative coordination file: `main:Docs/Coordination.md`. Confirmed scope and acceptance conditions belong in `Docs/Design.md`; the actual Thought modification belongs in `Patches/AteWithoutTable.xml`.
 
+## CULTURE-CHAIR-ONLY-MEAL-20261017
+
+**Status: SOURCE CANDIDATE ON TOPIC BRANCH; NOT FUNCTIONAL OR RELEASED.** The author's current immediate Culture dining requirement is that existing normal sit-capable chairs, including Vanilla/MO chairs, are selectable during ordinary meals even **without a table**. This supersedes the formerly prioritized enza-only path; the new furniture/art/balance issue is separate. Functional outcome remains unverified until a real 1.6 DLL is built and one consolidated in-game check passes.
+
+Current source proposal: [Culture PR #9](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Culture/pull/9), commit `5d6fc8cf43f4d6cbd4215204c3416b0668e9561e`. Owner canonical behavior: PR #9's `Docs/Design.md`; implementation: `Source/AMJ.Culture/TablelessChairMealPatch.cs`. This is **source only**, not the production assembly. Table precedence, seat reservation/pathing, Vanilla fallback and separate `AteWithoutTable=0` are part of the targeted behavior. Real game/Comfort/room behavior has not been accepted. Follow implementation-first cost rule: compile/stage matching DLL once against licensed 1.6 references, then perform one focused gameplay check; no repeat of the retired 1.7 stool fixture, broad CI matrix or preliminary game-launch loops.
+
+Old [draft PR #6](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Culture/pull/6) was closed **unmerged**, superseded by the all-chair requirement. Its enza texture, stat/cost numbers and test fixture are not approved or carried forward. Existing independent drug/character-generation scope remains separate and unchanged.
+
 ## CULTURE-NO-TABLE-MINIMAL-20261016
 
 **Status: MINIMAL SOURCE ON MAIN / CULTURE SPECIFICATION PRIORITY (2026-10-16).** `main` exists and holds the standalone five-file Culture 1.6 prototype plus `LICENSE` at `390b24d4a9bbd1e24d6544f3fdcff9ac1ff6ba3d`. The original topic history is an ancestor of `main` but the branch has been removed. No Culture PR was recorded for the initial bootstrap; do not characterize it as a PR merge. Future changes must use topic→PR→main.
