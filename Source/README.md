@@ -31,10 +31,12 @@ dotnet build Source/AMJ.Culture/AMJ.Culture.csproj -c Release \
   -p:CultureOutputDir=/path/to/isolated/Culture/Assemblies
 ```
 
-The matching DLL is staged and `About/About.xml` declares the Harmony
-requirement. Before promotion, run one focused real-game acceptance: chair-only ingest/Comfort, table precedence, normal fallback,
-mood/room effects, and complete strict ERROR-free log. The prior 1.7
-stool experiment is established technical evidence, **not** a production PASS.
+The current DLL is staged and `About/About.xml` declares the Harmony
+requirement. The focused original RimWorld 1.6 chair/Comfort, table-precedence
+and standing-fallback acceptance has completed with zero ERRORs. Other furniture
+and dining-room mood regression remain unverified and should be checked only
+when an actual compatibility or release requirement calls for them. The prior
+1.7 Stool experiment is **not** a production 1.7 PASS.
 
 Enza textures, construction balance and new furniture are separate work.
 A focused original-game Vanilla 1.6 acceptance is complete. Do not claim MO, 1.7 or unrelated Backstory functionality was covered by the chair test, and do not publish without applicable release gates.
