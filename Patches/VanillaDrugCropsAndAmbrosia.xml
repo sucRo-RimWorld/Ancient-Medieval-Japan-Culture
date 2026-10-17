@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <!-- Exclude cultivation of Vanilla psychoactive crops without deleting
+       PlantDefs, harvested leaves, existing planted crops or old-save refs. -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="Plant_Smokeleaf" or defName="Plant_Psychoid"]/plant/sowTags</xpath>
+    <match Class="PatchOperationRemove">
+      <xpath>Defs/ThingDef[defName="Plant_Smokeleaf" or defName="Plant_Psychoid"]/plant/sowTags</xpath>
+    </match>
+  </Operation>
+  <!-- Disable new random ambrosia groves while preserving the incident and
+       plant/item Def identities for compatibility. -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/IncidentDef[defName="AmbrosiaSprout"]/baseChance</xpath>
+    <match Class="PatchOperationReplace">
+      <xpath>Defs/IncidentDef[defName="AmbrosiaSprout"]/baseChance</xpath>
+      <value><baseChance>0</baseChance></value>
+    </match>
+  </Operation>
+</Patch>
