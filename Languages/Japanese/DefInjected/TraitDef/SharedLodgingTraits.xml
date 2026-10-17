@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <Greedy.degreeDatas.0.description>[PAWN_nameDef]は立派な寝所を求め、共同寝所か個室かにかかわらず、貧相な寝所では不満を感じる。</Greedy.degreeDatas.0.description>
+  <Jealous.degreeDatas.0.description>[PAWN_nameDef]は、自分より立派な寝所で暮らす者をねたむ。共同寝所と個室のどちらでも同じだ。</Jealous.degreeDatas.0.description>
+</LanguageData>
