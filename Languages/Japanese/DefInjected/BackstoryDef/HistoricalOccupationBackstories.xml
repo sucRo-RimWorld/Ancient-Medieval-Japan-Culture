@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-  <!-- Deliberate Japanese overrides of the fifteen rewritten vanilla BackstoryDefs.
+  <!-- Deliberate Japanese overrides of the thirty-two rewritten vanilla BackstoryDefs.
        description and baseDesc are both supplied because RimWorld uses a resolved
        description at runtime as well as the original translatable base field. -->
   <SpaceMerchant97.title>廻船商人</SpaceMerchant97.title>
@@ -63,4 +63,72 @@
   <SpaceyachtPilot89.titleShort>船頭</SpaceyachtPilot89.titleShort>
   <SpaceyachtPilot89.baseDesc>[PAWN_nameDef]は船頭の手伝いとして育ち、裕福な旅人や役人を湊から湊へ送り届けた。気難しい船客への応対と船を守る術を学んだが、炊事はほとんど任されなかった。</SpaceyachtPilot89.baseDesc>
   <SpaceyachtPilot89.description>[PAWN_nameDef]は船頭の手伝いとして育ち、裕福な旅人や役人を湊から湊へ送り届けた。気難しい船客への応対と船を守る術を学んだが、炊事はほとんど任されなかった。</SpaceyachtPilot89.description>
+  <DeepSpaceMiner3.title>鉱山の鉱夫</DeepSpaceMiner3.title>
+  <DeepSpaceMiner3.titleShort>鉱夫</DeepSpaceMiner3.titleShort>
+  <DeepSpaceMiner3.baseDesc>[PAWN_nameDef]は山奥の鉱山で坑道を掘り、鉱石を採り出し、坑木を組んで崩落を防いだ。石の運搬と道具の修繕で腕を鍛え、ときには鉱夫同士の争いにも巻き込まれた。</DeepSpaceMiner3.baseDesc>
+  <DeepSpaceMiner3.description>[PAWN_nameDef]は山奥の鉱山で坑道を掘り、鉱石を採り出し、坑木を組んで崩落を防いだ。石の運搬と道具の修繕で腕を鍛え、ときには鉱夫同士の争いにも巻き込まれた。</DeepSpaceMiner3.description>
+  <Engineer40.title>市の鍛冶職人</Engineer40.title>
+  <Engineer40.titleShort>鍛冶職人</Engineer40.titleShort>
+  <Engineer40.baseDesc>[PAWN_nameDef]は市の鍛冶場で、農具や武具の修繕を請け負った。壊れた品を直して売るために手先の技と商いの駆け引きを磨いたが、炊事にはまるで縁がなかった。</Engineer40.baseDesc>
+  <Engineer40.description>[PAWN_nameDef]は市の鍛冶場で、農具や武具の修繕を請け負った。壊れた品を直して売るために手先の技と商いの駆け引きを磨いたが、炊事にはまるで縁がなかった。</Engineer40.description>
+  <GlitterworldEmpath26.title>村の仲裁人</GlitterworldEmpath26.title>
+  <GlitterworldEmpath26.titleShort>仲裁人</GlitterworldEmpath26.titleShort>
+  <GlitterworldEmpath26.baseDesc>[PAWN_nameDef]は家同士の争いに耳を傾け、話し合いで仲を取り持つ術を身に付けた。負傷者の手当ても頼まれたが、みずから武器を取って人を傷つけることは拒んだ。</GlitterworldEmpath26.baseDesc>
+  <GlitterworldEmpath26.description>[PAWN_nameDef]は家同士の争いに耳を傾け、話し合いで仲を取り持つ術を身に付けた。負傷者の手当ても頼まれたが、みずから武器を取って人を傷つけることは拒んだ。</GlitterworldEmpath26.description>
+  <GlitterworldOfficer60.title>警固の組頭</GlitterworldOfficer60.title>
+  <GlitterworldOfficer60.titleShort>組頭</GlitterworldOfficer60.titleShort>
+  <GlitterworldOfficer60.baseDesc>[PAWN_nameDef]は館を警固する武士たちを束ねる組頭だった。平時は揉め事を鎮め、必要なら武術で争いを収めた。余暇には書画に親しみ、重い雑役は配下に任せていた。</GlitterworldOfficer60.baseDesc>
+  <GlitterworldOfficer60.description>[PAWN_nameDef]は館を警固する武士たちを束ねる組頭だった。平時は揉め事を鎮め、必要なら武術で争いを収めた。余暇には書画に親しみ、重い雑役は配下に任せていた。</GlitterworldOfficer60.description>
+  <GlitterworldRoyal24.title>武家の縁組候補</GlitterworldRoyal24.title>
+  <GlitterworldRoyal24.titleShort>縁組候補</GlitterworldRoyal24.titleShort>
+  <GlitterworldRoyal24.baseDesc>[PAWN_nameDef]は武家に育ち、家同士の縁組に備えて礼法や書画、家中の作法を教わった。しかし容姿を理由に縁談を断られることが重なり、次第に恨みを募らせた。</GlitterworldRoyal24.baseDesc>
+  <GlitterworldRoyal24.description>[PAWN_nameDef]は武家に育ち、家同士の縁組に備えて礼法や書画、家中の作法を教わった。しかし容姿を理由に縁談を断られることが重なり、次第に恨みを募らせた。</GlitterworldRoyal24.description>
+  <HumanComputer83.title>荘園の勘定役</HumanComputer83.title>
+  <HumanComputer83.titleShort>勘定役</HumanComputer83.titleShort>
+  <HumanComputer83.baseDesc>[PAWN_nameDef]は記憶力と計算の才を見込まれ、荘園の年貢や支出を記帳する勘定役となった。帳面を調べ、米や銭の出入りを確かめ、時には蔵の警固にも携わった。</HumanComputer83.baseDesc>
+  <HumanComputer83.description>[PAWN_nameDef]は記憶力と計算の才を見込まれ、荘園の年貢や支出を記帳する勘定役となった。帳面を調べ、米や銭の出入りを確かめ、時には蔵の警固にも携わった。</HumanComputer83.description>
+  <SpaceExplorer53.title>孤島の生還者</SpaceExplorer53.title>
+  <SpaceExplorer53.titleShort>生還者</SpaceExplorer53.titleShort>
+  <SpaceExplorer53.baseDesc>[PAWN_nameDef]は遠い島に取り残され、長くひとりで暮らした。小屋を建て、食べ物を採り、石を掘り、見知らぬ者から身を守った。島の人々との交渉も覚えたが、孤独な日々は心に影を落とした。</SpaceExplorer53.baseDesc>
+  <SpaceExplorer53.description>[PAWN_nameDef]は遠い島に取り残され、長くひとりで暮らした。小屋を建て、食べ物を採り、石を掘り、見知らぬ者から身を守った。島の人々との交渉も覚えたが、孤独な日々は心に影を落とした。</SpaceExplorer53.description>
+  <SpaceMarine19.title>歴戦の荒武者</SpaceMarine19.title>
+  <SpaceMarine19.titleShort>荒武者</SpaceMarine19.titleShort>
+  <SpaceMarine19.baseDesc>[PAWN_nameDef]は勝利のために容赦なく戦う一団に加わった。幾度もの合戦で弓と刀を磨いた一方、傷ついた者の世話や人付き合い、細かな手仕事からは遠ざかった。</SpaceMarine19.baseDesc>
+  <SpaceMarine19.description>[PAWN_nameDef]は勝利のために容赦なく戦う一団に加わった。幾度もの合戦で弓と刀を磨いた一方、傷ついた者の世話や人付き合い、細かな手仕事からは遠ざかった。</SpaceMarine19.description>
+  <SpaceMarine5.title>古参の足軽</SpaceMarine5.title>
+  <SpaceMarine5.titleShort>古参兵</SpaceMarine5.titleShort>
+  <SpaceMarine5.baseDesc>[PAWN_nameDef]は足軽として諸国の合戦を渡り歩いた。弓と刀の腕は磨かれたが、戦場での別れを重ねた末に人への情を失い、周囲とも打ち解けなくなった。</SpaceMarine5.baseDesc>
+  <SpaceMarine5.description>[PAWN_nameDef]は足軽として諸国の合戦を渡り歩いた。弓と刀の腕は磨かれたが、戦場での別れを重ねた末に人への情を失い、周囲とも打ち解けなくなった。</SpaceMarine5.description>
+  <SpaceMarine9.title>誓約の武士</SpaceMarine9.title>
+  <SpaceMarine9.titleShort>武士</SpaceMarine9.titleShort>
+  <SpaceMarine9.baseDesc>[PAWN_nameDef]は主君に仕える武士の一団で厳しい鍛錬を積んだ。誓いと儀礼によって戦場の恐怖に耐えたが、長い従軍のため人付き合いは苦手となり、芸事にも関心を失った。</SpaceMarine9.baseDesc>
+  <SpaceMarine9.description>[PAWN_nameDef]は主君に仕える武士の一団で厳しい鍛錬を積んだ。誓いと儀礼によって戦場の恐怖に耐えたが、長い従軍のため人付き合いは苦手となり、芸事にも関心を失った。</SpaceMarine9.description>
+  <SpaceMarine94.title>軍船の切込武者</SpaceMarine94.title>
+  <SpaceMarine94.titleShort>切込武者</SpaceMarine94.titleShort>
+  <SpaceMarine94.baseDesc>[PAWN_nameDef]は軍船に乗り、敵船へ斬り込んで船と積荷を奪う武者だった。弓も白兵戦も得意だったが、船の炊事を引き受けることはなかった。</SpaceMarine94.baseDesc>
+  <SpaceMarine94.description>[PAWN_nameDef]は軍船に乗り、敵船へ斬り込んで船と積荷を奪う武者だった。弓も白兵戦も得意だったが、船の炊事を引き受けることはなかった。</SpaceMarine94.description>
+  <SpaceNavyDoctor72.title>水軍の療治役</SpaceNavyDoctor72.title>
+  <SpaceNavyDoctor72.titleShort>療治役</SpaceNavyDoctor72.titleShort>
+  <SpaceNavyDoctor72.baseDesc>[PAWN_nameDef]は水軍の船で傷病人の療治を担った。敵船との小競り合いで自らも身を守りながら深い傷を手当てし、船中の諍いを収める役も務めた。</SpaceNavyDoctor72.baseDesc>
+  <SpaceNavyDoctor72.description>[PAWN_nameDef]は水軍の船で傷病人の療治を担った。敵船との小競り合いで自らも身を守りながら深い傷を手当てし、船中の諍いを収める役も務めた。</SpaceNavyDoctor72.description>
+  <SpaceshipChef41.title>陣中の膳夫</SpaceshipChef41.title>
+  <SpaceshipChef41.titleShort>膳夫</SpaceshipChef41.titleShort>
+  <SpaceshipChef41.baseDesc>[PAWN_nameDef]は移動する軍勢の食事を作り、負傷者の傷を洗い包帯を巻く手伝いもした。炊事と手当ての腕は上がったが、道具の片付けや掃除はいつも嫌っていた。</SpaceshipChef41.baseDesc>
+  <SpaceshipChef41.description>[PAWN_nameDef]は移動する軍勢の食事を作り、負傷者の傷を洗い包帯を巻く手伝いもした。炊事と手当ての腕は上がったが、道具の片付けや掃除はいつも嫌っていた。</SpaceshipChef41.description>
+  <StarshipDoctor37.title>医術を究めた医師</StarshipDoctor37.title>
+  <StarshipDoctor37.titleShort>医師</StarshipDoctor37.titleShort>
+  <StarshipDoctor37.baseDesc>[PAWN_nameDef]は医書を読み、傷病の手当てと診立てを研究し続けた。医術には秀でたが、観察と書物に没頭するあまり人付き合いは不得手で、争いにも向かなかった。</StarshipDoctor37.baseDesc>
+  <StarshipDoctor37.description>[PAWN_nameDef]は医書を読み、傷病の手当てと診立てを研究し続けた。医術には秀でたが、観察と書物に没頭するあまり人付き合いは不得手で、争いにも向かなかった。</StarshipDoctor37.description>
+  <VoidspaceRaider94.title>仇討ちの無頼者</VoidspaceRaider94.title>
+  <VoidspaceRaider94.titleShort>無頼者</VoidspaceRaider94.titleShort>
+  <VoidspaceRaider94.baseDesc>家族を引き裂いた仇を追い、[PAWN_nameDef]は山中の無頼者たちに加わった。襲撃と逃亡を重ねて戦いや修繕、傷の手当てを覚え、幾度も窮地を脱したことで強運の者と呼ばれた。</VoidspaceRaider94.baseDesc>
+  <VoidspaceRaider94.description>家族を引き裂いた仇を追い、[PAWN_nameDef]は山中の無頼者たちに加わった。襲撃と逃亡を重ねて戦いや修繕、傷の手当てを覚え、幾度も窮地を脱したことで強運の者と呼ばれた。</VoidspaceRaider94.description>
+  <WanderingHealer52.title>遍歴の療治人</WanderingHealer52.title>
+  <WanderingHealer52.titleShort>療治人</WanderingHealer52.titleShort>
+  <WanderingHealer52.baseDesc>[PAWN_nameDef]は定まった医業を離れ、療治人の足りない村々を渡り歩いた。病人の手当てと養生の炊事、家族への説明に力を注ぎ、争いや力仕事は避けた。</WanderingHealer52.baseDesc>
+  <WanderingHealer52.description>[PAWN_nameDef]は定まった医業を離れ、療治人の足りない村々を渡り歩いた。病人の手当てと養生の炊事、家族への説明に力を注ぎ、争いや力仕事は避けた。</WanderingHealer52.description>
+  <CorporateManager76.title>荘園の差配人</CorporateManager76.title>
+  <CorporateManager76.titleShort>差配人</CorporateManager76.titleShort>
+  <CorporateManager76.baseDesc>[PAWN_nameDef]は大きな荘園で人足と蔵を取り仕切り、仕事の割り振りや争いの仲裁を担った。勘定と口先に長け、他人の働きを自分の手柄として取り立てられることもあった。</CorporateManager76.baseDesc>
+  <CorporateManager76.description>[PAWN_nameDef]は大きな荘園で人足と蔵を取り仕切り、仕事の割り振りや争いの仲裁を担った。勘定と口先に長け、他人の働きを自分の手柄として取り立てられることもあった。</CorporateManager76.description>
 </LanguageData>
