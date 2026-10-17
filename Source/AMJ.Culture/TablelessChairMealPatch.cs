@@ -30,7 +30,8 @@ namespace AMJ.Culture
                 chair.IsForbidden(pawn) || chair.IsBurning() ||
                 chair.HostileTo(pawn) || !chair.IsSociallyProper(pawn) ||
                 (chair.def.CanHaveFaction && chair.Faction != pawn.Faction) ||
-                !pawn.CanReserve(chair, 1, -1, null, false))
+                !pawn.CanReserve(chair, 1, -1, null, false) ||
+                !pawn.CanReserveSittableOrSpot(chair.Position))
                 return false;
 
             return chair.Position.GetDangerFor(pawn, chair.Map) == Danger.None;
@@ -102,7 +103,7 @@ namespace AMJ.Culture
                 // No table, enza Def, zone or extra furniture is required.
                 Thing chair = FindChair(actor, radius, false);
                 if (chair == null ||
-                    !actor.Reserve(chair, actor.CurJob, 1, -1, null, false))
+                    !actor.ReserveSittableOrSpot(chair.Position, actor.CurJob, false))
                 {
                     originalAction();
                     return;
