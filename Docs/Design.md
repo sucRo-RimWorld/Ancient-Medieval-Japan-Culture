@@ -529,6 +529,8 @@ The existing `LoadFolders.xml` selects these version-specific assemblies. The 1.
 
 **実現性:** 原RimWorld 1.6.4871 + Culture 1.6実ゲーム[Project Actions #39057007685](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39057007685)で、隔離テスト用Bedrollの`isSittable`だけ有効化した**同一の建物**を、通常`Ingest`の着席・Comfort上昇・完食と通常`LayDown`の就寝・所有者保持の両方に利用できた。Pickle1/1、Unity ERROR0、元ゲーム変更なし。**この最小PoCは製品ThingDef追加、1.6+MO、1.7、睡眠中に別Pawnが食事する競合や旧セーブを保証しない**。既存の[椅子だけで食事する実装](#chair-only-meals--revised-implementation-scope-2026-10-17)と連携し、Vanilla/MOのベッドを一律座具に変えない。
 
+**寸法・食事場所選択（2026-10-18作者確定）:** 文化的な筵・菰は**1×2マス固定、縦・横どちらにも回転設置可能**とする。囲炉裏・既存の低い食卓・敷物での床食にあらかじめ施設名の固定順位をつけず、**そのポーンが実際に得られる既存の食事心情バフが最大になる有効な場所**を選ぶ。同じなら着席Comfort、さらに同じなら距離/経路負担で選択。Cultureでは`AteWithoutTable=0`だが、`AteInImpressiveDiningRoom`等の部屋評価は保持する。囲炉裏・ちゃぶ台の名前だけから新しい独自バフを追加しない。既存の食卓隣接イスの無条件優先は**所有者の多用途敷物との競合時だけ**見直し、一般的なC-03イス食事ルールは変えない。食事Job開始時だけの限定評価とし、広域探索・継続Tick監視は追加しない。技術上の前提と未実証の条件は[現行C-06正式仕様](Features/MultipurposeMat.md#meal-location-selection--actual-existing-buffs-no-fixed-iroritablefloor-ranking-2026-10-18-author-decision)を参照する。
+
 **境界（2026-10-18作者の後続承認）:** 筵・菰はVanilla Hay、MO存在時の任意Strawを材料候補とし、必要量/Comfort/Restは未承認。木製丸太ベッドと休息数値の単純序列を作らず、材料の採集負担・寝台と座具を同時に代替する価値を検討する。**所有者付きの通常寝具のみを食事用の座具として選択する。寝具の元の所有者設定を兼用し、イス用に別の割当UIは作らない。** 所有者未設定・他人の敷物・囚人/医療状態の敷物は食事候補から外す。原`Building_Bed`の個別`Medical/ForPrisoners`フラグとThingDef全体の`isSittable`を混同せず、専用敷物を原則`isSittable=false`とし、Cultureの既存食事席検索で`OwnedBed`本人だけを特例許可する方式を第一候補にする。**この方式は旧PoCの`isSittable=true`とは異なり未実証**。囚人・医療切替を安全に残せなければ初期版で切替不可とし、既存の囚人/医療用ベッドを従来通り使用する。Shared Sleeping、既存Thought、円座候補、一般家具は独立した既存責務のまま。狭さMoodの独自軽減（C-07）は実証後の別議題で、`Cramped interior`の数値変更も`Confined interior` -10の変更も採用していない。
 
 ## 第2段階 — 既存Vanilla/MO人物背景・特性の時代不整合修正（2026-10-17開始）
