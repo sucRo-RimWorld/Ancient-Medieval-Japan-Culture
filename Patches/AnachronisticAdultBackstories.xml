@@ -519,4 +519,13 @@
     <xpath>Defs/BackstoryDef[defName="TynanCustomAdulthood"]/spawnCategories</xpath>
     <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
   </Operation>
+  <!-- Stage 2 original Core 1.6/1.7 Solid adulthood: "Streamer" is a
+       contemporary media profession, not a historic Japanese occupation.
+       Restrict only ordinary category selection pending verified original
+       long text and an approved historical replacement. Preserve the Def,
+       skill gains (Social +6, Animals +5), work restrictions and old saves. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Streamer52"]/spawnCategories</xpath>
+    <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
+  </Operation>
 </Patch>
