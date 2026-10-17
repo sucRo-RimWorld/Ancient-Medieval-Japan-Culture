@@ -77,12 +77,16 @@ Do not substitute XML parsing or the Project's retired stool proof-of-concept fo
 
 **Status (2026-10-16):** Source-only, XML static validation. No actual native 1.6/1.7 loaded-game or gameplay evidence; not approved for Workshop publication.
 
-## Transhumanist new-pawn restriction (source candidate)
+## Transhumanist new-pawn restriction (implementation scope, 2026-10-17)
 
-**Intended gameplay outcome:** New Vanilla/MO pawns should not acquire culturally inappropriate mechanical body-modification desire. This is a narrowly scoped Culture rule, not a global removal of prosthetics, medicine or body-related traits.
+**Outcome:** Newly generated ordinary Vanilla/MO humans should not receive the anachronistic `Transhumanist` trait through normal random selection or the known Vanilla adult backstory `FerventResearcher72`. Existing pawns, TraitDef identities, ThoughtDefs, `BodyPurist` and prosthetic treatment remain unchanged.
 
-`Patches/TranshumanistGeneration.xml` keeps the `Transhumanist` TraitDef but replaces its `commonality` with 0 for ordinary random trait selection. It separately removes the `Transhumanist` forced-trait entry from Vanilla adult backstory `FerventResearcher72`, because forced background traits bypass random commonality. The background itself and its other properties are left intact until the historical background audit decides whether it should be available at all.
+`Patches/TranshumanistGeneration.xml` implements three narrow operations:
 
-Existing pawn traits and `ProsthophileNoProsthetic`, `ProsthophileHappy`, `TranshumanistAppreciation` remain unchanged. `BodyPurist`, prosthetic recipes and treatment are unchanged. Mods which explicitly assign `Transhumanist` from other sources are outside this first patch's guarantee.
+1. Set `TraitDef[Transhumanist]/commonality=0` for normal random selection, retaining the TraitDef.
+2. Replace `BackstoryDef[FerventResearcher72]/spawnCategories` (`Offworld`, `Pirate`) with the deliberately unused category `AMJ_CultureExcluded`. That source backstory explicitly describes technological transcendence and is not made historically suitable merely by removing its trait.
+3. Remove that backstory's known `forcedTraits/li[traitDef="Transhumanist"]` as defense against direct, category-bypassing assignments. Preserve the BackstoryDef itself and all other fields for old-save references.
 
-**Acceptance:** Verify target XPath exists on authentic Core 1.6 loaded source, loaded Trait commonality=0 and backstory forced-trait entry absent, create one representative ordinary and MO pawn successfully, confirm zero attributable runtime errors. A missing XPath is a real test failure rather than a reason to report a PASS. This source edit is **not** runtime acceptance and does not authorize release.
+The sentinel category must not be added to a Pawn generation filter. This is an ordinary-category exclusion, **not** a claim that explicitly modded generators cannot override categories or inject the Trait. External Backstory packs and DLC remain outside this narrowly approved slice. Do not delete or rewrite broad Backstory libraries.
+
+**Acceptance, once the implementation is assembled:** inspect authentic 1.6 loaded Defs for exact patch targets and category eligibility; compare commonality, backstory category and forced entry; generate one ordinary Vanilla pawn and one MO pawn without errors; confirm changed source preserves existing-pawn identities and other traits. A single consolidated native acceptance near release is sufficient; do not create a sampling matrix or run a game on every PR. Missing XPath or ERROR is failure, not a PASS. No native acceptance or 1.7 support is claimed by this source change.
