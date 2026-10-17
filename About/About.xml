@@ -13,7 +13,7 @@
     </li>
   </modDependencies>
   <modVersion>0.1.0-dev</modVersion>
-  <description>Development build for RimWorld 1.6. Uses ordinary sittable furniture as meal destinations without requiring an adjacent table; preserves standard table-adjacent seating and Vanilla fallback. Independently neutralizes AteWithoutTable mood effect. Requires Harmony. Real in-game acceptance is still pending.
+  <description>Development build for RimWorld 1.6. Uses ordinary sittable furniture as meal destinations without requiring an adjacent table; preserves standard table-adjacent seating and Vanilla fallback. Independently neutralizes AteWithoutTable mood effect. Requires Harmony. A Vanilla 1.6 chair-only meal passed; zero-error final acceptance remains pending.
 
-RimWorld 1.6向け開発版。通常のイスをテーブルなしでも食事場所として選択する。テーブルに隣接するイスの優先と、利用可能なイスがない場合の標準処理を維持。「テーブルなしで食事」の心情ペナルティは別処理で0にする。Harmony必須。実ゲーム動作は未検証。</description>
+RimWorld 1.6向け開発版。通常のイスをテーブルなしでも食事場所として選択する。テーブルに隣接するイスの優先と、利用可能なイスがない場合の標準処理を維持。「テーブルなしで食事」の心情ペナルティは別処理で0にする。Harmony必須。Vanilla 1.6でイスのみの食事は成功。エラーなしの最終検証は未完了。</description>
 </ModMetaData>
