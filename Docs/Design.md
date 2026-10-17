@@ -98,6 +98,12 @@ Two optional, MO 1.6.2.2 original-source-grounded `PatchOperationFindMod` XML fi
 
 The production DLLs were supplied by the two authenticated builder jobs' Base64 transfer and stored as Git blobs on the Culture topic branch, not rebuilt in ChatGPT's local scratch space. **Compile-only SUCCESS is not native gameplay success.** A focused real-game acceptance remains pending for initial generated addiction, alcohol exception, old saved dependencies, deliberate scenario-created dependencies, and original loaded Vanilla/MO 1.6/1.7 behavior. Nothing here authorizes Steam release.
 
+### New-pawn combat-drug inventory flag (2026-10-17 follow-up)
+
+`Patches/CombatDrugGenerationRestrictions.xml` sets existing `CompProperties_Drug.isCombatEnhancingDrug=true` to `false` for Vanilla `Yayo` and `GoJuice`, plus optional MO `DankPyon_BattleElixir` and `DankPyon_HornetHoney`. The earlier separate `Patches/MedievalOverhaulHappyPowderCombatUse.xml` already disables that same selection flag for `DankPyon_HappyPowder`. Original MO `Luhix` and `Stardust` already have `false`. Other optional MO or third-party combat drugs are not touched.
+
+**Purpose and limit:** This closes the known `PawnKindDef.combatEnhancingDrugsChance` AI-gear selection route for these banned products **without globally setting every pawn kind's chance to zero**, and without deleting item Defs, preventing manual use of old stocks, or changing combat stat/effect values. Original MO 1.6.2.2 BattleElixir/HornetHoney XML each has one matching true flag; original Core XML identifies Yayo/GoJuice as true. XML-only; no new DLL rebuild or game run needed. Other `fixedInventory`, `inventoryOptions`, reward, trader, quest and third-party explicit item references may still supply drugs; the in-game selection behavior and provider/version differences remain pending the consolidated runtime check.
+
 ### Next implementation / acceptance boundary
 
 - Finish ordinary-generation exclusion only along demonstrated Vanilla/MO supply paths; prioritize newly generated drug-addicted pawns and explicit mixed-stock or reward pathways that still produce suppressed drugs.
