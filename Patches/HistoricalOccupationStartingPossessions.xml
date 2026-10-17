@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <!-- RimWorld PossessionThingDefCountClass uses custom XML reading:
+       each direct child of possessions has the ThingDef as node NAME,
+       and its text value is the IntRange count. Do not use list objects.
+       Only new-biography starting grants change; saved ThingDefs remain. -->
+  <!-- DeepSpaceMiner3: BlocksVacstone to Steel. Optional Odyssey item, skip when absent. -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/BackstoryDef[defName="DeepSpaceMiner3"]/possessions/BlocksVacstone</xpath>
+    <match Class="PatchOperationReplace">
+      <xpath>Defs/BackstoryDef[defName="DeepSpaceMiner3"]/possessions/BlocksVacstone</xpath>
+      <value>
+        <Steel>20</Steel>
+      </value>
+    </match>
+  </Operation>
+  <!-- Engineer40: ComponentIndustrial to Steel. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Engineer40"]/possessions/ComponentIndustrial</xpath>
+    <value>
+      <Steel>30</Steel>
+    </value>
+  </Operation>
+  <!-- SpaceNavyDoctor72: Penoxycyline to MedicineHerbal. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceNavyDoctor72"]/possessions/Penoxycyline</xpath>
+    <value>
+      <MedicineHerbal>10</MedicineHerbal>
+    </value>
+  </Operation>
+  <!-- SpaceshipChef41: MealNutrientPaste to MealSimple. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceshipChef41"]/possessions/MealNutrientPaste</xpath>
+    <value>
+      <MealSimple>4</MealSimple>
+    </value>
+  </Operation>
+  <!-- StarshipDoctor37: MedicineUltratech to MedicineHerbal. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="StarshipDoctor37"]/possessions/MedicineUltratech</xpath>
+    <value>
+      <MedicineHerbal>2</MedicineHerbal>
+    </value>
+  </Operation>
+  <!-- WanderingHealer52: MedicineIndustrial to MedicineHerbal. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="WanderingHealer52"]/possessions/MedicineIndustrial</xpath>
+    <value>
+      <MedicineHerbal>3</MedicineHerbal>
+    </value>
+  </Operation>
+</Patch>

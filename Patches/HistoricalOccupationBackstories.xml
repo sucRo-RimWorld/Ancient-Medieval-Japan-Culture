@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
-  <!-- Only historically portable careers. Preserve each BackstoryDef identifier,
-       category, slot, forced Traits, skills, work rules and possessions. English
-       source narrative is rewritten here; Japanese DefInjected is supplied below. -->
+  <!-- Rewrite historically portable careers. Preserve BackstoryDef identities,
+       categories, slots, forced Traits, skills and work restrictions. English
+       titles and descriptions are rewritten here; native Japanese DefInjected
+       provides translations. Six starting possession grants are updated in
+       the separate HistoricalOccupationStartingPossessions.xml patch. -->
   <Operation Class="PatchOperationReplace">
     <xpath>Defs/BackstoryDef[defName="SpaceMerchant97"]/title</xpath>
     <value>
@@ -271,6 +273,312 @@
     <xpath>Defs/BackstoryDef[defName="SpaceyachtPilot89"]/baseDesc</xpath>
     <value>
       <baseDesc>[PAWN_nameDef] grew up helping a boatman ferry wealthy passengers and local officials between ports. Dealing with demanding travelers taught tact and a willingness to defend the boat, but little of the daily cooking was left to [PAWN_nameDef].</baseDesc>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="DeepSpaceMiner3"]/title</xpath>
+    <value>
+      <title>ore miner</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="DeepSpaceMiner3"]/titleShort</xpath>
+    <value>
+      <titleShort>miner</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="DeepSpaceMiner3"]/baseDesc</xpath>
+    <value>
+      <baseDesc>[PAWN_nameDef] worked in a remote mine, digging ore from narrow tunnels and shoring up the workings. Hauling stone and mending supports called for steady hands; disputes among the miners sometimes ended in fights.</baseDesc>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Engineer40"]/title</xpath>
+    <value>
+      <title>market-town smith</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Engineer40"]/titleShort</xpath>
+    <value>
+      <titleShort>smith</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Engineer40"]/baseDesc</xpath>
+    <value>
+      <baseDesc>[PAWN_nameDef] repaired tools and weapons at a busy market town. Merchants brought damaged goods to the forge, where practical craft and hard bargaining proved equally valuable. Cooking was never part of the trade.</baseDesc>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="GlitterworldEmpath26"]/title</xpath>
+    <value>
+      <title>village mediator</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="GlitterworldEmpath26"]/titleShort</xpath>
+    <value>
+      <titleShort>mediator</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="GlitterworldEmpath26"]/baseDesc</xpath>
+    <value>
+      <baseDesc>[PAWN_nameDef] learned to hear each side of a quarrel and settle disputes between households. Trusted to care for the injured and calm the angry, [PAWN_nameDef] refused to take up arms against others.</baseDesc>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="GlitterworldOfficer60"]/title</xpath>
+    <value>
+      <title>retainer captain</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="GlitterworldOfficer60"]/titleShort</xpath>
+    <value>
+      <titleShort>captain</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="GlitterworldOfficer60"]/baseDesc</xpath>
+    <value>
+      <baseDesc>[PAWN_nameDef] commanded a small band of retainers guarding a manor. Peacetime quarrels called for firm restraint and skill in close combat, while spare hours were spent practicing calligraphy and painting. Heavy manual chores were left to subordinates.</baseDesc>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="GlitterworldRoyal24"]/title</xpath>
+    <value>
+      <title>noble marriage ward</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="GlitterworldRoyal24"]/titleShort</xpath>
+    <value>
+      <titleShort>ward</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="GlitterworldRoyal24"]/baseDesc</xpath>
+    <value>
+      <baseDesc>[PAWN_nameDef] was raised in a warrior household and taught manners, letters, and the arts in preparation for a political marriage. An appearance considered unfavorable by prospective families spoiled the matches and left [PAWN_nameDef] resentful.</baseDesc>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="HumanComputer83"]/title</xpath>
+    <value>
+      <title>estate accountant</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="HumanComputer83"]/titleShort</xpath>
+    <value>
+      <titleShort>accountant</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="HumanComputer83"]/baseDesc</xpath>
+    <value>
+      <baseDesc>[PAWN_nameDef] possessed a remarkable memory and talent for counting revenues and expenses. A powerful estate steward employed [PAWN_nameDef] to keep accounts of harvest dues and payments, a task demanding close study and vigilance.</baseDesc>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceExplorer53"]/title</xpath>
+    <value>
+      <title>island survivor</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceExplorer53"]/titleShort</xpath>
+    <value>
+      <titleShort>survivor</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceExplorer53"]/baseDesc</xpath>
+    <value>
+      <baseDesc>[PAWN_nameDef] was stranded alone on a distant island. For years, survival meant raising shelters, finding food, quarrying stone and defending against strangers. Learning to negotiate with islanders helped [PAWN_nameDef] return, though the isolation left lasting scars.</baseDesc>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceMarine19"]/title</xpath>
+    <value>
+      <title>battle-hardened warrior</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceMarine19"]/titleShort</xpath>
+    <value>
+      <titleShort>warrior</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceMarine19"]/baseDesc</xpath>
+    <value>
+      <baseDesc>[PAWN_nameDef] fought in a ruthless warrior band that valued victory above mercy. Fierce campaigns honed skill with bows and blades but left little patience for healing, friendly talk or delicate handiwork.</baseDesc>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceMarine5"]/title</xpath>
+    <value>
+      <title>veteran foot soldier</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceMarine5"]/titleShort</xpath>
+    <value>
+      <titleShort>veteran</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceMarine5"]/baseDesc</xpath>
+    <value>
+      <baseDesc>[PAWN_nameDef] marched through many campaigns as a seasoned foot soldier. Years of fighting made [PAWN_nameDef] formidable with bow and blade, but repeated losses dulled compassion and the wish to mingle with others.</baseDesc>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceMarine9"]/title</xpath>
+    <value>
+      <title>sworn warrior</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceMarine9"]/titleShort</xpath>
+    <value>
+      <titleShort>warrior</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceMarine9"]/baseDesc</xpath>
+    <value>
+      <baseDesc>[PAWN_nameDef] trained fiercely with a band of sworn warriors in the service of a lord. Shared oaths and rites gave the company resolve through brutal campaigns, though hardship left [PAWN_nameDef] ill at ease in polite company and uninterested in the arts.</baseDesc>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceMarine94"]/title</xpath>
+    <value>
+      <title>warboat raider</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceMarine94"]/titleShort</xpath>
+    <value>
+      <titleShort>fighter</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceMarine94"]/baseDesc</xpath>
+    <value>
+      <baseDesc>[PAWN_nameDef] fought aboard armed boats, rushing onto enemy vessels to seize their cargo and crew. A reliable bow shot and fierce close fighter, [PAWN_nameDef] left the galley work to others.</baseDesc>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceNavyDoctor72"]/title</xpath>
+    <value>
+      <title>warband physician</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceNavyDoctor72"]/titleShort</xpath>
+    <value>
+      <titleShort>physician</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceNavyDoctor72"]/baseDesc</xpath>
+    <value>
+      <baseDesc>[PAWN_nameDef] served as a healer aboard the boats of a coastal warband. Boarding skirmishes taught [PAWN_nameDef] to defend the wounded and dress deep cuts while helping commanders settle disputes among the crew.</baseDesc>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceshipChef41"]/title</xpath>
+    <value>
+      <title>camp cook and healer</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceshipChef41"]/titleShort</xpath>
+    <value>
+      <titleShort>cook</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceshipChef41"]/baseDesc</xpath>
+    <value>
+      <baseDesc>[PAWN_nameDef] cooked meals for a travelling warband and helped its healer wash and bind wounds. The work made [PAWN_nameDef] skilled with food and basic treatment, though tidying and scrubbing camp equipment were always avoided.</baseDesc>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="StarshipDoctor37"]/title</xpath>
+    <value>
+      <title>scholarly physician</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="StarshipDoctor37"]/titleShort</xpath>
+    <value>
+      <titleShort>physician</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="StarshipDoctor37"]/baseDesc</xpath>
+    <value>
+      <baseDesc>[PAWN_nameDef] studied medical writings and refined methods for treating difficult wounds and illnesses. Absorbed in observation and study, [PAWN_nameDef] became a capable physician but remained awkward in conversation and unsuited to combat.</baseDesc>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="VoidspaceRaider94"]/title</xpath>
+    <value>
+      <title>avenging outlaw</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="VoidspaceRaider94"]/titleShort</xpath>
+    <value>
+      <titleShort>outlaw</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="VoidspaceRaider94"]/baseDesc</xpath>
+    <value>
+      <baseDesc>After a killer scattered [PAWN_possessive] family, [PAWN_nameDef] joined a mountain outlaw band in pursuit of revenge. Years of raids taught scouting, fighting, field repairs and tending wounds; narrow escapes earned [PAWN_nameDef] a reputation for luck.</baseDesc>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="WanderingHealer52"]/title</xpath>
+    <value>
+      <title>travelling healer</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="WanderingHealer52"]/titleShort</xpath>
+    <value>
+      <titleShort>healer</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="WanderingHealer52"]/baseDesc</xpath>
+    <value>
+      <baseDesc>[PAWN_nameDef] left a settled medical practice to travel between villages where healers were scarce. Treating the sick, preparing food for patients and speaking with anxious families mattered more than fighting or heavy labor.</baseDesc>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="CorporateManager76"]/title</xpath>
+    <value>
+      <title>estate overseer</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="CorporateManager76"]/titleShort</xpath>
+    <value>
+      <titleShort>overseer</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="CorporateManager76"]/baseDesc</xpath>
+    <value>
+      <baseDesc>[PAWN_nameDef] supervised workers and stores on a large estate, settling arguments and keeping the work on schedule. Success relied on a talent for accounts and persuasion, as well as maneuvering to take credit for others' achievements.</baseDesc>
     </value>
   </Operation>
 </Patch>

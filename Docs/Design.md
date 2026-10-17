@@ -4,7 +4,7 @@
 
 Culture's product goal is to remove historically incongruous **character generation, culturally contingent mood/social judgments, and intoxicant gameplay** from ancient-to-medieval Japanese settlement play **without breaking the useful Vanilla/MO gameplay roles**. One neutral meal Thought is a small completed slice, not the product goal. Culture combines Backstories, generic Pawn-generation interactions, Traits, relevant Needs/Thoughts and psychoactive Drug/effect/supply UX; Shared Sleeping, general furniture, medicinal remedies, brewing, and ordinary food Jobs remain other owners' responsibilities.
 
-**Actual implementation maturity:** the narrow `AteWithoutTable` zero-mood XML prototype, bounded `Transhumanist` and 31 original adult + 12 original child background exclusions are on `main`. The [second-wave source change](SFBackgroundSecondWave.md) adds a further 12 adult and 12 child rules; its updated production DLL and native acceptance are tracked separately below. The single real Vanilla 1.6 character-generation acceptance below passed, but complete MO/1.7 coverage and saved-game migration were not tested. The no-table prototype's static XML check passed; the generation source still needs focused loaded-Def/gameplay acceptance. Historical background/trait handling, drugs and minimum enza functionality have *approved ownership/boundaries or research candidates*, but **not** complete per-feature effect values, spawn handling, recipes, migration or final implementation specifications. Do not describe Culture overall as implemented or entering integration validation.
+**Actual implementation maturity:** the narrow `AteWithoutTable` zero-mood XML prototype, bounded `Transhumanist` and 31 original adult + 12 original child background exclusions are on `main`; the final ordinary-generation exclusion scope is 67, and the original 32 portable historical background candidates have all now received authored English/Japanese histories with six starting-item substitutions (see the latest section). The [second-wave source change](SFBackgroundSecondWave.md) adds a further 12 adult and 12 child rules; its updated production DLL and native acceptance are tracked separately below. The single real Vanilla 1.6 character-generation acceptance below passed, but complete MO/1.7 coverage and saved-game migration were not tested. The no-table prototype's static XML check passed; the generation source still needs focused loaded-Def/gameplay acceptance. Historical background/trait handling, drugs and minimum enza functionality have *approved ownership/boundaries or research candidates*, but **not** complete per-feature effect values, spawn handling, recipes, migration or final implementation specifications. Do not describe Culture overall as implemented or entering integration validation.
 
 **Next Culture specification work:** prioritize the user's high-execution-impact historical drug/intoxicant UX together with related `DrugDesire`/Need/Trait rules. Preserve the emergency mood-rescue role, addiction/withdrawal consistency and existing-save references. In the same bounded character-generation design effort, resolve the evidenced `Transhumanist` natural and forced-Backstory paths in Vanilla/MO, without indiscriminate TraitDef deletion or re-auditing all third-party backgrounds. Work from the existing Project [drug research](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/blob/main/Docs/Research/PsychoactiveSubstancesCandidate.md) and [character research](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/blob/main/Docs/Research/CultureCandidate.md); make each accepted final decision here before adding its source. Enza material/Comfort/job adapter and broader ethics/other backgrounds remain separate later decisions without fixed next-task precedence. This local sequencing does **not** override the Project-wide P0 Environment/Grains repair and closeout work. The approved drug UX review has elevated execution priority ahead of new Ironmaking expansion; general Culture reconstruction classification remains P2.
 
@@ -284,3 +284,45 @@ The thirty target DefNames: `AerospaceEngineer44`, `ComputerEngineer10`, `Comput
 1.7 DLLは[Projectのビルド専用実行 #39015931527](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39015931527) で、Cultureソース `bd07ceb34619a992a934ca0a7add7be1f1ae8a8b`、正規Linux RimWorld `1.7.4977 rev1248` の `Assembly-CSharp.dll`（SHA-256 `3d4f1ddfe71bd8760cb488255e3bdeac9366f537dc1ef813cc6f8d09824e2da9`）、UnityStubs及び正規Harmony 3.0を使ってビルドした。食事先選択と固定人物生成制限の2つの製品C#を含む。ビルド実行ではゲームを起動せず、正規ゲームを変更しない。
 
 **実ゲーム受け入れ基準（未確認）:** 1.7でロードしたときに正しいDLLだけが有効であること、食事のテーブルなしイス着席・Comfort・完食、テーブル隣接イス優先、イスなし時の立ち食い、`AteWithoutTable`の中立化、成人43・固定幼少24の生成除外と通常Pawn生成、英日表示の原定義、実行時ERROR0を必要範囲で確認する。1.6の旧版実ゲームPASSや1.7への単純コンパイル成功を1.7の実ゲームPASSに転用しない。DLC・MO・他家具・旧セーブについて未検証を維持する。
+
+
+## 転用可能なSF背景32件の改稿完成 — 最終17件（2026-10-17）
+
+旧[個別監査](SFBackgroundIndividualAudit.md)の `R` 32件について、先行15件の英日改稿に続き、残る17件の **英語`BackstoryDef/title,titleShort,baseDesc`と日本語`DefInjected/title,titleShort,baseDesc,description`** を追加した。実際の製品ファイルは `Patches/HistoricalOccupationBackstories.xml` および `Languages/Japanese/DefInjected/BackstoryDef/HistoricalOccupationBackstories.xml`。両ファイルを合わせて32件、英語96置換（各3箇所）、日本語128項目（各4箇所）。17件ともDef名・成人/幼少期スロット・spawnCategories・技能・職務/労働制約・強制Trait・能力値の変更はない。
+
+| 原Def | 日本語改稿／職業・境遇 | 正規Core 1.6/1.7 台帳との整合 |
+|---|---|---|
+| `DeepSpaceMiner3` | 鉱山の鉱夫 | 成人、採掘+7、建築+3、格闘+2、ManualDumb/ManualSkilled必須 |
+| `Engineer40` | 市の鍛冶職人 | 成人、製作+8、建築+2、社交+2、料理−2 |
+| `GlitterworldEmpath26` | 村の仲裁人 | 成人、社交+8、医療+2、Social必須、暴力作業不可 |
+| `GlitterworldOfficer60` | 警固の組頭 | 成人、格闘+6、芸術+4、Violent必須、単純労働不可 |
+| `GlitterworldRoyal24` | 武家の縁組候補 | 幼少、社交・料理・芸術+2、単純労働不可、`Beauty=-1`の既存強制Traitは維持 |
+| `HumanComputer83` | 荘園の勘定役 | 成人、研究+7、射撃+3、Intellectual必須、芸術不可 |
+| `SpaceExplorer53` | 孤島の生還者 | 成人、射撃・社交+4、建築・栽培・採掘+3、Caring不可 |
+| `SpaceMarine19` | 歴戦の荒武者 | 成人、射撃+6、格闘+4、Caring/Social不可、芸術・製作− |
+| `SpaceMarine5` | 古参の足軽 | 成人、射撃+8、格闘+6、Caring/Social不可 |
+| `SpaceMarine9` | 誓約の武士 | 成人、射撃+6、格闘+5、社交−2、芸術不可 |
+| `SpaceMarine94` | 軍船の切込武者 | 成人、射撃+7、格闘+5、料理不可 |
+| `SpaceNavyDoctor72` | 水軍の療治役 | 成人、医療+5、射撃+3、社交+2、初期医薬品置換 |
+| `SpaceshipChef41` | 陣中の膳夫 | 成人、料理+7、医療+5、掃除不可、初期食糧置換 |
+| `StarshipDoctor37` | 医術を究めた医師 | 成人、医療+8、研究+5、格闘−2、社交−3、初期医薬品置換 |
+| `VoidspaceRaider94` | 仇討ちの無頼者 | 成人、射撃+4、製作+3、医療・採掘・格闘+2、芸術不可 |
+| `WanderingHealer52` | 遍歴の療治人 | 成人、医療+7、社交+3、料理+2、暴力不可、初期医薬品置換 |
+| `CorporateManager76` | 荘園の差配人 | 成人、社交+6、研究+2、Social必須 |
+
+### 近未来アイテムの新規生成時のみの置換（6件）
+
+**正本:** `Patches/HistoricalOccupationStartingPossessions.xml`。元の `possessions/<ThingDef名>` を持つ指定された `BackstoryDef` だけを書き換える。RimWorld原実装 `PossessionThingDefCountClass.LoadDataFromXmlCustom` は要素名をアイテムDefとして読んでおり、`<li><thingDef>` 形式のリストではない。XML XPath と置換後の要素名をこの仕様で静的確認した。物品ThingDef自体は削除しない。既存セーブ内の物品・職業Def・化学依存・DrugPolicy・所有者が抱える所持品には変更を加えない。
+
+| 元Def | もとの初期アイテム | 新規割当時の初期アイテム | 目的 |
+|---|---|---|---|
+| `DeepSpaceMiner3` | `BlocksVacstone ×20`（Odyssey `MayRequire`） | `Steel ×20` | 宇宙素材を通常の金属材料へ。Odysseyが無く当該要素が不在なら**条件付きパッチは何も変更しない** |
+| `Engineer40` | `ComponentIndustrial ×3` | `Steel ×30` | 工業用機械部品を修理用の金属材料へ |
+| `SpaceNavyDoctor72` | `Penoxycyline ×10` | `MedicineHerbal ×10` | 合成予防薬ではなく傷の手当てに使える薬草薬へ |
+| `SpaceshipChef41` | `MealNutrientPaste ×4` | `MealSimple ×4` | 栄養ペーストでなく普通の食事へ |
+| `StarshipDoctor37` | `MedicineUltratech ×2` | `MedicineHerbal ×2` | 超技術医療品を薬草薬へ |
+| `WanderingHealer52` | `MedicineIndustrial ×3` | `MedicineHerbal ×3` | 工業製医薬品を薬草薬へ |
+
+`Steel`は既存Vanillaの抽象的な汎用金属素材として利用し、新たな製鉄設備や史実上の鋼材量を意味しない。`MedicineHerbal`と`MealSimple`も既存Vanilla Defを再利用する。Medicine/Grains/Alcohol製造等の他Modにレシピ、薬効、作物の所有を移動したわけではない。すべての元アイテムのDef自体を残し、他の入手経路や既存Pawn依存を破壊しない。歴史的職業の装備をゲーム中で個別生成する元経路は維持される。
+
+**正本の参照・検証境界:** 元Defのスロット・技能・所持品は作者所有の[Core 1.6/1.7監査](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/blob/main/Docs/Research/VanillaCoreCharacterDefsSourceAudit20261016.md)（原配布物由来SHA付きmetadata v2）、旧設定の本文はLudeon公認の英語原文コメントで確認。後者が現行ゲームの本文とバイト一致する保証はない。今回はXMLの実装が正本であり、前回の1.6製品DLLをそのまま使用する。**実ゲームの表示、パッチのロード、初期所持品の変化は未検証**。最終的な集中受け入れで、この32件の日本語／英語テキスト、6件の新規割当時の所持品、43＋24件の除外制限維持、通常Pawn生成・セーブ参照を必要十分な項目として確認する。テスト目的の全背景784件抽選やPR起動ごとのゲームテストは実施しない。MO/1.7/旧セーブ実読み込みは未検証。今回の改稿完成をCultures全体の完成・公開許可とは扱わない。
