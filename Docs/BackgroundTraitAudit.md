@@ -223,3 +223,26 @@ These are **optional source cohorts**, not a single installed pool, not Culture 
 対象5件は原Core上で**強制Trait、開始所持品、禁止Traitを持たない**。既存の別々のSF背景制限と重複なし。新しいカテゴリ変換は `Patches/AnachronisticAdultBackstories.xml` に追記しただけで、各 `BackstoryDef` の削除・値変更、強制Traitや旧セーブへの変換は行わない。一般の学究・医師・技術師という職能は他の既存Defで維持する。この制限は、日本語の史実改稿が一括承認された場合に対象Defを復帰できる暫定措置である。
 
 **新計数：成人**72**（成人生成カテゴリのXML71＋独立 `FerventResearcher72` 1）、幼少**27**（Solid幼少ゲート24＋Shuffled幼少カテゴリ3）、生成制限総数**99**。歴史的改稿済み34件、別途作者の一括確認待ち日本語改稿原稿35件はいずれも変更なし。新規日本独自BackstoryDef/TraitDefは作っていない。1.6/1.7現在の長文本文一致、ロード済み生成挙動、旧セーブ読込、MO 1.7対応は未検証。個別の実ゲーム起動・CI発火は行わない。
+
+## 第2段階・第6修正群 — Solid幼少期8件とSolid_Rare成人期4件（2026-10-17）
+
+**生成経路の確証と制約：** [RimWorld Wiki の人物生成・Named Bio解説](https://rimworldwiki.com/wiki/Backstories)と[開発者作成Rare人物一覧](https://rimworldwiki.com/wiki/List_of_Player-created_Pawns)を照合。Solid（名前・幼少・成人がセットの既定人物）も**通常の新規Pawn生成で抽選され得る**。Rare9組は「固有名前付き＝全員通常生成不能」ではなく抽選率が低い群。一般経路は `PawnBioAndNameGenerator.TryGetRandomUnusedSolidBioFor` にあり、選ばれる可否は成人側のカテゴリや性別・仕事条件にも依存する。**今回の12件が無条件に生成されることや、各名前付き組の個別生成回数は未立証**。このルートに到達した場合にのみ拒否する最小実装とした。元の名付きPawn・既存セーブ・原Defは削除しない。
+
+**幼少期8件：** 既存 `Source/AMJ.Culture/SolidChildBioGatePatch.cs` の `ExcludedChildhoods`（元24件）に追加した。いずれも保存済みの本物のCore 1.6/1.7 schema v2メタデータで `BackstoryDefs/Solid/Solid_Child.xml`・`slot=Childhood`、両バージョンの属性完全一致。以下の叙述根拠は[Ludeon公式アーカイブ英語原文コメント](https://github.com/Ludeon/RimWorld-Finnish/blob/master/Backstories/Backstories.xml)であり、現在配布Coreの原文本文と完全一致したとは主張しない。
+
+| 既存幼少背景 | 旧公式英語原文の時代不整合 | 保存する既存機械的効果 |
+|---|---|---|
+| `CloneFarmed21` | クローン子どもの人工子宮育成と仮想現実 | 元技能・作業制限 |
+| `VatgrownAssassin20` | 科学者による人工培養の暗殺人間 | 元の強制 `Psychopath=0`、技能、Caring/Artistic/Cooking/PlantWorkの制限 |
+| `VatgrownScientist91` | 物理・化学に特化した人工培養研究者 | 元技能・作業制限 |
+| `JoywireAddict76` | 快楽回路インプラントの依存と入手行動 | 元技能・作業制限 |
+| `LabGrownChild22` | 人体実験施設の試験的な実験室出生 | 元技能・作業制限 |
+| `DreadedBaby56` | 宇宙船事故の幼児が核動力を発明したという設定 | 元技能、既存 `Cult` カテゴリを削除しない |
+| `GameFanatic86` | VRゲームの熟練と犯罪科学者による人体実験 | 元技能・作業制限 |
+| `ReclusiveProdigy96` | 遺伝子改造と神経機能拡張の児童研究 | 元の強制 `TooSmart=0`、技能・作業制限、既存 `Cult` カテゴリを削除しない |
+
+幼少期Defには `spawnCategories` を後付けせず、通常Named Solid人物が**実際に選出された時だけ**幼少 `defName` を見て `false` を返す既存Harmony Postfixに統合した。無関係なShuffled幼少、既存の設定済み人物、手動の背景割当、昔のセーブは変更しない。特性 `Psychopath`／`TooSmart` は削除しない。
+
+**Rare成人期4件：** Core 1.6/1.7元メタデータで `BackstoryDefs/Solid/Solid_Rare.xml` に存在し、元の`spawnCategories` を保持する現代専業の `JoeCustomAdulthood`（game developer; Offworld/Scientist）、`LiamCustomAdulthood`（simulation developer; Offworld/Scientist）、`OskarCustomAdulthood`（mod designer; Outlander）、`TynanCustomAdulthood`（game developer; Pirate）のみ、成人向けカテゴリ制限XMLへ追加した。Feyのゲーム運営、Mateの大道芸、Nathanの採掘等ほかのRare人物は名称だけで排除しない。Liamの `Industriousness=1`、Tynanの `Industriousness=-2`、元スキル・仕事制限・定義・旧セーブ参照は維持する。この4件は時代不整合を元の正式な英語タイトルでも確認できるため、アーカイブの長文欠落によって職業判断を捏造してはいない。
+
+**正本の計数・製品の状態を区別：** 既存99件（成人72、幼少27）→**ソース変更対象111件**（成人76＝通常カテゴリ75＋独立 `FerventResearcher72` 1、幼少35＝Solidゲート32＋Shuffledカテゴリ3）。ただし**1.6/1.7パッケージ済みのDLLは今回のC#変更より前の版**なので、現時点のゲーム実装に含まれる新しい幼少8件のゲートは**ビルド・両版DLL統合待ち**。今回の新規XMLの成人4件は製品XMLを更新すれば有効となり得るが、ロード後動作は未検証。**ゲームで111件が適用済みと報告しないこと**。既存34件の史実改稿と作者一括承認待ち日本語原稿35件は不変。1.6/1.7ネイティブゲーム受け入れと現在の原本文確認は最後に一括実施する。余計な自動テスト・公開・新規第3段階Defなし。
