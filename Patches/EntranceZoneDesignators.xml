@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <!-- Reuse the stock Zone/Area architect menu, but use independent cell data:
+       Verse.ZoneManager disallows growing/stockpile overlap. -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/DesignationCategoryDef[defName="Zone"]/specialDesignatorClasses</xpath>
+    <value>
+      <li>AMJ.Culture.Designator_EntranceAdd</li>
+      <li>AMJ.Culture.Designator_EntranceRemove</li>
+    </value>
+  </Operation>
+</Patch>
