@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
-  <!-- Vanilla Core 1.6/1.7: these forty-five adult BackstoryDefs have existing
+  <!-- Vanilla Core 1.6/1.7: these forty-seven adult BackstoryDefs have existing
        spawnCategories. Keep the BackstoryDef identities, traits, stats, skills
        and saved-pawn references. Restrict ordinary new generation only.
        This does not modify category-less Solid_Child biographies or forcibly
@@ -369,5 +369,14 @@
         <li>AMJ_CultureExcluded</li>
       </spawnCategories>
     </value>
+  </Operation>
+  <!-- Proven ordinary Shuffled adult category candidates; retained for existing saved pawns. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="JoywireArtist8"]/spawnCategories</xpath>
+    <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="VRDesigner87"]/spawnCategories</xpath>
+    <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
   </Operation>
 </Patch>
