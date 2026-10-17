@@ -1,0 +1,39 @@
+# Vanilla / Medieval Overhaul background and trait Stage 1 inventory — 2026-10-17
+
+## Stage / purpose
+
+**Stage 1 inventory and first-pass classification is complete for the defined input scope (784 Vanilla BackstoryDef, 43 Vanilla TraitDef, 2 MO TraitDef).** Every original Vanilla identifier is present once in [the row-level inventory](Data/VanillaMOBackgroundTraitStage1Screen.csv), with a working action and source-confidence label. This is **not** a claim of 784 independently verified original long descriptions or 784 irreversible historical/content approvals. Stage 2 must verify the current licensed Core text and eligibility **for flagged source edits** before changing it. No new Japan-specific background or trait may be created before finishing Stage 2.
+
+Input evidence: original author-owned [Core 1.6/1.7 metadata v2](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/blob/main/Docs/Research/VanillaCoreCharacterDefsSourceAudit20261016.md), [Project isolated source inventory run #38797500765](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/38797500765); original supplied MO 1.6.2.2 `1.6/Defs/TraitDefs/Traits_Singular.xml`, `1.6/Patches/Core/Add_Trait_Thoughts.xml`; archived official English description comments at [Ludeon/RimWorld-Finnish/Backstories.xml](https://github.com/Ludeon/RimWorld-Finnish/blob/master/Backstories/Backstories.xml). Archived comments are **not** proven byte-identical to current 1.6/1.7 source narratives. Original Core v2 has 784 backgrounds in both checked versions, identical XML SHA inventories, 119 backgrounds with forced Traits (125 assignments), 90 with possessions and three with disallowed traits. **MO adds zero independent BackstoryDef and two TraitDef** in the supplied 1.6 data; no claim for a newer/different MO 1.7 installation.
+
+## Exhaustive Stage 1 classification (784 BackstoryDef)
+
+| Working classification | Number | Stage 2 disposition |
+|---|---:|---|
+| Explicit SF/technology identified in archived English story | 132 | Already fixed entries retain their patches; remaining entries get targeted current-source review and rewrite/restriction decision |
+| Modern / period-conditional occupational or institutional wording | 68 | Review where ordinary selection could affect gameplay, not blanket delete |
+| No strong conflict detected in archival comments | 550 | Provisional keep; cannot mean modern Core wording or complete cultural suitability certified |
+| No matching archival English comment | 16 | Use current Core text if changing; leave unchanged by default |
+| Named Solid_Rare Custom biography; unique-only route unproven | 18 | Exempt **only after** verifying it cannot appear in ordinary Vanilla/MO generation |
+
+**Total: 784**. Exact unmatched archive IDs: Child27, ChildTribal, CivilServant25, Colonist97, ColonyChild59, MonkeyChild67, MusicalKid14, Newborn79, OldMoneyHeir46, RimworldExile32, StewardsAssisant28, Streamer52, TravelingBard93, TribeChild19, TribeMember57, VatgrownChild11. The 18 `*CustomAdulthood/Childhood` definitions are identified as special, **not automatically declared unique-only**, because some carry ordinary-looking spawn categories. An archive naming convention is not authoritative generation evidence. Similarly a standard `Solid` background is not necessarily unique-pawn-only.
+
+## Existing implementation reconciliation
+
+- Source generation restrictions: **74** = 50 XML category restrictions (48 adults, 2 Shuffled children) + 24 Solid-child named-bio vetoes. The independent `FerventResearcher72` XML restriction is included in the adult count.
+- Historical English/Japanese rewrites: **34** (separate from restricted definitions); six controlled initial possession substitutions.
+- These counts describe changed source identities only. They do not certify 1.6/1.7 newly changed game-loaded behavior.
+- Stage 1 does **not** add/delete/rewrite TraitDefs, backstories, Harmony or other runtime code.
+- **Unaddressed explicit-technology archive candidates (80):** `AbandonedChild30`, `AddictionCounsel60`, `Architect28`, `ArmyScientist35`, `ArtisanFarmer23`, `AspiringPhysicist47`, `Athlete47`, `BountyHunter41`, `CaravanChild53`, `Castaway81`, `CharityWorker36`, `ChildScientist30`, `ClassClown96`, `CloneFarmed21`, `CloneFarmer58`, `Colonist22`, `CoreDilettante33`, `CorporateBuilder58`, `CrashBaby32`, `CrimeBossChild39`, `DesertRat47`, `DiplomatsChild97`, `DoomsdayPariah18`, `DreadedBaby56`, `EnergeticPopIdol61`, `ExpertHandyman8`, `FeralChild85`, `FurnitureBuilder83`, `GameFanatic86`, `GangSoldier39`, `Gnomebiologist96`, `Gymnast48`, `JoywireAddict76`, `LanguageAnalyst27`, `LazyProgrammer3`, `LogicalChild2`, `MarineCadet73`, `MasterChef48`, `MedicSoldier54`, `MedicalStudent96`, `MidworldGeek18`, `MilitaryEngineer45`, `MilitaryOfficer17`, `Minister88`, `Model99`, `NavyScientist52`, `NinjaAssassin31`, `Novelist7`, `Orphan15`, `Pampered87`, `Philosopher82`, `PilotFan16`, `PirateTrooper73`, `PlanetaryDiplomat7`, `PrisonerOfWar2`, `PrivilegedProdigy70`, `ProfessionalGamer76`, `RebelWriter82`, `ReclusiveProdigy96`, `ReligiousHierarch16`, `RugbyPlayer71`, `RunawayDancer35`, `Sculptor63`, `ShipChild46`, `SocialPariah3`, `SoleSurvivor85`, `StarfighterPilot79`, `StarforceCadet79`, `StationSecurity38`, `StationWhelp94`, `Student65`, `Technician9`, `TestSubject92`, `TransferStudent10`, `UrbworldRebel56`, `VatgrownAssassin20`, `VideoGamer55`, `VidtubeStar98`, `VoyagerChild94`, `WhiteHatHacker82`. This is a targeted **Stage 2 decision queue**, not automatic authorization to disable all 80. Some are portable occupations suitable for historical Japanese rewriting; real runtime eligibility and current prose require verification.
+
+## Complete 43+2 TraitDef inventory decision
+
+Vanilla `Transhumanist`: already restricted for natural ordinary generation; preserve identity and old saves, do not delete. `BodyPurist`, `DrugDesire`, `Greedy`, `Jealous`: retain definitions, review particular effects/forced paths. Greedy and Jealous already have Culture shared-barracks handling; do not confuse built source with a newly native accepted result. Remaining **38** Vanilla traits are provisionally period-portable, not separately approved reinterpretations of every Thought. Explicit mapping of **all 43** appears in the CSV, along with MO `DankPyon_Fighter` (original `commonality=0.2`) and `DankPyon_Veteran` (`commonality=0.1`).
+
+MO already supplies combat/veteran traits and suppresses more death/corpse Thoughts than corpse familiarity alone justifies. Existing Culture owner [PR #42](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Culture/pull/42) scopes an MO-only Death Thought correction; its loaded result is not accepted. **Do not create new Japan-only veteran traits in Stage 2.**
+
+## Stage boundary, exclusions and verification
+
+**Stage 1 complete = inventory plus provisional action sorting, not completed corrections.** Stage 2 operates only on exact pending defects/candidates: validate relevant latest Core long text, decide keep/rewrite/restrict/effect adjustment per original Def; ensure normal generation paths, starting items, Trait forces and category overrides remain coherent. Confirm exclusive unique-pawn assignments before excluding them, without treating all `Solid` paths as exclusive. Defer new medieval-Japanese backgrounds and traits, including battlefield corpse-familiarity, to Stage 3 **after** Stage 2.
+
+Stage 1 required no RimWorld startup, binary rebuild, new native tests, CI triggers or Workshop action. Machine-assisted lexical screening deliberately errs toward **review instead of destructive suppression**. Counts and identifiers in the CSV are reproducible from the identified archives and checked Culture main patches, but historical narrative interpretation and actual in-game behavior have different evidence levels.

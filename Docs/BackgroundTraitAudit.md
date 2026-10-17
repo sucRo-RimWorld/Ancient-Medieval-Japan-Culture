@@ -1,5 +1,7 @@
 # Culture background / trait historical-fit audit — 2026-10-17
 
+**Stage 1 definition inventory completed (2026-10-17):** [authoritative owner status, exact screen categories and evidence limits](Stage1VanillaMOBackgroundTraitInventory.md), with a [row for each of the 784+43+2 definitions](Data/VanillaMOBackgroundTraitStage1Screen.csv). All flagged changes remain Stage 2 decisions requiring affected original Core 1.6/1.7 text and generation-route checks. The 18 custom Solid_Rare definitions are not automatically exempted as unique-only without route proof. This is not a claim of individual completed historical adjudication or current source text verification.
+
 ## Player-facing purpose and evidence standard
 
 **Author-approved work order (2026-10-17):** Complete the review of ordinarily obtainable Vanilla **and** Medieval Overhaul backgrounds/traits and correct identified conflicts in their existing definitions, generation routes or related effects **before** implementing any *new* Japanese-period-specific background or trait. Japanese historical rewrites of existing Vanilla stories are corrective work in this first phase, not approval to add new Defs. Restrict further audits to reachable ordinary generation (unique-pawn-only assignments remain out of scope), preserve previously fixed/accepted source, and defer proposed Sengoku battle-experience/corpse-familiarity careers or traits until this phase is complete. Do not preemptively change corpse/grief/execution Thoughts or duplicate MO's existing traits.
