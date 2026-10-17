@@ -528,4 +528,16 @@
     <xpath>Defs/BackstoryDef[defName="Streamer52"]/spawnCategories</xpath>
     <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
   </Operation>
+  <!-- No credible transferable specialist in medieval Japan has yet been
+       identified while retaining the original biography's role and work
+       effects. Exclude ordinary generation pending separate author approval.
+       Do not delete Def IDs or mutate saved Pawns. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="AddictionCounsel60"]/spawnCategories</xpath>
+    <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Architect28"]/spawnCategories</xpath>
+    <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
+  </Operation>
 </Patch>
