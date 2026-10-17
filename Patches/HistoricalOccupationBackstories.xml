@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
-  <!-- Only historically portable careers. Preserve each BackstoryDef identifier,
-       category, slot, forced Traits, skills, work rules and possessions. English
-       source narrative is rewritten here; Japanese DefInjected is supplied below. -->
+  <!-- Rewrite historically portable careers. Preserve BackstoryDef identities,
+       categories, slots, forced Traits, skills and work restrictions. English
+       titles and descriptions are rewritten here; native Japanese DefInjected
+       provides translations. Six starting possession grants are updated in
+       the separate HistoricalOccupationStartingPossessions.xml patch. -->
   <Operation Class="PatchOperationReplace">
     <xpath>Defs/BackstoryDef[defName="SpaceMerchant97"]/title</xpath>
     <value>
