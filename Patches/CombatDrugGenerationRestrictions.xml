@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <!-- Do not let newly generated armed pawns draw banned Vanilla combat
+       substances from PawnKindDef.combatEnhancingDrugsChance. The existing
+       Drug ThingDefs, manual ingestion and saved inventory are preserved. -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="Yayo" or defName="GoJuice"]/comps/li[@Class="CompProperties_Drug"]/isCombatEnhancingDrug[text()="true"]</xpath>
+    <match Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[defName="Yayo" or defName="GoJuice"]/comps/li[@Class="CompProperties_Drug"]/isCombatEnhancingDrug[text()="true"]</xpath>
+      <value><isCombatEnhancingDrug>false</isCombatEnhancingDrug></value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationFindMod">
+    <mods><li>Medieval Overhaul</li></mods>
+    <match Class="PatchOperationConditional">
+      <xpath>Defs/ThingDef[defName="DankPyon_BattleElixir" or defName="DankPyon_HornetHoney"]/comps/li[@Class="CompProperties_Drug"]/isCombatEnhancingDrug[text()="true"]</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="DankPyon_BattleElixir" or defName="DankPyon_HornetHoney"]/comps/li[@Class="CompProperties_Drug"]/isCombatEnhancingDrug[text()="true"]</xpath>
+        <value><isCombatEnhancingDrug>false</isCombatEnhancingDrug></value>
+      </match>
+    </match>
+  </Operation>
+</Patch>

@@ -87,6 +87,23 @@ Two optional, MO 1.6.2.2 original-source-grounded `PatchOperationFindMod` XML fi
 
 **Evidence and acceptance limitation:** The 1.6 vanilla pawn-generation trace documents `GenerateInitialHediffs(Pawn, PawnGenerationRequest)` before scene `Scenario.Notify_NewPawnGenerating`; it avoids the high-cost universal `PawnGenerator.GeneratePawn` Postfix. Actual MO 1.6.2.2 `ChemicalDef` names and addiction/tolerance links were confirmed for all six MO candidates. The Vanilla chemical identities were checked against preserved Core XML source, not against both current licensed loaded Core distributions. A source C# change is NOT active gameplay until **both versioned production DLLs are genuinely rebuilt** from the exact accepted source and integrated through a protected PR. A compiled DLL by itself is NOT a loaded-game test. Intended consolidated tests: (1) fresh Vanilla/MO pawns with chemical-addiction chances yield no excluded addiction/tolerance; (2) alcohol addiction can still generate; (3) old preexisting dependency remains after save load; (4) manually consuming old banned drugs can still form addiction; (5) scenario-added hediffs are preserved; (6) 1.6 and 1.7 assemblies load with ERROR0. Do not run the complete game simply to multiply sample counts.
 
+### Compiled per-version dependency filter (2026-10-17)
+
+**Production binaries are integrated:** The real 1.6 and 1.7 `AMJ.Culture.dll` files were compiled using licensed RimWorld managed assemblies and the exact Culture source commit `009d36c75d0d9f557ab63563723e78efc6cfbc8c`. Both builds include `InitialDrugAddictionGenerationPatch.cs`, as well as the previously shipped seat, lodging and solid-child patches. `LoadFolders.xml` continues to choose the per-version assembly; no root assembly path was added.
+
+| Game | Project compile-only workflow | DLL SHA-256 | Bytes |
+|---|---|---|---|
+| 1.6 | [#39034597068](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39034597068) | `5e2f9a930210c6223b7a21259f8f689f39241d248887b2b2a3b419a9b252f77d` | 12,800 |
+| 1.7 | [#39034604350](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39034604350) | `a36d5a5774feb7b0304f40a378099b7d8fd170a16885b63146bfbdb576366234` | 12,800 |
+
+The production DLLs were supplied by the two authenticated builder jobs' Base64 transfer and stored as Git blobs on the Culture topic branch, not rebuilt in ChatGPT's local scratch space. **Compile-only SUCCESS is not native gameplay success.** A focused real-game acceptance remains pending for initial generated addiction, alcohol exception, old saved dependencies, deliberate scenario-created dependencies, and original loaded Vanilla/MO 1.6/1.7 behavior. Nothing here authorizes Steam release.
+
+### New-pawn combat-drug inventory flag (2026-10-17 follow-up)
+
+`Patches/CombatDrugGenerationRestrictions.xml` sets existing `CompProperties_Drug.isCombatEnhancingDrug=true` to `false` for Vanilla `Yayo` and `GoJuice`, plus optional MO `DankPyon_BattleElixir` and `DankPyon_HornetHoney`. The earlier separate `Patches/MedievalOverhaulHappyPowderCombatUse.xml` already disables that same selection flag for `DankPyon_HappyPowder`. Original MO `Luhix` and `Stardust` already have `false`. Other optional MO or third-party combat drugs are not touched.
+
+**Purpose and limit:** This closes the known `PawnKindDef.combatEnhancingDrugsChance` AI-gear selection route for these banned products **without globally setting every pawn kind's chance to zero**, and without deleting item Defs, preventing manual use of old stocks, or changing combat stat/effect values. Original MO 1.6.2.2 BattleElixir/HornetHoney XML each has one matching true flag; original Core XML identifies Yayo/GoJuice as true. XML-only; no new DLL rebuild or game run needed. Other `fixedInventory`, `inventoryOptions`, reward, trader, quest and third-party explicit item references may still supply drugs; the in-game selection behavior and provider/version differences remain pending the consolidated runtime check.
+
 ### Next implementation / acceptance boundary
 
 - Finish ordinary-generation exclusion only along demonstrated Vanilla/MO supply paths; prioritize newly generated drug-addicted pawns and explicit mixed-stock or reward pathways that still produce suppressed drugs.
@@ -504,7 +521,7 @@ The existing `LoadFolders.xml` selects these version-specific assemblies. The 1.
 **現行の実装制限：成人72（成人カテゴリXML71＋独立1）、幼少27（Solidゲート24＋Shuffled3）、合計99。** 製品へ適用済み既存歴史改稿は34件、一括作者承認待ち日本語原稿は35件。原稿・翻訳の承認を得る前にゲームデータへ挿入せず、文章以外の残作業を先に進める。固有Pawn専用除外と旧セーブ参照維持の原則、現行Trait・薬物系並行開発の所有境界は維持する。
 
 
-## 玄関ゾーン・擬似履物脱着（2026-10-17 作者承認／製品DLL未反映）
+## 玄関ゾーン・擬似履物脱着（2026-10-17 作者承認／両版DLLビルド済・実機未検証）
 
 ### 文化的目的・責務
 
@@ -527,7 +544,7 @@ Cultureは人物背景・特性・心情・食事習慣・嗜好品・玄関の�
 - 既存CultureのHarmony実装を再利用する。ゾーン定義・セーブ永続化・再ロード・マップ離脱/帰還・ゾーン撤去・キャスト中の割込みを扱う必要がある。
 - 移動Jobの強制置換による運搬・食事・予約喪失を避ける。具体的な停止・再開処理とRimWorld 1.6/1.7のFilthTrackerの安全な介入点は、両版の実ゲーム/参照ソースで確認してから製品実装する。通常通行のパフォーマンスとループ防止を優先する。
 - 初期はプレイヤー管理の人間系ポーンを対象とする。来客・訪問者・搬送中のポーン、既存Modの履物Apparel、裸足そのものの速度/温度効果は**初期の確定仕様に含めない**。後から必要なものだけ個別に検討する。
-- 仕様承認は**実装やテストの完了を意味しない**。Source、1.6/1.7両製品DLL、保存形式、Loaded-Gameの実装証拠はまだない。既存の別機能のPASSは流用しない。
+- 仕様承認だけでは実装完了を意味しない。C#ソースと両製品DLLはこの後の実装群で構築したが、保存形式やLoaded-Gameの実機証拠はまだない。既存の別機能のPASSは流用しない。
 
 ### 既存Modと独自実装の差分（2026-10-17、公開説明の先行比較）
 
@@ -547,13 +564,17 @@ Cultureは人物背景・特性・心情・食事習慣・嗜好品・玄関の�
 - 徴兵・退避・救助中は着脱が行動阻害にならず、通常移動で経路探索が無限に反復しない。
 - ゾーン変更・セーブ/ロード後に状態が破綻しない。両対応版の正規製品DLLをビルドした後、機能一式についてまとめて最小限の実ゲーム受け入れを行う。PRごとの起動やテスト数の増加は行わない。
 
-
-### 第1実装群（2026-10-17、ソース段階／製品DLL未反映）
+### 第1実装群（2026-10-17、ソース・両版製品DLL構築済み／実ゲーム未受入）
 
 - **指定と保存**：`Source/AMJ.Culture/EntranceZoneDesignators.cs` と `Patches/EntranceZoneDesignators.xml` でZone/Areaメニューに「玄関ゾーン」「玄関ゾーン解除」を追加。実セル集合は `EntranceZoneMap : MapComponent` が `Scribe_Collections` で保存する。既存の栽培／備蓄ゾーンと排他的な `Verse.Zone` は使わず、床・他ゾーンの上に重ねる。日英UIキーは各言語の `Keyed/EntranceZone.xml` に収録。
 - **ポーン状態**：`EntranceFootwearState : GameComponent` がポーンの一意IDごとに裸足状態を保存する。マップを跨いだときの状態継続を意図する。キャストの進行は一時データとして保持し、ロード後に必要なら再開始する。装備・アパレル・ベッド・室内温度等は変更しない。
 - **立ち止まりと再開**：既存のCulture Harmony起動時に `Pawn_PathFollower.PatherTick` Prefixを登録し、玄関指定セルへの進入前の居室側と、移動先の `Room.PsychologicallyOutdoors` 判定が反対のときだけ玄関上で最長90tick停止する。既存Job、Path、運搬予約には触らず、終了時は元のPatherTickへ戻す。進捗バーを表示する。徴兵／精神状態／明示的な救助・消火・逃走・戦闘などのJob／現在セルの危険時は省略する。
 - **汚れ**：靴を脱ぐ際に `Pawn_FilthTracker.carriedFilth` に蓄積した `Filth_Dirt` のみ廃棄する。血液・吐瀉物など他の汚れや、既存RimWorldのFilth配置・生成処理は変更しない。これは「土汚れを室内へ運び込まない」ための第一実装であり、素足歩行時のすべての汚れ生成を無効化するものではない。
-- **現在の未達範囲と既知の実装上の制限**：このコミット群は **C#／XML／Keyedソースのみ**。1.6/1.7の正規参照を使用したビルド、`1.6/Assemblies` と `1.7/Assemblies` の新DLL、実ゲーム挙動はまだ未確認。進入元と到着先の部屋が同じ室内／屋外扱いなら脱着しない。中継室や複数の内外境界を一つの長距離Jobで連続通過する場合は、最終目的地だけでは方向を誤判定する可能性があり、**実ゲーム受け入れ前に実際の経路セル遷移で確認・必要なら補正する**。ドアの通過方向・ルーフの有無だけに限定して万能と主張しない。
+- **現在の未達範囲と既知の実装上の制限**：C#／XML／Keyedの実装を完了し、正規ライセンスゲーム参照で1.6／1.7両版DLLをコンパイル・PRに収録した。ただし**実ゲーム起動・挙動は未検証**。進入元と到着先の部屋が同じ室内／屋外扱いなら脱着しない。中継室や複数の内外境界を一つの長距離Jobで連続通過する場合は、最終目的地だけでは方向を誤判定する可能性があり、**実ゲーム受け入れ前に実際の経路セル遷移で確認・必要なら補正する**。ドアの通過方向・ルーフの有無だけに限定して万能と主張しない。
 
 **製品化判定**：両ゲーム版でC#ビルドが通り、変更したDLLを実際にパッケージしてから、最小1回に集約した実ゲーム検証で①塗布/解除と重複ゾーン②屋外→室内→屋外のキャスト各1回③持ち込んだ泥と血の扱い④運搬Job維持・緊急時省略・セーブ再読込を確認する。実ゲーム確認前に公開可能・動作確認済みと報告しない。
+
+**ビルド証拠（同一の製品C#ソース SHA `bb70077c953a4cf13c6ecf01775006df8e4b8da5`）**：
+- RimWorld 1.6：Project [build-only #39035330411](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39035330411) SUCCESS。`1.6/Assemblies/AMJ.Culture.dll`（20,480 bytes、SHA-256 `3d2568cae26cbe73ba67424bd955cfed4725f3411a25bfad80b1e7d30e62a2ec`）。元の1.6正規Managed参照とHarmonyでコンパイルした。
+- RimWorld 1.7：Project [build-only #39035637637](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39035637637) SUCCESS。`1.7/Assemblies/AMJ.Culture.dll`（20,480 bytes、SHA-256 `fa64784c472ce8b6f1c16eeceff0f810d8b69110486adcd444b4b0165d3f62b8`）。元の1.7.4977 rev1248 Managed参照でコンパイルした。元ゲーム非変更。
+- DLLはGitHubのベース64ビルドログ→Git Blob→コミットでバイト列のまま移送。以上は**C#コンパイル成功**の証拠であり、1.6／1.7のロード、玄関ゾーンの表示・移動・進捗、血液・泥・緊急時の挙動のPASSではない。`About/About.xml`の公開向け機能説明は、実ゲーム受入前には未更新のままにする。
