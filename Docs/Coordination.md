@@ -2,6 +2,10 @@
 
 Authoritative coordination file: `main:Docs/Coordination.md`. Confirmed scope and acceptance conditions belong in `Docs/Design.md`; the actual Thought modification belongs in `Patches/AteWithoutTable.xml`.
 
+## CULTURE-1-7-IMPLEMENTATION-20261017
+
+**Status: 1.7 PRODUCT DLL BUILT / VERSION-SPLIT PACKAGE STAGED; RUNTIME ACCEPTANCE OPEN.** RimWorld 1.7.4977 original-managed [build #39015931527](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39015931527) compiled exact Culture source `bd07ceb34619a992a934ca0a7add7be1f1ae8a8b` into 9,216-byte DLL SHA-256 `96a55e102c6ab0155f4c5336466afe6d398dbcefd915486bd31bd957cdf84e58`. 1.6 version stays its original 9,216-byte DLL SHA-256 `0d944eb47a1e648acdbc13ca75948e075e5ccfd71fefe1d4196c54d5a6c5be03`. Product layout/design is recorded in owner `Docs/Design.md`. No 1.7 gameplay PASS claimed from build alone; perform **one** focused real 1.7 acceptance after package integration, not PR-triggered tests or a matrix. No Steam publication.
+
 ## CULTURE-CHARACTER-BACKGROUNDS-20261017
 
 **Status: 67 BACKGROUND RULES IMPLEMENTED / NEW 1.6 DLL BUILD PASS / SECOND-WAVE NATIVE ACCEPTANCE OPEN.** Culture now includes 43 adult and 24 Solid-child ordinary-generation restrictions; the updated 9,216-byte `AMJ.Culture.dll` SHA-256 `0d944eb47a1e648acdbc13ca75948e075e5ccfd71fefe1d4196c54d5a6c5be03` was compiled by existing isolated [build-only #39007502577](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39007502577). Formal second-wave decisions in `Docs/SFBackgroundSecondWave.md` and `Docs/Design.md`; implementation in `Patches/AnachronisticAdultBackstories.xml`, `Patches/TranshumanistGeneration.xml`, `Source/AMJ.Culture/SolidChildBioGatePatch.cs`. No game started for the second wave; MO, 1.7 and old-save load remain unverified.
