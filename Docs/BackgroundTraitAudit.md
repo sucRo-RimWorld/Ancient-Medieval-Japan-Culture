@@ -182,3 +182,28 @@ These are **optional source cohorts**, not a single installed pool, not Culture 
 **数値・ソース:** 既存成人64＋今回1＝**65**（成人XML64＋独立 `FerventResearcher72` 1）、既存幼少26＋今回1＝**27**（Solidゲート24＋Shuffled子3）。計 **90→92件**を通常生成制限。既存34件の英日改稿、六つの初期所持品置換、MOの2Traitと死亡・捕虜Thoughtの調整、Culture DLLは変更なし。元のDef名・技能・作業制限・強制Trait・既存セーブ参照、手動割当は維持する。1.6/1.7の実ゲーム最終ロード・MO併用・保存済みPawnのロードは今回**未検証**。
 
 **保留の歴史的転用：** `ChildStar74`（映像番組の子役→芸能の子弟）、`DeepSpaceMiner3`（宇宙鉱山→採掘職とOdyssey所持品）、`Architect28`（AI支援設計→歴史的な建築工事）などは、原の職業効果・作業タグが妥当であることを確認した上で日本語原稿を作成し、作者の歴史記述承認後に英語化する。これらをDef名やSF単語だけで一括禁止しない。カテゴリ不明のSolid幼少期・固有Pawn専用定義は、証拠なしにゲートへ追加しない。
+
+## 第2段階・第4修正群 — 改稿承認待ちの現代専業背景2件を通常生成制限（2026-10-17）
+
+**既存ゲームソースへの変更：** `Patches/AnachronisticAdultBackstories.xml` の成人対象カテゴリを既存64件から66件へ追加した。正規Core 1.6／1.7の**取得済み**メタデータと、Ludeon公式の[過去の英語原文コメント](https://github.com/Ludeon/RimWorld-Finnish/blob/master/Backstories/Backstories.xml)を対象ID単位で照合。現行ライセンスCoreの長文本文と旧コメントの完全一致は証明していない。
+
+| Def | 検証済み通常生成経路と機械的効果 | 元のSF/現代固有本文 | Phase 2判断 |
+|---|---|---|---|
+| `VideoProducer83` | `Solid_Adult`、`Offworld`、`Intellectual+2/Artistic+7/Crafting+4`、ManualDumb・Social禁止、強制Traitなし | 映像制作、シットコムの放送を職業とする | 映像放送という独立した業態は中世にない。舞台芸能・絵巻・物語制作のような既存職能と元のSocial禁止や技能配分との整合が未確定のため、歴史改稿まで普通のPawnの新規選択を制限する。 |
+| `CosmeticSurgeon36` | `Solid_Adult`、`Offworld;Pirate`、`Intellectual+3/Medicine+8/Artistic+6`、Cooking禁止、強制 `Abrasive=0` | 化粧整形外科の商業診療、現代美容手術 | 当時の中世日本の医師・薬師一般を禁止するものではない。医師との整合ある転用が判断できるまでは、現代的な美容整形職を通常生成しない。 |
+
+両IDは元Coreの `Adulthood`、生成カテゴリあり。1.6/1.7メタデータの対象行は同一。定義や技能、強制Traitは削除・変更しない。既存Pawnやセーブ中の参照も保持する。今回のカテゴリ置換は歴史改稿が承認された場合に解除・再利用できる暫定的生成処理であり、完全削除ではない。
+
+**今回の計数：** 成人 **67**＝成人XML66＋独立 `FerventResearcher72` 1、幼少27＝Solid名前ゲート24＋Shuffled 3、合計 **94件** の通常生成制限。既存34件の史実改稿は未変更。新規日本独自Def・ビルド・ネイティブゲーム起動は行わない。現在の正規Core長文、実ゲーム読み込み、MO併用を別途最終受入れで確認する。
+
+### 第2段階・既存Traitの強制経路の結論（文章承認を除く）
+
+再棚卸しを行わず第1段階の正規Core 1.6／1.7メタデータで **強制Traitを含む対象背景6件**を特定した。各対象行は両バージョンで一致。
+
+| TraitDef | 元から強制する既存背景 | 技術的な現況・判断 |
+|---|---|---|
+| `Transhumanist` | `FerventResearcher72` の `Transhumanist=0` | 既存成人カテゴリ除外と `commonality=0` を維持。人工義体への欲求を再導入する通常生成経路を今回作らない。Def自体はセーブ互換のため保持。 |
+| `BodyPurist` | `HunterOfTheKing53`、`TestSubject90` の `BodyPurist=0` | 後者は既にSF成人カテゴリ制限済み。前者は動物に対する恐怖を含む狩猟背景として史実改稿可能性があり、義体化願望とは逆の特性。共通効果・元強制付与をこの段階で機械的に削らない。本文適合は最終一括確認へ。 |
+| `DrugDesire` | `DischargedSoldier53` `=2`、Solid幼少 `MechanoidHacker93` `=1`、`VideoGamer16` `=2` | 幼少2件は既存ゲート24件に含まれる。成人は既存歴史的改稿済み。ドラッグの全面停止を行わず、娯楽・緊急心情対処・依存・離脱の既存効果と強制付与を維持。嗜好品・薬物の変更が確定した時に関連仕様を照合する。 |
+
+`BodyPurist`、`DrugDesire` の強制付与を全削除すると、セーブ済みPawn・意図された強制特性・DrugPolicyのプレイ面に副作用が出る。よってPhase 2の文章以外の技術判断は**元のTrait効果・強制経路維持**とする。元のTraitの日本語表示や歴史語義の改稿案は他の背景本文と一括確認する。既に修正した `Greedy` / `Jealous` の共同寝所効果、MOの戦士・古参兵Thought処理は変更しない。新規日本独自特性は第3段階まで追加しない。

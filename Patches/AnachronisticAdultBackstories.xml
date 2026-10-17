@@ -458,4 +458,18 @@
     <xpath>Defs/BackstoryDef[defName="IllegalShipwright76"]/spawnCategories</xpath>
     <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
   </Operation>
+  <!-- Stage 2 original ordinary adult source corrections: historical equivalents
+       cannot retain these particular narratives without new Japanese-first
+       editorial review. Neither defName, work limits nor forced traits change.
+       Both were original 1.6/1.7 Solid_Adult entries with nonempty categories.
+       Do not infer that performers, makers or traditional physicians in general
+       are banned from the period. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="VideoProducer83"]/spawnCategories</xpath>
+    <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="CosmeticSurgeon36"]/spawnCategories</xpath>
+    <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
+  </Operation>
 </Patch>

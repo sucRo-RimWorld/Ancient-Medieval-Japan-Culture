@@ -469,3 +469,13 @@ The existing `LoadFolders.xml` selects these version-specific assemblies. The 1.
 既存原Vanilla 1.6/1.7でカテゴリ・slot・Shuffled生成経路が一致する `TestSubject15`（幼少期：SF超兵士施設）と `IllegalShipwright76`（成人期：宇宙船の違法エネルギー兵装）を、それぞれ既存 `Patches/AnachronisticShuffledChildBackstories.xml`、`Patches/AnachronisticAdultBackstories.xml` の `spawnCategories=AMJ_CultureExcluded` に追加。採否は元の未来的原文に対するものであり、人物の一般的な船大工職、戦傷者や子ども全般を排除する判断ではない。技能・作業制限・元Def・旧セーブ参照・追加Traitは変更しない。史実に沿う日本語背景文章は未承認であり、英訳や新規背景作成はしない。分類根拠と原カテゴリ：[BackgroundTraitAudit](BackgroundTraitAudit.md#第2段階第3修正群--生成経路が確定したshuffled背景2件2026-10-17)。
 
 **更新後の正本計数：** 成人65（成人XML64＋独立XML1）、幼少27（Solid24＋Shuffled3）、生成制限合計**92**、既存歴史的改稿**34**。静的原ソース照合のみで、今回のRimWorld実機確認はなし。第2段階の残る史実改稿候補や固有のみの生成経路問題は保留。日本独自新規背景・特性は第3段階まで不可。
+
+### 第2段階・第4修正群 — 現代の職業背景2件とTraitの強制経路を整理（2026-10-17）
+
+`VideoProducer83` と `CosmeticSurgeon36` は、元のCore 1.6/1.7の `Solid_Adult` と通常生成カテゴリを対象別に確認した。映像制作・現代美容整形という独立業態をそのまま許可できないため、原の人物能力・Def・既存Pawnを保持したまま `Patches/AnachronisticAdultBackstories.xml` の通常生成カテゴリを一時的に制限。既存の芸能・文筆・医師一般は除外しておらず、適切な史実本文・技能整合を備えた改稿で再利用可能。証拠、元カテゴリ・技能、付与Trait：[BackgroundTraitAudit 第4修正群](BackgroundTraitAudit.md#第2段階第4修正群--改稿承認待ちの現代専業背景2件を通常生成制限2026-10-17)。
+
+**現行計数：成人67（XML66＋別XML1）、幼少27（Solidゲート24＋Shuffled3）、通常生成制限94。既存史実改稿34。** 版別の正規メタデータは一致するが、現在の配布Core長文・1.6/1.7ロード後動作・旧セーブは未検証。
+
+**既存Traitの作用・強制付与：** 再取得や829件再監査は行わず、原Coreの元の強制割当6背景に対する `Transhumanist`、`BodyPurist`、`DrugDesire` の経路を確定した。 `Transhumanist` は自然付与 `commonality=0` と強制背景 `FerventResearcher72` のカテゴリ除外を維持。 `BodyPurist` は通常の義体化欲求とは別の反対特性であり、他の元背景との整合判断まではそのTraitと2件の強制割当を保持する。 `DrugDesire` は既存成人 `DischargedSoldier53` と、ゲート済みSolid幼少2件から強制されるので、緊急心情対処・依存・離脱等を保持する他作業と衝突させず元効果と強制割当を維持する。 `Greedy` / `Jealous`、MO Fighter/Veteranの既存パッチは変更なし。
+
+**文章承認の時期：** 作者の2026-10-17指示により、既存背景・特性の日本語改稿案の確認はPhase 2の文章以外の修正・生成経路整理が終わった段階で**まとめて一回**行う。未承認の日本語本文を製品XMLへ適用したり独自英訳を先行実装しない。日本独自の新規背景・特性は引き続きPhase 3。不要なRimWorld起動・CI自動ゲームテストは避け、成果物変更がまとまった段階で必要最小限の1回の実機受入れを行う。
