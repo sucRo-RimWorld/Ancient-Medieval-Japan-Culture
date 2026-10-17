@@ -276,3 +276,11 @@ The thirty target DefNames: `AerospaceEngineer44`, `ComputerEngineer10`, `Comput
 **選定条件:** Ludeonの旧英語原文コメント2系統とユーザー所有Core 1.6/1.7の正規メタデータ（`VanillaCoreCharacterDefsSourceAudit20261016.md`）の`slot`・生成カテゴリ・技能・職務制約を突き合わせた。英語コメントと現行版の原文が完全一致することは保証しない。許可した職業の「名称だけ」を変えず、各行の能力・不適性に説明文を合わせた。日本文化に固有でない職業名を史実性の根拠として自動採用しない。
 
 **影響・受け入れ範囲:** 当初の67件（成人43／幼少24）の除外ルールや`Transhumanist`・薬物・座席・既存Assemblyには一切変更を加えない。今回の5件は**除外からの復帰ではなく、新たな改稿のみ**（いずれも既存の除外リストには無い）。英語・日本語の解決後`BackstoryDef`タイトル・短縮名・説明が一致すること、5件とも元のカテゴリ・スキル等が不変であることを最終統合検証で確認する。新DLLのビルドは不要。**今回の日本語／英語表示は実ゲーム未検証**。現行以外の翻訳（第三言語）や原Defを再パッチする他Modについて、変更後表示の保証はない。旧セーブで同じDefを参照できる設計だが、セーブ実読み込みは未検証。
+
+## RimWorld 1.7 バージョン別実装（2026-10-17）
+
+製品Modの対応版を1.6と1.7に分離する。RimWorld 1.6の既存コンパイル済みDLL（9,216バイト、SHA-256 `0d944eb47a1e648acdbc13ca75948e075e5ccfd71fefe1d4196c54d5a6c5be03`）は一切変更せず `1.6/Assemblies/AMJ.Culture.dll` に移す。1.7用DLL（9,216バイト、SHA-256 `96a55e102c6ab0155f4c5336466afe6d398dbcefd915486bd31bd957cdf84e58`）は `1.7/Assemblies/AMJ.Culture.dll` に置く。共通の `Patches/`、`Languages/`、`About/` はルートに残し、`LoadFolders.xml` で `v1.6`／`v1.7` のロード先を明示する。**旧ルート `Assemblies/AMJ.Culture.dll` を残すと1.7に重複DLLが混入するため削除する。**
+
+1.7 DLLは[Projectのビルド専用実行 #39015931527](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39015931527) で、Cultureソース `bd07ceb34619a992a934ca0a7add7be1f1ae8a8b`、正規Linux RimWorld `1.7.4977 rev1248` の `Assembly-CSharp.dll`（SHA-256 `3d4f1ddfe71bd8760cb488255e3bdeac9366f537dc1ef813cc6f8d09824e2da9`）、UnityStubs及び正規Harmony 3.0を使ってビルドした。食事先選択と固定人物生成制限の2つの製品C#を含む。ビルド実行ではゲームを起動せず、正規ゲームを変更しない。
+
+**実ゲーム受け入れ基準（未確認）:** 1.7でロードしたときに正しいDLLだけが有効であること、食事のテーブルなしイス着席・Comfort・完食、テーブル隣接イス優先、イスなし時の立ち食い、`AteWithoutTable`の中立化、成人43・固定幼少24の生成除外と通常Pawn生成、英日表示の原定義、実行時ERROR0を必要範囲で確認する。1.6の旧版実ゲームPASSや1.7への単純コンパイル成功を1.7の実ゲームPASSに転用しない。DLC・MO・他家具・旧セーブについて未検証を維持する。
