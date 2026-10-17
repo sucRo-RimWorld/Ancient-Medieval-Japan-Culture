@@ -455,3 +455,9 @@ The existing `LoadFolders.xml` selects these version-specific assemblies. The 1.
 **第2修正群：** `AlcoholicTrucker93`、`BloodgameSurvivor6`、`MedicalScientist16` の成人3件を、既存 `Patches/AnachronisticAdultBackstories.xml` の通常生成カテゴリ制限へ追加。原文理由、正規1.6/1.7メタデータによる `Solid_Adult`/カテゴリ確証、技能・WorkDisableを保持する根拠は[人物背景監査の第2修正群](BackgroundTraitAudit.md#第2段階第2修正群--一次分類で見逃されたsf背景3件の生成制限2026-10-17)を参照。貨物輸送・医療・戦歴という一般的な職業自体の全面禁止ではない。未承認の日本語改稿や追加日本独自Defは書き込まない。旧セーブの定義と初期所持品・Traitは変更しない。
 
 **新計数：** 成人61→**64**、幼少26維持、生成制限総数87→**90**、歴史的改稿34件維持。1.6/1.7現在の本文と旧公式アーカイブ原文の完全一致は未確定。実ゲームは未起動で、最終的なロード結果・生成率の受け入れは未了。第2段階全体は継続中。
+
+### 第2段階・第3修正群 — ShuffledのSF背景2件を通常生成から制限（2026-10-17）
+
+既存原Vanilla 1.6/1.7でカテゴリ・slot・Shuffled生成経路が一致する `TestSubject15`（幼少期：SF超兵士施設）と `IllegalShipwright76`（成人期：宇宙船の違法エネルギー兵装）を、それぞれ既存 `Patches/AnachronisticShuffledChildBackstories.xml`、`Patches/AnachronisticAdultBackstories.xml` の `spawnCategories=AMJ_CultureExcluded` に追加。採否は元の未来的原文に対するものであり、人物の一般的な船大工職、戦傷者や子ども全般を排除する判断ではない。技能・作業制限・元Def・旧セーブ参照・追加Traitは変更しない。史実に沿う日本語背景文章は未承認であり、英訳や新規背景作成はしない。分類根拠と原カテゴリ：[BackgroundTraitAudit](BackgroundTraitAudit.md#第2段階第3修正群--生成経路が確定したshuffled背景2件2026-10-17)。
+
+**更新後の正本計数：** 成人65（成人XML64＋独立XML1）、幼少27（Solid24＋Shuffled3）、生成制限合計**92**、既存歴史的改稿**34**。静的原ソース照合のみで、今回のRimWorld実機確認はなし。第2段階の残る史実改稿候補や固有のみの生成経路問題は保留。日本独自新規背景・特性は第3段階まで不可。
