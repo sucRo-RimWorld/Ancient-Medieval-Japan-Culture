@@ -20,7 +20,72 @@ namespace AMJ.Culture.BeddingPoC
         public bool AutoFold = true;
         public int PackCount;
         public int DeployCount;
+        private int reloadPhase;
+        private int reloadFrames;
         public ProbeSleepingPlace(Game game) { }
+
+        // Reload evidence runs in a second original-game process, not in Pickle.
+        // A small disposable state machine avoids double-triggering install Jobs.
+        public override void GameComponentUpdate()
+        {
+            if (System.Environment.GetEnvironmentVariable("AMJ_BEDDING_POC16_RELOAD") != "1" ||
+                reloadPhase == 3 || Find.CurrentMap == null || Find.TickManager == null)
+                return;
+            reloadFrames++;
+            if (reloadFrames < 40) return;
+            try {
+                if (reloadPhase == 0) {
+                    bool intact = Owner != null && Owner.Spawned &&
+                        Owner.Map == Find.CurrentMap && Position.IsValid &&
+                        FoldedBed != null && FoldedBed.Spawned &&
+                        !FoldedBed.Destroyed && DeployedBed == null &&
+                        AutoFold && PackCount >= 2 &&
+                        Position.GetEdifice(Find.CurrentMap) == null &&
+                        (Position + IntVec3.North).GetEdifice(Find.CurrentMap) == null;
+                    Log.Message("AMJ_BEDDING_POC16_RELOAD_STATE intact=" + intact +
+                        " owner=" + (Owner == null ? "null" : Owner.ThingID) +
+                        " folded=" + (FoldedBed == null ? "null" : FoldedBed.ThingID) +
+                        " position=" + Position + " packed=" + PackCount);
+                    if (!intact) throw new InvalidOperationException("F5 folded place failed genuine save reload");
+                    Find.TickManager.CurTimeSpeed=TimeSpeed.Ultrafast;
+                    MinifiedThing mini=FoldedBed;
+                    mini.DeSpawn(DestroyMode.Vanish);
+                    if(!Owner.inventory.innerContainer.TryAdd(mini))
+                        throw new InvalidOperationException("F5 reloaded bed cannot be held");
+                    var blueprint=GenConstruct.PlaceBlueprintForInstall(mini,Position,Find.CurrentMap,
+                        Rot4.South,Faction.OfPlayer);
+                    if(blueprint==null) throw new InvalidOperationException("F5 reloaded placement rejected");
+                    JobDef job=DefDatabase<JobDef>.GetNamed("AMJ_BeddingPocDeploy");
+                    Owner.jobs.StartJob(JobMaker.MakeJob(job,mini,blueprint),JobCondition.InterruptForced);
+                    reloadPhase=1;
+                }
+                else if(reloadPhase==1 && DeployedBed != null && DeployedBed.Spawned &&
+                    Owner.ownership.OwnedBed == DeployedBed && DeployedBed.Position == Position)
+                {
+                    Owner.jobs.StartJob(JobMaker.MakeJob(JobDefOf.LayDown,DeployedBed),
+                                        JobCondition.InterruptForced);
+                    reloadPhase=2;
+                }
+                else if(reloadPhase==2 && Owner.CurJob != null &&
+                    Owner.CurJob.def==JobDefOf.LayDown &&
+                    Owner.GetPosture()==PawnPosture.LayingInBed)
+                {
+                    Log.Message("AMJ_BEDDING_POC16_RELOAD_OK originalOwner=" +
+                        Owner.ThingID + " site=" + Position + " deployCount=" +
+                        DeployCount + " observedRealRest=true");
+                    reloadPhase=3;
+                    UnityEngine.Application.Quit();
+                }
+                else if(reloadFrames>2200)
+                    throw new InvalidOperationException("F5 timed out waiting for redeploy/rest");
+            }
+            catch(Exception e) {
+                reloadPhase=3;
+                Log.Error("AMJ_BEDDING_POC16_RELOAD_FAIL " + e);
+                UnityEngine.Application.Quit();
+            }
+        }
+
         public override void ExposeData()
         {
             Scribe_References.Look(ref Owner, "owner");
@@ -65,6 +130,20 @@ namespace AMJ.Culture.BeddingPoC
                     + " owner=" + pawn.ThingID);
             };
             yield return done;
+        }
+    }
+
+    [StaticConstructorOnStartup]
+    public static class PocReloadBoot
+    {
+        static PocReloadBoot()
+        {
+            if (System.Environment.GetEnvironmentVariable("AMJ_BEDDING_POC16_RELOAD") != "1")
+                return;
+            LongEventHandler.ExecuteWhenFinished(delegate {
+                Log.Message("AMJ_BEDDING_POC16_RELOAD_START");
+                GameDataSaveLoader.LoadGame("AMJ_BeddingPoc16_Folded");
+            });
         }
     }
 
@@ -233,6 +312,45 @@ namespace AMJ.Culture.BeddingPoC
                 Log.Message("AMJ_BEDDING_POC16_F4_OK assigned="+pawn.ownership.OwnedBed
                     +" packed="+place.PackCount+" deployed="+place.DeployCount);
                 Log.Message("AMJ_BEDDING_POC16_F1_F4_NATIVE_OK");
+                // A second real Uninstall leaves the compact item spawned
+                // in the map, where Scribe can save it and the owner reference.
+                bed = place.DeployedBed;
+                pawn.Map.designationManager.AddDesignation(
+                    new Designation(bed, DesignationDefOf.Uninstall));
+                pawn.jobs.StartJob(JobMaker.MakeJob(JobDefOf.Uninstall,bed),
+                                   JobCondition.InterruptForced);
+            });
+            bool packedForSave = false;
+            for(int i=0;i<90;i++) {
+                await ctx.WaitTicks(25);
+                await GameThread.Run(() => {
+                    if (!bed.Spawned && !packedForSave) {
+                        foreach(Thing thing in pawn.Map.listerThings.ThingsInGroup(
+                            ThingRequestGroup.MinifiedThing))
+                            if(thing is MinifiedThing m && m.GetInnerIfMinified()==bed) {
+                                place.FoldedBed=m;place.DeployedBed=null;
+                                place.PackCount++;
+                                packedForSave=true;
+                                break;
+                            }
+                    }
+                });
+                if(packedForSave)break;
+            }
+            await GameThread.Run(() => {
+                ctx.Require(packedForSave,"F5 genuine second Uninstall failed");
+                ctx.Require(place.Owner==pawn && place.Position==site &&
+                            place.FoldedBed!=null && place.FoldedBed.Spawned,
+                            "F5 pre-save logical site lost");
+                GameDataSaveLoader.SaveGame("AMJ_BeddingPoc16_Folded");
+                string savePath=GenFilePaths.FilePathForSavedGame(
+                    "AMJ_BeddingPoc16_Folded");
+                ctx.Require(System.IO.File.Exists(savePath) &&
+                   new System.IO.FileInfo(savePath).Length>1024,
+                   "F5 original RimWorld save not written");
+                Log.Message("AMJ_BEDDING_POC16_SAVED_FOLDED owner="+pawn.ThingID+
+                    " position="+site+" packed="+place.PackCount+
+                    " bytes="+new System.IO.FileInfo(savePath).Length);
             });
         }
     }
