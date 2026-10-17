@@ -49,4 +49,13 @@
       <MedicineHerbal>3</MedicineHerbal>
     </value>
   </Operation>
+  <!-- Smuggler23: prevent a normally generated smuggler from spawning
+       with synthetic recreational Flake; retain the existing count as
+       modest generic trade coinage, preserving the old original Def/Thing. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Smuggler23"]/possessions/Flake</xpath>
+    <value>
+      <Silver>20</Silver>
+    </value>
+  </Operation>
 </Patch>
