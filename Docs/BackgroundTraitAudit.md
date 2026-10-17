@@ -246,3 +246,8 @@ These are **optional source cohorts**, not a single installed pool, not Culture 
 **Rare成人期4件：** Core 1.6/1.7元メタデータで `BackstoryDefs/Solid/Solid_Rare.xml` に存在し、元の`spawnCategories` を保持する現代専業の `JoeCustomAdulthood`（game developer; Offworld/Scientist）、`LiamCustomAdulthood`（simulation developer; Offworld/Scientist）、`OskarCustomAdulthood`（mod designer; Outlander）、`TynanCustomAdulthood`（game developer; Pirate）のみ、成人向けカテゴリ制限XMLへ追加した。Feyのゲーム運営、Mateの大道芸、Nathanの採掘等ほかのRare人物は名称だけで排除しない。Liamの `Industriousness=1`、Tynanの `Industriousness=-2`、元スキル・仕事制限・定義・旧セーブ参照は維持する。この4件は時代不整合を元の正式な英語タイトルでも確認できるため、アーカイブの長文欠落によって職業判断を捏造してはいない。
 
 **正本の計数・製品の状態を区別：** 既存99件（成人72、幼少27）→**ソース変更対象111件**（成人76＝通常カテゴリ75＋独立 `FerventResearcher72` 1、幼少35＝Solidゲート32＋Shuffledカテゴリ3）。ただし**1.6/1.7パッケージ済みのDLLは今回のC#変更より前の版**なので、現時点のゲーム実装に含まれる新しい幼少8件のゲートは**ビルド・両版DLL統合待ち**。今回の新規XMLの成人4件は製品XMLを更新すれば有効となり得るが、ロード後動作は未検証。**ゲームで111件が適用済みと報告しないこと**。既存34件の史実改稿と作者一括承認待ち日本語原稿35件は不変。1.6/1.7ネイティブゲーム受け入れと現在の原本文確認は最後に一括実施する。余計な自動テスト・公開・新規第3段階Defなし。
+
+
+### 第6修正群の製品バイナリ収録追記（2026-10-17）
+
+第6修正群時点で残っていた「新Solid幼少期8件の製品DLL未収録」は、1.6／1.7実ゲーム正規Managed参照を使った**ビルド専用**Project #39041617611／#39041895169が両方SUCCESSとなり、該当バイナリのGitBlob作成・Culture本体の版別Assemblies置換により解消した。元ソースは共通 `366888bccc897b25ee714e1092c00cc3f7080ab2`（Solid幼少期32件）、1.6 SHA-256 `688c32a5ab5b1dbefe73ccffc2ebcb2287156cf565018c7e1ed60e0167161b9d`、1.7 SHA-256 `7fb340337eaf9c998e3beb866b21ebcc92e9135201b6ca07c287ae150e8fb004`。**ソース111件が製品のロード済みゲームで有効と検証した意味ではない。** ゲーム生成／MO／旧セーブ確認と一括未承認日本語原稿35件は保留を維持する。

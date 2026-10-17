@@ -624,3 +624,14 @@ Cultureは人物背景・特性・心情・食事習慣・嗜好品・玄関の�
 低頻度の開発者由来 `Solid_Rare` 9組もすべて通常生成不能とは断言できない。元の `spawnCategories` をもつ成人期で、明確に現代の`game developer`／`simulation developer`／`mod designer`を表す `JoeCustomAdulthood`、`LiamCustomAdulthood`、`OskarCustomAdulthood`、`TynanCustomAdulthood` の**4件のみ** `Patches/AnachronisticAdultBackstories.xml` の通常カテゴリ制限に追加。それ以外のRareの商売・採掘・古今の遊戯職は自動で削除しない。1.6/1.7正規Core元定義のカテゴリ、元の強制Trait（VatgrownAssassin20 `Psychopath=0`、ReclusiveProdigy96 `TooSmart=0`、Liam `Industriousness=1`、Tynan `Industriousness=-2`）は維持する。個別証拠と全ID：[人物背景監査 第6修正群](BackgroundTraitAudit.md#第2段階第6修正群--solid幼少期8件とsolid_rare成人期4件2026-10-17)。
 
 **計数とビルド境界：** 元の制限99→**ソース上111件**（成人76＝カテゴリXML75＋独立1、幼少35＝Solid C#32＋Shuffled XML3）。**今回新規の幼少8件はC#ソースにのみ存在し、配布パッケージの1.6／1.7 DLLにはまだ含まれない。** そのためプレイ可能な製品で111件が有効になったとは報告しない。1.6/1.7両DLLを、玄関・薬物生成の並行変更を含む**最新Cultureソース全体**から改めてビルド・実物統合する必要がある。過去の製品DLLで上書きしない。実ゲーム受け入れは、残る日本語原稿の一括承認と製品反映後に集約する。既存改稿34件・一括未承認原稿35件は変更なし。日本独自の新規Defは第3段階まで追加しない。
+
+
+### 第2段階・第6修正群の1.6／1.7製品DLLビルド完了（2026-10-17、実ゲーム未検証）
+
+先行する「新しいSolid幼少期8件が製品DLLに未収録」という記述を、**本項の実物ビルド結果で更新**する。過去のCulture PR #78の両版製品DLLは、入口機能自体のビルドが成功していたが、使用された固定ソース `96dedd1e3df1c23f55a09fe04d713834c2e3b0a5` には `SolidChildBioGatePatch.cs` の制限が**24件しかない**（Culture PR #74版は32件）。新しい32件をすべて含む、同じCultureソース `366888bccc897b25ee714e1092c00cc3f7080ab2` にProjectの**既存手動起動・ビルド専用**ワークフローを固定し、1.6／1.7の両方を正規ライセンスゲームの参照DLLで再コンパイルした（Project PR #648 `e7f9347626e52b87cf017a6a7c9a2e34b606d490`）。
+
+- **RimWorld 1.6:** Project [build-only #39041617611](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39041617611) SUCCESS、出力 `AMJ.Culture.dll` 24,064 bytes、SHA-256 `688c32a5ab5b1dbefe73ccffc2ebcb2287156cf565018c7e1ed60e0167161b9d`、GitBlob `296e0a6d02b2491dc1108d8d6a530bc81273750b`。
+- **RimWorld 1.7:** Project [build-only #39041895169](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39041895169) SUCCESS、出力 `AMJ.Culture.dll` 24,064 bytes、SHA-256 `7fb340337eaf9c998e3beb866b21ebcc92e9135201b6ca07c287ae150e8fb004`、GitBlob `909598f3fd73673c95187d1dac4d355b1748b199`。
+- **バイナリ実物：** 両GitBlobを元のバイト列のまま `1.6/Assemblies/AMJ.Culture.dll`／`1.7/Assemblies/AMJ.Culture.dll` に置換し、ソース変更用PRではなく別のバイナリ統合PRへ収録。元のビルド対象と統合元Cultureとの差分は、開始時点で製品C#に影響しない `Tests/Drug16/DrugSupplySteps.cs` の追加のみと確認した。玄関機能、初期薬物依存抑制、既存共同寝所などの並行C#も同じソースから取り込まれており、旧DLLへの巻き戻しを防止した。
+
+**判定：** ソース生成制限111件（成人76＋幼少35）に必要な**製品バイナリのビルド／統合準備は完了**。ただしRimWorld 1.6／1.7の実ゲームロード・Pawn生成・旧セーブ・MO併用は一度もこの新バイナリで検証していない。**ビルド成功をゲーム動作PASSと呼ばない。** 作者が指定した残る日本語改稿35件の一括確認・承認／翻訳実装と、実ゲームの最小集約検証は引き続きPhase 2の残作業。Steamアップロード・新しい第3段階Defは実行しない。
