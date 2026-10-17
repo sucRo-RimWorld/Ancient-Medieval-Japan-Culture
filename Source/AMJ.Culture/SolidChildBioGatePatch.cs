@@ -26,7 +26,19 @@ namespace AMJ.Culture
                 "HackerKid98",
                 "HackerProdigy84",
                 "MechanoidHacker93",
-                "VideoGamer16"
+                "VideoGamer16",
+                "FallenProdigy40",
+                "ChildResearcher32",
+                "HeadjackAddict4",
+                "WealthyStudent59",
+                "CorpBredStudent54",
+                "CorpStudent95",
+                "OffworldRecruit91",
+                "AwkwardNerd48",
+                "DataDecoder39",
+                "Bookworm3",
+                "FarmMechanic1",
+                "DiscardedYouth93"
             };
 
         public static void Postfix(ref bool __result, ref PawnBio result)

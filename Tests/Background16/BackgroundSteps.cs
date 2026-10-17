@@ -24,7 +24,8 @@ namespace AMJ.Culture.Test
             "BattleMechanic27", "BattlefieldTech52", "CombatMedtech59",
             "CorpResearcher71", "EngineeredPilot75", "GeneticEngineer89",
             "GeneticScientist66", "MechWarVeteran77", "NetworkEngineer34",
-            "Roboticist1", "Roboticist41", "RocketEngineer53", "RocketPioneer19"
+            "Roboticist1", "Roboticist41", "RocketEngineer53", "RocketPioneer19",
+            "CasketBuilder52",             "ChiefEngineer62",             "ColonyEngineer7",             "CorpResearcher93",             "ExecutiveOfficer5",             "BiosphereManager95",             "ArtifactHunter48",             "ShadowMarine63",             "GameTester77",             "Adventurer19",             "Explorer49",             "ExplorerWriter10"
         };
 
         private static readonly HashSet<string> Child = new HashSet<string>
@@ -32,7 +33,8 @@ namespace AMJ.Culture.Test
             "ComputerGeek62", "GlitterworldKid85", "GlitterworldNerd20",
             "MechanoidNerd10", "SpaceCadet77", "SpaceFanboy22",
             "SpaceNerd97", "CorporateSlave22", "HackerKid98",
-            "HackerProdigy84", "MechanoidHacker93", "VideoGamer16"
+            "HackerProdigy84", "MechanoidHacker93", "VideoGamer16",
+            "FallenProdigy40",             "ChildResearcher32",             "HeadjackAddict4",             "WealthyStudent59",             "CorpBredStudent54",             "CorpStudent95",             "OffworldRecruit91",             "AwkwardNerd48",             "DataDecoder39",             "Bookworm3",             "FarmMechanic1",             "DiscardedYouth93"
         };
 
         private static Task OnGameThread(Action action)
@@ -70,7 +72,7 @@ namespace AMJ.Culture.Test
             await ctx.WaitFrames(2);
             await OnGameThread(delegate
             {
-                ctx.Require(Adult.Length == 31 && Child.Count == 12,
+                ctx.Require(Adult.Length == 43 && Child.Count == 24,
                     "Incorrect feature population");
                 foreach (string id in Adult)
                 {
@@ -148,7 +150,7 @@ namespace AMJ.Culture.Test
                 object[] retained = { true, allowed };
                 method.Invoke(null, retained);
                 ctx.Require((bool)retained[0] && ReferenceEquals(retained[1], allowed),
-                    "Historically allowed fixed biography changed");
+                    "Non-blocklisted fixed biography changed");
                 Log.Message("AMJ_CULTURE_BACKGROUNDS16_SOLID_OK blocked="
                     + blocked.childhood.defName + " allowed=" + allowed.childhood.defName);
 
