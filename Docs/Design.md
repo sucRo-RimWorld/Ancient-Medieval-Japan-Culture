@@ -52,6 +52,47 @@ This table **does not** approve each drug as historically appropriate. It specif
 
 **Status:** The separation of alcohol disposition/tolerance/dependence, preservation of emergency drug play, non-destructive migration, and exclusion of anachronistic *new* Transhumanist generation are accepted design direction. Per-substance replacements, doses, craft trees, spawn modifiers, `DrugDesire` replacement effects, final Backstory category patching and all runtime outcomes remain **unapproved/unimplemented**.
 
+## Chair-only meals — revised implementation scope (2026-10-17)
+
+**Current author requirement supersedes the enza-only route:** Existing usable chairs
+(Vanilla and MO included) must be eligible ordinary eating destinations **with no
+adjacent table**. The aim is actual seated eating/Comfort, not merely neutralizing
+`AteWithoutTable`. This rule applies to any existing valid sit-capable building;
+it does **not** require creating/approving an enza, changing furniture artwork,
+making a picnic zone, or introducing a new table or flooring mechanic.
+
+**Smallest bounded implementation:** For ordinary `JobDefOf.Ingest`, preserve the
+original ingestion travel Toil and first allow Vanilla table eating whenever a
+reachable `SurfaceType.Eat` table is within the food's chair-search radius.
+Only without a reachable eating table, find a normal owned, socially proper,
+unforbidden, safe, accessible, unreserved `isSittable` chair within that
+radius. Use `ReserveSittableOrSpot` plus destination reservation and pathing;
+if no chair is available, run the original Toil. Do not edit
+`GenGrid.HasEatSurface`, `TryFindChairOrSpot` globally, `FinalizeIngest`,
+food radius, dining-room rewards, Comfort rates, or any non-ingest Job.
+The existing `AteWithoutTable=0` Thought remains independent.
+
+**Evidence / remaining gate:** A one-pawn experimental chair-only ingestion
+route completed with Comfort gain and food consumption in actual 1.7 source
+run #38899711992 (Project research). PR #6's different enza-only 1.6
+implementation did not pass its first loaded-game scenario and is not an
+accepted candidate for this general seating requirement. The generalized
+source in `Source/AMJ.Culture/TablelessChairMealPatch.cs` is **not yet
+compiled, packaged or runtime-tested**. Compile against genuine RimWorld 1.6
+managed assemblies, stage matching DLL and Harmony dependency, and then
+perform **one consolidated focused** acceptance (table-free chair, table
+priority, no-chair fallback, Comfort, meal completion, existing Thought and
+dining-room positives, zero runtime ERROR); test 1.7 only separately for
+claimed compatibility. No new research harness, repeated game startup or
+furniture texture work before usable implementation. Any conflict with other
+Ingest patches needs an actual identified mod/behavior, not speculative
+open-ended audits.
+
+**Boundary:** The historically appropriate enza is still an optional
+later furniture candidate requiring its own materials, artwork and balance
+acceptance. The change here concerns the *seat-selection rule for existing
+furniture*, not author acceptance of any new furnishing.
+
 ## Scope of this prototype
 
 This first source-only prototype changes **only** the existing `AteWithoutTable` Thought mood stage to `0`. Preserve the same ThoughtDef identity; do not add a compensating mood buff, hide a zero-effect memory from the UI, or alter the food Job, seating, rooms, nutrition, filth, and other Thoughts.
