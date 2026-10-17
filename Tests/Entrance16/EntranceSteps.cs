@@ -55,8 +55,14 @@ namespace AMJ.Culture.Test
 
         private static object Call(object owner, string method, params object[] args)
         {
-            return owner.GetType().GetMethod(method, BindingFlags.Instance | BindingFlags.Public)
-                .Invoke(owner, args);
+            // RimWorld designators may overload the same operation name.
+            // Resolve the exact parameters rather than throwing AmbiguousMatchException.
+            Type[] parameters = new Type[args.Length];
+            for (int n = 0; n < args.Length; n++)
+                parameters[n] = args[n].GetType();
+            MethodInfo target = owner.GetType().GetMethod(method, parameters);
+            if (target == null) throw new MissingMethodException(owner.GetType().FullName, method);
+            return target.Invoke(owner, args);
         }
 
         private static bool Barefoot(object state, Pawn pawn)
