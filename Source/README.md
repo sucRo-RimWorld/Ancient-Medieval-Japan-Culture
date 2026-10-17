@@ -1,9 +1,9 @@
 # Culture chair-only dining adapter
 
-**Implementation state:** The current RimWorld 1.6 main assembly is
+**Implementation state:** Culture has version-selected 1.6 and 1.7 assemblies. The 1.7 DLL (SHA-256 `96a55e102c6ab0155f4c5336466afe6d398dbcefd915486bd31bd957cdf84e58`) was built from original RimWorld 1.7.4977 in [Project #39015931527](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39015931527); native gameplay acceptance is pending. The existing RimWorld 1.6 assembly is
 9,216 bytes (SHA-256
 `0d944eb47a1e648acdbc13ca75948e075e5ccfd71fefe1d4196c54d5a6c5be03`);
-the generic chair adapter source is unchanged. With the previous 8,704-byte
+the generic chair adapter source is unchanged. Versioned binaries load via `LoadFolders.xml`; no root `Assemblies` binary is shipped. With the previous 8,704-byte
 DLL (SHA-256 `2fa6ab6429bd9f81d48633bea0998b47c7255fbb8658b73addc697d8ddf24010`),
 [Vanilla run #39005539686](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39005539686)
 proved free Stool eating/Comfort, table-adjacent seat precedence, and no-seat
