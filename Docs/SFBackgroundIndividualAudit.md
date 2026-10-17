@@ -111,6 +111,14 @@ These are exact original 1.6/1.7 **metadata identifiers** paired with archived E
 
 For the already-implemented `FerventResearcher72` case, see `Patches/TranshumanistGeneration.xml`; preserving its original Def for saves remains mandatory. `MechanoidHacker93` and `VideoGamer16` are **Solid_Child** records with no explicit spawnCategories in the authentic metadata. They force `DrugDesire` degrees 1 and 2, respectively; a commonality-only Trait patch would not resolve either original background narrative or the background-dependent drug disposition.
 
+## Implemented follow-up: ordinary adult category exclusions (2026-10-17)
+
+User-approved implementation after this source audit: [`Patches/AnachronisticAdultBackstories.xml`](../Patches/AnachronisticAdultBackstories.xml) restricts the 30 **adult** records coded X in the two tables below, using existing `spawnCategories` from licensed Core 1.6/1.7 metadata. Combined with the independently implemented `FerventResearcher72` rule, 31 adult backgrounds have an ordinary category restriction **in source**, not yet final loaded-game acceptance. This is an actual Mod XML change, separate from the original research candidate dispositions. All other candidates remain unchanged.
+
+Twelve child X records still have **no category node in Core source**; no generic XML replace has been made for them. Their preauthored solid-biography selection path must be addressed separately, without deleting saves or assuming the adult XPath applies.
+
+**Do not confuse:** the source-confirmed list of present adult category fields is solid evidence about **patch targets**, while the English original comments in translations remain supporting narrative evidence, not SHA-verified original 1.6/1.7 prose. Other optional mods can overwrite categories or directly assign backgrounds.
+
 ## Practical decisions for further production
 
 1. **Reject the assumption that 50 flagged items are the complete scope**; stop using `TECHNOLOGY_SF_REVIEW` as a final inclusion/exclusion gate. The first definite safety target remains the already-approved `FerventResearcher72` rule, separate from this new research.
