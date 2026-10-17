@@ -529,6 +529,9 @@ The existing `LoadFolders.xml` selects these version-specific assemblies. The 1.
 
 ## 玄関ゾーン・擬似履物脱着（2026-10-17 作者承認／両版DLLビルド済・実機未検証）
 
+**ロードスレッド修正（2026-10-17）:** 正規RimWorld 1.6＋MO隔離実ゲームの薬物検証 [Project #39042030479](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39042030479) で、薬物関連Pickle 1/1自体は成功したが、`Map.FillComponents` がバックグラウンドロードスレッドで `EntranceZoneMap` の static readonly `Material` を初期化し `Tried to create a material from a different thread` ERROR×2を発生させた。このため実行全体はFAIL。描画用 `ProgressFilled` / `ProgressEmpty` を静的フィールド初期化から `MapComponentDraw` 時の遅延生成に変更する。Unityの色・バー寸法・保存キー・履物処理・TPSには変更なし。各版の再ビルドと実機再検証で ERROR=0 と玄関描画を確認するまでは完了扱いしない。薬物の合格マーカーだけでランタイムPASSを主張しない。
+
+
 ### 文化的目的・責務
 
 屋外から屋内へ土足のまま移動するRimWorldの振る舞いを、日本での土間・板間・座敷の区別に合わせて変更する。中世の全住宅に独立した近代的玄関があったという設定にはしない。**玄関ゾーンは家具でも床材でもなく、土足と非土足の生活空間の境界**をプレイヤーが指定する仕組み。全面板張りの家屋でも指定できる。生活習慣に属するためCultureが所有し、Environmentの床材やShared Sleepingの寝所仕様には変更を加えない。
