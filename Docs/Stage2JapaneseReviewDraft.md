@@ -6,11 +6,11 @@
 
 下表はVanilla既存BackstoryDefの**同じDef名・技能・WorkDisables・requiredWorkTags・forcedTraits・initial possessions・spawnCategories**を維持し、元のSF・現代的叙述のみを古代～中世日本へ置き換える日本語原稿案である。新規日本専用Defではない。初期所持品が存在する定義は改稿確定時に別途史実素材への置換/維持を照合する（現時点で変更しない）。
 
-- 原定義に関する直接資料：過去のProject 原Core 1.6/1.7 metadata v2（[source audit](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/blob/main/Docs/Research/VanillaCoreCharacterDefsSourceAudit20261016.md)）で対象35件の`Adulthood`・生成カテゴリと技能を照合。元ファイルのメタデータは両版一致。これは通常生成での各Solid個体採用を個別立証するものではない。
+- 原定義に関する直接資料：過去のProject 原Core 1.6/1.7 metadata v2（[source audit](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/blob/main/Docs/Research/VanillaCoreCharacterDefsSourceAudit20261016.md)）で対象35件（成人32件・幼少期3件）の元スロット・生成カテゴリと技能を照合。元ファイルのメタデータは両版一致。これは通常生成での各Solid個体採用を個別立証するものではない。
 - 物語内容に関する参考：[Ludeonの旧英語原文コメント](https://github.com/Ludeon/RimWorld-Finnish/blob/master/Backstories/Backstories.xml)。**現在配布されているCore 1.6/1.7本文との完全一致は未立証。**
 - 対象35件は従来の94件の生成制限、34件の実装済み英日改稿と**重複しない**。
 - 強制Traitとの一致が必要な候補：`MasterChef48` の `Gourmand=0`、`Minister88` の `Industriousness=1`、`Model99` の `Beauty=2`。その他のゲーム機構の数値は変更しない。
-- 以下の本文は発見的な史実・ゲーム描写案であり、特定時代・地域の役職名や語感について最終作者レビュー後に調整する。薬物の具体的種類・商品・緊急対処の機構はここで確定しない。
+- 以下の本文は未承認の史実・ゲーム描写案であり、特定時代・地域の役職名や語感について最終作者レビュー後に調整する。薬物の具体的種類・商品・緊急対処の機構はここで確定しない。
 
 ## 日本語原稿案（35件）
 
