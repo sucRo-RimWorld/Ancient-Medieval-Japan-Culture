@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using System.IO;
 using System.Threading.Tasks;
 using RimWorks.Pickle;
 using RimWorld;
@@ -191,6 +192,176 @@ namespace AMJ.Culture.Test
                 ctx.Require(observedShoes, "Pawn did not reach the destination wearing shoes");
                 ctx.Require(pawn.Position == end, "Original Goto job never reached its destination");
                 Log.Message("AMJ_CULTURE_ENTRANCE_FUNCTION_OK");
+            });
+        }
+
+        [Then("entrance boundary editing dirt filtering and save work")]
+        public async Task CheckRemaining(PickleContext ctx)
+        {
+            Pawn pawn = null;
+            object zone = null, state = null;
+            IntVec3 origin = IntVec3.Invalid, destination = IntVec3.Invalid;
+            bool observedCast = false, arrived = false;
+
+            await ctx.WaitUntil(() =>
+            {
+                Type quick = Type.GetType("AMJ.Culture.Test.ChairQuickstart, AMJ.Culture.Chair16.Quickstart");
+                PropertyInfo ready = quick == null ? null : quick.GetProperty("IsPostLoaded");
+                return ready != null && (bool)ready.GetValue(null, null);
+            }, 90f);
+            await ctx.WaitFrames(2);
+            await EntranceMainThread.Run(delegate
+            {
+                Map map = Find.CurrentMap;
+                ctx.Require(map != null, "Quickstart map not loaded");
+                zone = Component(map, "EntranceZoneMap");
+                state = Component(Current.Game, "EntranceFootwearState");
+                ctx.Require(zone != null && state != null, "Entrance component absent");
+
+                DesignationCategoryDef category = DefDatabase<DesignationCategoryDef>.GetNamedSilentFail("Zone");
+                ctx.Require(category != null, "Zone architect category absent");
+                FieldInfo field = typeof(DesignationCategoryDef).GetField("specialDesignatorClasses");
+                ctx.Require(field != null, "Special designator list unavailable");
+                bool hasEntrance = false, hasNoShoes = false, hasRemoval = false;
+                foreach (object type in (IEnumerable)field.GetValue(category))
+                {
+                    string name = type == null ? "" : type.ToString();
+                    if (name.Contains("Designator_EntranceAdd")) hasEntrance = true;
+                    if (name.Contains("Designator_NoShoesAdd")) hasNoShoes = true;
+                    if (name.Contains("Designator_NoShoesRemove")) hasRemoval = true;
+                }
+                ctx.Require(hasEntrance && hasNoShoes && hasRemoval,
+                            "Paint/remove designators not in loaded Zone category");
+
+                for (int z = 8; z < map.Size.z - 10 && !origin.IsValid; z++)
+                    for (int x = 8; x < map.Size.x - 18; x++)
+                    {
+                        IntVec3 p = new IntVec3(x, 0, z);
+                        bool clear = true;
+                        for (int dx = 0; dx <= 15 && clear; dx++)
+                            for (int dz = 0; dz <= 5; dz++)
+                            {
+                                IntVec3 cell = p + new IntVec3(dx, 0, dz);
+                                if (!cell.InBounds(map) || !cell.Standable(map) ||
+                                    cell.GetEdifice(map) != null)
+                                { clear = false; break; }
+                            }
+                        if (clear) { origin = p; break; }
+                    }
+                ctx.Require(origin.IsValid, "No clean area for boundary checks");
+
+                IntVec3 invalid = origin + new IntVec3(4, 0, 0);
+                IntVec3 valid = origin + new IntVec3(12, 0, 3);
+                IntVec3 diagonal = invalid + new IntVec3(1, 0, 1);
+                IntVec3 gap = invalid + new IntVec3(2, 0, 0);
+                IntVec3 adjacent = invalid + IntVec3.East;
+                object entranceDesignator = Activator.CreateInstance(CultureType("Designator_EntranceAdd"));
+                Call(entranceDesignator, "DesignateSingleCell", invalid);
+                ctx.Require((bool)Call(zone, "Contains", invalid), "Designator failed to mark entrance");
+                ctx.Require(!(bool)Call(zone, "HasConnectedNoShoesContact", invalid),
+                            "Entrance without no-shoes area should be inactive");
+                Call(zone, "SetNoShoes", diagonal, true);
+                Call(zone, "SetNoShoes", gap, true);
+                ctx.Require(!(bool)Call(zone, "HasConnectedNoShoesContact", invalid),
+                            "Diagonal or one-cell gap incorrectly activated entrance");
+
+                Call(zone, "SetNoShoes", adjacent, true);
+                ctx.Require((bool)Call(zone, "HasConnectedNoShoesContact", invalid),
+                            "Cardinal-edge adjacency did not activate entrance");
+                ctx.Require(!(bool)Call(zone, "IsNoShoes", invalid),
+                            "Entrance cell illegally became a no-shoes cell");
+                Call(zone, "SetNoShoes", adjacent, false);
+                ctx.Require(!(bool)Call(zone, "HasConnectedNoShoesContact", invalid),
+                            "Removing neighboring no-shoes area failed to deactivate entrance");
+                Call(zone, "SetNoShoes", diagonal, false);
+                Call(zone, "SetNoShoes", gap, false);
+
+                Call(zone, "Set", valid, true);
+                Call(zone, "SetNoShoes", valid + IntVec3.East, true);
+                ctx.Require((bool)Call(zone, "HasConnectedNoShoesContact", valid),
+                            "Control: independent valid entrance not active");
+
+                PawnKindDef kind = DefDatabase<PawnKindDef>.GetNamed("Colonist");
+                pawn = PawnGenerator.GeneratePawn(kind, Faction.OfPlayer);
+                ctx.Require(pawn != null, "Pawn could not generate");
+                GenSpawn.Spawn(pawn, origin, map, WipeMode.Vanish);
+                destination = origin + new IntVec3(8, 0, 0);
+                Find.TickManager.CurTimeSpeed = TimeSpeed.Ultrafast;
+                Walk(pawn, destination);
+                Log.Message("AMJ_CULTURE_ENTRANCE_REMAINING_START invalid=" + invalid +
+                            " valid=" + valid + " destination=" + destination);
+            });
+            for (int n = 0; n < 70; n++)
+            {
+                await ctx.WaitTicks(15);
+                await EntranceMainThread.Run(delegate
+                {
+                    if (pawn == null || !pawn.Spawned) return;
+                    observedCast |= Casting(state, pawn);
+                    arrived |= pawn.Position == destination;
+                });
+                if (arrived) break;
+            }
+            await EntranceMainThread.Run(delegate
+            {
+                ctx.Require(arrived, "Pawn did not complete travel past nonadjacent entrance");
+                ctx.Require(!observedCast && !Barefoot(state, pawn),
+                            "Invalid entrance performed a shoe change");
+
+                // Verify cancellation of an in-progress cast when the author
+                // edits the mapped no-shoes boundary. No tick benchmark here.
+                MethodInfo begin = state.GetType().GetMethod("BeginCast",
+                    BindingFlags.Instance | BindingFlags.NonPublic);
+                ctx.Require(begin != null, "Cast state API missing");
+                begin.Invoke(state, new object[] { pawn, true, Find.TickManager.TicksGame });
+                ctx.Require(Casting(state, pawn), "Cast fixture could not start");
+                Call(zone, "SetNoShoes", origin + new IntVec3(13, 0, 3), false);
+                ctx.Require(!Casting(state, pawn),
+                            "Editing no-shoes zone failed to cancel pending cast");
+
+                // Emulate shoes carrying both dirt and blood: only dirt must
+                // be discarded when a successful cast switches to barefoot.
+                FieldInfo carriedField = typeof(Pawn_FilthTracker).GetField("carriedFilth",
+                    BindingFlags.Instance | BindingFlags.NonPublic);
+                ctx.Require(carriedField != null, "Carried filth tracker field missing");
+                IList carried = carriedField.GetValue(pawn.filth) as IList;
+                ctx.Require(carried != null, "Carried filth is not a supported list");
+                ThingDef dirtDef = DefDatabase<ThingDef>.GetNamedSilentFail("Filth_Dirt");
+                ThingDef bloodDef = DefDatabase<ThingDef>.GetNamedSilentFail("Filth_Blood");
+                ctx.Require(dirtDef != null && bloodDef != null,
+                            "Vanilla dirt/blood filth defs missing");
+                Filth dirt = ThingMaker.MakeThing(dirtDef) as Filth;
+                Filth blood = ThingMaker.MakeThing(bloodDef) as Filth;
+                ctx.Require(dirt != null && blood != null, "Filth fixtures not constructible");
+                carried.Add(dirt);
+                carried.Add(blood);
+                MethodInfo set = state.GetType().GetMethod("SetBarefoot",
+                    BindingFlags.Instance | BindingFlags.NonPublic);
+                ctx.Require(set != null, "Barefoot update method missing");
+                set.Invoke(state, new object[] { pawn, true });
+                ctx.Require(Barefoot(state, pawn), "Pawn barefoot state did not change");
+                ctx.Require(!carried.Contains(dirt), "Dirt remained carried after shoes removed");
+                ctx.Require(carried.Contains(blood), "Blood was incorrectly removed with dirt");
+                Log.Message("AMJ_CULTURE_ENTRANCE_BOUNDARY_FILTH_OK");
+
+                // Real game save to the isolated temporary profile; verify
+                // both zone keys and pawn state serialized to the .rws file.
+                string name = "AMJEntrance16BoundaryFunctional";
+                MethodInfo save = typeof(GameDataSaveLoader).GetMethod("SaveGame",
+                    BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic,
+                    null, new[] { typeof(string) }, null);
+                ctx.Require(save != null, "Native SaveGame API missing");
+                save.Invoke(null, new object[] { name });
+                string file = Path.Combine(GenFilePaths.SaveDataFolderPath,
+                                            "Saves", name + ".rws");
+                ctx.Require(File.Exists(file), "Native game save file not produced");
+                string xml = File.ReadAllText(file);
+                ctx.Require(xml.Contains("AMJCultureEntranceCells") &&
+                            xml.Contains("AMJCultureNoShoesCells") &&
+                            xml.Contains("AMJCultureBarefootPawnIds"),
+                            "Real save omitted Culture threshold/area/footwear keys");
+                Log.Message("AMJ_CULTURE_ENTRANCE_SAVE_KEYS_OK");
+                Log.Message("AMJ_CULTURE_ENTRANCE_REMAINING_OK");
             });
         }
     }
