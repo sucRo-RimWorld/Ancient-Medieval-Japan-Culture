@@ -194,8 +194,15 @@ namespace AMJ.Culture.BeddingPoC
                     +" afterSpace="+emptiedSpace);
                 // Vanilla 1.6 bed installation: move the only folded item into inventory
                 // so the test deploy Job can use standard installation Toils.
+                // A just-uninstalled MinifiedThing remains spawned on the map.
+                // Vanilla ThingOwner refuses a spawned Thing: despawn safely
+                // before moving the exact existing object into pawn inventory.
+                ctx.Require(folded.Spawned, "F4 expected original uninstalled Thing on map");
+                folded.DeSpawn(DestroyMode.Vanish);
+                ctx.Require(!folded.Spawned && !folded.Destroyed,
+                    "F4 despawn should not destroy the packed bed");
                 ctx.Require(pawn.inventory.innerContainer.TryAdd(folded),
-                    "F4 cannot carry minified bed");
+                    "F4 cannot carry unspawned minified bed");
                 var bp=GenConstruct.PlaceBlueprintForInstall(folded,site,pawn.Map,
                       Rot4.South,Faction.OfPlayer);
                 ctx.Require(bp!=null,"F4 install blueprint missing");
