@@ -15,38 +15,48 @@ namespace AMJ.Culture
         }
     }
 
-    // Treat an ordinary sittable chair as an eating destination when no
-    // reachable eating table is available. Never change HasEatSurface, food
-    // effects, dining-room Thoughts, or the original ingest JobDriver.
+    // Picnic Area precedent: redirect the ordinary ingest travel Toil to an
+    // ordinary sittable building without requiring an adjacent eating surface.
+    // Unlike Picnic Area, there is no zone, weather gate, or random selection.
     [HarmonyPatch(typeof(Toils_Ingest), "CarryIngestibleToChewSpot",
         new Type[] { typeof(Pawn), typeof(TargetIndex) })]
     public static class TablelessChairMealPatch
     {
-        private static bool IsUsable(Pawn pawn, Thing furniture)
+        private static bool IsUsableChair(Pawn pawn, Thing chair)
         {
-            return furniture != null && furniture.Spawned &&
-                !furniture.IsForbidden(pawn) && !furniture.IsBurning() &&
-                !furniture.HostileTo(pawn) && furniture.IsSociallyProper(pawn) &&
-                furniture.Position.GetDangerFor(pawn, furniture.Map) == Danger.None;
+            if (chair == null || !chair.Spawned || chair.def.building == null ||
+                !chair.def.building.isSittable ||
+                !chair.Position.Standable(chair.Map) ||
+                chair.IsForbidden(pawn) || chair.IsBurning() ||
+                chair.HostileTo(pawn) || !chair.IsSociallyProper(pawn) ||
+                (chair.def.CanHaveFaction && chair.Faction != pawn.Faction) ||
+                !pawn.CanReserve(chair, 1, -1, null, false))
+                return false;
+
+            return chair.Position.GetDangerFor(pawn, chair.Map) == Danger.None;
         }
 
-        private static bool IsUsableChair(Pawn pawn, Thing furniture)
+        private static bool HasAdjacentEatSurface(Thing chair)
         {
-            return IsUsable(pawn, furniture) &&
-                furniture.def.building != null &&
-                furniture.def.building.isSittable &&
-                furniture.Faction == pawn.Faction &&
-                furniture.Position.Standable(furniture.Map) &&
-                pawn.CanReserveSittableOrSpot(furniture.Position);
+            foreach (IntVec3 direction in GenAdj.CardinalDirections)
+            {
+                Building neighbor = (chair.Position + direction).GetEdifice(chair.Map);
+                if (neighbor != null && neighbor.def.surfaceType == SurfaceType.Eat)
+                    return true;
+            }
+            return false;
         }
 
-        private static Thing FindFurniture(
-            Pawn pawn, float radius, PathEndMode endMode, Predicate<Thing> validator)
+        private static Thing FindChair(Pawn pawn, float radius, bool requireTable)
         {
             return GenClosest.ClosestThingReachable(
                 pawn.Position, pawn.Map,
                 ThingRequest.ForGroup(ThingRequestGroup.BuildingArtificial),
-                endMode, TraverseParms.For(pawn), radius, validator);
+                PathEndMode.OnCell,
+                TraverseParms.For(pawn, Danger.Deadly, TraverseMode.ByPawn, false),
+                radius,
+                candidate => IsUsableChair(pawn, candidate) &&
+                    (!requireTable || HasAdjacentEatSurface(candidate)));
         }
 
         public static void Postfix(Pawn pawn, TargetIndex ingestibleInd, ref Toil __result)
@@ -54,8 +64,8 @@ namespace AMJ.Culture
             if (pawn == null || __result == null || __result.initAction == null)
                 return;
 
-            // Retain the original Toil, its completion mode and other actions.
-            // The actual meal and placement are resolved when the Toil begins.
+            // Search after the ingestible has been picked up, as Vanilla does.
+            // Keep the original Toil and its arrival completion behavior.
             Toil travel = __result;
             Action originalAction = travel.initAction;
             travel.initAction = delegate
@@ -68,37 +78,36 @@ namespace AMJ.Culture
                     return;
                 }
 
-                Thing meal = actor.CurJob.GetTarget(ingestibleInd).Thing;
-                if (meal == null || meal.def.ingestible == null ||
-                    meal.def.ingestible.chairSearchRadius <= 0f)
+                Thing food = actor.CurJob.GetTarget(ingestibleInd).Thing;
+                if (food == null || food.def.ingestible == null ||
+                    food.def.ingestible.chairSearchRadius <= 0f)
                 {
                     originalAction();
                     return;
                 }
 
-                float radius = meal.def.ingestible.chairSearchRadius;
-                // Existing Vanilla/MO tables take precedence. A table need
-                // not have a chair to keep its original ingestion behavior.
-                Thing table = FindFurniture(actor, radius, PathEndMode.Touch,
-                    candidate => IsUsable(actor, candidate) &&
-                        candidate.def.surfaceType == SurfaceType.Eat);
-                if (table != null)
+                float radius = food.def.ingestible.chairSearchRadius;
+
+                // This is Vanilla's actual table condition: a valid seat
+                // ADJACENT TO an Eat surface, not the mere existence of a table.
+                // Preserve Vanilla's table-seat reservation and travel when
+                // such a chair is available.
+                if (FindChair(actor, radius, true) != null)
                 {
                     originalAction();
                     return;
                 }
 
-                Thing chair = FindFurniture(actor, radius, PathEndMode.OnCell,
-                    candidate => IsUsableChair(actor, candidate));
+                // Picnic Area's useful mechanism, generalized to ANY chair.
+                // No table, enza Def, zone or extra furniture is required.
+                Thing chair = FindChair(actor, radius, false);
                 if (chair == null ||
-                    !actor.ReserveSittableOrSpot(chair.Position, actor.CurJob, false))
+                    !actor.Reserve(chair, actor.CurJob, 1, -1, null, false))
                 {
                     originalAction();
                     return;
                 }
 
-                // Use the same seat/spot reservation and walking semantics as
-                // the original game; do not convert chairs into Eat surfaces.
                 actor.Map.pawnDestinationReservationManager.Reserve(
                     actor, actor.CurJob, chair.Position);
                 actor.pather.StartPath(chair.Position, PathEndMode.OnCell);
