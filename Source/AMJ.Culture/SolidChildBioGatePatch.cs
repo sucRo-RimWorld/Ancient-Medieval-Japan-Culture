@@ -46,7 +46,30 @@ namespace AMJ.Culture
                 "LabGrownChild22",
                 "DreadedBaby56",
                 "GameFanatic86",
-                "ReclusiveProdigy96"
+                "ReclusiveProdigy96",
+                "AbandonedChild30",
+                "AspiringPhysicist47",
+                "CaravanChild53",
+                "ChildScientist30",
+                "Colonist22",
+                "CrimeBossChild39",
+                "DiplomatsChild97",
+                "FeralChild85",
+                "LogicalChild2",
+                "MidworldCadet83",
+                "MidworldGeek18",
+                "PilotFan16",
+                "ProfessionalGamer76",
+                "RebelWriter82",
+                "ShipChild46",
+                "SocialPariah3",
+                "StarforceCadet79",
+                "StudentEngineer34",
+                "ToxicChild96",
+                "VatgrownSlavegirl8",
+                "VideoGamer55",
+                "VidtubeStar98",
+                "VoyagerChild94"
             };
 
         public static void Postfix(ref bool __result, ref PawnBio result)
