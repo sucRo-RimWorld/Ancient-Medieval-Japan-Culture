@@ -759,8 +759,17 @@ Stage1の `ARCHIVAL_DESCRIPTION_NOT_FOUND` 16件と `SPECIAL_NAMED_RARE_ROUTE` 1
 
 どちらも `Patches/AnachronisticAdultBackstories.xml` の `spawnCategories` を `AMJ_CultureExcluded` に置換するだけとし、元 `BackstoryDef`／仕事・技能／初期所持品／セーブ参照は残す。実装総数は**137背景の生成制限**（成人79＝XML78＋独立1、幼少58＝Solid55＋Shuffled3）。XMLのみの差分で1.6／1.7製品DLL再ビルドは不要。Loaded-game動作は未確認。
 
-**書き直した原稿：** 対象は残り**87件**（前半33件＋後半54件）。[Stage2JapaneseReviewDraft.md](Stage2JapaneseReviewDraft.md) の `title`・`titleShort`・`description` を全件再検討し、**description87件すべてを実際に書き直した**。簡潔で自然な説明にし、近世以後の架空の専門職名や技能を説明するための不自然な事故を作らない。例：`BountyHunter41` の「追捕人」を行政的な役職と混同せず「盗賊狩り」へ、`Castaway81` を「難破の生存者」へ、`CharityWorker36` を「施しの僧」へ、`ExpertHandyman8` を「腕利きの職人」へ、`FurnitureBuilder83` を「家具職人」へ、`GangSoldier39` を「古参の野盗」へ。それぞれ人物の行いを描写し、無理な官職名・社会制度を割り当てない。背景DefID・技能・仕事禁止・強制Trait・旧セーブは変えない。
+**書き直した原稿：** 対象は残り**87件**（前半33件＋後半54件）。[Stage2JapaneseReviewDraft.md](Stage2JapaneseReviewDraft.md) の `title`・`titleShort`・`description` を全件再検討し、**description87件すべてを実際に書き直した**。簡潔で自然な説明にし、近世以後の架空の専門職名や技能を説明するための不自然な事故を作らない。例：`BountyHunter41` は「追捕人」「盗賊狩り」を撤回し、依頼者に雇われて密かに人を討つ職歴を表す「雇われの刺客」へ、`Castaway81` を「難破の生存者」へ、`CharityWorker36` を「施しの僧」へ、`ExpertHandyman8` を「腕利きの職人」へ、`FurnitureBuilder83` を「家具職人」へ、`GangSoldier39` を「古参の野盗」へ。それぞれ人物の行いを描写し、無理な官職名・社会制度を割り当てない。背景DefID・技能・仕事禁止・強制Trait・旧セーブは変えない。
 
 **史料上の境界：** 中世日本の番匠について[山川『日本史小辞典』](https://www.historist.jp/word_j_ha/entry/036478/)、家具・指物師の時代について[京都市伝統工芸資料](https://www.city.kyoto.lg.jp/sankan/page/0000041368.html)、寺での困窮者救済例について[奈良国立博物館・忍性](https://www.narahaku.go.jp/exhibition/special/201607_ninshou/)、追捕使が任命された官職であることについて[山川『日本史小辞典』参照](https://kotobank.jp/word/%E8%BF%BD%E6%8D%95%E4%BD%BF-98879)。ただしこれらは対象人物一人一人の実在を証明せず、「書かれた肩書が無理のないものか」という一般的な検討資料である。
 
 **承認・検証の境界：** **新しい87件の日本語原稿も全件未承認**。ゲームの `BackstoryDef`／DefInjectedへのインストール、英訳、独自背景・特性の追加をしない。作者が指摘なしのものを承認する形式を尊重し、個別に全員の逐次承認を強制しない。承認後の改稿製品反映と最小限のVanilla 1.6／1.7＋MO実ゲーム受入れを別工程として行う。
+
+
+### 第2段階・BountyHunter41日本語原稿の個別再訂正（2026-10-18、未承認）
+
+ユーザー指摘により、上の「盗賊狩り」案も撤回。元の `BountyHunter41` は旧公式英語原文で、裕福な依頼者から秘密裏の殺害を請け負う成人背景であり、盗賊の追跡者とする根拠はない。従来の原稿にあった「誰に頼まれた仕事かは話さない」という不自然な秘密の付け足しも削除した。
+
+[Stage2JapaneseReviewDraft.md](Stage2JapaneseReviewDraft.md) の該当1件を **title「雇われの刺客」、titleShort「刺客」**、**description「[PAWN_nameDef]は有力者に雇われ、敵対する者を密かに討ってきた。弓と剣に長け、狙った相手を逃すことは少なかった。」**に改める。弓・近接戦闘に秀でる元技能（`Shooting+8`、`Melee+5`）とも一致する。歴史的武器の具体名として鎌倉武士なら「太刀」が適切な文脈もあるが、特定時代・刀種を限定しないこの短文では「剣」を刀剣類の一般表現として使用し、無理に「刀」へ固定しない。具体的な刀や太刀が主題の他の歴史説明まで一律置換する方針ではない。
+
+ここで「BountyHunter41」というゲーム内部DefIDは**旧セーブ互換のため残す**が、人物の新しい日本語設定からは「賞金稼ぎ」「盗賊狩り」を取り除く。元の成人生成カテゴリ、能力・仕事不能、強制Trait、初期所持品への変更なし。背景の生成制限数137件、改稿候補87件は変化なし。この原稿も最終一括作者承認前で、製品XML／DefInjected／英訳は変更しない。

@@ -340,7 +340,7 @@ Anomaly／Royalty／Odyssey／Biotech限定元アイテムは、元XPathの存�
 |---|---|---|
 | `AddictionCounsel60` | `Solid_Adult`、Offworld／Outlander。Social+8・Medicine+3・Artistic+3・Crafting+3で、依存症専門職に相当する独立職の根拠がない。寺での困窮者救済と専門カウンセラーは別物。 | 通常生成除外、Def／能力維持、作者確認用の無理な日本語原稿は廃止 |
 | `Architect28` | `Shuffled/Offworld_Glitterworld_Adult`、Offworld。Intellectualを必須としManualDumb不可、Construction+5・Artistic+7・Crafting−3、元TextBook所持。中世の番匠・棟梁を、この近代的な非肉体労働専門職に安易に読み替えるのは不適切。 | 通常生成除外、元の所持品等もDef内に残す |
-| `BountyHunter41` | `Solid_Adult`、Offworld／Pirate、Shooting+8・Melee+5。`追捕使`は実際に任命される官職であり、雇われの賞金稼ぎと同義ではない。 | **盗賊狩り**とする、元の弓・近接戦闘技能を維持 |
+| `BountyHunter41` | `Solid_Adult`、Offworld／Pirate、Shooting+8・Melee+5。`追捕使`は官職、元の旧英語本文は富裕な依頼主のために秘密裏に殺害する職歴であり、盗賊追跡を語っていない。 | **雇われの刺客**。弓・近接戦闘の技能を維持し、「賞金稼ぎ」「盗賊狩り」「秘密の依頼主」創作は新しい日本語本文に残さない |
 | `Castaway81` | 難破後の野外生存という役割。 | **難破の生存者**とする |
 | `CharityWorker36` | `Shuffled/Offworld_Glitterworld_Adult`、Offworld。Violent不可、Caring／Social必須、Social+6。中世にも僧侶の施しや病人の救済の実例がある。一般的な「世話役」へのすり替えはしない。 | **施しの僧**とする |
 | `ExpertHandyman8` | Construction+7・Intellectual+4・Crafting+3。実際に修理する多能工であり、直訳の「修繕職」は日本語の職業名として不自然。 | **腕利きの職人** |
@@ -350,3 +350,10 @@ Anomaly／Royalty／Odyssey／Biotech限定元アイテムは、元XPathの存�
 **実装：** `Patches/AnachronisticAdultBackstories.xml` に2件のカテゴリ制限追加（XML通常成人76→78）。ほかの既存制限の変更なし。新しい集計は成人79（XML78＋独立1）＋幼少58＝**137背景**。23件の初期所持品差替え、34件の製品反映済み英日改稿は維持。 `Docs/Stage2JapaneseReviewDraft.md` は87件に再番号付けされ、同じ原Defに対する短い自然な日本語を全件差し替え。**旧原稿のtitle・説明文を部分的に修正しただけで承認できる状態とせず、全件新規確認の対象として提示する。**
 
 **未実施：** 作者の日本語文章承認、英語化・ゲーム文面反映、現行Core原文完全照合、Loaded Pawnの通常生成・旧セーブ・MO互換ゲーム検証、Steam公開。歴史用語の確認は一般的な史料ベースで、元Coreの現在の原文が必ず同一とは断言しない。
+
+
+### BountyHunter41個別語彙・原文整合性の再確認（2026-10-18、作者指摘）
+
+上記の旧タイトル「盗賊狩り」は誤った転用だった。旧公式英語原文は裕福な依頼者のために内密の殺害を行う（glitterworldのbounty hunter）という趣旨であり、「盗賊を追う」／「誰から受注したか滅多に話さない」という叙述は原文の直訳でもなく、自然な中世日本の人物紹介でもない。原ゲームがSFのbounty hunterという職能を持つことと、ゲーム側に日本中世の賞金稼ぎという制度を新設することを混同しない。
+
+作者から刀／剣の語彙指摘もあり、原稿1件のtitle／shortTitle／descriptionを **「雇われの刺客」／「刺客」／「[PAWN_nameDef]は有力者に雇われ、敵対する者を密かに討ってきた。弓と剣に長け、狙った相手を逃すことは少なかった。」**に訂正した。ここで「剣」は一文上の広い刀剣表現であり、史実の鎌倉武士の具体的な佩刀の呼称「太刀」と同一とは主張しない。元の `Shooting+8;Melee+5` を維持。これは**まだ未承認の文章案**であり、ゲームの元Def、C#/XML、英語版、初期所持品、他の86原稿を変更していない。

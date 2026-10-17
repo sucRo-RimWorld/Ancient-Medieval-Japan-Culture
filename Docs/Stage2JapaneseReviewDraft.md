@@ -19,9 +19,9 @@
 
 ### 01. `BountyHunter41`
 
-- **title案：** 盗賊狩り
-- **titleShort案：** 盗賊狩り
-- **description案：** [PAWN_nameDef]は各地で盗賊を追い、武芸で身を立ててきた。弓と刀には自信があるが、誰に頼まれた仕事だったのかは滅多に話さない。
+- **title案：** 雇われの刺客
+- **titleShort案：** 刺客
+- **description案：** [PAWN_nameDef]は有力者に雇われ、敵対する者を密かに討ってきた。弓と剣に長け、狙った相手を逃すことは少なかった。
 
 ### 02. `Castaway81`
 
