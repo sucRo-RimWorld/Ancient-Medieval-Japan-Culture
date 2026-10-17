@@ -529,7 +529,7 @@ The existing `LoadFolders.xml` selects these version-specific assemblies. The 1.
 
 **実現性:** 原RimWorld 1.6.4871 + Culture 1.6実ゲーム[Project Actions #39057007685](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39057007685)で、隔離テスト用Bedrollの`isSittable`だけ有効化した**同一の建物**を、通常`Ingest`の着席・Comfort上昇・完食と通常`LayDown`の就寝・所有者保持の両方に利用できた。Pickle1/1、Unity ERROR0、元ゲーム変更なし。**この最小PoCは製品ThingDef追加、1.6+MO、1.7、睡眠中に別Pawnが食事する競合や旧セーブを保証しない**。既存の[椅子だけで食事する実装](#chair-only-meals--revised-implementation-scope-2026-10-17)と連携し、Vanilla/MOのベッドを一律座具に変えない。
 
-**境界:** 筵・菰はVanilla Hay、MO存在時の任意Strawを材料候補とし、必要量/Comfort/Restは未承認。木製丸太ベッドと休息数値の単純序列を作らず、材料の採集負担・寝台と座具を同時に代替する価値を検討する。囚人/医療用ベッド、Shared Sleeping、既存Thought、円座候補、一般家具は独立した既存責務のまま。狭さMoodの独自軽減（C-07）は実証後の別議題で、`Cramped interior`の数値変更も`Confined interior` -10の変更も採用していない。
+**境界（2026-10-18作者の後続承認）:** 筵・菰はVanilla Hay、MO存在時の任意Strawを材料候補とし、必要量/Comfort/Restは未承認。木製丸太ベッドと休息数値の単純序列を作らず、材料の採集負担・寝台と座具を同時に代替する価値を検討する。**多用途は通常の入植者用寝具だけでよい。専用敷物の囚人・医療用モード切替を初期版には実装せず、既存の囚人/医療用ベッドを従来通り使用する。** 理由は原`Building_Bed`の個別`Medical/ForPrisoners`フラグと共通ThingDefの`isSittable`の分離であり、座具候補の安全除外を製品実装で確保する。Shared Sleeping、既存Thought、円座候補、一般家具は独立した既存責務のまま。狭さMoodの独自軽減（C-07）は実証後の別議題で、`Cramped interior`の数値変更も`Confined interior` -10の変更も採用していない。
 
 ## 第2段階 — 既存Vanilla/MO人物背景・特性の時代不整合修正（2026-10-17開始）
 
