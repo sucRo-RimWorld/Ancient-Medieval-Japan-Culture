@@ -664,3 +664,15 @@ Cultureは人物背景・特性・心情・食事習慣・嗜好品・玄関の�
 また元Vanilla 1.6/1.7の `BackstoryDef/possessions` を点検し、生成時に持ち込む工業銃器・人工照明・近現代衣服・先進兵器・人体改造部品・禁止合成薬を、実在Vanillaの弓・槍・薬草薬・素材・簡単食・銀貨へ既存 `Patches/HistoricalOccupationStartingPossessions.xml` 内で**17件**置換。元のアイテムのDefやセーブ済み現物は削除せず、元DLC限定アイテムは存在チェック付きXPathとする。元の6件と合わせ**23件**を生成時に調整する。歴史的背景の本文34件、追加の未承認日本語原稿35件、背景付与Trait自体、他系統の薬物供給抑制コードを変更しない。狙いは通常出現する所持品の時代整合であり、新たなDLC前提を導入しない。
 
 **実装対象の累計：既存背景の通常生成制限134件**（成人76、幼少58＝Solid C#55＋Shuffled3）、生成所持品置換23件（既存6＋今回17）。今回の幼少ゲート23件は**製品DLLの更新前**なので、実ゲームロードにおける効果は未証明。最新Culture全ソースから正規1.6/1.7 Managed参照で両版DLLを再ビルドして実物を差し替えた後も、ビルドをロード済み受入れと混同しない。残りの時代不整合可能性フラグ54件と改稿原稿は、一括日本語確認まで適切な範囲だけ選別し、未来職名だからと一律削除しない。
+
+
+### 第2段階・第7修正群の正規1.6／1.7製品DLL統合（2026-10-17）
+
+既出の「新規Solid幼少期23件はC#ソースのみ・DLL更新前」という状態は、本項の**正規元ゲーム参照による成果物実物**で更新する。原Culture `228d86be846ee75444f3331957a824f866ea9918`（第7修正群PR #86を含み、玄関のMaterialスレッド修正まで反映）を、Project PR #658 `dfda0e341948ed2359c0117e3102b58cb28bef25` によって既存の**手動発火ビルド専用**1.6／1.7ワークフローの共通ソースとして固定した。**現在の固有名付きSolid幼少期ゲートは55件**、対象総数は成人76＋幼少58＝134件。
+
+- **1.6:** Project [build-only #39043583308](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39043583308) SUCCESS。RimWorld正規1.6ゲームManaged参照から生成した `AMJ.Culture.dll` **25,600 bytes**、SHA-256 `527629e8353ec878940c99b1ddb869f3d4a8747ec436107c466efc12355083ba`、GitBlob `f99c8a134bc76630d3f9969138d3862c30e5fd50`。
+- **1.7:** Project [build-only #39043586558](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39043586558) SUCCESS、正規RimWorld 1.7.4977 rev1248 Managed参照、`AMJ.Culture.dll` **25,600 bytes**、SHA-256 `b87b7bf518cf8b3f76b9116de27be6f3a95abd4d5dd9d2aacb59490116cbb2e3`、GitBlob `e638bbc36c1275c6e6d71024da0c9faf71215854`。
+
+二つの独立成果物GitBlobを `1.6/Assemblies/AMJ.Culture.dll`／`1.7/Assemblies/AMJ.Culture.dll` へ**別製品PRで実際に収録**する。前回PR #81の32件版DLLへ戻さない。使用したビルド元に対し、DLL作成直前に確認した後続変更はドキュメントのみであり、1.6/1.7の異なるゲームAPIや連携する玄関・ドラッグ・共同寝所パッチも同じ製品ソースから取り込まれた。元Coreの所持品XMLを含む第7修正群コードと現在ソースが一致する。
+
+**これはコンパイルと実物格納の成功であり、今回のRimWorld 1.6／1.7の実ロード、新規Pawn生成（55ゲート／23所持品）、旧セーブ互換、MO併用の動作確認ではない。** 別機能の既存ゲーム確認結果でPhase 2をPASS扱いしない。残る一括未承認日本語背景原稿35件と、他の未改稿候補の時代整合を処理後、承認済み原文だけを翻訳・ゲーム適用し、最小限の結合ゲーム受入れを行う。新しい日本独自背景・特性は引き続き第3段階まで追加しない。
