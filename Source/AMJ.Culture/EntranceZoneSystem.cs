@@ -18,10 +18,32 @@ namespace AMJ.Culture
         private List<IntVec3> noShoesCells = new List<IntVec3>();
         private HashSet<IntVec3> noShoesLookup = new HashSet<IntVec3>();
 
-        private static readonly Material ProgressFilled =
-            SolidColorMaterials.SimpleSolidColorMaterial(new Color(0.76f, 0.72f, 0.45f));
-        private static readonly Material ProgressEmpty =
-            SolidColorMaterials.SimpleSolidColorMaterial(new Color(0.18f, 0.18f, 0.18f));
+        // MapComponents can be constructed by RimWorld's background map-loader.
+        // Do not allocate Unity Materials in a static type initializer: Unity
+        // requires material creation on the rendering/main thread. First use is
+        // MapComponentDraw(), which runs on that thread.
+        private static Material progressFilled;
+        private static Material progressEmpty;
+        private static Material ProgressFilled
+        {
+            get
+            {
+                if (progressFilled == null)
+                    progressFilled = SolidColorMaterials.SimpleSolidColorMaterial(
+                        new Color(0.76f, 0.72f, 0.45f));
+                return progressFilled;
+            }
+        }
+        private static Material ProgressEmpty
+        {
+            get
+            {
+                if (progressEmpty == null)
+                    progressEmpty = SolidColorMaterials.SimpleSolidColorMaterial(
+                        new Color(0.18f, 0.18f, 0.18f));
+                return progressEmpty;
+            }
+        }
 
         public EntranceZoneMap(Map map) : base(map) { }
 
