@@ -7,6 +7,8 @@
     <value>
       <li>AMJ.Culture.Designator_EntranceAdd</li>
       <li>AMJ.Culture.Designator_EntranceRemove</li>
+      <li>AMJ.Culture.Designator_NoShoesAdd</li>
+      <li>AMJ.Culture.Designator_NoShoesRemove</li>
     </value>
   </Operation>
 </Patch>
