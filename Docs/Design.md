@@ -61,16 +61,28 @@ adjacent table**. The aim is actual seated eating/Comfort, not merely neutralizi
 it does **not** require creating/approving an enza, changing furniture artwork,
 making a picnic zone, or introducing a new table or flooring mechanic.
 
-**Smallest bounded implementation:** For ordinary `JobDefOf.Ingest`, preserve the
-original ingestion travel Toil and first allow Vanilla table eating whenever a
-reachable `SurfaceType.Eat` table is within the food's chair-search radius.
-Only without a reachable eating table, find a normal owned, socially proper,
-unforbidden, safe, accessible, unreserved `isSittable` chair within that
-radius. Use `ReserveSittableOrSpot` plus destination reservation and pathing;
-if no chair is available, run the original Toil. Do not edit
-`GenGrid.HasEatSurface`, `TryFindChairOrSpot` globally, `FinalizeIngest`,
-food radius, dining-room rewards, Comfort rates, or any non-ingest Job.
-The existing `AteWithoutTable=0` Thought remains independent.
+**Picnic Area reference and implementation boundary:** The pinned Picnic Area
+`Toils_Ingest.CarryIngestibleToChewSpot` Postfix establishes the useful pattern:
+choose a normal `isSittable` furniture destination without a neighboring
+`SurfaceType.Eat`, reserve the chair and destination, and path to it as an
+ordinary Ingest travel Toil. Picnic-specific zones, random choice, weather,
+positive Thought and global `GenGrid.HasEatSurface` changes are **not**
+required by Culture. Source comparison: [Picnic Area pinned Toil adapter](https://github.com/emipa606/PicnicArea/blob/388896ec696dcf1f3f735315468c0ee26e910e77/Source/PicnicArea/Toils_Ingest_CarryIngestibleToChewSpot.cs).
+
+**Smallest bounded implementation:** For ordinary `JobDefOf.Ingest`, keep the
+Vanilla travel Toil. First check whether a reachable, valid, reservable
+`isSittable` seat **adjacent to an `Eat` surface** exists, using the
+same furniture search radius as Vanilla; if so, run the original Toil.
+The **existence of any table by itself is not a condition**: a table with
+no usable adjoining chair must not prevent using a separate table-free
+chair. Otherwise find an existing owned/faction-neutral, socially proper,
+unforbidden, non-burning, safe, reachable, reservable, standable
+`isSittable` chair within that radius. Reserve that chair and destination,
+path to its cell and let the original Ingest Job consume food and gain
+Comfort. If no chair qualifies or reservation fails, run the original
+Toil. Do not edit `GenGrid.HasEatSurface`, globally change all furniture,
+alter `FinalizeIngest`, food radius, dining-room rewards, Comfort rates,
+or non-Ingest Jobs. The existing `AteWithoutTable=0` remains independent.
 
 **Evidence / remaining gate:** A one-pawn experimental chair-only ingestion
 route completed with Comfort gain and food consumption in actual 1.7 source
