@@ -145,13 +145,13 @@ namespace AMJ.Culture
     {
         public readonly Map Map;
         public readonly Job Job;
-        public readonly bool Indoor;
+        public readonly bool NoShoes;
 
-        public EntranceApproach(Pawn pawn, bool indoor)
+        public EntranceApproach(Pawn pawn, bool noShoes)
         {
             Map = pawn.Map;
             Job = pawn.CurJob;
-            Indoor = indoor;
+            NoShoes = noShoes;
         }
     }
 
@@ -189,23 +189,23 @@ namespace AMJ.Culture
                 barefootPawnIds.Remove(id);
         }
 
-        internal void NoteApproach(Pawn pawn, bool indoor)
+        internal void NoteApproach(Pawn pawn, bool noShoes)
         {
-            approaches[pawn] = new EntranceApproach(pawn, indoor);
+            approaches[pawn] = new EntranceApproach(pawn, noShoes);
         }
 
-        internal bool TryGetApproach(Pawn pawn, out bool indoor)
+        internal bool TryGetApproach(Pawn pawn, out bool noShoes)
         {
             EntranceApproach approach;
             if (approaches.TryGetValue(pawn, out approach) &&
                 approach.Map == pawn.Map && approach.Job == pawn.CurJob)
             {
-                indoor = approach.Indoor;
+                noShoes = approach.NoShoes;
                 return true;
             }
 
             approaches.Remove(pawn);
-            indoor = false;
+            noShoes = false;
             return false;
         }
 
@@ -244,6 +244,19 @@ namespace AMJ.Culture
         {
             pauses.Remove(pawn);
             approaches.Remove(pawn);
+        }
+
+        internal void CancelOnMap(Map map)
+        {
+            // Zone editing is rare: cancel only affected transient crossing data.
+            List<Pawn> affected = new List<Pawn>();
+            foreach (KeyValuePair<Pawn, EntrancePause> pair in pauses)
+                if (pair.Value.Map == map) affected.Add(pair.Key);
+            foreach (Pawn pawn in affected) CancelAndForget(pawn);
+            affected.Clear();
+            foreach (KeyValuePair<Pawn, EntranceApproach> pair in approaches)
+                if (pair.Value.Map == map) affected.Add(pair.Key);
+            foreach (Pawn pawn in affected) CancelAndForget(pawn);
         }
 
         internal void CancelAt(Map map, IntVec3 cell)
@@ -293,13 +306,6 @@ namespace AMJ.Culture
     [HarmonyPatch(typeof(Pawn_PathFollower), "PatherTick")]
     public static class EntrancePathPausePatch
     {
-        private static bool IsInterior(IntVec3 cell, Map map)
-        {
-            if (!cell.InBounds(map)) return false;
-            Room room = cell.GetRoom(map);
-            return room != null && !room.PsychologicallyOutdoors;
-        }
-
         private static bool IsEmergency(Pawn pawn)
         {
             if (pawn.Drafted || pawn.InMentalState || pawn.Downed ||
@@ -337,7 +343,7 @@ namespace AMJ.Culture
             if (game == null || !__instance.Moving) return true;
             EntranceFootwearState state = game.GetComponent<EntranceFootwearState>();
             EntranceZoneMap zone = pawn.Map.GetComponent<EntranceZoneMap>();
-            if (state == null || zone == null) return true;
+            if (state == null || zone == null || !zone.HasActiveArea) return true;
 
             if (IsEmergency(pawn))
             {
@@ -355,7 +361,8 @@ namespace AMJ.Culture
             if (!here)
             {
                 if (next && pawn.Position != __instance.nextCell)
-                    state.NoteApproach(pawn, IsInterior(pawn.Position, pawn.Map));
+                    state.NoteApproach(pawn, zone.IsNoShoes(pawn.Position) &&
+                                             EntranceZoneMap.TouchByEdge(pawn.Position, __instance.nextCell));
                 else
                     state.ClearApproach(pawn);
                 return true;
@@ -366,13 +373,14 @@ namespace AMJ.Culture
             // enters via entrance A and later exits via entrance B in one Job.
             if (next || __instance.nextCell == pawn.Position) return true;
 
-            bool approachIndoor;
-            if (!state.TryGetApproach(pawn, out approachIndoor))
+            bool approachNoShoes;
+            if (!state.TryGetApproach(pawn, out approachNoShoes))
                 return true;
 
-            bool exitIndoor = IsInterior(__instance.nextCell, pawn.Map);
-            if (approachIndoor == exitIndoor ||
-                state.IsBarefoot(pawn) == exitIndoor)
+            bool exitNoShoes = zone.IsNoShoes(__instance.nextCell) &&
+                               EntranceZoneMap.TouchByEdge(pawn.Position, __instance.nextCell);
+            if (approachNoShoes == exitNoShoes ||
+                state.IsBarefoot(pawn) == exitNoShoes)
             {
                 state.ClearApproach(pawn);
                 return true;
@@ -381,7 +389,7 @@ namespace AMJ.Culture
             // Cast on the last threshold cell, immediately before leaving.
             // The completed cast changes the pawn state, so the same exit
             // cannot cast a second time, even if the path is processed again.
-            state.BeginCast(pawn, exitIndoor, tick);
+            state.BeginCast(pawn, exitNoShoes, tick);
             return false;
         }
     }
