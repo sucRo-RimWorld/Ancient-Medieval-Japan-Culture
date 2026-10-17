@@ -439,3 +439,13 @@ The existing `LoadFolders.xml` selects these version-specific assemblies. The 1.
 **維持するもの：** `ObservedLayingCorpse` のMO戦士・古参兵の例外は維持し、**通常の死体目撃への慣れ**を尊重する。`WitnessedDeathNonAlly` の他人・敵の死亡目撃、死に至らない追放、`DeniedJoining`、`ColonyPrisonerEscaped` に関するMO例外、VanillaのTraitDefと背景、全Thoughtの元の心情数値・発火条件は**変更しない**。腐敗した死体を見慣れることは、戦場経験から自動的には推定しない。Cultureの `About/About.xml` にMOの正確なPackage ID `DankPyon.Medieval.Overhaul` を任意の `loadAfter` として指定し、MO側の既存Patch適用後にCultureの修正を行う。Harmony以外の必須依存は追加しない。
 
 **検証状態：** 提供されたMO配布物の実XMLと7ターゲットの一致を確認。XML構文とXPath選択・選択したliのみの削除をローカル静的確認。**RimWorldを起動したロード済みThoughtDef・心情効果の確認は未実施**。実ゲーム確認をする場合は他の未検証Culture変更とまとめた必要最小限の1.6 MO構成を用い、旧いMO音声の別問題を混同しない。既存MOが同じ修正を行った将来版では条件付けにより無操作である。1.7上のMO併用は別途未検証。Steamアップロードは未承認。
+
+## 第2段階 — 既存Vanilla/MO人物背景・特性の時代不整合修正（2026-10-17開始）
+
+**実装原則：** 第1段階の829件台帳を既存の作業索引とし、新しい全件棚卸しを行わない。通常Pawn生成で実際に選択可能な原背景だけを対象とし、固有Pawn専用定義を除外する。日本独自の新規背景・特性は第2段階が完了するまで追加しない。元のDef名、旧セーブ参照、強制Trait、技能・作業制限は、個別設計を変更しない限り保存する。歴史的に転用可能な職業は、制限よりも史実に合う改稿を優先する。日本語新規本文は承認手順を維持し、未承認のままゲームに追加しない。
+
+**実装済み第1修正群：** `Patches/AnachronisticAdultBackstories.xml` に成人13件のカテゴリ制限を追加。1.6/1.7正規Coreの既取得メタデータは、対象13件すべての `Adulthood`・カテゴリ存在・両バージョン一致を支持する。旧公式英語原文コメントで明示的なSF内容を個別照合。制限対象・内容根拠・生成経路・現行原文との証拠上の差・転用可能な候補は [BackgroundTraitAudit.md の第2段階項](BackgroundTraitAudit.md#第2段階第1修正群--既存sf背景13件の通常生成制限2026-10-17) に記録する。カテゴリを `AMJ_CultureExcluded` に置き換えるだけで、元Defや既存Pawnを削除しない。
+
+**数値（生成を制限したDef単位）：** 成人48→**61**、幼少26はそのまま、計74→**87**。歴史改稿**34**件、六つの初期所持品置換、既存Trait・MO専用Thought補正、1.6/1.7バイナリは変更なし。旧原文アーカイブと現在のライセンスCore長文の完全一致、および87件のロード後動作は未検証。これを最終Stage 2完了や公開許可とは扱わない。
+
+**次の作業順序：** 第1修正群以外の実際に通常生成され得るSF背景→史実改稿可能な仕事→残るTraitの効果と強制付与→Stage 2の一括受け入れ。MOの `DankPyon_Fighter` / `DankPyon_Veteran` と死亡・捕虜Thoughtの既存局所修正を再実装しない。実ゲーム起動は機能修正群の完成後に必要十分な一回へ集約し、編集ごとに繰り返さない。

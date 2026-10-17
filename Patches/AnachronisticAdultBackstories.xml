@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
-  <!-- Vanilla Core 1.6/1.7: these forty-seven adult BackstoryDefs have existing
+  <!-- Vanilla Core 1.6/1.7: these sixty adult BackstoryDefs have existing
        spawnCategories. Keep the BackstoryDef identities, traits, stats, skills
        and saved-pawn references. Restrict ordinary new generation only.
        This does not modify category-less Solid_Child biographies or forcibly
@@ -377,6 +377,62 @@
   </Operation>
   <Operation Class="PatchOperationReplace">
     <xpath>Defs/BackstoryDef[defName="VRDesigner87"]/spawnCategories</xpath>
+    <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
+  </Operation>
+  <!-- Stage 2: further 13 verified 1.6/1.7 category-bearing adult records.
+       Obsolete original biographies explicitly involve computers, spacecraft,
+       advanced biotechnology, robotics, VR or offworld technology. Keep all
+       existing Def identities, forced Traits, possessions and saved pawns. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="ArmyScientist35"]/spawnCategories</xpath>
+    <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="CloneFarmer58"]/spawnCategories</xpath>
+    <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="DoomsdayPariah18"]/spawnCategories</xpath>
+    <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Gnomebiologist96"]/spawnCategories</xpath>
+    <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="LazyProgrammer3"]/spawnCategories</xpath>
+    <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="MilitaryEngineer45"]/spawnCategories</xpath>
+    <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="NavyScientist52"]/spawnCategories</xpath>
+    <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="RugbyPlayer71"]/spawnCategories</xpath>
+    <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="StarfighterPilot79"]/spawnCategories</xpath>
+    <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Technician9"]/spawnCategories</xpath>
+    <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="TestSubject92"]/spawnCategories</xpath>
+    <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="UrbworldRebel56"]/spawnCategories</xpath>
+    <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="WhiteHatHacker82"]/spawnCategories</xpath>
     <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
   </Operation>
 </Patch>
