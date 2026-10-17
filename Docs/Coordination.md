@@ -1,5 +1,12 @@
 # AMJ Culture Coordination
 
+## CULTURE-SOCIAL-THOUGHT-REALGAME-HANDOFF-20261017
+
+**Status: SCOPED MO 1.6 LOADED-GAME PASS / SOCIAL-THOUGHT WORKSTREAM HANDOFF READY.** The author explicitly requested: run the real game, then move this workstream to a new chat. Native [Project run #39025744804](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39025744804) **SUCCESS**, Project test lane merge [PR #615](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/pull/615) `d04925d3f6163c7b60380f6ce55880e4adaac45b`. Exact Culture tested `d08eb3d530f5517370c4257b6c3f1634d76b1a9b`, 1.6 DLL SHA256 `0895332d4a817bf4227b00bf4d707943e793fc15c379b9950df76ec2112c9458`; original RimWorld 1.6.4871 rev598, original staged MO 1.6.2.2 + VEF/SYR, isolated WAV-converted MO audio. Loaded actual ThoughtDefs show seven approved Fighter/Veteran nullifier removals, original Fighter/Veteran `ObservedLayingCorpse` nullifiers preserved; existing MO PawnKind/Faction generation smoke passed. `AMJ_CULTURE_MO_THOUGHTS16_OK` 1/1, Pickle 1/1, Unity errors0, game exit0, no source game mutations. **Not verified:** event-triggered mood values, original MP3 audio without clone WAV conversion, RimWorld 1.7+MO or old-save loading. The separate Backstory/Trait Stage2 has moved to **87 restrictions** on later owner main and is NOT accepted by this older exact-product test. Durable result and scope in Culture `Docs/Design.md`; product XML `Patches/MedievalOverhaulDeathThoughts.xml` unchanged. No additional game runs solely to raise coverage.
+
+**Next-chat routing:** Social/corpse/prisoner Thought implementation and appropriate original 1.6+MO loaded-game validation are complete for the approved bounded slice. Leave funerary systems de-scoped; corpse-experience career backgrounds wait until Stage2 finishes in the other workstream. In a NEW Culture chat, start by reading owner `AGENTS.md`, this main-only file and `Docs/Design.md`, then address independent unimplemented psychoactive substance / alcohol / tea gameplay with preservation of Vanilla mood-emergency response and dependencies. Do not treat this note as approval to suppress or rename particular drugs; confirm concrete decisions before source edits. Do not ask the author to relay between chats.
+
+
 
 ## CULTURE-BACKGROUND-TRAIT-STAGE2-20261017
 
