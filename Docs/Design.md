@@ -89,10 +89,12 @@ route completed with Comfort gain and food consumption in actual 1.7 source
 run #38899711992 (Project research). PR #6's different enza-only 1.6
 implementation did not pass its first loaded-game scenario and is not an
 accepted candidate for this general seating requirement. The generalized
-source in `Source/AMJ.Culture/TablelessChairMealPatch.cs` is **not yet
-compiled, packaged or runtime-tested**. Compile against genuine RimWorld 1.6
-managed assemblies, stage matching DLL and Harmony dependency, and then
-perform **one consolidated focused** acceptance (table-free chair, table
+source in `Source/AMJ.Culture/TablelessChairMealPatch.cs` is compiled against
+isolated original RimWorld 1.6 Managed/Harmony and its matching DLL is staged
+under `Assemblies/AMJ.Culture.dll` (source commit `aab06d25fd35c0eecdc3c818e06c90bf6a43fbca`,
+Project build-only [run #38995487716](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/38995487716),
+SHA-256 `609f8d2b2d4f9bc48f6ee86474f2b0e15c5d7abb2f342bd855dac526250a4dbb`). **Compilation is not runtime acceptance.**
+Next perform **one consolidated focused** acceptance (table-free chair, table
 priority, no-chair fallback, Comfort, meal completion, existing Thought and
 dining-room positives, zero runtime ERROR); test 1.7 only separately for
 claimed compatibility. No new research harness, repeated game startup or

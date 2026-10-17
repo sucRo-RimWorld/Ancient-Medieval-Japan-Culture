@@ -1,8 +1,11 @@
 # Culture chair-only dining adapter
 
-**Implementation state:** scoped 1.6 C# source candidate. This branch does not
-contain an assembled runtime DLL and does not claim any real-game result.
-`About/About.xml` remains unchanged until a matching, compiled DLL is staged.
+**Implementation state:** RimWorld 1.6 source and compiled matching binary are
+staged. **No actual loaded-game meal result is claimed**. The packaged
+`Assemblies/AMJ.Culture.dll` was built against licensed isolated original 1.6
+managed assemblies, source `aab06d25fd35c0eecdc3c818e06c90bf6a43fbca`, in the existing manual
+[Project build-only run #38995487716](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/38995487716).
+DLL SHA-256: `609f8d2b2d4f9bc48f6ee86474f2b0e15c5d7abb2f342bd855dac526250a4dbb`.
 
 The adapter patches only `Toils_Ingest.CarryIngestibleToChewSpot`. During a
 normal ingest Job it uses Vanilla travel if a valid table-adjacent chair exists,
@@ -21,11 +24,10 @@ dotnet build Source/AMJ.Culture/AMJ.Culture.csproj -c Release \
   -p:CultureOutputDir=/path/to/isolated/Culture/Assemblies
 ```
 
-On successful compile, stage the matching `Assemblies/AMJ.Culture.dll`, add
-Harmony to `About/About.xml`, and only then run one focused real-game
-acceptance: chair-only ingest/Comfort, table precedence, normal fallback,
+The matching DLL is staged and `About/About.xml` declares the Harmony
+requirement. Before promotion, run one focused real-game acceptance: chair-only ingest/Comfort, table precedence, normal fallback,
 mood/room effects, and complete strict ERROR-free log. The prior 1.7
 stool experiment is established technical evidence, **not** a production PASS.
 
 Enza textures, construction balance and new furniture are separate work.
-Do not ship a source-only branch as a functional Mod.
+Do not claim runtime acceptance or publish before the actual loaded-game check.

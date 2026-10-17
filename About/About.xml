@@ -6,8 +6,14 @@
   <supportedVersions>
     <li>1.6</li>
   </supportedVersions>
+  <modDependencies>
+    <li>
+      <packageId>brrainz.harmony</packageId>
+      <displayName>Harmony</displayName>
+    </li>
+  </modDependencies>
   <modVersion>0.1.0-dev</modVersion>
-  <description>Development prototype. Makes the mood effect of AteWithoutTable neutral (0). Does not change meal Jobs, tables, seats, Comfort or dining-room benefits. RimWorld 1.6 runtime behavior has not yet been verified.
+  <description>Development build for RimWorld 1.6. Uses ordinary sittable furniture as meal destinations without requiring an adjacent table; preserves standard table-adjacent seating and Vanilla fallback. Independently neutralizes AteWithoutTable mood effect. Requires Harmony. Real in-game acceptance is still pending.
 
-開発用試作。テーブルなしで食事した心情効果を0にする。食事Job、テーブル、座席、快適性、食堂の心情効果は変更しない。RimWorld 1.6での実機動作は未検証。</description>
+RimWorld 1.6向け開発版。通常のイスをテーブルなしでも食事場所として選択する。テーブルに隣接するイスの優先と、利用可能なイスがない場合の標準処理を維持。「テーブルなしで食事」の心情ペナルティは別処理で0にする。Harmony必須。実ゲーム動作は未検証。</description>
 </ModMetaData>
