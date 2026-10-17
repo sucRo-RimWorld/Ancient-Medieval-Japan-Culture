@@ -56,6 +56,61 @@ This table **does not** approve each drug as historically appropriate. It specif
 
 **Status:** The separation of alcohol disposition/tolerance/dependence, preservation of emergency drug play, non-destructive migration, and exclusion of anachronistic *new* Transhumanist generation are accepted design direction. Per-substance replacements, doses, craft trees, spawn modifiers, `DrugDesire` replacement effects, final Backstory category patching and all runtime outcomes remain **unapproved/unimplemented**.
 
+## Chair-only meals — revised implementation scope (2026-10-17)
+
+**Current author requirement supersedes the enza-only route:** Existing usable chairs
+(Vanilla and MO included) must be eligible ordinary eating destinations **with no
+adjacent table**. The aim is actual seated eating/Comfort, not merely neutralizing
+`AteWithoutTable`. This rule applies to any existing valid sit-capable building;
+it does **not** require creating/approving an enza, changing furniture artwork,
+making a picnic zone, or introducing a new table or flooring mechanic.
+
+**Picnic Area reference and implementation boundary:** The pinned Picnic Area
+`Toils_Ingest.CarryIngestibleToChewSpot` Postfix establishes the useful pattern:
+choose a normal `isSittable` furniture destination without a neighboring
+`SurfaceType.Eat`, reserve the chair and destination, and path to it as an
+ordinary Ingest travel Toil. Picnic-specific zones, random choice, weather,
+positive Thought and global `GenGrid.HasEatSurface` changes are **not**
+required by Culture. Source comparison: [Picnic Area pinned Toil adapter](https://github.com/emipa606/PicnicArea/blob/388896ec696dcf1f3f735315468c0ee26e910e77/Source/PicnicArea/Toils_Ingest_CarryIngestibleToChewSpot.cs).
+
+**Smallest bounded implementation:** For ordinary `JobDefOf.Ingest`, keep the
+Vanilla travel Toil. First check whether a reachable, valid, reservable
+`isSittable` seat **adjacent to an `Eat` surface** exists, using the
+same furniture search radius as Vanilla; if so, run the original Toil.
+The **existence of any table by itself is not a condition**: a table with
+no usable adjoining chair must not prevent using a separate table-free
+chair. Otherwise find an existing owned/faction-neutral, socially proper,
+unforbidden, non-burning, safe, reachable, reservable, standable
+`isSittable` chair within that radius. Reserve that chair and destination,
+path to its cell and let the original Ingest Job consume food and gain
+Comfort. If no chair qualifies or reservation fails, run the original
+Toil. Do not edit `GenGrid.HasEatSurface`, globally change all furniture,
+alter `FinalizeIngest`, food radius, dining-room rewards, Comfort rates,
+or non-Ingest Jobs. The existing `AteWithoutTable=0` remains independent.
+
+**Evidence / remaining gate:** A one-pawn experimental chair-only ingestion
+route completed with Comfort gain and food consumption in actual 1.7 source
+run #38899711992 (Project research). PR #6's different enza-only 1.6
+implementation did not pass its first loaded-game scenario and is not an
+accepted candidate for this general seating requirement. The generalized
+source in `Source/AMJ.Culture/TablelessChairMealPatch.cs` is compiled against
+isolated original RimWorld 1.6 Managed/Harmony and its matching DLL is staged
+under `Assemblies/AMJ.Culture.dll` (source commit `aab06d25fd35c0eecdc3c818e06c90bf6a43fbca`,
+Project build-only [run #38995487716](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/38995487716),
+SHA-256 `609f8d2b2d4f9bc48f6ee86474f2b0e15c5d7abb2f342bd855dac526250a4dbb`). **Compilation is not runtime acceptance.**
+Next perform **one consolidated focused** acceptance (table-free chair, table
+priority, no-chair fallback, Comfort, meal completion, existing Thought and
+dining-room positives, zero runtime ERROR); test 1.7 only separately for
+claimed compatibility. No new research harness, repeated game startup or
+furniture texture work before usable implementation. Any conflict with other
+Ingest patches needs an actual identified mod/behavior, not speculative
+open-ended audits.
+
+**Boundary:** The historically appropriate enza is still an optional
+later furniture candidate requiring its own materials, artwork and balance
+acceptance. The change here concerns the *seat-selection rule for existing
+furniture*, not author acceptance of any new furnishing.
+
 ## Scope of this prototype
 
 This first source-only prototype changes **only** the existing `AteWithoutTable` Thought mood stage to `0`. Preserve the same ThoughtDef identity; do not add a compensating mood buff, hide a zero-effect memory from the UI, or alter the food Job, seating, rooms, nutrition, filth, and other Thoughts.
