@@ -44,7 +44,15 @@ namespace AMJ.Culture.Test
             float startComfort = 0f;
             bool sawMealOnSeat = false, sawComfort = false, sawFinish = false;
             // Quickstarts has delayed pawn setup after the map first appears.
-            await ctx.WaitUntil(() => EnzaQuickstart.IsPostLoaded, 90f);
+            await ctx.WaitUntil(() =>
+            {
+                // Quickstart and Pickle steps are compiled as separate assemblies.
+                Type readyClass = Type.GetType(
+                    "AMJ.Culture.Test.EnzaQuickstart, AMJ.Culture.Enza16.Quickstart");
+                PropertyInfo readyFlag = readyClass == null ? null :
+                    readyClass.GetProperty("IsPostLoaded", BindingFlags.Public | BindingFlags.Static);
+                return readyFlag != null && (bool)readyFlag.GetValue(null, null);
+            }, 90f);
             await ctx.WaitFrames(2);
             await GameThread.Run(delegate
             {
