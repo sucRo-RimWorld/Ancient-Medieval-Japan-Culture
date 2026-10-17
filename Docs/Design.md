@@ -106,6 +106,10 @@ The production DLLs were supplied by the two authenticated builder jobs' Base64 
 
 **Purpose and limit:** This closes the known `PawnKindDef.combatEnhancingDrugsChance` AI-gear selection route for these banned products **without globally setting every pawn kind's chance to zero**, and without deleting item Defs, preventing manual use of old stocks, or changing combat stat/effect values. Original MO 1.6.2.2 BattleElixir/HornetHoney XML each has one matching true flag; original Core XML identifies Yayo/GoJuice as true. XML-only; no new DLL rebuild or game run needed. Other `fixedInventory`, `inventoryOptions`, reward, trader, quest and third-party explicit item references may still supply drugs; the in-game selection behavior and provider/version differences remain pending the consolidated runtime check.
 
+### MO 1.6.2.2 source audit boundary
+
+The supplied MO 1.6.2.2 XML tree has direct supply references in alchemy, lootable ruins and HornetNest; existing Culture patches cover these. References in `Buildings_Storage.xml` are storage filters, and must remain for legacy items. Original `SpaceBartender0` is already excluded from ordinary selection by the separate Stage2 category patch. No further explicit MO XML source was identified in this scoped scan. Generic game rewards, third-party providers, MO binary behavior and MO 1.7 are not verified. The current exclusion rule must be checked against loaded original 1.6/1.7 game Defs before release.
+
 ### Next implementation / acceptance boundary
 
 - Finish ordinary-generation exclusion only along demonstrated Vanilla/MO supply paths; prioritize newly generated drug-addicted pawns and explicit mixed-stock or reward pathways that still produce suppressed drugs.
