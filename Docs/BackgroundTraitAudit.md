@@ -330,3 +330,23 @@ Anomaly／Royalty／Odyssey／Biotech限定元アイテムは、元XPathの存�
 - **幼少期9件は原titleと成人ペアの条件を区別して保持**：`CynapseCustomChildhood` (tinkerer)、`FeyCustomChildhood` (wargame fanatic)、`JoeCustomChildhood` (drummer)、`LiamCustomChildhood` (sim addict)、`MateCustomChildhood` (curious kid)、`NathanCustomChildhood` (cave child)、`OskarCustomChildhood` (art slave)、`TynanCustomChildhood` (punk)、`WillCustomChildhood` (maze child)。`LiamCustomChildhood` のsim依存と `FeyCustomChildhood` のwar gameは要原文だが、幼少期には成人カテゴリがなく、通常生成が成人ペアで遮断されている場合がある。重複したC#ゲートを証拠なく増やさず、名前付きSolid経路で確認する。旧Rare人物の元設定は保存する。
 
 **現行の状態と残留する証拠限界：** 正規元Core 1.6/1.7の**メタデータとして**16＋18件を個別分類したので、欠落長文による無根拠な削除をしない判断は確定。未取得の**配布中Coreの生のdescription長文**、Rare実抽選の個別経路（通常出現頻度）については未立証として分離する。新規のStoryDef・TraitDef、英日歴史本文、強制Trait・職務効果は変更しない。現在の生成制限は **成人77（成人カテゴリXML76＋独立`FerventResearcher72`1）、幼少58（Solidゲート55＋Shuffled3）、合計135件**。元の34件史実改稿、23件の生成時所持品置換、最終確認待ち日本語原稿89件は不変。この追加はXMLだけなのでビルド済み1.6/1.7 DLLの再製造は不要だが、ロード後の効果は未確認。Steamやネイティブの繰り返しテストは行わず、後続の一括受入れへ渡す。
+
+
+## 第2段階・第9修正群 — 原稿日本語の品質指摘による全面改稿（2026-10-18）
+
+**以前の89件原稿は無承認・差し戻し。** title/shortをもっともらしい架空役名で埋めてしまい、`description` も技能やWorkDisablesの由来を説明するための不自然な創作が目立った。ユーザーの指摘を受け、元Core 1.6/1.7の定義属性を再照合したうえで、日本語タイトル・説明を全件再構成。原の効果を文章だけで改変しない。**87件のdescriptionすべて変更**、原稿数89→87。未承認でゲームには投入しない。
+
+| 元Def | 元属性と修正理由 | 暫定措置 |
+|---|---|---|
+| `AddictionCounsel60` | `Solid_Adult`、Offworld／Outlander。Social+8・Medicine+3・Artistic+3・Crafting+3で、依存症専門職に相当する独立職の根拠がない。寺での困窮者救済と専門カウンセラーは別物。 | 通常生成除外、Def／能力維持、作者確認用の無理な日本語原稿は廃止 |
+| `Architect28` | `Shuffled/Offworld_Glitterworld_Adult`、Offworld。Intellectualを必須としManualDumb不可、Construction+5・Artistic+7・Crafting−3、元TextBook所持。中世の番匠・棟梁を、この近代的な非肉体労働専門職に安易に読み替えるのは不適切。 | 通常生成除外、元の所持品等もDef内に残す |
+| `BountyHunter41` | `Solid_Adult`、Offworld／Pirate、Shooting+8・Melee+5。`追捕使`は実際に任命される官職であり、雇われの賞金稼ぎと同義ではない。 | **盗賊狩り**とする、元の弓・近接戦闘技能を維持 |
+| `Castaway81` | 難破後の野外生存という役割。 | **難破の生存者**とする |
+| `CharityWorker36` | `Shuffled/Offworld_Glitterworld_Adult`、Offworld。Violent不可、Caring／Social必須、Social+6。中世にも僧侶の施しや病人の救済の実例がある。一般的な「世話役」へのすり替えはしない。 | **施しの僧**とする |
+| `ExpertHandyman8` | Construction+7・Intellectual+4・Crafting+3。実際に修理する多能工であり、直訳の「修繕職」は日本語の職業名として不自然。 | **腕利きの職人** |
+| `FurnitureBuilder83` | 木を扱って家具を作る仕事。指物は室町以降に専門職の例があり、単に「家具職人」で意味は通る。 | **家具職人** |
+| `GangSoldier39` | 戦闘の古参。原の武器・料理・手当ての技能を維持。 | **古参の野盗** |
+
+**実装：** `Patches/AnachronisticAdultBackstories.xml` に2件のカテゴリ制限追加（XML通常成人76→78）。ほかの既存制限の変更なし。新しい集計は成人79（XML78＋独立1）＋幼少58＝**137背景**。23件の初期所持品差替え、34件の製品反映済み英日改稿は維持。 `Docs/Stage2JapaneseReviewDraft.md` は87件に再番号付けされ、同じ原Defに対する短い自然な日本語を全件差し替え。**旧原稿のtitle・説明文を部分的に修正しただけで承認できる状態とせず、全件新規確認の対象として提示する。**
+
+**未実施：** 作者の日本語文章承認、英語化・ゲーム文面反映、現行Core原文完全照合、Loaded Pawnの通常生成・旧セーブ・MO互換ゲーム検証、Steam公開。歴史用語の確認は一般的な史料ベースで、元Coreの現在の原文が必ず同一とは断言しない。
