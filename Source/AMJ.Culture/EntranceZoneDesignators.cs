@@ -31,7 +31,7 @@ namespace AMJ.Culture
             zone.Set(cell, true);
             // Warn, but allow building the threshold before painting the floor area.
             // Throttle this during mouse-drag painting; no tick-time notifications.
-            if (!zone.HasNoShoesNeighbor(cell) &&
+            if (!zone.HasConnectedNoShoesContact(cell) &&
                 Time.frameCount - lastWarningFrame > 300)
             {
                 Messages.Message("AMJ_Culture_EntranceNotAdjacent".Translate(),
