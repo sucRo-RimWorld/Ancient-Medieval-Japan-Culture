@@ -752,3 +752,20 @@ Stage1の `ARCHIVAL_DESCRIPTION_NOT_FOUND` 16件と `SPECIAL_NAMED_RARE_ROUTE` 1
 `Solid_Rare` 9組（成人9＋幼少9）は固有人物として残す。元titleがゲーム開発者／シミュレーション開発者／Modデザイナーの成人4件は**既に通常カテゴリ制限済み**で、今回のXML変更はない。その他の成人5件と幼少9件には、原題のみで一律制限する根拠がなく、`LiamCustomChildhood`／`FeyCustomChildhood` 等は現行配布ゲームの長文や成人ペア条件を確認してから判断する。名前付きRareのランダム到達性を「個別常時出現」とは断言しない。個別判定表は[BackgroundTraitAudit 第8修正群](BackgroundTraitAudit.md#第2段階第8修正群--旧英語原文未収録16件と名前付きrare18件の生成経路整理2026-10-18)。
 
 **新しい実装総数：通常生成制限135件（成人77＝XML76＋独立1、幼少58＝Solid C#55＋Shuffled3）。** 生成時の所持品置換23件、実装済み史実改稿34件、最後の一括日本語確認待ち89件は不変。XMLのみの追加で、実物収録済みの1.6／1.7 DLLの再ビルド不要。現行原Coreのdescription全文一致や実ゲームでの生成禁止・旧セーブ互換は未検証であり、最後にまとめて確認する。
+
+
+### 第2段階・日本語改稿候補の全面再作成（2026-10-18、作者未承認）
+
+**作者指摘による従前案の撤回：** 前の89件の `title`・`titleShort` は中世日本の人物背景として不自然で、近代的職業を架空の肩書へ置き換えたり、不必要な役名を作ったりしていた。`description` も仕事の禁止や技能値の理由として不自然な逸話を後付けし、説明日本語としてぎこちなかった。従前の89件原稿は**承認案として使用不可**とし、本文を含めて全面的に作り直した。
+
+**原稿から生成制限へ変更した2件：**
+- `AddictionCounsel60`：原Coreは一般成人 `Solid_Adult`／`Offworld;Outlander`、Social+8、Medicine+3、Artistic+3、Crafting+3。中世日本に施しや人の相談を受ける僧は存在したが、**独立した依存症専門カウンセラー**という職業は同じものではない。他の元定義 `CharityWorker36` と安易に混ぜない。歴史的に相応しい人物設定が確認できるまで通常生成カテゴリのみ制限する。
+- `Architect28`：原Coreは `Shuffled/Offworld_Glitterworld_Adult.xml` の成人 `Offworld`／`requiredWorkTags=Intellectual`／`ManualDumb`不可／Construction+5・Artistic+7・Crafting−3／TextBook所持。中世には番匠・大工棟梁が存在したが、**肉体労働と切り離した近代的な独立建築設計職**を同じ仕様のまま「差図役」等へ置換する根拠がない。番匠や棟梁の背景はほかの元定義で維持し、本定義は通常生成を制限する。
+
+どちらも `Patches/AnachronisticAdultBackstories.xml` の `spawnCategories` を `AMJ_CultureExcluded` に置換するだけとし、元 `BackstoryDef`／仕事・技能／初期所持品／セーブ参照は残す。実装総数は**137背景の生成制限**（成人79＝XML78＋独立1、幼少58＝Solid55＋Shuffled3）。XMLのみの差分で1.6／1.7製品DLL再ビルドは不要。Loaded-game動作は未確認。
+
+**書き直した原稿：** 対象は残り**87件**（前半33件＋後半54件）。[Stage2JapaneseReviewDraft.md](Stage2JapaneseReviewDraft.md) の `title`・`titleShort`・`description` を全件再検討し、**description87件すべてを実際に書き直した**。簡潔で自然な説明にし、近世以後の架空の専門職名や技能を説明するための不自然な事故を作らない。例：`BountyHunter41` の「追捕人」を行政的な役職と混同せず「盗賊狩り」へ、`Castaway81` を「難破の生存者」へ、`CharityWorker36` を「施しの僧」へ、`ExpertHandyman8` を「腕利きの職人」へ、`FurnitureBuilder83` を「家具職人」へ、`GangSoldier39` を「古参の野盗」へ。それぞれ人物の行いを描写し、無理な官職名・社会制度を割り当てない。背景DefID・技能・仕事禁止・強制Trait・旧セーブは変えない。
+
+**史料上の境界：** 中世日本の番匠について[山川『日本史小辞典』](https://www.historist.jp/word_j_ha/entry/036478/)、家具・指物師の時代について[京都市伝統工芸資料](https://www.city.kyoto.lg.jp/sankan/page/0000041368.html)、寺での困窮者救済例について[奈良国立博物館・忍性](https://www.narahaku.go.jp/exhibition/special/201607_ninshou/)、追捕使が任命された官職であることについて[山川『日本史小辞典』参照](https://kotobank.jp/word/%E8%BF%BD%E6%8D%95%E4%BD%BF-98879)。ただしこれらは対象人物一人一人の実在を証明せず、「書かれた肩書が無理のないものか」という一般的な検討資料である。
+
+**承認・検証の境界：** **新しい87件の日本語原稿も全件未承認**。ゲームの `BackstoryDef`／DefInjectedへのインストール、英訳、独自背景・特性の追加をしない。作者が指摘なしのものを承認する形式を尊重し、個別に全員の逐次承認を強制しない。承認後の改稿製品反映と最小限のVanilla 1.6／1.7＋MO実ゲーム受入れを別工程として行う。
