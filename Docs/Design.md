@@ -586,4 +586,6 @@ Cultureは人物背景・特性・心情・食事習慣・嗜好品・玄関の�
 
 **対象範囲**：同一建物の複数出入口、別建物への連続運搬、2マス以上に塗った連続玄関ゾーン、玄関ゾーンを通ったが元の側へ戻る経路。ゲームのJobを作り直さず、元の予約・経路・速度は維持する。入口のドアや屋根そのものを履物変更設備にしない。現行保存キー `AMJCultureEntranceCells` と `AMJCultureBarefootPawnIds` は変更しない。
 
-**受け入れ境界**：修正C#の1.6/1.7バイナリへの再ビルドを必要とし、**既存第1実装のビルド成功は新実装のビルド・実ゲームPASSを示さない**。ゲーム起動は分割せず、玄関機能の最終受け入れ時にAから入りBから出る単一Jobの往復を追加して確認する。
+**修正コードのビルド状況**：Cultureソース `dd0b58870c64d3699849b25ffdcea47b2c5c555b` を両ゲーム版の正規Managed参照でコンパイルした。RimWorld 1.6 [Project build-only #39037191464](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39037191464) SUCCESS、DLL SHA-256 `117676e0bc079e787ab31bdd6adb236320431706a54cdfb1c15e9cb580dd0c3d`（20,992 bytes）。RimWorld 1.7 [Project build-only #39037194754](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39037194754) SUCCESS、DLL SHA-256 `80ff5898835546722490598abf0e5c1b3808c127ce6836c535cd32e036f9c775`（20,992 bytes）。双方、実ゲームでの動作確認は未実施。成果DLLはバイナリのまま `1.6/Assemblies`／`1.7/Assemblies` に反映する。
+
+**受け入れ境界**：C#コンパイル成功は実ゲームでのZone/Job/FilthのPASSを示さない。ゲーム起動は分割せず、玄関機能の最終受け入れ時にAから入りBから出る**単一Job**の通過を追加して確認する。
