@@ -123,6 +123,18 @@ namespace AMJ.Culture.Test
             }
             await GameThread.Run(delegate
             {
+                Log.Message("AMJ_CULTURE_ENZA16_DIAGNOSTIC"
+                    + " job=" + (pawn.CurJob == null ? "none" : pawn.CurJob.def.defName)
+                    + " position=" + pawn.Position
+                    + " seat=" + seat.Position
+                    + " sawOnSeat=" + sawMealOnSeat
+                    + " sawComfort=" + sawComfort
+                    + " sawFinish=" + sawFinish
+                    + " comfortBefore=" + startComfort
+                    + " comfortAfter=" + (pawn.needs.comfort == null ? -1f : pawn.needs.comfort.CurLevel)
+                    + " seatEdifice=" + (seat.Position.GetEdifice(seat.Map) == seat)
+                    + " seatReservable=" + pawn.CanReserve(seat, 1, -1, null, false)
+                    + " foodCarried=" + (pawn.carryTracker.CarriedThing != null));
                 ctx.Require(sawMealOnSeat, "Pawn did not eat on table-free enza");
                 ctx.Require(sawComfort, "Eating on enza did not increase Comfort");
                 ctx.Require(sawFinish, "The meal was not consumed");

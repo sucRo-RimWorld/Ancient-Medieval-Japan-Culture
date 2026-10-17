@@ -22,11 +22,10 @@ namespace AMJ.Culture
         private static bool CanSit(Pawn pawn, Thing seat)
         {
             return seat != null && seat.Spawned && seat.def.building != null &&
-                   seat.def.building.isSittable && seat.Faction == pawn.Faction &&
-                   !seat.IsForbidden(pawn) && !seat.IsBurning() &&
+                   seat.def.building.isSittable && !seat.IsForbidden(pawn) && !seat.IsBurning() &&
                    !seat.HostileTo(pawn) && seat.IsSociallyProper(pawn) &&
                    seat.Position.GetDangerFor(pawn, seat.Map) == Danger.None &&
-                   pawn.CanReserveSittableOrSpot(seat.Position);
+                   pawn.CanReserve(seat, 1, -1, null, false);
         }
 
         private static bool HasAdjacentEatSurface(Thing chair)
@@ -95,11 +94,11 @@ namespace AMJ.Culture
 
                 Thing seatForMeal = GenClosest.ClosestThingReachable(
                     actor.Position, actor.Map,
-                    ThingRequest.ForGroup(ThingRequestGroup.BuildingArtificial),
+                    ThingRequest.ForDef(enza),
                     PathEndMode.OnCell, TraverseParms.For(actor), searchRadius,
-                    seat => seat.def == enza && CanSit(actor, seat));
+                    seat => CanSit(actor, seat));
                 if (seatForMeal == null ||
-                    !actor.ReserveSittableOrSpot(seatForMeal.Position, actor.CurJob, false))
+                    !actor.Reserve(seatForMeal, actor.CurJob, 1, -1, null, false))
                 {
                     vanillaAction();
                     return;
