@@ -304,7 +304,7 @@ The thirty target DefNames: `AerospaceEngineer44`, `ComputerEngineer10`, `Comput
 
 ### 近未来アイテムの新規生成時のみの置換（6件）
 
-**正本:** `Patches/HistoricalOccupationStartingPossessions.xml`。元の `possessions/li` を持つ指定された `BackstoryDef` だけを書き換える。物品ThingDef自体は削除しない。既存セーブ内の物品・職業Def・化学依存・DrugPolicy・所有者が抱える所持品には変更を加えない。
+**正本:** `Patches/HistoricalOccupationStartingPossessions.xml`。元の `possessions/<ThingDef名>` を持つ指定された `BackstoryDef` だけを書き換える。RimWorld原実装 `PossessionThingDefCountClass.LoadDataFromXmlCustom` は要素名をアイテムDefとして読んでおり、`<li><thingDef>` 形式のリストではない。XML XPath と置換後の要素名をこの仕様で静的確認した。物品ThingDef自体は削除しない。既存セーブ内の物品・職業Def・化学依存・DrugPolicy・所有者が抱える所持品には変更を加えない。
 
 | 元Def | もとの初期アイテム | 新規割当時の初期アイテム | 目的 |
 |---|---|---|---|
