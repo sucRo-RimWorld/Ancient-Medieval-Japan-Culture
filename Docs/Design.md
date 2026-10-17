@@ -383,3 +383,16 @@ The **same exact owner source commit** `b1bc7e5a43c1f2e3017369a111f3c1700d413a80
 | 1.7 | [Project #39018244508](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39018244508), SUCCESS | `1.7/Assemblies/AMJ.Culture.dll` | 11,264 B | `9005cd7a98f7eec02ce51fd0f4ec1d3dc804a212f62df651c8de32a2eb98138d` |
 
 The existing `LoadFolders.xml` selects these version-specific assemblies. The 1.6 SDK collects the new C# file implicitly; the 1.7 isolated builder's explicitly enumerated sources were updated in [Project PR #608](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/pull/608). Both binaries include the previously accepted chair source, existing Solid-child gate, and the new Greedy/Jealous harmony patches. **Only compilation was verified**, not actual mood values or loaded-game effects. Previously published Vanilla 1.7 real-game evidence #39016905072 relates to the *previous* 9,216-byte DLL and the 43+24 list, not the new 11,264-byte binaries and 46+24 restrictions.
+
+
+## Cultural Thought and social-norm triage outside seating (2026-10-17)
+
+**対象の境界:** イス単独での食事、`AteWithoutTable`、背景・特性の定義と生成は本項の作業外。背景・特性を扱う別系統へユーザーを伝言役にしない。`SleptInBarracks` の一般的な扱いは Shared Sleeping 所有。本項は**中世日本に合わない可能性がある Thought／社会的判定の優先調査結果**であり、新たなDef効果数値や全住民共通の倫理観を承認・実装したものではない。
+
+1. **葬送と死体:** Vanilla の `Colonist left unburied`（仲間の遺体が未処理なら心情−10）や近くの死体目撃Thoughtを、すべて無効化するのは不適切。中世日本には風葬・寺院への遺体移送など多様な葬送慣行があり、死穢の観念も存在した。ゲーム上の区別候補は「遺体の無秩序な放置」と「適切に指定された葬送／処理」。単なる世界観だけを理由に数値を0にしない。Vanilla墓・火葬は既存処理で有効で、別途未実装の葬送設備を前提にしてはならない。根拠: [国立国会図書館所蔵論文](https://ndlsearch.ndl.go.jp/books/R000000004-I2840449)、[中世の葬送と遺体移送](https://cir.nii.ac.jp/crid/1390001205138598400)、[RimWorld Thought一覧](https://rimworldwiki.com/wiki/Thoughts)。
+2. **捕虜の処遇・処刑・追放:** Vanilla の捕虜売却・殺害・無実の捕虜死亡・臓器摘出などのThoughtは独立に存在する。中世日本でも時代・身分・関係・行為の正当性で評価は変わるため、捕虜一般の心情低下を「中世だから」一律撤去する案は不採用。具体的な不整合が確認されれば、対象Thoughtと発火条件を個別に決める。既存の [Greyer morals (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=2018947066) は当該Thoughtの緩和という先行事例だが、食人や人体素材まで一括して変えるため、日本文化再構成用の必須Modにはしない。
+3. **婚姻・親族・社会評価、裸体:** 現行Vanillaの恋愛／婚姻、裸に対するMood／Opinionは研究候補に留める。歴史上の婚姻や服飾の差を理由に、既存の関係生成・同性／異性の指向・家族のセーブ参照や最低限の身体保護を包括変更しない。実際のプレイ上の不自然な発火条件が分かった場合だけ、時代・地域・場面を限定する。
+
+**Medieval Overhaul 既存処理との境界:** 提供された原Mod 1.6.2.2の `1.6/Patches/Core/Add_Trait_Thoughts.xml` は、`ObservedLayingCorpse`、`ObservedLayingRottingCorpse`、捕虜死亡・処刑・追放・死亡目撃等の `nullifyingTraits` に MO の `DankPyon_Fighter`／`DankPyon_Veteran` を追加しようとする（2操作間に重複指定あり）。これは**MO特性に関連する既存の例外処理**であり、Culture側から全体的な死亡Thought調整で上書きしない。ロード後の重複・有効性は未確定。個別特性そのものの改変は別作業。
+
+**再利用判断:** [Sky Burial](https://steamcommunity.com/sharedfiles/filedetails/?id=2389525728) は指定場所への遺体安置という技術的先行事例だが、既存公開版は1.4向けの鳥葬モチーフであり、日本の風葬とそのまま同一視できない。Greyer morals も含め、現状で追加の必須依存・独立した新設備・新C#を正当化するものではない。**次に実装できる確定済みの、椅子以外の社会Thought変更はこの監査では確認されなかった。** 現時点ではCultureの既存Thought動作を維持し、個別仕様が承認されて初めて変更する。テストやCIは新設・起動しない。
