@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <AMJ_Culture_EntranceAdd>Entrance threshold</AMJ_Culture_EntranceAdd>
+  <AMJ_Culture_EntranceAddDesc>Mark a shoe-changing threshold between outdoor and indoor spaces. May overlap floors, stockpiles and growing zones. Colonists briefly pause when crossing.</AMJ_Culture_EntranceAddDesc>
+  <AMJ_Culture_EntranceRemove>Remove entrance threshold</AMJ_Culture_EntranceRemove>
+  <AMJ_Culture_EntranceRemoveDesc>Erase painted entrance threshold cells without removing any floor or other zone.</AMJ_Culture_EntranceRemoveDesc>
+</LanguageData>
