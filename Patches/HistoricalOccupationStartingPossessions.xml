@@ -1,70 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
-  <!-- Only newly assigned starting possessions on six historically rewritten
-       Vanilla BackstoryDefs are adjusted; no stored Pawn gear, saved Things,
-       Trait, Need or medicine/meal ThingDef is removed or rewritten. The
-       optional Odyssey-only item uses a conditional guard. -->
-  <!-- DeepSpaceMiner3: Odyssey-gated asteroid block → ordinary mined metal; do nothing when original optional content is absent. -->
+  <!-- RimWorld PossessionThingDefCountClass uses custom XML reading:
+       each direct child of possessions has the ThingDef as node NAME,
+       and its text value is the IntRange count. Do not use list objects.
+       Only new-biography starting grants change; saved ThingDefs remain. -->
+  <!-- DeepSpaceMiner3: BlocksVacstone to Steel. Optional Odyssey item, skip when absent. -->
   <Operation Class="PatchOperationConditional">
-    <xpath>Defs/BackstoryDef[defName="DeepSpaceMiner3"]/possessions/li[thingDef="BlocksVacstone"]</xpath>
+    <xpath>Defs/BackstoryDef[defName="DeepSpaceMiner3"]/possessions/BlocksVacstone</xpath>
     <match Class="PatchOperationReplace">
-      <xpath>Defs/BackstoryDef[defName="DeepSpaceMiner3"]/possessions/li[thingDef="BlocksVacstone"]</xpath>
+      <xpath>Defs/BackstoryDef[defName="DeepSpaceMiner3"]/possessions/BlocksVacstone</xpath>
       <value>
-        <li>
-          <thingDef>Steel</thingDef>
-          <count>20</count>
-        </li>
+        <Steel>20</Steel>
       </value>
     </match>
   </Operation>
-  <!-- Engineer40: 3 industrial components → 30 units of generic metal stock. -->
+  <!-- Engineer40: ComponentIndustrial to Steel. -->
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/BackstoryDef[defName="Engineer40"]/possessions/li[thingDef="ComponentIndustrial"]</xpath>
+    <xpath>Defs/BackstoryDef[defName="Engineer40"]/possessions/ComponentIndustrial</xpath>
     <value>
-      <li>
-        <thingDef>Steel</thingDef>
-        <count>30</count>
-      </li>
+      <Steel>30</Steel>
     </value>
   </Operation>
-  <!-- SpaceNavyDoctor72: 10 prophylactic pills → 10 herbal medical supplies. -->
+  <!-- SpaceNavyDoctor72: Penoxycyline to MedicineHerbal. -->
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/BackstoryDef[defName="SpaceNavyDoctor72"]/possessions/li[thingDef="Penoxycyline"]</xpath>
+    <xpath>Defs/BackstoryDef[defName="SpaceNavyDoctor72"]/possessions/Penoxycyline</xpath>
     <value>
-      <li>
-        <thingDef>MedicineHerbal</thingDef>
-        <count>10</count>
-      </li>
+      <MedicineHerbal>10</MedicineHerbal>
     </value>
   </Operation>
-  <!-- SpaceshipChef41: 4 nutrient-paste meals → 4 ordinary meals. -->
+  <!-- SpaceshipChef41: MealNutrientPaste to MealSimple. -->
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/BackstoryDef[defName="SpaceshipChef41"]/possessions/li[thingDef="MealNutrientPaste"]</xpath>
+    <xpath>Defs/BackstoryDef[defName="SpaceshipChef41"]/possessions/MealNutrientPaste</xpath>
     <value>
-      <li>
-        <thingDef>MealSimple</thingDef>
-        <count>4</count>
-      </li>
+      <MealSimple>4</MealSimple>
     </value>
   </Operation>
-  <!-- StarshipDoctor37: 2 glitterworld medicine → 2 herbal medicine. -->
+  <!-- StarshipDoctor37: MedicineUltratech to MedicineHerbal. -->
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/BackstoryDef[defName="StarshipDoctor37"]/possessions/li[thingDef="MedicineUltratech"]</xpath>
+    <xpath>Defs/BackstoryDef[defName="StarshipDoctor37"]/possessions/MedicineUltratech</xpath>
     <value>
-      <li>
-        <thingDef>MedicineHerbal</thingDef>
-        <count>2</count>
-      </li>
+      <MedicineHerbal>2</MedicineHerbal>
     </value>
   </Operation>
-  <!-- WanderingHealer52: 3 manufactured medicine → 3 herbal medicine. -->
+  <!-- WanderingHealer52: MedicineIndustrial to MedicineHerbal. -->
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/BackstoryDef[defName="WanderingHealer52"]/possessions/li[thingDef="MedicineIndustrial"]</xpath>
+    <xpath>Defs/BackstoryDef[defName="WanderingHealer52"]/possessions/MedicineIndustrial</xpath>
     <value>
-      <li>
-        <thingDef>MedicineHerbal</thingDef>
-        <count>3</count>
-      </li>
+      <MedicineHerbal>3</MedicineHerbal>
     </value>
   </Operation>
 </Patch>
