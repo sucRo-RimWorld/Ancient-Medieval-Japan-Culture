@@ -15,6 +15,8 @@ namespace AMJ.Culture
     {
         private List<IntVec3> cells = new List<IntVec3>();
         private HashSet<IntVec3> lookup = new HashSet<IntVec3>();
+        private List<IntVec3> noShoesCells = new List<IntVec3>();
+        private HashSet<IntVec3> noShoesLookup = new HashSet<IntVec3>();
 
         private static readonly Material ProgressFilled =
             SolidColorMaterials.SimpleSolidColorMaterial(new Color(0.76f, 0.72f, 0.45f));
@@ -25,10 +27,44 @@ namespace AMJ.Culture
 
         public bool Contains(IntVec3 cell) { return lookup.Contains(cell); }
         public List<IntVec3> Cells { get { return cells; } }
+        public List<IntVec3> NoShoesCells { get { return noShoesCells; } }
+        public bool IsNoShoes(IntVec3 cell) { return noShoesLookup.Contains(cell); }
+        public bool HasActiveArea { get { return cells.Count > 0 && noShoesCells.Count > 0; } }
+
+        public static bool TouchByEdge(IntVec3 a, IntVec3 b)
+        {
+            return Math.Abs(a.x - b.x) + Math.Abs(a.z - b.z) == 1;
+        }
+
+        public bool HasNoShoesNeighbor(IntVec3 cell)
+        {
+            return IsNoShoes(new IntVec3(cell.x + 1, 0, cell.z)) ||
+                   IsNoShoes(new IntVec3(cell.x - 1, 0, cell.z)) ||
+                   IsNoShoes(new IntVec3(cell.x, 0, cell.z + 1)) ||
+                   IsNoShoes(new IntVec3(cell.x, 0, cell.z - 1));
+        }
+
+        public void SetNoShoes(IntVec3 cell, bool enabled)
+        {
+            if (!cell.InBounds(map) || Contains(cell)) return;
+            if (enabled)
+            {
+                if (noShoesLookup.Add(cell)) noShoesCells.Add(cell);
+            }
+            else if (noShoesLookup.Remove(cell))
+                noShoesCells.Remove(cell);
+
+            Game game = Current.Game;
+            if (game != null)
+            {
+                EntranceFootwearState state = game.GetComponent<EntranceFootwearState>();
+                if (state != null) state.CancelOnMap(map);
+            }
+        }
 
         public void Set(IntVec3 cell, bool enabled)
         {
-            if (!cell.InBounds(map)) return;
+            if (!cell.InBounds(map) || IsNoShoes(cell)) return;
             if (enabled)
             {
                 if (lookup.Add(cell)) cells.Add(cell);
@@ -49,10 +85,14 @@ namespace AMJ.Culture
         {
             base.ExposeData();
             Scribe_Collections.Look(ref cells, "AMJCultureEntranceCells", LookMode.Value);
+            Scribe_Collections.Look(ref noShoesCells, "AMJCultureNoShoesCells", LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (cells == null) cells = new List<IntVec3>();
                 lookup = new HashSet<IntVec3>(cells);
+                if (noShoesCells == null) noShoesCells = new List<IntVec3>();
+                noShoesCells.RemoveAll(cell => lookup.Contains(cell));
+                noShoesLookup = new HashSet<IntVec3>(noShoesCells);
             }
         }
 
@@ -60,7 +100,7 @@ namespace AMJ.Culture
         {
             if (Current.Game == null || Find.CurrentMap != map) return;
             EntranceFootwearState state = Current.Game.GetComponent<EntranceFootwearState>();
-            if (state == null) return;
+            if (state == null || state.ActivePauses.Count == 0) return;
 
             int now = Find.TickManager.TicksGame;
             foreach (KeyValuePair<Pawn, EntrancePause> pair in state.ActivePauses)
