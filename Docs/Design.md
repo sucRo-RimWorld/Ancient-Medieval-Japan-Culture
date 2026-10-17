@@ -14,6 +14,21 @@ Culture's product goal is to remove historically incongruous **character generat
 
 **Audit eligibility boundary (author decision, 2026-10-17):** Exclude backgrounds and traits **assigned exclusively to particular unique/predefined pawns** from Culture's remaining historical-fit audit and modifications **only when they cannot occur in ordinary Vanilla/MO pawn generation**. Do not count such unique-only entries as pending ordinary-generation conflicts, change their special assignments, or remove their Defs. A `Solid` source path, named/fixed `PawnBio`, or missing childhood `spawnCategories` alone does **not** prove unique-only: normal generation can choose named Solid biographies. Keep any background or forced trait reachable by ordinary generated pawns in scope, including the Solid-selection path. Where reachability is not yet established, mark it unknown rather than assuming exemption or applying new restrictions. This narrows **future work only**; it does not retroactively undo the 70 existing source exclusions or 34 rewrites without specific evidence that a rule targets unique-only content.
 
+### 追加の通常生成Shuffled背景4件（2026-10-17）
+
+原Core 1.6／1.7 metadata v2で **Shuffled** と確認できた4件のみ生成カテゴリを制限する。専用固有ポーンへしか割り当てられない背景・特性は対象外。一般の`Solid`背景には通常生成可能なものもあるが、今回挙がった成人5件・幼少3件は個別到達経路が未確認のため変更しない。
+
+| Def | 原スロット・通常生成カテゴリ | 元設定と処理 |
+|---|---|---|
+| `JoywireArtist8` | 成人：Offworld/Pirate/Scientist | 快楽電子インプラントのソフトウェア開発。通常カテゴリ除外 |
+| `VRDesigner87` | 成人：Offworld/Scientist/Farmer | 仮想現実シミュレーション制作。通常カテゴリ除外 |
+| `OrganFarm67` | 幼少：Offworld/Outlander/ImperialCommon/Madman | 人体を人工臓器培養に利用。通常カテゴリ除外 |
+| `VatgrownSoldier8` | 幼少：Offworld/Pirate/ImperialCommon/ImperialFighter/Vatgrown | バイオ兵器施設での人工培養と加速成長。通常カテゴリ除外 |
+
+正本：`Patches/AnachronisticAdultBackstories.xml`および`Patches/AnachronisticShuffledChildBackstories.xml`。従来の成人46件（別ファイル`FerventResearcher72`を含む）・Solid幼少24件に、成人2件・Shuffled幼少2件を追加。**成人48＋Solid幼少24＋Shuffled幼少2＝74件**を新規通常生成から制限し、改稿34件は変更しない。元のBackstoryDef、技能、強制Trait、初期所持品、保存済み人物、特定の固有人物への直接割当には影響を与えない。XML変更のみで、既存の1.6/1.7製品DLLはそのまま使用する。
+
+SF内容の根拠はLudeon公式翻訳に保存された旧英語原文コメントであり、現行Core本文とのバイト一致は保証しない。原XMLの定義・年齢スロット・生成カテゴリは両バージョンの作者所有ソース台帳で確認した。新しいXMLの実ゲームロード結果は未検証で、既存の検証PASSはこの4件を含まない。PRごとにRimWorldを起動せず、実装完了後の集約検証に含める。
+
 The owner-side [BackgroundTraitAudit.md](BackgroundTraitAudit.md) records the source-grounded Vanilla/MO character and optional medieval-pack historical-fit classifications.
 
 The follow-up [SFBackgroundIndividualAudit.md](SFBackgroundIndividualAudit.md) assesses **all 50 originally SF/technology-flagged backgrounds individually** using an archived official translation's English comments and the authentic 1.6/1.7 metadata; it also identifies **26 additional cases missed by that flag**. The preserved English comments are not confirmed to be current Core 1.6/1.7 primary text, so its historical assessments are candidates, not new gameplay-exclusion approvals. No wholesale 50-background suppression is authorized. The 43-name trait crosswalk is provisional where modern 1.6/1.7 Core text has not been independently compared; Vanilla's 784 backgrounds were enumerated but **not** exhaustively historically approved. A review flag alone is not approval to disable that background. Preserve the approved narrow Transhumanist outcome already implemented in source; any other new background exclusions, story rewrites or altered Trait/Thought effects require their own authentic-content decision and then the smallest useful source change. This audit is not a new test mandate or game behavior change.

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <!-- Shuffled child backgrounds: change ordinary category eligibility only.
+       Keep named unique-pawn references, Def identities and forced traits. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="OrganFarm67"]/spawnCategories</xpath>
+    <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="VatgrownSoldier8"]/spawnCategories</xpath>
+    <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
+  </Operation>
+</Patch>

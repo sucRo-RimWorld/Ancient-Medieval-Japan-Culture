@@ -25,7 +25,7 @@ namespace AMJ.Culture.Test
             "CorpResearcher71", "EngineeredPilot75", "GeneticEngineer89",
             "GeneticScientist66", "MechWarVeteran77", "NetworkEngineer34",
             "Roboticist1", "Roboticist41", "RocketEngineer53", "RocketPioneer19",
-            "CasketBuilder52",             "ChiefEngineer62",             "ColonyEngineer7",             "CorpResearcher93",             "ExecutiveOfficer5",             "BiosphereManager95",             "ArtifactHunter48",             "ShadowMarine63",             "GameTester77",             "Adventurer19",             "Explorer49",             "ExplorerWriter10", "TestSubject90", "HunterOfTheKing53", "SpaceBartender0"
+            "CasketBuilder52",             "ChiefEngineer62",             "ColonyEngineer7",             "CorpResearcher93",             "ExecutiveOfficer5",             "BiosphereManager95",             "ArtifactHunter48",             "ShadowMarine63",             "GameTester77",             "Adventurer19",             "Explorer49",             "ExplorerWriter10", "TestSubject90", "HunterOfTheKing53", "SpaceBartender0", "JoywireArtist8", "VRDesigner87"
         };
 
         private static readonly HashSet<string> Child = new HashSet<string>
@@ -36,6 +36,9 @@ namespace AMJ.Culture.Test
             "HackerProdigy84", "MechanoidHacker93", "VideoGamer16",
             "FallenProdigy40",             "ChildResearcher32",             "HeadjackAddict4",             "WealthyStudent59",             "CorpBredStudent54",             "CorpStudent95",             "OffworldRecruit91",             "AwkwardNerd48",             "DataDecoder39",             "Bookworm3",             "FarmMechanic1",             "DiscardedYouth93"
         };
+
+        // Shuffled childhood categories are patched in XML, not by the Solid-name gate.
+        private static readonly string[] ShuffledChild = { "OrganFarm67", "VatgrownSoldier8" };
 
         private static Task OnGameThread(Action action)
         {
@@ -72,7 +75,7 @@ namespace AMJ.Culture.Test
             await ctx.WaitFrames(2);
             await OnGameThread(delegate
             {
-                ctx.Require(Adult.Length == 46 && Child.Count == 24,
+                ctx.Require(Adult.Length == 48 && Child.Count == 24 && ShuffledChild.Length == 2,
                     "Incorrect feature population");
                 foreach (string id in Adult)
                 {
@@ -87,6 +90,15 @@ namespace AMJ.Culture.Test
                 {
                     BackstoryDef backstory = DefDatabase<BackstoryDef>.GetNamedSilentFail(id);
                     ctx.Require(backstory != null, "Saved child Def identity missing: " + id);
+                }
+                foreach (string id in ShuffledChild)
+                {
+                    BackstoryDef backstory = DefDatabase<BackstoryDef>.GetNamedSilentFail(id);
+                    ctx.Require(backstory != null, "Missing shuffled child Def: " + id);
+                    ctx.Require(backstory.spawnCategories != null &&
+                        backstory.spawnCategories.Count == 1 &&
+                        backstory.spawnCategories[0] == "AMJ_CultureExcluded",
+                        "Shuffled child category not restricted: " + id);
                 }
                 TraitDef trait = DefDatabase<TraitDef>.GetNamedSilentFail("Transhumanist");
                 FieldInfo commonality = typeof(TraitDef).GetField("commonality",
