@@ -246,13 +246,13 @@ namespace AMJ.Culture.Test
                 ctx.Require(hasEntrance && hasNoShoes && hasRemoval,
                             "Paint/remove designators not in loaded Zone category");
 
-                for (int z = 8; z < map.Size.z - 10 && !origin.IsValid; z++)
-                    for (int x = 8; x < map.Size.x - 18; x++)
+                for (int z = 8; z < map.Size.z - 8 && !origin.IsValid; z++)
+                    for (int x = 8; x < map.Size.x - 19; x++)
                     {
                         IntVec3 p = new IntVec3(x, 0, z);
                         bool clear = true;
-                        for (int dx = 0; dx <= 15 && clear; dx++)
-                            for (int dz = 0; dz <= 5; dz++)
+                        for (int dx = 0; dx <= 12 && clear; dx++)
+                            for (int dz = -1; dz <= 4; dz++)
                             {
                                 IntVec3 cell = p + new IntVec3(dx, 0, dz);
                                 if (!cell.InBounds(map) || !cell.Standable(map) ||
@@ -263,8 +263,8 @@ namespace AMJ.Culture.Test
                     }
                 ctx.Require(origin.IsValid, "No clean area for boundary checks");
 
-                IntVec3 invalid = origin + new IntVec3(4, 0, 0);
-                IntVec3 valid = origin + new IntVec3(12, 0, 3);
+                IntVec3 invalid = origin + new IntVec3(3, 0, 0);
+                IntVec3 valid = origin + new IntVec3(9, 0, 3);
                 IntVec3 diagonal = invalid + new IntVec3(1, 0, 1);
                 IntVec3 gap = invalid + new IntVec3(2, 0, 0);
                 IntVec3 adjacent = invalid + IntVec3.East;
@@ -328,7 +328,7 @@ namespace AMJ.Culture.Test
                 ctx.Require(begin != null, "Cast state API missing");
                 begin.Invoke(state, new object[] { pawn, true, Find.TickManager.TicksGame });
                 ctx.Require(Casting(state, pawn), "Cast fixture could not start");
-                Call(zone, "SetNoShoes", origin + new IntVec3(13, 0, 3), false);
+                Call(zone, "SetNoShoes", origin + new IntVec3(10, 0, 3), false);
                 ctx.Require(!Casting(state, pawn),
                             "Editing no-shoes zone failed to cancel pending cast");
 
