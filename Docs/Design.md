@@ -514,7 +514,9 @@ The existing `LoadFolders.xml` selects these version-specific assemblies. The 1.
 
 ### 寝具の実装順序と受け入れ前提
 
-1. **最初の物理寝具:** Projectの[敷草寝床研究](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/blob/main/Docs/Research/ArchitectureAndReligionBoundaries.md#草敷きの寝床を木製ベッドより前に置く候補2026-10-16)にある古代〜中世の草敷き寝床を最初の実装候補とする。完成品に必要な材料はVanilla `Hay` を直接使い、`DankPyon_Straw`・MO製材研究・乾燥棚・Hay→Straw加工・独自Straw Defを要求しない。Vanillaの無資材Sleeping Spotよりやや良く、通常のベッドより性能が低い方向。ただし具体的なHay個数・休息効率・Comfort・耐久・画像は未確定。近現代の綿布団やちゃぶ台は標準装備にしない。
+1. **最初の物理寝具:** Projectの[敷草寝床研究](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/blob/main/Docs/Research/ArchitectureAndReligionBoundaries.md#草敷きの寝床を木製ベッドより前に置く候補2026-10-16)にある古代〜中世の草敷き寝床を最初の実装候補とする。**2026-10-18作者の材料選択決定：Vanilla `Hay` と、MO併用時にだけ存在する `DankPyon_Straw` のどちらか一方を代替材料として使えるようにする。** 両材料の同時投入を要求せず、MOがなくてもHayのみで完成できる。MOの製材研究・乾燥棚・Hay→Straw加工・AMJ独自Straw Defは不要。Vanillaの無資材Sleeping Spotよりやや良く、通常のベッドより性能が低い方向。ただし具体的なHay/Straw必要個数・休息効率・Comfort・耐久・画像は未確定。材料差だけで性能格差は設けない方針。近現代の綿布団やちゃぶ台は標準装備にしない。
+**実装上の代替材料契約（2026-10-18）：** MO 1.6.2.2の原XML `1.6/Defs/ThingDefs_Items/Items_Resource_Ingredients.xml` で `DankPyon_Straw` は通常の資源ThingDef（`RoughPlantBase`継承）であり、任意の建築用Stuffとは定義されていない。Vanilla `Hay` と二つを固定 `costList` に並べると「どちらか」ではなく「両方必要」になる。第一の実装案は、同じ見た目・休息効率・快適度・収納/就寝ジョブを共有する材料別の建築入口（Hay版は常設、Straw版はMO検出時だけ）で代替を実現すること。完成した寝具は同じ機能・文化判定として扱い、材料を失わせず、収納・再設置後も素材選択を保持する。UIが重複する場合は作成方式の選択UIを工夫する。単一の材料タグに両資源を無理に組み込むために既存MO StrawのStuff属性や採取・乾燥レシピを改変しない。どちらか片方の材料だけで建造可能であること、MOなしのXMLが存在しないStraw Defを参照しないことを確認する。
+
 2. **寝所と寝具を分離:** 所有者・位置・方角・自動収納/万年床モードを記録する論理的な「寝所」を持つ。寝具が収納されても指定位置と所有者を失わない。就寝時は在庫の寝具を同位置に展開し、起床後はポーンの適切なJobで畳んで小さな収納物へ戻す。通常の寝具占有セルを現実に解放しなければ「省スペース実装完了」と見なさない。単なる透過画像や設置済BedのRender切替は採用しない。
 3. **操作:** 寝所ごとに「自動で敷く／畳む」と「敷いたまま（万年床）」を切り替えられるようにする。時間帯一括判定は夜勤者や不定期睡眠を壊すため避け、個人の就寝・起床／Rest状態を条件にする。操作時間を少量要求し、省スペースと労働のトレードオフを残す。居室の混雑・家具設置・予約競合・材料紛失時は安全に処理を中断し、就寝と労働の無限再試行を生まない。
 4. **既存機能との境界:** Vanillaの囚人・医療用Sleeping Spotは変更せず、初期の寝具自動収納対象から除外する。救急・入院・来客や他ModのBedを勝手に収納しない。既存ベッドの所有権、離脱／帰還、セーブ・ロード、Shared Sleepingの共同寝所品質、CultureのGreedy/Jealousの寝所参照は一貫して維持する。折り畳んだ状態を「ベッドなし」や「地面で寝た」と誤判定しないか、特に就寝中/朝の判定順序を確認する。
