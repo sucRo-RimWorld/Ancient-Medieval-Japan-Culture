@@ -523,14 +523,13 @@ The existing `LoadFolders.xml` selects these version-specific assemblies. The 1.
 
 **2026-10-17 正規RimWorld 1.6＋MO実ゲームのロード済みDef受け入れ PASS：** [Project Actions #39025744804](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39025744804)。検証対象のCulture製品コミット `d08eb3d530f5517370c4257b6c3f1634d76b1a9b`、1.6用DLL SHA256 `0895332d4a817bf4227b00bf4d707943e793fc15c379b9950df76ec2112c9458`、RimWorld `1.6.4871 rev598`、原MO `1.6.2.2` とVEF/SYR、隔離コピー内のMO音声だけWAV変換。ロード済みThoughtDefの7対象から当該Fighter/Veteranの `nullifyingTraits` が消えていること、`ObservedLayingCorpse` の両特性による耐性が維持されていることを実ゲーム内で確認。合わせて既存のMO派閥・PawnKind・生成経路の単一シナリオも成功。Pickle 1/1、`AMJ_CULTURE_MO_THOUGHTS16_OK` 1回、Unity ERROR 0、終了コード0、元ゲーム変更なし。**実際の死亡・処刑・追放イベントを発生させてMood値を確認したテストではない。** 元MP3の未加工実行、1.7＋MO、旧セーブの実読み込みもこの実行では未確認。**別系統の背景・特性Stage2で後に追加された87件の生成制限については、このテストが受け入れを示すものではない。** XML静的確認の結果も維持。Steam未アップロード。
 
-## 寝具収納・多目的住居と狭さの心情 — Cultureが全体を所有（2026-10-18、未実装）
+## 多用途敷物による寝所・食事の兼用 — Culture C-06（2026-10-18、製品未実装）
 
-**正式な個別仕様正本:** [Docs/Features/FoldableBedding.md](Features/FoldableBedding.md)。2026-10-18作者決定：文化的な寝具・敷設/収納・安定した寝所・万年床の設定、および後段の条件付き狭さThoughtは**全てCulture内の独立機能群**として所有する。別Modへ分割しない。敷草寝具はVanilla `Hay` またはMO併用時の `DankPyon_Straw` の片方だけで作れる。囚人・医療Sleeping Spot、Shared Sleeping、一般家具は対象外。
+**正式な現行仕様正本:** [Docs/Features/MultipurposeMat.md](Features/MultipurposeMat.md)。作者は、毎日の自動撤去・運搬・再配置に対しポーン労働と実装/TPS負荷が大きく、部屋のSpace/通行改善という数値上の利点が薄いと判断。MOで原木ベッドを手軽に作れるため、Hay製の敷草が単純に「安い序盤寝具」となる保証もない。**優先方向を「寝具を移動して昼は空き床にする」から、1×2の筵・菰を**据え置いたまま**昼は座って食事・夜は就寝に兼用する方式へ変更**。旧自動収納・収納家具案は[FoldableBedding.md](Features/FoldableBedding.md)に研究履歴として残し、C-06現行実装の前提から外す。
 
-**実装より先に仕様と実現可能性を審査する作者方針:** 省スペースと寝所の安定割当を両立できるかは未検証。最小の**1.6 Vanilla実ゲーム実現可能性テスト（PoC）が必須**であり、PASS前に採用するC#設置/撤去方式・完全実装を確定したと扱わない。テスト内容・PASS/FAIL条件・代替経路・その後の1.6 MO/1.7製品受け入れは個別仕様を参照。試作が作動しても最終的なゲーム体験とTPSの証明にはならない。Culture全機能の実装分割・仕様先行の管理は [Docs/FeatureImplementationPlan.md](FeatureImplementationPlan.md)。
+**実現性:** 原RimWorld 1.6.4871 + Culture 1.6実ゲーム[Project Actions #39057007685](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39057007685)で、隔離テスト用Bedrollの`isSittable`だけ有効化した**同一の建物**を、通常`Ingest`の着席・Comfort上昇・完食と通常`LayDown`の就寝・所有者保持の両方に利用できた。Pickle1/1、Unity ERROR0、元ゲーム変更なし。**この最小PoCは製品ThingDef追加、1.6+MO、1.7、睡眠中に別Pawnが食事する競合や旧セーブを保証しない**。既存の[椅子だけで食事する実装](#chair-only-meals--revised-implementation-scope-2026-10-17)と連携し、Vanilla/MOのベッドを一律座具に変えない。
 
-**狭さの区別:** `Room.Space`（部屋の評価）とポーンの `Cramped interior` / `Confined interior`（周囲の到達可能セル）は別。寝具が実際に床を空けてもCramped -5が必ず減るわけではない。先に収納を確認し、残る不整合がある場合だけ別機能で局所的なCramped補正を検討する。参考の-5→-2は**未承認の試算**であり、Confined -10は変更しない。
-
+**境界:** 筵・菰はVanilla Hay、MO存在時の任意Strawを材料候補とし、必要量/Comfort/Restは未承認。木製丸太ベッドと休息数値の単純序列を作らず、材料の採集負担・寝台と座具を同時に代替する価値を検討する。囚人/医療用ベッド、Shared Sleeping、既存Thought、円座候補、一般家具は独立した既存責務のまま。狭さMoodの独自軽減（C-07）は実証後の別議題で、`Cramped interior`の数値変更も`Confined interior` -10の変更も採用していない。
 
 ## 第2段階 — 既存Vanilla/MO人物背景・特性の時代不整合修正（2026-10-17開始）
 
