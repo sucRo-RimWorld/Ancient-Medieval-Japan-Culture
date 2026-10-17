@@ -1,5 +1,15 @@
 # AMJ Culture Coordination
 
+
+## CULTURE-BACKGROUND-TRAIT-STAGE2-20261017
+
+**Stage 2 IN PROGRESS; first playable-source correction merged:** [Culture PR #46](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Culture/pull/46), owner `main` commit `19e519b9a277d37f2528b41706784dd68e459bd8`. Thirteen additional anachronistic Vanilla adult backgrounds are excluded from **ordinary new category selection only** via `Patches/AnachronisticAdultBackstories.xml`. Totals now **61 adult + 26 child = 87 restricted original background identities**, 34 bilingual rewritten original biographies unchanged. Source names/starting items/forced traits/saved references and all 43 Vanilla plus 2 MO TraitDefs are unchanged. No game launch, new DLL, CI test, Japanese-only Def or Workshop action.
+
+**Grounded Stage 2 evidence and remaining limits:** Full source rationale and 13 original IDs: [owner audit](BackgroundTraitAudit.md#第2段階第1修正群--既存sf背景13件の通常生成制限2026-10-17); formal source scope and counts: [owner design](Design.md#第2段階--既存vanillamo人物背景特性の時代不整合修正2026-10-17開始). Reused the previously captured authentic 1.6/1.7 *metadata* CSV and archived official English source comments, not a new 829-row scan. The exact currently distributed Core long-description equivalence and loaded effect were **not** verified. Static XML targets: 60 unique adult patch category replacements (plus FerventResearcher72 in its independent existing patch), no duplicate/invalid target by source evidence. Confirm actual original text before interpreting more ambiguous candidates. No claim Stage 2 completion or release acceptance.
+
+**Next authorized owner work:** continue targeted ordinary-route SF candidate decisions and edits, then historically portable original occupations and unresolved existing Trait effects/forced traits. Do **not** add new Japan-specific biographies/traits or modify unique-only content. Do **not** repeat existing MO fighter/veteran grief/corpse Thought corrections, reopen 74/34 Stage 1 triage, or run one native game per edit. Keep implementation/code, formal design and coordination consistent. The initial Stage 1 report and 829-row CSV remain the baseline, not a request to repeat Stage 1.
+
+
 Authoritative coordination file: `main:Docs/Coordination.md`. Confirmed scope and acceptance conditions belong in `Docs/Design.md`; the actual Thought modification belongs in `Patches/AteWithoutTable.xml`.
 
 
