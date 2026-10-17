@@ -110,8 +110,13 @@ namespace AMJ.Culture.Test
                         "DankPyon_Mixture_Luhix",
                         "DankPyon_Mixture_Stardust"
                     })
-                        ctx.Require(RequireThing(ctx, id).recipeMaker == null,
+                    {
+                        ThingDef mixture = RequireThing(ctx, id);
+                        ctx.Require(mixture.recipeMaker == null,
                             "Banned MO alchemy mixture bill still generated: " + id);
+                        ctx.Require(mixture.tradeability.ToString() == "Sellable",
+                            "Banned MO alchemy mixture still stockable: " + id);
+                    }
                     foreach (string id in new []
                     {
                         "DankPyon_Mixture_Miracle",

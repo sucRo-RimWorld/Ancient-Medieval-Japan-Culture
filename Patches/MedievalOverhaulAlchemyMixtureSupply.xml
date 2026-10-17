@@ -33,6 +33,22 @@
             </value>
           </match>
         </li>
+        <!-- These five hard-drug precursors inherit the Manufactured item
+             category. Generic stock providers must not sell new precursors,
+             but old stacks remain sellable and usable by existing processors. -->
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="DankPyon_Mixture_HappyPowder" or defName="DankPyon_Mixture_BattleElixir" or defName="DankPyon_Mixture_VigorPill" or defName="DankPyon_Mixture_Luhix" or defName="DankPyon_Mixture_Stardust"]/tradeability</xpath>
+          <match Class="PatchOperationRemove">
+            <xpath>Defs/ThingDef[defName="DankPyon_Mixture_HappyPowder" or defName="DankPyon_Mixture_BattleElixir" or defName="DankPyon_Mixture_VigorPill" or defName="DankPyon_Mixture_Luhix" or defName="DankPyon_Mixture_Stardust"]/tradeability</xpath>
+          </match>
+        </li>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="DankPyon_Mixture_HappyPowder" or defName="DankPyon_Mixture_BattleElixir" or defName="DankPyon_Mixture_VigorPill" or defName="DankPyon_Mixture_Luhix" or defName="DankPyon_Mixture_Stardust"]</xpath>
+          <match Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="DankPyon_Mixture_HappyPowder" or defName="DankPyon_Mixture_BattleElixir" or defName="DankPyon_Mixture_VigorPill" or defName="DankPyon_Mixture_Luhix" or defName="DankPyon_Mixture_Stardust"]</xpath>
+            <value><tradeability>Sellable</tradeability></value>
+          </match>
+        </li>
       </operations>
     </match>
   </Operation>
