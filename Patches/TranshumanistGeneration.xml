@@ -9,6 +9,6 @@
   </Operation>
   <!-- Forced backstory traits bypass random commonality. -->
   <Operation Class="PatchOperationRemove">
-    <xpath>Defs/BackstoryDef[defName="FerventResearcher72"]/forcedTraits/li[def="Transhumanist"]</xpath>
+    <xpath>Defs/BackstoryDef[defName="FerventResearcher72"]/forcedTraits/li[traitDef="Transhumanist"]</xpath>
   </Operation>
 </Patch>
