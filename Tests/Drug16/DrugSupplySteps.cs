@@ -110,7 +110,8 @@ namespace AMJ.Culture.Test
                         "DankPyon_Mixture_Luhix",
                         "DankPyon_Mixture_Stardust"
                     })
-                        CheckDrug(ctx, id, false);
+                        ctx.Require(RequireThing(ctx, id).recipeMaker == null,
+                            "Banned MO alchemy mixture bill still generated: " + id);
                     foreach (string id in new []
                     {
                         "DankPyon_Mixture_Miracle",
