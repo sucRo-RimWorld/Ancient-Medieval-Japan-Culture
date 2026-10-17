@@ -13,7 +13,7 @@
     </li>
   </modDependencies>
   <modVersion>0.1.0-dev</modVersion>
-  <description>Development prototype. Adds a candidate traditional floor seat (enza), with source-only eating-Job integration under development, and makes the AteWithoutTable mood effect neutral. Includes the compiled RimWorld 1.6 AMJ.Culture meal-seat adapter. Vanilla 1.6 direct enza meal and Comfort passed a single isolated scenario; table precedence and MO compatibility not yet accepted. Provisional visuals; not approved for release.
+  <description>Development prototype. Adds a candidate traditional floor seat (enza), with a compiled, narrow Ingest travel-Job adapter, and makes the AteWithoutTable mood effect neutral. Includes the compiled RimWorld 1.6 AMJ.Culture meal-seat adapter. Vanilla 1.6 direct enza meal and Comfort passed a single isolated scenario; table precedence and MO compatibility not yet accepted. Provisional visuals; not approved for release.
 
-開発用試作。円座による床座の食事機能を開発中。RimWorld 1.6用の食事処理DLLを同梱。Vanilla 1.6で円座での食事・快適性獲得を実機確認済み。食卓優先・MO互換・画像は未確定。テーブルなし食事の心情補正は0。実機検証・公開は未実施。</description>
+開発用試作。円座による床座の食事機能を開発中。RimWorld 1.6用の食事処理DLLを同梱。Vanilla 1.6で円座での食事・快適性獲得を実機確認済み。食卓優先・MO互換・画像は未確定。テーブルなし食事の心情補正は0。一般公開・追加互換検証は未実施。</description>
 </ModMetaData>

@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
-  <!-- Suppress random assignment without deleting the TraitDef or affecting existing pawns. -->
+  <!-- Suppress ordinary random rolling, while retaining the TraitDef for existing pawns. -->
   <Operation Class="PatchOperationReplace">
     <xpath>Defs/TraitDef[defName="Transhumanist"]/commonality</xpath>
     <value>
       <commonality>0</commonality>
     </value>
   </Operation>
-  <!-- Forced Backstory assignment cannot be removed with this 1.6 XML xpath.
-       Omit the failing operation until the actual Backstory storage path is fixed. -->
+  <!-- This SF adult backstory is not suitable for ordinary period-Japanese generation.
+       Preserve its Def for saved pawns but make its categories ineligible. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="FerventResearcher72"]/spawnCategories</xpath>
+    <value>
+      <spawnCategories>
+        <li>AMJ_CultureExcluded</li>
+      </spawnCategories>
+    </value>
+  </Operation>
+  <!-- Also prevent its forced trait if an external generator assigns the backstory directly. -->
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/BackstoryDef[defName="FerventResearcher72"]/forcedTraits/li[traitDef="Transhumanist"]</xpath>
+  </Operation>
 </Patch>
