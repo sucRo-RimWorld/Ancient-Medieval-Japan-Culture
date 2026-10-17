@@ -47,8 +47,15 @@ namespace AMJ.Culture.Test
         private static object Component(object owner, string className)
         {
             Type type = CultureType(className);
-            MethodInfo method = owner.GetType().GetMethod("GetComponent", BindingFlags.Instance | BindingFlags.Public);
-            if (method == null) throw new MissingMethodException(owner.GetType().FullName, "GetComponent");
+            MethodInfo method = null;
+            foreach (MethodInfo candidate in owner.GetType().GetMethods(BindingFlags.Instance | BindingFlags.Public))
+                if (candidate.Name == "GetComponent" && candidate.IsGenericMethodDefinition &&
+                    candidate.GetParameters().Length == 0)
+                {
+                    method = candidate;
+                    break;
+                }
+            if (method == null) throw new MissingMethodException(owner.GetType().FullName, "GetComponent<T>()");
             return method.MakeGenericMethod(type).Invoke(owner, null);
         }
 
@@ -89,7 +96,11 @@ namespace AMJ.Culture.Test
             bool observedBarefoot = false;
             bool observedShoes = false;
             bool observedExit = false;
+            bool observedSecond = false;
+            bool observedGoto = false;
             bool validAfterPainting = false;
+            IntVec3 secondCell = IntVec3.Invalid;
+            List<IntVec3> observedPositions = new List<IntVec3>();
 
             await ctx.WaitUntil(() =>
             {
@@ -123,24 +134,33 @@ namespace AMJ.Culture.Test
                 ctx.Require(entranceTool && forbiddenTool,
                     "Culture entrance and no-shoes designators absent from loaded Zone category");
 
-                for (int z = 8; z < map.Size.z - 8 && !start.IsValid; z++)
-                    for (int x = 8; x < map.Size.x - 19; x++)
+                // This is a disposable test-map corridor, not a player save.
+                // Real generated 1.7 maps may not have a naturally clear 13x6
+                // rectangle; construct the same deterministic route in both games.
+                start = new IntVec3(map.Size.x / 2 - 6, 0, map.Size.z / 2);
+                TerrainDef soil = DefDatabase<TerrainDef>.GetNamedSilentFail("Soil");
+                ThingDef wall = DefDatabase<ThingDef>.GetNamedSilentFail("Wall");
+                ThingDef wood = DefDatabase<ThingDef>.GetNamedSilentFail("WoodLog");
+                ctx.Require(soil != null && wall != null && wood != null, "Vanilla corridor materials missing");
+                for (int dx = 0; dx <= 10; dx++)
+                    for (int dz = -1; dz <= 4; dz++)
                     {
-                        IntVec3 candidate = new IntVec3(x, 0, z);
-                        bool clear = true;
-                        for (int dx = 0; dx <= 12 && clear; dx++)
-                            for (int dz = -1; dz <= 4; dz++)
-                            {
-                                IntVec3 cell = candidate + new IntVec3(dx, 0, dz);
-                                if (!cell.InBounds(map) || !cell.Standable(map) ||
-                                    cell.GetEdifice(map) != null)
-                                { clear = false; break; }
-                            }
-                        if (clear) { start = candidate; break; }
+                        IntVec3 cell = start + new IntVec3(dx, 0, dz);
+                        ctx.Require(cell.InBounds(map), "Test corridor leaves the map");
+                        foreach (Thing thing in cell.GetThingList(map).ToArray())
+                            if (!(thing is Pawn)) thing.Destroy(DestroyMode.Vanish);
+                        map.terrainGrid.SetTerrain(cell, soil);
                     }
-                ctx.Require(start.IsValid, "No open area for two painted thresholds");
+                for (int dx = 0; dx <= 8; dx++)
+                    foreach (int dz in new[] { -1, 1 })
+                        GenSpawn.Spawn(ThingMaker.MakeThing(wall, wood),
+                                     start + new IntVec3(dx, 0, dz), map, WipeMode.Vanish);
+                for (int dx = 0; dx <= 8; dx++)
+                    ctx.Require((start + new IntVec3(dx, 0, 0)).Standable(map),
+                                "Constructed corridor center not passable");
                 IntVec3 first = start + new IntVec3(2, 0, 0);
                 IntVec3 second = start + new IntVec3(6, 0, 0);
+                secondCell = second;
                 IntVec3 invalid = start + new IntVec3(0, 0, 4);
                 Call(zone, "Set", invalid, true);
                 ctx.Require(!(bool)Call(zone, "HasConnectedNoShoesContact", invalid),
@@ -164,16 +184,21 @@ namespace AMJ.Culture.Test
                             " second=" + second + " noShoes=3..5 invalid=" + invalid);
             });
 
-            for (int cycle = 0; cycle < 65; cycle++)
+            for (int cycle = 0; cycle < 200; cycle++)
             {
-                await ctx.WaitTicks(15);
+                await ctx.WaitTicks(4);
                 await EntranceMainThread.Run(delegate
                 {
                     observedRemoveCast |= Casting(state, pawn) && !Barefoot(state, pawn);
                     observedPutOnCast |= Casting(state, pawn) && Barefoot(state, pawn);
                     observedBarefoot |= Barefoot(state, pawn);
+                    observedSecond |= pawn.Position == secondCell;
+                    observedGoto |= pawn.CurJob != null && pawn.CurJob.def == JobDefOf.Goto;
                     observedExit |= pawn.Position == end;
-                    observedShoes |= observedExit && !Barefoot(state, pawn);
+                    observedShoes |= pawn.Position == end && !Barefoot(state, pawn);
+                    if (observedPositions.Count < 60 &&
+                        (observedPositions.Count == 0 || observedPositions[observedPositions.Count - 1] != pawn.Position))
+                        observedPositions.Add(pawn.Position);
                 });
                 if (observedRemoveCast && observedPutOnCast && observedShoes) break;
             }
@@ -183,13 +208,17 @@ namespace AMJ.Culture.Test
                 Log.Message("AMJ_CULTURE_ENTRANCE_DIAGNOSTIC"
                     + " removeCast=" + observedRemoveCast + " putOnCast=" + observedPutOnCast
                     + " barefoot=" + observedBarefoot + " shoesAtExit=" + observedShoes
-                    + " valid=" + validAfterPainting + " last=" + pawn.Position
+                    + " valid=" + validAfterPainting + " secondVisited=" + observedSecond
+                    + " targetVisited=" + observedExit + " gotoObserved=" + observedGoto
+                    + " path=" + string.Join(";", observedPositions.ConvertAll(c => c.ToString()).ToArray())
+                    + " last=" + pawn.Position
                     + " target=" + end + " job=" + (pawn.CurJob == null ? "none" : pawn.CurJob.def.defName));
                 ctx.Require(observedRemoveCast, "No shoe-removal cast occurred on valid entrance");
                 ctx.Require(observedBarefoot, "Pawn never became barefoot inside no-shoes area");
+                ctx.Require(observedSecond, "Deterministic Goto never crossed second entrance cell");
                 ctx.Require(observedPutOnCast, "No put-on-shoes cast occurred at second entrance");
                 ctx.Require(observedShoes, "Pawn did not reach the destination wearing shoes");
-                ctx.Require(pawn.Position == end, "Original Goto job never reached its destination");
+                ctx.Require(observedExit && observedGoto, "Original Goto job did not reach destination");
                 Log.Message("AMJ_CULTURE_ENTRANCE_FUNCTION_OK");
             });
         }
