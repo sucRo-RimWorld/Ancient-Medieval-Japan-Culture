@@ -2,7 +2,7 @@
 
 ## Development purpose, phase and priority (2026-10-16 review)
 
-Culture's product goal is to remove historically incongruous **character generation, culturally contingent mood/social judgments, and intoxicant gameplay** from ancient-to-medieval Japanese settlement play **without breaking the useful Vanilla/MO gameplay roles**. One neutral meal Thought is a small completed slice, not the product goal. Culture combines Backstories, generic Pawn-generation interactions, Traits, relevant Needs/Thoughts, psychoactive Drug/effect/supply UX, and Japanese daily-life customs including indoor/outdoor footwear habits. **Culture is an integrated cultural overhaul; the author accepts it growing larger than other AMJ Mods. Module size alone is not a reason to split Culture-specific behavioral rules.** Shared Sleeping, general furniture, medicinal remedies, brewing, and ordinary food Jobs remain other owners' responsibilities.
+Culture's product goal is to remove historically incongruous **character generation, culturally contingent mood/social judgments, and intoxicant gameplay** from ancient-to-medieval Japanese settlement play **without breaking the useful Vanilla/MO gameplay roles**. One neutral meal Thought is a small completed slice, not the product goal. Culture combines Backstories, generic Pawn-generation interactions, Traits, relevant Needs/Thoughts, psychoactive Drug/effect/supply UX, and Japanese daily-life customs including indoor/outdoor footwear habits. **Culture is an integrated cultural overhaul; the author accepts it growing larger than other AMJ Mods. Module size alone is not a reason to split Culture-specific behavioral rules.** Shared Sleeping, general furniture **except the narrow historical bedding/folding custom owned by Culture**, medicinal remedies, brewing, and ordinary food Jobs remain other owners' responsibilities.
 
 **Actual implementation maturity:** the narrow `AteWithoutTable` zero-mood XML prototype, bounded `Transhumanist` and 31 original adult + 12 original child background exclusions are on `main`; the current ordinary-generation exclusion scope is 70, and 34 historical backgrounds have authored English/Japanese histories with six starting-item substitutions (see the latest section). The [second-wave source change](SFBackgroundSecondWave.md) adds a further 12 adult and 12 child rules; its updated production DLL and native acceptance are tracked separately below. The single real Vanilla 1.6 character-generation acceptance below passed, but complete MO/1.7 coverage and saved-game migration were not tested. The no-table prototype's static XML check passed; the generation source still needs focused loaded-Def/gameplay acceptance. Historical background/trait handling, drugs and minimum enza functionality have *approved ownership/boundaries or research candidates*, but **not** complete per-feature effect values, spawn handling, recipes, migration or final implementation specifications. Do not describe Culture overall as implemented or entering integration validation.
 
@@ -499,9 +499,9 @@ The existing `LoadFolders.xml` selects these version-specific assemblies. The 1.
 
 **2026-10-17 正規RimWorld 1.6＋MO実ゲームのロード済みDef受け入れ PASS：** [Project Actions #39025744804](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39025744804)。検証対象のCulture製品コミット `d08eb3d530f5517370c4257b6c3f1634d76b1a9b`、1.6用DLL SHA256 `0895332d4a817bf4227b00bf4d707943e793fc15c379b9950df76ec2112c9458`、RimWorld `1.6.4871 rev598`、原MO `1.6.2.2` とVEF/SYR、隔離コピー内のMO音声だけWAV変換。ロード済みThoughtDefの7対象から当該Fighter/Veteranの `nullifyingTraits` が消えていること、`ObservedLayingCorpse` の両特性による耐性が維持されていることを実ゲーム内で確認。合わせて既存のMO派閥・PawnKind・生成経路の単一シナリオも成功。Pickle 1/1、`AMJ_CULTURE_MO_THOUGHTS16_OK` 1回、Unity ERROR 0、終了コード0、元ゲーム変更なし。**実際の死亡・処刑・追放イベントを発生させてMood値を確認したテストではない。** 元MP3の未加工実行、1.7＋MO、旧セーブの実読み込みもこの実行では未確認。**別系統の背景・特性Stage2で後に追加された87件の生成制限については、このテストが受け入れを示すものではない。** XML静的確認の結果も維持。Steam未アップロード。
 
-## 寝具収納・多目的住居と狭さの心情 — Culture側の責務（2026-10-18、未実装）
+## 寝具収納・多目的住居と狭さの心情 — Cultureが全体を所有（2026-10-18、未実装）
 
-**作者の方向性:** 中世日本の寝具は、就寝時に敷き、起床後に片付ける生活様式を優先して実現可能性を探る。昼間の食事・作業と夜間の就寝で床を兼用することが実際のゲーム的な利益であり、万年床も任意に選べる。単なる「布団があるだけ」の心情ボーナスや、すべての住民がどの部屋でも狭さを苦にしない一律変更は承認されていない。寝具の家具・配置・回収処理を所有するModはまだ未決定で、Project [Ideas](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/blob/main/Docs/Ideas.md#foldable-bedding--寝具を敷く畳む生活習慣) が企画正本。
+**作者の方向性:** 中世日本の寝具は、就寝時に敷き、起床後に片付ける生活様式を優先して実現可能性を探る。昼間の食事・作業と夜間の就寝で床を兼用することが実際のゲーム的な利益であり、万年床も任意に選べる。単なる「布団があるだけ」の心情ボーナスや、すべての住民がどの部屋でも狭さを苦にしない一律変更は承認されていない。**作者確定（2026-10-18）：寝具のThingDef・歴史的な素材・敷設／収納Job・就寝位置／所有権の保存・操作UI、および条件付きの狭さThoughtはすべてCultureが一体で所有する。** 他の一般家具までCultureへ移管する判断ではない。Projectの旧Ideasは所有先の索引のみとし、正式仕様は本節を正本とする。
 
 **Vanillaの二つの独立判定（公開仕様による確認、オリジナル1.6/1.7のnative実測なし）:**
 - `Room.Space` は実際の部屋内の立てるセルを1セルおよそ1.4点、歩いて通れるが立てない家具セルをおよそ0.5点として評価し、Impressivenessにも寄与する。通常の1×2寝具を本当に撤去し、元の2セルを空ければ、一般的条件ではSpace評価が合計およそ1.8点改善する。寝具を非表示にするだけ、収納物が同じ床を塞ぐだけでは実利益にならない。
@@ -509,7 +509,21 @@ The existing `LoadFolders.xml` selects these version-specific assemblies. The 1.
 
 **条件付きCulture補正の候補（現在ゲーム未実装、数値未確定）:** まず寝具の実際の自動展開・収納とVanilla Room.Spaceの結果を確認する。その後、なお文化的な不整合があれば、寝具を実際に畳んで用途転換しているコンパクトな居住空間に限って `Cramped interior` を局所的に軽減する。前案の `-5 → -2` は試算候補であり確定したバランス・XMLではない。極端な閉塞を示す `Confined interior`（-10）を一律緩和しない。常設ベッド、寝床枠だけの囚人用・医療用ベッド、当該生活機能に参加しない住民、無関係な室内には無条件で適用しない。
 
-**実装境界:** 物理寝具の実装担当は未決定。Cultureが担当し得るのは、実際に参照可能な敷設・収納・生活空間の状態と連携する文化的Thoughtの局所判定のみ。既存のShared Sleepingの寝所品質評価、Greedy/Jealousの既存共同寝所修正、Vanillaの寝具所有権、救急・囚人収容、旧セーブのDef参照を壊さない。汎用 `ThoughtDef` のmood値をXMLで書き換えると寝具に無関係な全員へ影響するため採用しない。具体的なC#実装方法・負荷・再計算タイミング・対象者条件は寝具オーナーの実装後に決める。
+**実装境界:** Cultureが中世庶民の日常習慣として、寝具の実体と敷設・収納の作業、寝所の保存状態、文化的Thoughtの局所判定をすべて所有する。他の一般家具・床材・他Modの寝具全体へ無差別に自動収納を適用しない。既存のShared Sleepingの寝所品質評価、Greedy/Jealousの既存共同寝所修正、Vanillaの寝具所有権、救急・囚人収容、旧セーブのDef参照を壊さない。汎用 `ThoughtDef` のmood値をXMLで書き換えると寝具に無関係な全員へ影響するため採用しない。具体的なC#実装方法・負荷・再計算タイミング・対象者条件はCulture自身が上記の優先順で決める。
+
+
+### 寝具の実装順序と受け入れ前提
+
+1. **最初の物理寝具:** Projectの[敷草寝床研究](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/blob/main/Docs/Research/ArchitectureAndReligionBoundaries.md#草敷きの寝床を木製ベッドより前に置く候補2026-10-16)にある古代〜中世の草敷き寝床を最初の実装候補とする。完成品に必要な材料はVanilla `Hay` を直接使い、`DankPyon_Straw`・MO製材研究・乾燥棚・Hay→Straw加工・独自Straw Defを要求しない。Vanillaの無資材Sleeping Spotよりやや良く、通常のベッドより性能が低い方向。ただし具体的なHay個数・休息効率・Comfort・耐久・画像は未確定。近現代の綿布団やちゃぶ台は標準装備にしない。
+2. **寝所と寝具を分離:** 所有者・位置・方角・自動収納/万年床モードを記録する論理的な「寝所」を持つ。寝具が収納されても指定位置と所有者を失わない。就寝時は在庫の寝具を同位置に展開し、起床後はポーンの適切なJobで畳んで小さな収納物へ戻す。通常の寝具占有セルを現実に解放しなければ「省スペース実装完了」と見なさない。単なる透過画像や設置済BedのRender切替は採用しない。
+3. **操作:** 寝所ごとに「自動で敷く／畳む」と「敷いたまま（万年床）」を切り替えられるようにする。時間帯一括判定は夜勤者や不定期睡眠を壊すため避け、個人の就寝・起床／Rest状態を条件にする。操作時間を少量要求し、省スペースと労働のトレードオフを残す。居室の混雑・家具設置・予約競合・材料紛失時は安全に処理を中断し、就寝と労働の無限再試行を生まない。
+4. **既存機能との境界:** Vanillaの囚人・医療用Sleeping Spotは変更せず、初期の寝具自動収納対象から除外する。救急・入院・来客や他ModのBedを勝手に収納しない。既存ベッドの所有権、離脱／帰還、セーブ・ロード、Shared Sleepingの共同寝所品質、CultureのGreedy/Jealousの寝所参照は一貫して維持する。折り畳んだ状態を「ベッドなし」や「地面で寝た」と誤判定しないか、特に就寝中/朝の判定順序を確認する。
+5. **性能:** MapComponentやJobで状態を保存・処理し、毎Tickの全ポーン・全寝具・全部屋走査は行わない。寝具の置換と室内再計算の負荷は実装後に既存のCulture機能と合わせて確認する。作業の割り込み・就寝中・セル占有・旧セーブの欠損データでは保守的なVanillaへのフォールバックを使う。
+6. **心情調整は第2段階:** 先に物理収納とVanilla `Room.Space`の自然な改善を成立させる。その後でも中世の多目的居室に不自然な `Cramped interior` が残る場合だけ、収納運用中の当事者と該当空間に局所適用する。候補の-5→-2は作者が確定した数値ではない。`Confined interior` -10を変更しない。
+
+**先行実装の具体的証拠（2026-10-18）:** [Use Bedrolls - Continued](https://github.com/MemeGoddess/RimWorld-UseBedrolls) の現行公開Source/`InterceptRest.cs`, `JobGiver_TakeBedBack.cs`, `JobDriver_PlaceBed.cs`, `PlacedBedsMapComponent.cs` は、Vanilla `JobGiver_GetRest.TryGiveJob` への差し込み・Minified BedのBlueprint設置・就寝Job開始・起床後の回収・セーブされる設置ベッド参照の実例。通常の「固定された寝所の位置を残しつつ昼間は床を空ける」機能は提供しない。ソースは参考に留め、AMJの要件に合わせて独立実装する（ソースのそのまま転載を行わない）。現行配布版には設置／撤去ループのユーザー報告と修正履歴があるため同種の競合を防ぐ。Vanilla、MOの寝具定義と上記のHayループは先行Project研究済み。Erin's Japanese Furnitureにはfutonが存在し、Vanilla Furniture Expandedも寝具比較対象だが、いずれも今回の固定寝所自動収納を提供するかは原Defと現行Versionで未確定。**実装開始前に既存Mod監査の残り（特にErin・VEの原Defと1.7差）を解消する。**
+
+**現在の状態:** Culture所有を確定・設計統合。新ThingDef、C#、資材、正式画像、1.6/1.7 DLL、実ゲームテストはこの決定ではまだ変更していない。実装後の最小受け入れ対象は「通常寝所の割当→就寝→片付け→昼間の床再利用→万年床モード→旧セーブ/囚人・医療寝床の非干渉→Room.Space・Crampedの分離→既存Shared Sleeping回帰」である。具体的なテスト項目/前提/期待値を実装完了時に再確認し、コストの大きい自動ゲームテストWorkflowは起動・追加しない。
 
 **実ゲーム検証は未実施。** 寝具実体の敷設/撤去で同じ部屋のSpace評価が正しく変わること、ポーン狭さThoughtが別系統であること、部屋役割・就寝割当・共同寝所の効果・セーブ・TPSを最小の同一テストで必要な範囲だけ確認する。ゲームを自動起動するWorkflowは追加しない。
 
