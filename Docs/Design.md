@@ -12,6 +12,8 @@ Culture's product goal is to remove historically incongruous **character generat
 
 ## Historical background and trait audit (2026-10-17)
 
+**実装順序（作者確定、2026-10-17）：** **①VanillaとMedieval Overhaul（MO）の背景・特性を洗い出す → ②中世日本に不適切な既存背景・特性と関連する通常生成／強制付与・心情を必要な範囲で修正する → ③その後に初めて、中世日本独自の新規背景・特性を検討・実装する。** 第①②段階では原定義・人物生成経路・既存MO修正の重複／副作用を照合し、固有ポーン専用で通常生成されない背景・特性は対象外とする。既存の生成制限・史実向け改稿はこの第②段階の成果として保持し、無用な再作業はしない。戦場経験・死体目撃への習熟を表す中世日本独自の背景や新特性は第③段階まで**保留**する。既存Vanilla/MO特性の不適切な心情効果を必要最小限で修正すること自体は第②段階に含むが、その名目で中世日本独自の新規Defを先行追加しない。段階移行は第①②段階で確認された不整合が処理され、追加が必要な未充足の体験が残る場合だけ判断する。これは背景・特性系統内の順序であり、Cultureのイス・食事や他Modの工程・薬物設計の承認を変更しない。
+
 **Audit eligibility boundary (author decision, 2026-10-17):** Exclude backgrounds and traits **assigned exclusively to particular unique/predefined pawns** from Culture's remaining historical-fit audit and modifications **only when they cannot occur in ordinary Vanilla/MO pawn generation**. Do not count such unique-only entries as pending ordinary-generation conflicts, change their special assignments, or remove their Defs. A `Solid` source path, named/fixed `PawnBio`, or missing childhood `spawnCategories` alone does **not** prove unique-only: normal generation can choose named Solid biographies. Keep any background or forced trait reachable by ordinary generated pawns in scope, including the Solid-selection path. Where reachability is not yet established, mark it unknown rather than assuming exemption or applying new restrictions. This narrows **future work only**; it does not retroactively undo the 70 existing source exclusions or 34 rewrites without specific evidence that a rule targets unique-only content.
 
 ### 追加の通常生成Shuffled背景4件（2026-10-17）
