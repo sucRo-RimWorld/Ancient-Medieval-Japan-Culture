@@ -498,4 +498,25 @@
     <xpath>Defs/BackstoryDef[defName="MadScientist31"]/spawnCategories</xpath>
     <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
   </Operation>
+  <!-- Four named rare adult bios from the original Solid_Rare pool carry
+       explicitly contemporary gaming/software professions. Rare named bios
+       can also be candidates for random solid biography selection; preserve
+       fixed named/saved characters and skills, and remove only ordinary
+       category eligibility until an approved historical replacement exists. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="JoeCustomAdulthood"]/spawnCategories</xpath>
+    <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="LiamCustomAdulthood"]/spawnCategories</xpath>
+    <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="OskarCustomAdulthood"]/spawnCategories</xpath>
+    <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="TynanCustomAdulthood"]/spawnCategories</xpath>
+    <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
+  </Operation>
 </Patch>
