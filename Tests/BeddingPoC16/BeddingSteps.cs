@@ -343,9 +343,12 @@ namespace AMJ.Culture.BeddingPoC
                             place.FoldedBed!=null && place.FoldedBed.Spawned,
                             "F5 pre-save logical site lost");
                 GameDataSaveLoader.SaveGame("AMJ_BeddingPoc16_Folded");
-                string savePath=GenFilePaths.FilePathForSavedGame(
-                    "AMJ_BeddingPoc16_Folded");
-                ctx.Require(System.IO.File.Exists(savePath) &&
+                MethodInfo pathMethod=typeof(GenFilePaths).GetMethod(
+                    "FilePathForSavedGame",BindingFlags.Static|BindingFlags.Public|
+                    BindingFlags.NonPublic);
+                string savePath=pathMethod==null?null:(string)pathMethod.Invoke(
+                    null,new object[]{"AMJ_BeddingPoc16_Folded"});
+                ctx.Require(!string.IsNullOrEmpty(savePath) && System.IO.File.Exists(savePath) &&
                    new System.IO.FileInfo(savePath).Length>1024,
                    "F5 original RimWorld save not written");
                 Log.Message("AMJ_BEDDING_POC16_SAVED_FOLDED owner="+pawn.ThingID+
