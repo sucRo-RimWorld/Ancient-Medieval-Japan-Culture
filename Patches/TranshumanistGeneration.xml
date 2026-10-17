@@ -17,8 +17,4 @@
       </spawnCategories>
     </value>
   </Operation>
-  <!-- Also prevent its forced trait if an external generator assigns the backstory directly. -->
-  <Operation Class="PatchOperationRemove">
-    <xpath>Defs/BackstoryDef[defName="FerventResearcher72"]/forcedTraits/li[traitDef="Transhumanist"]</xpath>
-  </Operation>
 </Patch>
