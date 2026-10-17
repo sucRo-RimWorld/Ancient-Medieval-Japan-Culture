@@ -2,6 +2,8 @@
 
 ## Player-facing purpose and evidence standard
 
+**Scope decision (2026-10-17):** Backgrounds and traits demonstrably limited to a specific unique/predefined pawn, with no ordinary Vanilla/MO generation path, are **out of scope** for this audit and its corrective patches. Exempt only after checking generation reachability. A `Solid` background or fixed named biography is not sufficient evidence of unique-only use: named Solid biographies may also be selected during ordinary pawn generation. Retain reachable Solid backgrounds and their forced traits in scope; leave uncertain cases unmodified until their route is established. Preserve unique pawns, existing saves, all Def identities, and previously implemented rules unless an actual unique-only misclassification is proved.
+
 Identify why a pawn's history, trait or attached gameplay effect is inappropriate for **ancient through late-medieval/Sengoku Japan**, and resolve it without silently eliminating useful Vanilla/MO roles, pawn diversity or existing save references. Audit the **background description and historical institution, forced traits, items, disabled work, spawn categories and final generation pathway** together; do not delete a background merely because its identifier contains `Space`, or accept it merely because it says `Medieval`.
 
 **Evidence levels:** `CONFIRMED SOURCE` = exact original or previously recorded source metadata; `CONTENT JUDGMENT` = period-fit review tied to identified content; `REVIEW` = plausible conflict but not enough primary-text evidence to implement; `IMPLEMENTED SOURCE / NOT GAME VERIFIED` = owner file exists, no claim of loaded behavior. A flagged record is **not** an exclusion decision.
