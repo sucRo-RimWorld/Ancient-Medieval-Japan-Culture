@@ -42,55 +42,73 @@ namespace AMJ.Culture
 
         public static void Postfix(Pawn pawn, ref Toil __result)
         {
-            if (pawn == null || !pawn.Spawned || pawn.Map == null ||
-                pawn.CurJob == null || pawn.CurJob.def != JobDefOf.Ingest)
+            if (pawn == null || __result == null || __result.initAction == null)
                 return;
 
-            Thing food = pawn.CurJob.targetA.Thing;
-            if (food == null || food.def.ingestible == null)
-                return;
-            float searchRadius = food.def.ingestible.chairSearchRadius;
-            if (searchRadius <= 0f)
-                return;
-
-            // Vanilla and MO table-adjacent seats take precedence.
-            Thing tableSeat = GenClosest.ClosestThingReachable(
-                pawn.Position, pawn.Map,
-                ThingRequest.ForGroup(ThingRequestGroup.BuildingArtificial),
-                PathEndMode.OnCell, TraverseParms.For(pawn), searchRadius,
-                seat => CanSit(pawn, seat) && HasAdjacentEatSurface(seat));
-            if (tableSeat != null)
-                return;
-
-            // Resolve loaded Def at meal time, not during static initialization.
-            ThingDef enza = DefDatabase<ThingDef>.GetNamedSilentFail("AMJ_Enza");
-            if (enza == null)
-                return;
-            Thing enzaSeat = GenClosest.ClosestThingReachable(
-                pawn.Position, pawn.Map, ThingRequest.ForDef(enza),
-                PathEndMode.OnCell, TraverseParms.For(pawn), searchRadius,
-                seat => CanSit(pawn, seat));
-            if (enzaSeat == null)
-                return;
-
-            Toil travel = new Toil();
+            // The Toil is constructed before food pickup. Its actual destination
+            // must be resolved inside initAction, just as Vanilla does.
+            // Wrap the SAME Toil to preserve JobDriver's failure/reservation logic
+            // and run Vanilla's original action whenever enza is inapplicable.
+            Toil travel = __result;
+            Action vanillaAction = travel.initAction;
             travel.initAction = delegate
             {
                 Pawn actor = travel.actor;
-                if (actor == null || actor.CurJob == null ||
-                    !CanSit(actor, enzaSeat) ||
-                    !actor.ReserveSittableOrSpot(enzaSeat.Position, actor.CurJob, false))
+                if (actor == null || !actor.Spawned || actor.Map == null ||
+                    actor.CurJob == null || actor.CurJob.def != JobDefOf.Ingest)
                 {
-                    if (actor != null && actor.jobs != null)
-                        actor.jobs.EndCurrentJob(JobCondition.Incompletable);
+                    vanillaAction();
                     return;
                 }
+
+                Thing food = actor.CurJob.targetA.Thing;
+                if (food == null || food.def.ingestible == null)
+                {
+                    vanillaAction();
+                    return;
+                }
+                float searchRadius = food.def.ingestible.chairSearchRadius;
+                if (searchRadius <= 0f)
+                {
+                    vanillaAction();
+                    return;
+                }
+
+                ThingDef enza = DefDatabase<ThingDef>.GetNamedSilentFail("AMJ_Enza");
+                if (enza == null)
+                {
+                    vanillaAction();
+                    return;
+                }
+
+                // Never displace a functional Vanilla/MO table-adjacent seat.
+                Thing normalSeat = GenClosest.ClosestThingReachable(
+                    actor.Position, actor.Map,
+                    ThingRequest.ForGroup(ThingRequestGroup.BuildingArtificial),
+                    PathEndMode.OnCell, TraverseParms.For(actor), searchRadius,
+                    seat => CanSit(actor, seat) && HasAdjacentEatSurface(seat));
+                if (normalSeat != null)
+                {
+                    vanillaAction();
+                    return;
+                }
+
+                Thing seatForMeal = GenClosest.ClosestThingReachable(
+                    actor.Position, actor.Map,
+                    ThingRequest.ForGroup(ThingRequestGroup.BuildingArtificial),
+                    PathEndMode.OnCell, TraverseParms.For(actor), searchRadius,
+                    seat => seat.def == enza && CanSit(actor, seat));
+                if (seatForMeal == null ||
+                    !actor.ReserveSittableOrSpot(seatForMeal.Position, actor.CurJob, false))
+                {
+                    vanillaAction();
+                    return;
+                }
+
                 actor.Map.pawnDestinationReservationManager.Reserve(
-                    actor, actor.CurJob, enzaSeat.Position);
-                actor.pather.StartPath(enzaSeat.Position, PathEndMode.OnCell);
+                    actor, actor.CurJob, seatForMeal.Position);
+                actor.pather.StartPath(seatForMeal.Position, PathEndMode.OnCell);
             };
-            travel.defaultCompleteMode = ToilCompleteMode.PatherArrival;
-            __result = travel;
         }
     }
 }
