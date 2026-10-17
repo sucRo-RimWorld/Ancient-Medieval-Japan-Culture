@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThingDef ParentName="BuildingBase">
+    <defName>AMJ_Enza</defName>
+    <label>enza</label>
+    <description>A low, round mat woven from dried grasses for sitting and eating without a raised table. A simple seat that offers modest comfort.</description>
+    <designationCategory>Furniture</designationCategory>
+    <graphicData>
+      <texPath>Things/Building/Furniture/Enza</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(1,1)</drawSize>
+    </graphicData>
+    <altitudeLayer>Item</altitudeLayer>
+    <passability>Standable</passability>
+    <rotatable>false</rotatable>
+    <size>(1,1)</size>
+    <fillPercent>0.25</fillPercent>
+    <castEdgeShadows>false</castEdgeShadows>
+    <socialPropernessMatters>true</socialPropernessMatters>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <costList><Hay>25</Hay></costList>
+    <statBases>
+      <MaxHitPoints>35</MaxHitPoints>
+      <WorkToBuild>200</WorkToBuild>
+      <Mass>1</Mass>
+      <Flammability>1</Flammability>
+      <Comfort>0.35</Comfort>
+    </statBases>
+    <building>
+      <isSittable>true</isSittable>
+      <canPlaceOverImpassablePlant>false</canPlaceOverImpassablePlant>
+    </building>
+  </ThingDef>
+</Defs>
