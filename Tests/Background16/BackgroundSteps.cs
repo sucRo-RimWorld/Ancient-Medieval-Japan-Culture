@@ -87,8 +87,11 @@ namespace AMJ.Culture.Test
                     ctx.Require(backstory != null, "Saved child Def identity missing: " + id);
                 }
                 TraitDef trait = DefDatabase<TraitDef>.GetNamedSilentFail("Transhumanist");
-                ctx.Require(trait != null && trait.commonality == 0f,
-                    "Random Transhumanist commonality not suppressed");
+                FieldInfo commonality = typeof(TraitDef).GetField("commonality",
+                    BindingFlags.Instance | BindingFlags.NonPublic);
+                ctx.Require(trait != null && commonality != null &&
+                    (float)commonality.GetValue(trait) == 0f,
+                    "Loaded random Transhumanist commonality not suppressed");
                 ctx.Require(DefDatabase<TraitDef>.GetNamedSilentFail("BodyPurist") != null,
                     "BodyPurist Def identity was lost");
                 Log.Message("AMJ_CULTURE_BACKGROUNDS16_LOADED_OK adult=" + Adult.Length
