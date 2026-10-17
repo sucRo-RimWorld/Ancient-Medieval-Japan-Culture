@@ -99,6 +99,22 @@ namespace AMJ.Culture
         }
     }
 
+    // The side of a crossing is bound to its actual movement job, not to the
+    // overall destination. A long Job may cross several separate thresholds.
+    internal sealed class EntranceApproach
+    {
+        public readonly Map Map;
+        public readonly Job Job;
+        public readonly bool Indoor;
+
+        public EntranceApproach(Pawn pawn, bool indoor)
+        {
+            Map = pawn.Map;
+            Job = pawn.CurJob;
+            Indoor = indoor;
+        }
+    }
+
     // Pawn IDs, unlike MapComponents, survive caravan departures and returns.
     // Interrupted casts are transient: after loading, the original Job/path
     // resumes and a new cast begins if the crossing is still needed.
@@ -109,7 +125,7 @@ namespace AMJ.Culture
         private List<string> barefootPawnIds = new List<string>();
         private HashSet<string> barefootLookup = new HashSet<string>();
         private readonly Dictionary<Pawn, EntrancePause> pauses = new Dictionary<Pawn, EntrancePause>();
-        private readonly Dictionary<Pawn, bool> originSideIndoor = new Dictionary<Pawn, bool>();
+        private readonly Dictionary<Pawn, EntranceApproach> approaches = new Dictionary<Pawn, EntranceApproach>();
 
         public EntranceFootwearState(Game game) { }
 
@@ -135,17 +151,27 @@ namespace AMJ.Culture
 
         internal void NoteApproach(Pawn pawn, bool indoor)
         {
-            originSideIndoor[pawn] = indoor;
+            approaches[pawn] = new EntranceApproach(pawn, indoor);
         }
 
         internal bool TryGetApproach(Pawn pawn, out bool indoor)
         {
-            return originSideIndoor.TryGetValue(pawn, out indoor);
+            EntranceApproach approach;
+            if (approaches.TryGetValue(pawn, out approach) &&
+                approach.Map == pawn.Map && approach.Job == pawn.CurJob)
+            {
+                indoor = approach.Indoor;
+                return true;
+            }
+
+            approaches.Remove(pawn);
+            indoor = false;
+            return false;
         }
 
         internal void ClearApproach(Pawn pawn)
         {
-            originSideIndoor.Remove(pawn);
+            approaches.Remove(pawn);
         }
 
         internal void BeginCast(Pawn pawn, bool targetBarefoot, int now)
@@ -177,7 +203,7 @@ namespace AMJ.Culture
         internal void CancelAndForget(Pawn pawn)
         {
             pauses.Remove(pawn);
-            originSideIndoor.Remove(pawn);
+            approaches.Remove(pawn);
         }
 
         internal void CancelAt(Map map, IntVec3 cell)
@@ -217,7 +243,7 @@ namespace AMJ.Culture
                 if (barefootPawnIds == null) barefootPawnIds = new List<string>();
                 barefootLookup = new HashSet<string>(barefootPawnIds);
                 pauses.Clear();
-                originSideIndoor.Clear();
+                approaches.Clear();
             }
         }
     }
@@ -295,17 +321,27 @@ namespace AMJ.Culture
                 return true;
             }
 
+            // Wait until the path leaves THIS contiguous painted threshold.
+            // Looking at the final Job destination is incorrect when a pawn
+            // enters via entrance A and later exits via entrance B in one Job.
+            if (next || __instance.nextCell == pawn.Position) return true;
+
             bool approachIndoor;
-            if (!state.TryGetApproach(pawn, out approachIndoor) ||
-                __instance.nextCell == pawn.Position) return true;
+            if (!state.TryGetApproach(pawn, out approachIndoor))
+                return true;
 
-            IntVec3 destination = __instance.Destination.Cell;
-            if (!destination.IsValid || !destination.InBounds(pawn.Map)) return true;
-            bool destinationIndoor = IsInterior(destination, pawn.Map);
-            if (approachIndoor == destinationIndoor ||
-                state.IsBarefoot(pawn) == destinationIndoor) return true;
+            bool exitIndoor = IsInterior(__instance.nextCell, pawn.Map);
+            if (approachIndoor == exitIndoor ||
+                state.IsBarefoot(pawn) == exitIndoor)
+            {
+                state.ClearApproach(pawn);
+                return true;
+            }
 
-            state.BeginCast(pawn, destinationIndoor, tick);
+            // Cast on the last threshold cell, immediately before leaving.
+            // The completed cast changes the pawn state, so the same exit
+            // cannot cast a second time, even if the path is processed again.
+            state.BeginCast(pawn, exitIndoor, tick);
             return false;
         }
     }
