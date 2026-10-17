@@ -1,0 +1,28 @@
+# AMJ Culture — feature-by-feature specification and implementation plan
+
+**Owner decision (2026-10-18):** Do **not** split AMJ Culture into separate installed Mods, mandatory sub-Mods, or duplicated project repositories. Split the work into independently reviewed **feature specifications and implementation workstreams** within Culture, keeping one supported Mod and one product source of truth. Design decisions precede new source development. Do not rewrite validated unrelated work when an individual feature changes.
+
+## Workflow and completion labels
+
+1. **Scope agreed:** precise gameplay goal, historically fitting contents, exclusions, connection to existing feature owners, Vanilla/MO and 1.6/1.7 impact, and VE/non-VE/AMJ overlap identified.
+2. **Specification reviewed:** observable behavior and failure behavior (jobs, UI, save/load, compatibility, costs/mood where approved) are recorded in owner `Docs/Design.md` or a `Docs/Features/` canonical feature specification. Unknown gameplay mechanics are not called settled.
+3. **Feasibility gate, if needed:** when a critical technical premise is unverified, run a **targeted disposable real-game PoC before locking the architecture or implementing a full production feature**. This is an exception for a concrete risk, not a requirement that every Culture feature invent its own extensive test harness.
+4. **Implementation:** one bounded topic branch / PR / code ownership unit per feature; integrate with the latest shared `main` source and recheck overlapping components, versioned DLLs/Defs/Thoughts. Do not branch-copy `Docs/Coordination.md` as a new source of truth.
+5. **Acceptance:** one minimal consolidated original-game check of the changed player-visible function and its material regressions, not all Culture workstreams. Record exact tested source and versions, and separate untested 1.6/1.7/MO aspects.
+6. **Status:** independently mark `design open`, `feasibility pending`, `implementation open`, `source implemented / validation pending`, or `accepted in a named scope`. Neither PR merge nor a PoC alone means shipped or globally complete.
+
+## Functional boundaries and sources
+
+| Slice | Responsible features | Formal details / next gate |
+| --- | --- | --- |
+| C-01 Background / personality generation | Vanilla/MO background filtering, localized biography rewrites, historical Traits and forced Trait interactions; finish Stage 2 before adding new Japanese backgrounds/Traits | [Design](Design.md#historical-background-and-trait-audit-2026-10-17), [Stage1VanillaMOBackgroundTraitInventory](Stage1VanillaMOBackgroundTraitInventory.md), [Stage2JapaneseReviewDraft](Stage2JapaneseReviewDraft.md); implementation and native coverage vary across the individual changes |
+| C-02 Psychoactive drugs and supply | Anachronistic drugs, spawn/trade/recipe/effect/addiction behavior, interaction with existing character rules; preserve existing saved Defs | [Design](Design.md#psychoactive-substances-ordinary-supply-restriction); selected 1.6+MO and 1.7 Vanilla checks have passed, later supply edge cases remain open |
+| C-03 Dining / seating | Eating without a table, using an ordinary chair as a meal destination, optional culturally appropriate low seat if required | [Design](Design.md#chair-only-meals--revised-implementation-scope-2026-10-17); implementation/validation are separately bounded |
+| C-04 Indoor/outdoor footwear and entrance | Player-designated entrance/no-shoes regions, cast/filth behavior, save/load and conflicts | [Design](Design.md#玄関ゾーン擬似履物脱着2026-10-17-作者承認両版dllビルド済実機未検証); native 1.6 accepted for named tested cases; 1.7/TPS are not retroactively accepted |
+| C-05 Social judgments | Greedy/Jealous/shared-lodging interaction, death/corpse observations and other historically contingent Thoughts | [Design](Design.md#背景からの強制特性共同寝所の特性評価2026-10-17) and [Cultural Thought triage](Design.md#cultural-thought-and-social-norm-triage-outside-seating-2026-10-17); do not edit independent Shared Sleeping room-quality rules |
+| C-06 Foldable bedding / domestic sleeping custom | Period-appropriate grass/straw bedding, persistent sleeping places, lay-out/fold-up Jobs, optional permanent bed | **[FoldableBedding](Features/FoldableBedding.md)**. Gameplay intent settled, **mandatory feasibility PoC pending**; no production implementation |
+| C-07 Compact multi-use dwelling mood | Evaluate localized Cramped interior adjustment only if C-06's actual storage behavior works and Vanilla Room.Space remains insufficient | [FoldableBedding](Features/FoldableBedding.md#stage-2--compact-room-cultural-judgment). Numbers not settled; Confined -10 stays unchanged |
+
+**Cross-feature rule:** C-06's bedding placement may affect C-01/05 owned-bed and Greedy/Jealous comparisons, C-03 daytime room reuse, C-04 no-shoes zoning, and independent Shared Sleeping; preserve current behavior in the code that actually owns it. This is a dependency review, not a reason to move independent Mods into Culture. C-07 must not ship before C-06 works.
+
+No additional gameplay scope is authorized by this plan. Existing owner docs/source outrank this status index for each completed feature. New design proposals require their own decision; this plan does not make every historical candidate automatic Culture content.
