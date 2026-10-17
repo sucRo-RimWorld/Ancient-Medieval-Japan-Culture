@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
-  <!-- Vanilla Core 1.6/1.7: these forty-two adult BackstoryDefs have existing
+  <!-- Vanilla Core 1.6/1.7: these forty-five adult BackstoryDefs have existing
        spawnCategories. Keep the BackstoryDef identities, traits, stats, skills
        and saved-pawn references. Restrict ordinary new generation only.
        This does not modify category-less Solid_Child biographies or forcibly
@@ -338,6 +338,32 @@
   </Operation>
   <Operation Class="PatchOperationReplace">
     <xpath>Defs/BackstoryDef[defName="ExplorerWriter10"]/spawnCategories</xpath>
+    <value>
+      <spawnCategories>
+        <li>AMJ_CultureExcluded</li>
+      </spawnCategories>
+    </value>
+  </Operation>
+  <!-- Forced-trait / starting-item SF carriers: preserve the trait/item and all
+       existing pawns; close only their obsolete ordinary background categories. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="TestSubject90"]/spawnCategories</xpath>
+    <value>
+      <spawnCategories>
+        <li>AMJ_CultureExcluded</li>
+      </spawnCategories>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="HunterOfTheKing53"]/spawnCategories</xpath>
+    <value>
+      <spawnCategories>
+        <li>AMJ_CultureExcluded</li>
+      </spawnCategories>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SpaceBartender0"]/spawnCategories</xpath>
     <value>
       <spawnCategories>
         <li>AMJ_CultureExcluded</li>
