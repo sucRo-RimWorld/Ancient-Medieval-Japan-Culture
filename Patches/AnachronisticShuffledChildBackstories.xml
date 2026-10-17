@@ -10,4 +10,9 @@
     <xpath>Defs/BackstoryDef[defName="VatgrownSoldier8"]/spawnCategories</xpath>
     <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
   </Operation>
+  <!-- Stage 2: The original Shuffled childhood describes industrial-world experimentation to engineer a super-soldier. Original Core 1.6/1.7 metadata confirms existing ordinary Offworld/Pirate/Madman/Cult categories. Do not delete the Def or change saved-pawn work restrictions. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="TestSubject15"]/spawnCategories</xpath>
+    <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
+  </Operation>
 </Patch>

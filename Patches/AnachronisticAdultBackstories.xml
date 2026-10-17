@@ -453,4 +453,9 @@
     <xpath>Defs/BackstoryDef[defName="MedicalScientist16"]/spawnCategories</xpath>
     <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
   </Operation>
+  <!-- Stage 2: The original Pirate adult story describes terawatt-range ship-mounted energy weapons and concealed fire-control gear. This is not a period shipwright story; retain the Def and its construction skill/ManualSkilled prerequisite for old saves, suppress new random selection pending separately approved historical rewrite. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="IllegalShipwright76"]/spawnCategories</xpath>
+    <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
+  </Operation>
 </Patch>
