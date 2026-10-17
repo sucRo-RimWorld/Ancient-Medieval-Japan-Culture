@@ -43,7 +43,9 @@ namespace AMJ.Culture.Test
             Thing meal = null;
             float startComfort = 0f;
             bool sawMealOnSeat = false, sawComfort = false, sawFinish = false;
-            await ctx.WaitFrames(4);
+            // Quickstarts has delayed pawn setup after the map first appears.
+            await ctx.WaitUntil(() => EnzaQuickstart.IsPostLoaded, 90f);
+            await ctx.WaitFrames(2);
             await GameThread.Run(delegate
             {
                 Map map = Find.CurrentMap;
