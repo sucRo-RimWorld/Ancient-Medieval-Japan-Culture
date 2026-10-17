@@ -5,9 +5,10 @@ contain an assembled runtime DLL and does not claim any real-game result.
 `About/About.xml` remains unchanged until a matching, compiled DLL is staged.
 
 The adapter patches only `Toils_Ingest.CarryIngestibleToChewSpot`. During a
-normal ingest Job it uses Vanilla travel if a reachable eating table exists,
+normal ingest Job it uses Vanilla travel if a valid table-adjacent chair exists,
 otherwise attempts a reservable `isSittable` chair without requiring an
-adjacent `SurfaceType.Eat`. If none exists, original travel runs. It uses
+adjacent `SurfaceType.Eat`. A table without a usable adjacent chair does not
+block table-free seating. If none exists, original travel runs. It uses
 Vanilla sit/spot reservations and does not alter room or food mechanics.
 
 Build against **licensed RimWorld 1.6** managed assemblies and Harmony, without
