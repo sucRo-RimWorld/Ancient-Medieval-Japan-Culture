@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
   <AMJ_Culture_EntranceAdd>玄関ゾーン</AMJ_Culture_EntranceAdd>
-  <AMJ_Culture_EntranceAddDesc>土足と裸足を切り替える玄関の境界を指定する。床や備蓄・栽培ゾーンに重ねられる。屋外と室内を往復する入植者は短時間立ち止まる。</AMJ_Culture_EntranceAddDesc>
+  <AMJ_Culture_EntranceAddDesc>土足禁止エリアと辺で隣接する玄関の境界を指定する。床や備蓄・栽培ゾーンに重ねられる。隣接していない玄関は脱ぎ履きを行わない。</AMJ_Culture_EntranceAddDesc>
   <AMJ_Culture_EntranceRemove>玄関ゾーン解除</AMJ_Culture_EntranceRemove>
   <AMJ_Culture_EntranceRemoveDesc>指定済みの玄関ゾーンを解除する。床や他のゾーンには影響しない。</AMJ_Culture_EntranceRemoveDesc>
+  <AMJ_Culture_EntranceNotAdjacent>この玄関は土足禁止エリアに隣接していません。履物の脱ぎ履きは行われません。</AMJ_Culture_EntranceNotAdjacent>
+  <AMJ_Culture_NoShoesAdd>土足禁止エリア</AMJ_Culture_NoShoesAdd>
+  <AMJ_Culture_NoShoesAddDesc>靴を脱いで入る板間・座敷などを指定する。玄関ゾーンの隣のセルから塗る。床や他のゾーンに重ねられる。</AMJ_Culture_NoShoesAddDesc>
+  <AMJ_Culture_NoShoesRemove>土足禁止エリア解除</AMJ_Culture_NoShoesRemove>
+  <AMJ_Culture_NoShoesRemoveDesc>指定済みの土足禁止エリアを解除する。他のゾーンや床は変更しない。</AMJ_Culture_NoShoesRemoveDesc>
 </LanguageData>
