@@ -246,7 +246,7 @@ The thirty target DefNames: `AerospaceEngineer44`, `ComputerEngineer10`, `Comput
 
 ## 中世日本へ転用可能なVanilla人物背景の改稿（2026-10-17）
 
-**実装済み：15件（第一群5件＋第二群10件）。** 利用可能な仕事・人物の多様性を維持しつつ、SF世界での経歴を前近代日本で成立する物語へ置換する。ソース正本：`Patches/HistoricalOccupationBackstories.xml`（英語の`BackstoryDef` `title`・`titleShort`・`baseDesc`）、`Languages/Japanese/DefInjected/BackstoryDef/HistoricalOccupationBackstories.xml`（日本語の`title`・`titleShort`・`baseDesc`・解決後の`description`）。ゲームの `[PAWN_nameDef]` 変数を維持する。ゲーム本体の背景定義を**削除せず**、`defName`・`slot`・`spawnCategories`・能力ボーナス・`workDisables`・`requiredWorkTags`・強制Traits・所持品を変更しない。特定のSF DefNameが残っていても、通常表示のタイトルと経歴は史実相当へ置き換わる。本人が望む将来の改稿やほかの言語は別途対象にできる。
+**実装済み：15件（第一群5件＋第二群10件）。** 利用可能な仕事・人物の多様性を維持しつつ、SF世界での経歴を前近代日本で成立する物語へ置換する。ソース正本：`Patches/HistoricalOccupationBackstories.xml`（英語の`BackstoryDef` `title`・`titleShort`・`description`）、`Languages/Japanese/DefInjected/BackstoryDef/HistoricalOccupationBackstories.xml`（日本語の`title`・`titleShort`・`description`・解決後の`description`）。ゲームの `[PAWN_nameDef]` 変数を維持する。ゲーム本体の背景定義を**削除せず**、`defName`・`slot`・`spawnCategories`・能力ボーナス・`workDisables`・`requiredWorkTags`・強制Traits・所持品を変更しない。特定のSF DefNameが残っていても、通常表示のタイトルと経歴は史実相当へ置き換わる。本人が望む将来の改稿やほかの言語は別途対象にできる。
 
 | Vanilla defName／slot | 表示名・題材の変更 | 維持する実ゲーム上の元データと判断 |
 |---|---|---|
@@ -326,3 +326,9 @@ The thirty target DefNames: `AerospaceEngineer44`, `ComputerEngineer10`, `Comput
 `Steel`は既存Vanillaの抽象的な汎用金属素材として利用し、新たな製鉄設備や史実上の鋼材量を意味しない。`MedicineHerbal`と`MealSimple`も既存Vanilla Defを再利用する。Medicine/Grains/Alcohol製造等の他Modにレシピ、薬効、作物の所有を移動したわけではない。すべての元アイテムのDef自体を残し、他の入手経路や既存Pawn依存を破壊しない。歴史的職業の装備をゲーム中で個別生成する元経路は維持される。
 
 **正本の参照・検証境界:** 元Defのスロット・技能・所持品は作者所有の[Core 1.6/1.7監査](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/blob/main/Docs/Research/VanillaCoreCharacterDefsSourceAudit20261016.md)（原配布物由来SHA付きmetadata v2）、旧設定の本文はLudeon公認の英語原文コメントで確認。後者が現行ゲームの本文とバイト一致する保証はない。今回はXMLの実装が正本であり、前回の1.6製品DLLをそのまま使用する。**実ゲームの表示、パッチのロード、初期所持品の変化は未検証**。最終的な集中受け入れで、この32件の日本語／英語テキスト、6件の新規割当時の所持品、43＋24件の除外制限維持、通常Pawn生成・セーブ参照を必要十分な項目として確認する。テスト目的の全背景784件抽選やPR起動ごとのゲームテストは実施しない。MO/1.7/旧セーブ実読み込みは未検証。今回の改稿完成をCultures全体の完成・公開許可とは扱わない。
+
+### 原人物背景の説明文フィールド修正（2026-10-17）
+
+1.7実ゲーム[検証 #39016338621](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39016338621)はイス食事3分岐・成人43・幼少24の制限でPickle1/1を通過したものの、当時実装済み15件の背景説明文のXPath `/baseDesc` でERROR15件となり、総合判定FAIL。正規1.7 Core XMLの[タグ照合 #39016659873](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39016659873)で当該15件全ての原フィールドが `description` であることを確認。原Core/Defsは1.6／1.7で同一SHA。
+
+**確定修正:** その後並行して改稿された17件を含め、現行製品 `Patches/HistoricalOccupationBackstories.xml` の32件すべてで、説明の `xpath` と `value` の対象を `description` に変更する。タイトル・Def名・技能・カテゴリ・セーブ参照・Assemblyは変更しない。実ゲームでERROR0を確認するまで1.7総合PASSは主張しない。
