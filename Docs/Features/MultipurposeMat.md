@@ -73,6 +73,10 @@
 - **PoCと製品の区別:** このPASSは「1つの`Building_Bed`が食事座具にもなれる」ことの証明であって、**Culture専用寝具Defの追加・Hay/Straw製作・実際のビジュアル・製品実装の証明ではない**。実ゲームの複数ポーン・睡眠中の座席衝突、優先順位、共同用、元のThoughtと部屋評価、1.6+MO、1.7、旧セーブ・TPSは未検証。Vanilla Bedroll自体の製品定義は変更しない。
 - **先行Mod/重複監査:** [Sitting Spot 1.6](https://steamcommunity.com/sharedfiles/filedetails/?id=3236014306)は「ベッド上に座れる透明な椅子」を提供するが、Comfortはなく別Thingの重ね配置方式。ユーザー指定の用途兼用の家具1個とは異なる。[Erin's Japanese Furniture](https://steamcommunity.com/sharedfiles/filedetails/?id=2354938860)のFuton/Zabuton、VE系家具と非VE系の実Def・就寝/着席処理は依然監査対象。独立Culture実装の前にProjectのVE/非VE重複判断を行う。必須外部Modを増やさない。
 
+## Feasibility-first test in progress (2026-10-18; not acceptance)
+
+The author explicitly set **all balance numbers aside** until feasibility is established for 1×2 rotation, normal owner-only seating, actual Ingest/Comfort/LayDown, and comparison of **loaded** dining-room positive effects. [Culture test-only source PR #122](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Culture/pull/122), merged `e7435ee1527786a74b83011b5bd3b349f411362b`, runs a disposable Harmony seat-selection adapter with `isSittable=false`, not production changes. [Project run #39059746413](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39059746413) was **QUEUED** at the last check; its compile, game assertions and possible failures have **not** been verified. Separately track the **loaded Thought-stage mathematical comparison** versus **actual competing irori/low-table locations** (the latter is not part of this isolated 1.6 scenario). Prior 1.6 PASS under `isSittable=true` does not establish the new owner-gated path. Preserve the feature as **product-unimplemented / feasibility unaccepted** until explicit runtime evidence appears.
+
 ## Production and acceptance gates
 
 1. **実装準備:** 用途兼用の1×2 Culture敷物1種類を最小単位とし、Vanillaのみでも材料・就寝・食事が成立。**ベッドの既存所有者だけが食事にも使用できる**。無主の敷物は食事座具として選ばない。専用ThingDefは `isSittable=false` を優先し、既存`TablelessChairMealPatch`に **専用Def/OwnedBed限定の座具候補**を追加する。囚人/医療用にした場合の座具機能は常に無効。特殊モード切替は安全が証明できなければ提供しない既存の縮小仕様を維持。画像と呼称は別途決定する。
