@@ -251,3 +251,43 @@ These are **optional source cohorts**, not a single installed pool, not Culture 
 ### 第6修正群の製品バイナリ収録追記（2026-10-17）
 
 第6修正群時点で残っていた「新Solid幼少期8件の製品DLL未収録」は、1.6／1.7実ゲーム正規Managed参照を使った**ビルド専用**Project #39041617611／#39041895169が両方SUCCESSとなり、該当バイナリのGitBlob作成・Culture本体の版別Assemblies置換により解消した。元ソースは共通 `366888bccc897b25ee714e1092c00cc3f7080ab2`（Solid幼少期32件）、1.6 SHA-256 `688c32a5ab5b1dbefe73ccffc2ebcb2287156cf565018c7e1ed60e0167161b9d`、1.7 SHA-256 `7fb340337eaf9c998e3beb866b21ebcc92e9135201b6ca07c287ae150e8fb004`。**ソース111件が製品のロード済みゲームで有効と検証した意味ではない。** ゲーム生成／MO／旧セーブ確認と一括未承認日本語原稿35件は保留を維持する。
+
+
+## 第2段階・第7修正群 — Solid幼少期23件と通常生成時の時代不整合な所持品17件（2026-10-17）
+
+**確認対象：** 第1段階の原Vanilla Core 1.6.4871／1.7.4977 schema-v2定義を使用し、未対応のSF・現代制度フラグ77件を既存111制限・実装済み34改稿・一括承認待ち35原稿から差し引いて個別再確認した。旧公式英語原文コメントは[Ludeonの旧原文データ](https://github.com/Ludeon/RimWorld-Finnish/blob/master/Backstories/Backstories.xml)を参照。現在配布中の原RimWorld 1.6/1.7本文と完全一致は確認できないため「旧原文の判定」であることを維持する。原定義のslot、元パス、強制Trait、既存所持品は正規両版メタデータで一致する。
+
+### 未修正Solid幼少期の追加23件
+
+以下は元の `BackstoryDefs/Solid/Solid_Child.xml` の通常Named Solid選択経路に接続しうる幼少期23件で、原の宇宙移住・星間軍隊／航行・現代電子／動画・人体改造等を**史実改稿なしで**通常選択させない。既存 `Source/AMJ.Culture/SolidChildBioGatePatch.cs` の集合へ追加し **32→55件**とする。
+
+| 不整合分類 | 元DefName |
+|---|---|
+| クローン／人工人体・現代の遺伝子研究 | `AbandonedChild30`、`CaravanChild53`、`ChildScientist30`、`VatgrownSlavegirl8` |
+| 宇宙船・冷凍睡眠・星間移住・軍事／未来兵器 | `Colonist22`、`CrimeBossChild39`、`FeralChild85`、`MidworldCadet83`、`PilotFan16`、`ShipChild46`、`SocialPariah3`、`StarforceCadet79`、`VoyagerChild94` |
+| 量子物理・宇宙軍需の技術的英才教育 | `AspiringPhysicist47`、`StudentEngineer34` |
+| 電子計算機・オンライン言論・現代のVR/ゲーム/動画 | `DiplomatsChild97`、`LogicalChild2`、`MidworldGeek18`、`ProfessionalGamer76`、`RebelWriter82`、`VideoGamer55`、`VidtubeStar98` |
+| 工業化学工場・産業惑星での労働 | `ToxicChild96` |
+
+※上の分類は生成を制限した理由であり、子どもの性格、性自認、被害経験、出身身分、文筆・武芸等の歴史的職能そのものを不適切と評価するものではない。すべての元Def、仕事制限・技能、固有人物／旧セーブを維持する。元の `LogicalChild2` が強制する `TooSmart=0` と `ToxicChild96` の `Nerves=-1`（元メタデータの degree `-1`）を触らない。将来作者が古代〜中世日本の同じ強制Trait・仕事・技能に合う日本語改稿を承認した場合、当該幼少期の通常抽選を復帰できる。単なるSFキーワードを含むもの全てを機械的に禁止する判断ではない。既存34件の歴史改稿と35件の一括日本語未承認原稿は変更しない。
+
+### 出生背景から直接付与される不自然な初期アイテム17件
+
+`Patches/HistoricalOccupationStartingPossessions.xml` 内の最初の6件は維持し、既存Vanilla XMLに該当する以下17件の**通常生成時**の所持品だけを変更する。Def・WorkDisables・skills・forcedTraits・派閥抽選カテゴリ・旧セーブに存在する実物アイテムは消さない。ダミーDefや新規アイテムは使わず、実際の元Coreで使用されている `Bow_Short`、`PlantPot`、`MealSimple`、`Cloth`、`Steel`、`MeleeWeapon_Spear`、`MedicineHerbal`、`Silver` を使用する。
+
+| 元の種類 | 対象Def・変更内容 |
+|---|---|
+| 合成嗜好品 | `Smuggler23`：`Flake 20→Silver 20`。通常生成から禁止薬物を新たに供給しない |
+| 工業銃器 | `Bodyguard58`（`Gun_Autopistol`）、`BushSniper94` / `OverwatchSniper42`（`Gun_SniperRifle`）、`Gunfighter51`（`Gun_Revolver`）の各1丁を `Bow_Short 1` に置換 |
+| 近現代の耕作／携帯食 | `CropFarmer17`：`SunLamp 1→PlantPot 1`、`MercenaryChef44`：`MealSurvivalPack 2→MealSimple 2` |
+| 時代不整合の衣服 | `Pirate56`：`Apparel_GasMask 1→Cloth 10`（Biotech時のみ）、`Rancher43`：`Apparel_CowboyHat 1→Cloth 10`、`Sheriff52`：`Apparel_Duster 1→Cloth 10` |
+| 高度兵器／異常テクノロジー | `SteamworldTinker38` / `MadScientist22`：`Apparel_PackTurret 1→Steel 10`（Anomaly）、`ExplosivesExpert26`：`AncientMiningCharge 1→Steel 10`（Odyssey）、`Assassin20`：`NerveSpiker 1→MeleeWeapon_Spear 1`（Anomaly） |
+| 現代の臓器移植素材 | `PirateDoctor0` / `UnethicalDoctor29`：`Kidney 1→MedicineHerbal 2`、`ProstheticSurgeon0`：`AestheticNose 1→MedicineHerbal 2`（Royalty） |
+
+Anomaly／Royalty／Odyssey／Biotech限定元アイテムは、元XPathの存在を確かめてから `PatchOperationConditional` の内部で置換する。元DLCがない構成に不在XPathを強制しない。これは「初期所持品から持ち込まれる未来技術と合成薬」を止める限定した手段であり、Vanilla戦利品・装備テーブル・プレイヤーの古いアイテムは対象外。元の数値に機械的換算率を仮定せず、一品程度の携帯品として既存素材に置き換えた。Silver以外の価値等価性、DLC 1.7 XMLロードとバランスは実ゲーム未確認。
+
+### 件数と残作業
+
+追加前は通常生成制限 **111件**（成人76・幼少35）、追加後はソース上 **134件**（成人76＝成人カテゴリ75＋独立1、幼少58＝Solidゲート55＋Shuffled3）。初期所持品パッチは従来6件→**23件**（今回17件）となる。このうち新規Solid 23件は**C#ソースのみ変更済み**。既存の1.6/1.7 DLLはまだSolid55件を収録していないので、**次の完全ソース両版ビルド／実物DLL統合まで134件を製品動作と扱わない。**
+
+未処理フラグの残り54件は、一般的な医師・役人・武人・旅商・芸能・工芸・学芸等に転用可能な背景が多く、無条件除外は不適切。生成カテゴリ／副作用を比較し、期間相当の日本語改稿が必要なものと、内容を維持できるものへ判定を続ける。既存35件の一括承認も最後のまま。第3段階の独自背景・特性は追加しない。ネイティブゲーム検証は作者の承認済み本文を反映した後の一括受入れまで実施しない。
