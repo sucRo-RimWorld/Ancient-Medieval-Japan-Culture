@@ -305,3 +305,28 @@ Anomaly／Royalty／Odyssey／Biotech限定元アイテムは、元XPathの存�
 追加の日本語案54件は [Stage2JapaneseReviewDraft.md](Stage2JapaneseReviewDraft.md) の36〜89番。先行35件と合わせ合計89件。成人と幼少の元Def／元 `slot`／元技能／仕事制限／強制Trait／元アイテムの整合は個別に残した。原のSF・近現代の学校／医療／政治／武器／娯楽／科学を、史実職能へ置き換えるため、**ゲーム文面に反映前に作者が日本語を一括承認**すること。改稿を承認するまで、該当する未来語がゲーム中に残る可能性があり、`Keep` と確定したわけではない。背景の内容が現代技術を示すという理由だけで、女性・男性の生き方や児童の階層、薬に関わる被害者等の存在を否定しない。
 
 未立証範囲は(a)旧公式アーカイブ英語文と現行配布Core 1.6/1.7本文の完全一致、(b)Stage 1の「旧アーカイブに明白な衝突なし」550件を全員分再校閲したか、(c)文章未取得16件や固有Rare人物の元長文と通常抽選実績、(d)全134生成制限・23所持品調整の実ゲーム確認。これらを実施済みと報告しない。既存134件生成制限のC#/XML/両版DLL、34件の史実英日改稿、製品のTrait実装には本追加原稿による変化はない。
+
+
+## 第2段階・第8修正群 — 旧英語原文未収録16件と名前付きRare18件の生成経路整理（2026-10-18）
+
+**入力と判断の確度:** Stage1原台帳の `ARCHIVAL_DESCRIPTION_NOT_FOUND` **16件**と `SPECIAL_NAMED_RARE_ROUTE` **18件**を、過去に正規ゲームから取得済みの `1.6/core-character-defs.csv`／`1.7/core-character-defs.csv`（Project #38797500765、各Defのslot／元ファイル／英語title／カテゴリ／技能・強制特性）で対象ごとに照合。両版の元定義メタデータが一致する。**元の現行長文description全文はこのCSVにはなく、欠落した旧英語原文も創作しない。** `Solid`／`Shuffled Special`／`Solid_Rare` の違いを基準に、追加制限すべきか否かを判定した。
+
+### アーカイブ本文未取得16件
+
+| 生成経路 | 対象Def | 技術上の扱い |
+|---|---|---|
+| `Shuffled/Special.xml`（8） | `Child27` (Child)、`ChildTribal` (ChildTribal)、`Colonist97` (AdultColonist)、`ColonyChild59` (AdultColonist)、`Newborn79` (Newborn)、`TribeChild19` (AdultTribal)、`TribeMember57` (AdultTribal)、`VatgrownChild11` (VatGrown) | 特定生成目的の特殊カテゴリであり、一般のOffworld/Outlander/Tribal等の成人カテゴリと同一視しない。元の仕組みを壊しかねないため、**元Specialを変更しない**。特に `VatgrownChild11` はSF語を含むがBiotech等の特殊出生・成長処理との衝突を避ける。一般Pawn生成でSFを選択する証拠は未取得。 |
+| `Solid/Solid_Child.xml`（4） | `MonkeyChild67`（動物と野外）、`MusicalKid14`（音楽）、`OldMoneyHeir46`（富家の跡取り）、`StewardsAssisant28`（家政の手伝い） | 既存タイトル・元技能が歴史的に存在し得る。元の長文本文不明を理由に削除／ゲート追加しない。将来現行本文が不整合と確定した場合のみ別対応。 |
+| `Solid/Solid_Adult.xml`（4） | `CivilServant25`（役所、`Civil;Pirate;Offworld;Outlander;Trader`）、`RimworldExile32`（追放、`Offworld;Outlander;Pirate;Slave;Trader`）、`Streamer52`（ストリーマー、`Offworld;Outlander;Pirate;Slave;Trader`）、`TravelingBard93`（旅の吟遊芸人、同5カテゴリ） | `CivilServant25`、`RimworldExile32`、`TravelingBard93` は役人／追放者／芸能者への史実転用が可能なため、**長文未取得時点では維持**。`Streamer52` は元の英語の職業 `Streamer` が映像配信時代の職能を表す強い兆候があり、原文詳細の承認・日本史改稿まで**通常カテゴリのみを暫定制限**する。元の `Social+6;Animals+5`、DefID、仕事制限、旧セーブは不変。原長文の内容まで確定したとは主張しない。 |
+
+**実装：** `Patches/AnachronisticAdultBackstories.xml` の成人カテゴリ制限XPathを **75→76** へ増やし `Streamer52` だけ `AMJ_CultureExcluded` とする。現在のVanilla 1.6/1.7の元カテゴリXPathを確認済みのため、新たなC#やDLLは不要。その他15件は通常生成を強制排除する根拠が弱く、現行の値を維持する。特殊カテゴリの維持は「VatGrownを中世日本の通常出生として認める」という意味ではない。元の特殊システムを勝手に破壊しないための境界である。
+
+### 開発者由来・名前付きRare18件
+
+元の `BackstoryDefs/Solid/Solid_Rare.xml` は開発者由来**9組の成人・幼少期**。通常の名前付きSolid選出に到達し得る（絶対的な個人固定のみとは判定しない）が、Rare全員の元の長文はアーカイブに載っていない。元title／カテゴリ・技能・強制Trait以外の文脈は不明。
+
+- **成人4件は既に生成制限済み**：`JoeCustomAdulthood` (game developer)、`LiamCustomAdulthood` (simulation developer)、`OskarCustomAdulthood` (mod designer)、`TynanCustomAdulthood` (game developer)。カテゴリ選択を制限しても、個別に割り当てた背景やセーブ済みのDefは削除しない。元の `LiamCustomAdulthood` の `Industriousness=1` と `TynanCustomAdulthood` の `Industriousness=-2` を維持。
+- **成人5件は原titleだけで禁止しない**：`CynapseCustomAdulthood` (hermit)、`FeyCustomAdulthood` (game master)、`MateCustomAdulthood` (busker)、`NathanCustomAdulthood` (digger)、`WillCustomAdulthood` (labyrinth maker)。このうち`FeyCustomAdulthood` は現代ゲームの主催者か伝統的遊戯／芸能の世話役か未確定。題名だけで一律制限する根拠とはしない。
+- **幼少期9件は原titleと成人ペアの条件を区別して保持**：`CynapseCustomChildhood` (tinkerer)、`FeyCustomChildhood` (wargame fanatic)、`JoeCustomChildhood` (drummer)、`LiamCustomChildhood` (sim addict)、`MateCustomChildhood` (curious kid)、`NathanCustomChildhood` (cave child)、`OskarCustomChildhood` (art slave)、`TynanCustomChildhood` (punk)、`WillCustomChildhood` (maze child)。`LiamCustomChildhood` のsim依存と `FeyCustomChildhood` のwar gameは要原文だが、幼少期には成人カテゴリがなく、通常生成が成人ペアで遮断されている場合がある。重複したC#ゲートを証拠なく増やさず、名前付きSolid経路で確認する。旧Rare人物の元設定は保存する。
+
+**現行の状態と残留する証拠限界：** 正規元Core 1.6/1.7の**メタデータとして**16＋18件を個別分類したので、欠落長文による無根拠な削除をしない判断は確定。未取得の**配布中Coreの生のdescription長文**、Rare実抽選の個別経路（通常出現頻度）については未立証として分離する。新規のStoryDef・TraitDef、英日歴史本文、強制Trait・職務効果は変更しない。現在の生成制限は **成人77（成人カテゴリXML76＋独立`FerventResearcher72`1）、幼少58（Solidゲート55＋Shuffled3）、合計135件**。元の34件史実改稿、23件の生成時所持品置換、最終確認待ち日本語原稿89件は不変。この追加はXMLだけなのでビルド済み1.6/1.7 DLLの再製造は不要だが、ロード後の効果は未確認。Steamやネイティブの繰り返しテストは行わず、後続の一括受入れへ渡す。
