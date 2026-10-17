@@ -11,4 +11,4 @@ dotnet build Source/AMJ.Culture/AMJ.Culture.csproj -c Release \
   -p:CultureOutputDir=/path/to/isolated/Culture/Assemblies
 ```
 
-Do not distribute or merge a gameplay-ready enza claim before the generated `Assemblies/AMJ.Culture.dll` is packaged and the real meal/Comfort/room regression is accepted. The stored circle texture is a **provisional** source graphic, not accepted final art; see owner `Docs/Design.md`. Do not rerun the retired one-Pawn stool test fixture.
+The 1.6 `Assemblies/AMJ.Culture.dll` was compiled against the isolated owned 1.6 Managed assemblies from Culture source commit `f374022c74c079f2f0985e516ad1cce6b25ce939` (Project Actions #38989898749). Artifact DLL SHA-256 `345aa69bfed2a634410382f2a24ddc804953445c018b6ec9b2ee49d73df62b7b`. The production source and binary are on this feature branch but **actual loaded-game meal/Comfort/room acceptance and final art acceptance are still open**; do not publish or claim runtime PASS. The stored circle texture is a **provisional** source graphic, not accepted final art; see owner `Docs/Design.md`. Do not rerun the retired one-Pawn stool test fixture.
