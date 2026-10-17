@@ -482,7 +482,7 @@ The existing `LoadFolders.xml` selects these version-specific assemblies. The 1.
 
 ### 第2段階・日本語改稿の一括確認用候補原稿（2026-10-17、未承認）
 
-作者指定に従い、文章以外の第2段階対応が終わるまで**途中の日本語校閲は依頼しない**。追加の史実転用候補35件（成人32・幼少期3）を[Stage2JapaneseReviewDraft.md](Stage2JapaneseReviewDraft.md)に**承認待ちの日本語原稿**として用意した。内訳は既存Solid成人25件、Shuffled成人7件、Shuffled幼少3件。元のDefID・スロット・元の技能やWorkDisables・強制Trait・ゲームデータ・所持品・生成カテゴリは変更していない。既存34件の製品上の英日改稿や94件の生成制限とも重複しない。
+作者指定に従い、文章以外の第2段階対応が終わるまで**途中の日本語校閲は依頼しない**。追加の史実転用候補35件（成人32・幼少期3）を[Stage2JapaneseReviewDraft.md](Stage2JapaneseReviewDraft.md)に**承認待ちの日本語原稿**として用意した。内訳は既存Solid成人19件、Shuffled成人13件、Shuffled幼少3件。元のDefID・スロット・元の技能やWorkDisables・強制Trait・ゲームデータ・所持品・生成カテゴリは変更していない。既存34件の製品上の英日改稿や94件の生成制限とも重複しない。
 
 この35件は**製品に反映されていない**。そのため現時点の原ゲーム文にSF・現代語が残る可能性がある。最終の一括作者レビューで日本語の題名・略称・本文を確定した後に、確定版のみを英訳して原のBackstoryDef XML・日本語DefInjectedに組み込む。現行1.6/1.7ライセンスCore長文本文との完全一致、さらに各Solid名前付き背景の個別通常生成可能性は、既存メタデータだけでは証明できないため、レビュー前の全件無条件実装は行わない。第3段階の日本専用新Defは引き続き対象外。
 
