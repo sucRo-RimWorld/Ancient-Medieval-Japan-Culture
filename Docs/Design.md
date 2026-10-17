@@ -602,3 +602,11 @@ Cultureは人物背景・特性・心情・食事習慣・嗜好品・玄関の�
 **性能上の実装原則**：毎tickの全ポーン・全セル走査、移動中の部屋や屋根の繰り返し探索、判定ごとのLINQ・GC割当、描画の常時更新を避ける。マップ単位で「玄関／土足禁止」の有無を早期判定し、必要な境界の通過にのみ定数時間のセル参照を行い、キャスト中だけ進捗描画する。Jobや予約を再生成しない。具体的な介入点や保存形態は最終実装と対応版のAPIで確かめて決めるため、`Pawn_PathFollower.PatherTick` 継続や新しい土足禁止エリアの追加を、このTPS要件だけで確定仕様にしない。
 
 **報告と判定**：実測環境・対象コミット・1.6／1.7のバージョン・比較シナリオ・測定値・差分・観測限界を記録する。負荷が目立つ場合は、改善対象となる処理箇所を特定し、実装を修正してから影響箇所のみ再測定する。事前に根拠のないTPS低下許容率や「影響ゼロ」を保証しない。性能測定をPASSと称して実ゲームの機能確認を代替しない。
+
+### 第2段階・第6修正群 — Solid幼少期8件と低頻度Solid_Rare成人期4件（2026-10-17）
+
+**通常経路と実装：** 名前付き `Solid` Bioは通常Pawn生成でも候補になるため、`Solid` ファイル所属や固定人物名だけを理由に監査除外しない。過去のRimWorld生成経路・開発者由来Rare人物の抽選について確認したうえで、SFの人工培養児童、快楽回路依存、核動力の宇宙船、VR訓練などを述べる既存Solid幼少期**8件**について `Source/AMJ.Culture/SolidChildBioGatePatch.cs` の既存 `TryGetRandomUnusedSolidBioFor` Postfix対象を24→32に追加。成人側でカテゴリ抽選されるNamed Bioに対し、選出結果の幼少 `defName` を条件に拒否する。元Def、元能力・仕事・強制Trait、固有人物への直接割当・既存セーブは維持。
+
+低頻度の開発者由来 `Solid_Rare` 9組もすべて通常生成不能とは断言できない。元の `spawnCategories` をもつ成人期で、明確に現代の`game developer`／`simulation developer`／`mod designer`を表す `JoeCustomAdulthood`、`LiamCustomAdulthood`、`OskarCustomAdulthood`、`TynanCustomAdulthood` の**4件のみ** `Patches/AnachronisticAdultBackstories.xml` の通常カテゴリ制限に追加。それ以外のRareの商売・採掘・古今の遊戯職は自動で削除しない。1.6/1.7正規Core元定義のカテゴリ、元の強制Trait（VatgrownAssassin20 `Psychopath=0`、ReclusiveProdigy96 `TooSmart=0`、Liam `Industriousness=1`、Tynan `Industriousness=-2`）は維持する。個別証拠と全ID：[人物背景監査 第6修正群](BackgroundTraitAudit.md#第2段階第6修正群--solid幼少期8件とsolid_rare成人期4件2026-10-17)。
+
+**計数とビルド境界：** 元の制限99→**ソース上111件**（成人76＝カテゴリXML75＋独立1、幼少35＝Solid C#32＋Shuffled XML3）。**今回新規の幼少8件はC#ソースにのみ存在し、配布パッケージの1.6／1.7 DLLにはまだ含まれない。** そのためプレイ可能な製品で111件が有効になったとは報告しない。1.6/1.7両DLLを、玄関・薬物生成の並行変更を含む**最新Cultureソース全体**から改めてビルド・実物統合する必要がある。過去の製品DLLで上書きしない。実ゲーム受け入れは、残る日本語原稿の一括承認と製品反映後に集約する。既存改稿34件・一括未承認原稿35件は変更なし。日本独自の新規Defは第3段階まで追加しない。

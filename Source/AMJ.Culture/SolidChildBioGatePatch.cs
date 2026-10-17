@@ -38,7 +38,15 @@ namespace AMJ.Culture
                 "DataDecoder39",
                 "Bookworm3",
                 "FarmMechanic1",
-                "DiscardedYouth93"
+                "DiscardedYouth93",
+                "CloneFarmed21",
+                "VatgrownAssassin20",
+                "VatgrownScientist91",
+                "JoywireAddict76",
+                "LabGrownChild22",
+                "DreadedBaby56",
+                "GameFanatic86",
+                "ReclusiveProdigy96"
             };
 
         public static void Postfix(ref bool __result, ref PawnBio result)
