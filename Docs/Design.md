@@ -418,4 +418,19 @@ The existing `LoadFolders.xml` selects these version-specific assemblies. The 1.
 
 **Medieval Overhaul 既存処理との境界:** 提供された原Mod 1.6.2.2の `1.6/Patches/Core/Add_Trait_Thoughts.xml` は、`ObservedLayingCorpse`、`ObservedLayingRottingCorpse`、捕虜死亡・処刑・追放・死亡目撃等の `nullifyingTraits` に MO の `DankPyon_Fighter`／`DankPyon_Veteran` を追加しようとする（2操作間に重複指定あり）。これは**MO特性に関連する既存の例外処理**であり、Culture側から全体的な死亡Thought調整で上書きしない。ロード後の重複・有効性は未確定。個別特性そのものの改変は別作業。
 
-**再利用判断:** [Sky Burial](https://steamcommunity.com/sharedfiles/filedetails/?id=2389525728) は指定場所への遺体安置という技術的先行事例だが、既存公開版は1.4向けの鳥葬モチーフであり、日本の風葬とそのまま同一視できない。Greyer morals も含め、現状で追加の必須依存・独立した新設備・新C#を正当化するものではない。**次に実装できる確定済みの、椅子以外の社会Thought変更はこの監査では確認されなかった。** 現時点ではCultureの既存Thought動作を維持し、個別仕様が承認されて初めて変更する。テストやCIは新設・起動しない。
+**再利用判断（当初の監査結果）：** [Sky Burial](https://steamcommunity.com/sharedfiles/filedetails/?id=2389525728) は指定場所への遺体安置という技術的先行事例だが、既存公開版は1.4向けの鳥葬モチーフであり、日本の風葬とそのまま同一視できない。Greyer morals も含め、追加の必須依存・独立した新設備・新C#を正当化しない。**後続の承認済み区別に基づくMOの局所的Thought修正は、以下に記す。** 新しい葬送処理の実装は引き続き対象外。
+
+
+### MOの戦闘経験特性と死亡・捕虜心情の局所的整合（2026-10-17）
+
+**実装対象と理由：** 作者が承認した「戦場・死体への慣れ」と「親しい人物の死亡への悲しみ／無実の捕虜や処刑への社会的評価」の分離を、MO 1.6.2.2の原XML `1.6/Patches/Core/Add_Trait_Thoughts.xml` と照合。既存MOは `PawnWithGoodOpinionDied` と `KnowPrisonerDiedInnocent` の `nullifyingTraits` に `DankPyon_Fighter` および `DankPyon_Veteran` を追加し、後者の `DankPyon_Veteran` は同ファイル内の2操作で重複追加を試みる。さらに `KnowGuestExecuted` に `DankPyon_Veteran` を追加する。この3定義は単なる死体目撃への耐性とは異なり、戦歴のみを根拠に心情を消すのは承認済みの文化的区別と矛盾する。
+
+**Cultureの製品修正：** `Patches/MedievalOverhaulDeathThoughts.xml` を追加し、MOD名 `Medieval Overhaul` がある場合のみ、次の3定義から、*MOが追加した該当Traitだけ* を `PatchOperationConditional` + `PatchOperationRemove` で削除する。対象ノードがなければ無操作とする。1.6／1.7共通のXMLだが、実物の比較根拠は配布MO 1.6.2.2のみ。
+
+- `PawnWithGoodOpinionDied`：`DankPyon_Fighter`、`DankPyon_Veteran` をnullifyingTraitsから外し、親しい人物の死亡時にVanillaの心情判定を使う。
+- `KnowPrisonerDiedInnocent`：同じ2特性を外し、無実の捕虜の死亡への反応を戻す。
+- `KnowGuestExecuted`：`DankPyon_Veteran` を外し、Vanillaの正当・不当な処刑の区別と既存心情値を戻す。
+
+**維持するもの：** `ObservedLayingCorpse` および `ObservedLayingRottingCorpse` のMO特性例外は変更せず、遺体の目撃に慣れている設定を尊重する。`WitnessedDeathAlly`／`WitnessedDeathNonAlly` の戦闘目撃、追放、動物・身内の死亡のその他のMO変更、VanillaのTraitDefと背景、全Thoughtの元の心情数値・発火条件は**変更しない**。Cultureの `About/About.xml` にMOの正確なPackage ID `DankPyon.Medieval.Overhaul` を任意の `loadAfter` として指定し、MO側の既存Patch適用後にCultureの修正を行う。Harmony以外の必須依存は追加しない。
+
+**検証状態：** 提供されたMO配布物の実XMLと3ターゲットの一致を確認。XML構文とXPath選択・選択したliのみの削除をローカル静的確認。**RimWorldを起動したロード済みThoughtDef・心情効果の確認は未実施**。実ゲーム確認をする場合は他の未検証Culture変更とまとめた必要最小限の1.6 MO構成を用い、旧いMO音声の別問題を混同しない。既存MOが同じ修正を行った将来版では条件付けにより無操作である。1.7上のMO併用は別途未検証。Steamアップロードは未承認。
