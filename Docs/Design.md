@@ -715,6 +715,12 @@ Cultureは人物背景・特性・心情・食事習慣・嗜好品・玄関の�
 
 **未検証：** RimWorld 1.7でのMO併用、実セーブ再読込／継続移動、徴兵・医療・戦闘・緊急Job、進捗描画と警告の目視、自然発生した泥・血、パス迂回を含む全地形、TPS。これらを今回の1ケースから合格扱いしない。変更のない1.6既存PASSはそのまま維持する。
 
+### 玄関の追加1.6実機確認と進捗バー描画修正（2026-10-19）
+
+**追加の正規1.6検証結果：** [Project Actions #39197804368](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39197804368) は、Culture実装済み製品DLL（SHA-256 `527629e8353ec878940c99b1ddb869f3d4a8747ec436107c466efc12355083ba`）と検証用Cultureソース `729310d2cb9b20c139272b032172dc1bec9f3c31` により、元ゲーム1.6.4871 rev598、Pickle 1/1、Unity/raw ERROR0、exit0、保存後の別ゲームプロセスでの玄関・土足禁止セルと裸足状態復元、および再開したGotoの到着を確認した。徴兵ポーンは有効な玄関境界を遅延・脱着なしで通過した。非隣接警告の英語表示は画像 `AMJEntrance16Warning.png` で確認した。未確認の緊急救助・戦闘・通常移動による泥生成・MOとの玄関通過はPASSとはしない。
+
+**描画上の未受け入れと修正：** 同runの `AMJEntrance16Progress.png` は、キャスト中に撮影され、ゲーム内のキャスト状態自体は確認されたが、画像上で進捗バーを判読できなかった。既存の `EntranceZoneMap` は描画用の `GenDraw.DrawFillableBar` を `MapComponentUpdate` から呼んでおり、設計が意図した `MapComponentDraw` に置いていなかった。この呼出しを描画パスに移す。保存キー・90tick・Zone隣接・Job継続・泥/血の処理には変更しない。この**ソース修正は製品DLL再ビルド、実画面でのバー視認・ランタイムERROR0確認まで受け入れ前**であり、古い合格DLLによる前述のロジックPASSを新版DLLの受け入れと読み替えない。TPS測定は最終描画受け入れ後に進める。
+
 ### 第2段階・第6修正群 — Solid幼少期8件と低頻度Solid_Rare成人期4件（2026-10-17）
 
 **通常経路と実装：** 名前付き `Solid` Bioは通常Pawn生成でも候補になるため、`Solid` ファイル所属や固定人物名だけを理由に監査除外しない。過去のRimWorld生成経路・開発者由来Rare人物の抽選について確認したうえで、SFの人工培養児童、快楽回路依存、核動力の宇宙船、VR訓練などを述べる既存Solid幼少期**8件**について `Source/AMJ.Culture/SolidChildBioGatePatch.cs` の既存 `TryGetRandomUnusedSolidBioFor` Postfix対象を24→32に追加。成人側でカテゴリ抽選されるNamed Bioに対し、選出結果の幼少 `defName` を条件に拒否する。元Def、元能力・仕事・強制Trait、固有人物への直接割当・既存セーブは維持。
