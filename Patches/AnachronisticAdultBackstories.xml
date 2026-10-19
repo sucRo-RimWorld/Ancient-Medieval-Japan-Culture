@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
-  <!-- Vanilla Core 1.6/1.7: these sixty-three adult BackstoryDefs have existing
-       spawnCategories. Keep the BackstoryDef identities, traits, stats, skills
-       and saved-pawn references. Restrict ordinary new generation only.
-       This does not modify category-less Solid_Child biographies or forcibly
-       assigned backgrounds, and does not claim protection from external mods. -->
+  <!-- Vanilla Core 1.6/1.7 generation exclusions; preserve underlying BackstoryDefs, abilities, and saved Pawn identities. Two author-approved originals are no longer excluded. -->
   <Operation Class="PatchOperationReplace">
     <xpath>Defs/BackstoryDef[defName="AerospaceEngineer44"]/spawnCategories</xpath>
     <value>
@@ -532,12 +528,4 @@
        identified while retaining the original biography's role and work
        effects. Exclude ordinary generation pending separate author approval.
        Do not delete Def IDs or mutate saved Pawns. -->
-  <Operation Class="PatchOperationReplace">
-    <xpath>Defs/BackstoryDef[defName="AddictionCounsel60"]/spawnCategories</xpath>
-    <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
-  </Operation>
-  <Operation Class="PatchOperationReplace">
-    <xpath>Defs/BackstoryDef[defName="Architect28"]/spawnCategories</xpath>
-    <value><spawnCategories><li>AMJ_CultureExcluded</li></spawnCategories></value>
-  </Operation>
 </Patch>
