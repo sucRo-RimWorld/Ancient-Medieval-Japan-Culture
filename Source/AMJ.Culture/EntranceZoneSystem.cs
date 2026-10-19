@@ -145,7 +145,7 @@ namespace AMJ.Culture
             }
         }
 
-        public override void MapComponentUpdate()
+        public override void MapComponentDraw()
         {
             if (Current.Game == null || Find.CurrentMap != map) return;
             EntranceFootwearState state = Current.Game.GetComponent<EntranceFootwearState>();
