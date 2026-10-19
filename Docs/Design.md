@@ -702,6 +702,19 @@ Cultureは人物背景・特性・心情・食事習慣・嗜好品・玄関の�
 
 前段の追加試験run #39046845645／#39046967847はテストランナーのDLL参照先・SHA不一致でゲーム起動前に停止、#39047113706／#39047388222はテスト側の曖昧なGetComponent反射でPickle FAIL、#39047703944は地図のテスト用空間が確保できずPickle FAIL。いずれもPASS扱いしていない。最終成功は、既存の合格済みGeneric GetComponent取得方法と地図選定範囲を戻した**別実行**である。
 
+
+### 玄関のRimWorld 1.7実ゲーム機能確認（2026-10-19、限定受入PASS）
+
+**正規実行・製品ID：** [Project Actions #39193821413](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39193821413) **SUCCESS**。実物 Linux RimWorld **1.7.4977 rev1248（Waylith）**、50×50 Quickstartマップ、Vanilla＋Culture＋Harmony／Pickle／Quickstarts／RimLogging、Cultureテスト用ソース **`386f2f2bb768db3022ff959a34e36f3a5244c83f`**（[Culture PR #129](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Culture/pull/129)）、Project実行元 **`9fc0afa518a487d6a01dc754227cce3bba7e13b3`**（[Project PR #721](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/pull/721)）。ロードした製品 `1.7/Assemblies/AMJ.Culture.dll` SHA-256 **`b87b7bf518cf8b3f76b9116de27be6f3a95abd4d5dd9d2aacb59490116cbb2e3`**。今回の修正はテスト専用C#と既存手動起動ランナーのみ。製品コード・DLL、元ゲーム・実セーブは変更していない。
+
+**検証前提・期待結果：** 実ロードしたZoneの玄関・土足禁止指定クラスが登録済み。非隣接玄関は不活性、二つの別玄関と土足禁止エリアが辺で接すれば双方有効。プレイヤー強制 **単一Goto Job** で、土足可能セル→玄関A→土足禁止セル→玄関B→土足可能セルの順に進み、Aで脱ぐ擬似キャスト、裸足状態、Bで履く擬似キャストが発生し、目的地到達時に土足へ戻っていること。描画時の進捗バーや対人UXは目視対象外。観測は5ゲームtick間隔、最大約1000tick。Cast発生、裸足状態、**目的地で土足状態の同時成立**、到達の各条件を保持し、Pickle 1/1 PASS・Unity/raw ERROR0・FMOD0・ゲームexit0・マーカー1回を必須とした。
+
+**実際の結果：** `removeCast=True`、`putOnCast=True`、`barefoot=True`、`shoesAtExit=True`、`valid=True`、最終位置 `(12,0,4)`＝目的地 `(12,0,4)`、`AMJ_CULTURE_ENTRANCE_FUNCTION_OK` 1回。Pickle **1/1 PASS、failed/skipped/flaky 0、`exitReason=passed`、runtime ERROR0、FMOD0、exit0、`native_pass=true`**。
+
+**以前のFAILとの区別：** [#39191276541](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39191276541) はテストステップの許容260秒に対してPickleシナリオwatchdogが既定120秒で強制終了しWaylith RunLoop例外を記録した（[Project PR #720](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/pull/720) で入口テストのみ監視時間を整合）。次の [#39192886814](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39192886814) はクラッシュせず実シナリオFAILで、通常AIの `Wait_Wander` に移行して目的地を外れた（`putOnCast=False`）。それをテスト用Gotoの `job.playerForced=true` と到達時点の観測へ修正した後に本PASS。過去のFAILはPASSへ書き換えない。
+
+**未検証：** RimWorld 1.7でのMO併用、実セーブ再読込／継続移動、徴兵・医療・戦闘・緊急Job、進捗描画と警告の目視、自然発生した泥・血、パス迂回を含む全地形、TPS。これらを今回の1ケースから合格扱いしない。変更のない1.6既存PASSはそのまま維持する。
+
 ### 第2段階・第6修正群 — Solid幼少期8件と低頻度Solid_Rare成人期4件（2026-10-17）
 
 **通常経路と実装：** 名前付き `Solid` Bioは通常Pawn生成でも候補になるため、`Solid` ファイル所属や固定人物名だけを理由に監査除外しない。過去のRimWorld生成経路・開発者由来Rare人物の抽選について確認したうえで、SFの人工培養児童、快楽回路依存、核動力の宇宙船、VR訓練などを述べる既存Solid幼少期**8件**について `Source/AMJ.Culture/SolidChildBioGatePatch.cs` の既存 `TryGetRandomUnusedSolidBioFor` Postfix対象を24→32に追加。成人側でカテゴリ抽選されるNamed Bioに対し、選出結果の幼少 `defName` を条件に拒否する。元Def、元能力・仕事・強制Trait、固有人物への直接割当・既存セーブは維持。
