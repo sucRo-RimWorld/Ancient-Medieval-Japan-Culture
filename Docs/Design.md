@@ -1,5 +1,18 @@
 # AMJ Culture — design and first acceptance
 
+## 2026-10-19 author exception — split **only** backgrounds and traits as AMJ Culture – Characters
+
+The author supersedes the earlier 2026-10-18 **no separate Culture Mods** policy **only for background/trait generation and historical biography text**. All other Culture functions remain in the existing Culture Mod; no split into Daily Life, Social Norms, Intoxicants, bedding or any further module is authorized.
+
+The future standalone package is named **AMJ Culture – Characters（中世日本 - 文化・人物）**, independent packageId `sucro.ancientmedievaljapan.culture.characters`, with Harmony required, Medieval Overhaul optional and **no mutual hard dependency** on Culture. Transfer six owned XML patch files (`AnachronisticAdultBackstories`, `AnachronisticShuffledChildBackstories`, `HistoricalOccupationBackstories`, `HistoricalOccupationStartingPossessions`, `Stage2HistoricalBackstories`, `TranshumanistGeneration`), two Japanese BackstoryDef DefInjected XML files, the `SolidChildBioGatePatch` C# plus new dedicated Harmony assembly, corresponding accepted original text, design and background test evidence. This preserves the 77 adult and 58 child exclusions, previous 34 + accepted 89 biographies, 23 starting possession substitutions and ordinary `Transhumanist` suppression. **Unfinished Trait review remains unfinished; no new Japanese Traits are implicitly approved.**
+
+**Remain in Culture:** Greedy/Jealous living-arrangement Trait descriptions and shared-lodging Thoughts/C# (their gameplay effect is living arrangements), initial chemical addiction/tolerance and all drug rules, entrance/no-shoes, chair/meal and bedding features. Do not move these simply because their code mentions Pawn, Trait or Thought.
+
+**Migration is not complete merely from staging source.** Existing Culture assemblies and XML still contain the personality generation edits and remain the only accepted product until the new Characters Mod has its own 1.6/1.7 DLL builds and a separate owning GitHub repository, and Culture is rebuilt without the moved XML and Solid child Harmony patch in a coordinated switch. Co-loading an unseparated Culture and a new Characters package would duplicate rule application; do not publish/co-install until cutover. Preserve original Def identities and existing game/save reference compatibility as far as possible; recommend a new game and do not claim old-save import verified. The earlier game acceptance evidence belongs to the **Culture pre-split**, not to the new Mod.
+
+**Source-preparation evidence:** Culture independent-root branch `candidate/culture-characters-source`, commit `7448f290f2e1b0c0bdde93431c27662f0e066821` has a prospective independent Mod root with 6 copied source XML patch blobs, 2 unchanged Japanese locale XML blobs, a new `AMJ.Culture.Characters` C# project and dedicated Harmony bootstrap, accepted original prose and background test source. **No compiled Characters DLL or new-Mod real-game acceptance exists; the linked GitHub integration cannot create a repository.** This staging branch must **never** be merged into Culture `main`: its root intentionally omits the other Culture functions. The final new owner repository has not yet been provisioned; Culture remains owner of implemented legacy runtime until safe cutover.
+
+
 ## 仕様先行・機能別実装の運営方針（2026-10-18 作者確定）
 
 Cultureは**単一Mod**のまま、日本文化のサブ機能をそれぞれ独立した設計・実装・最小受け入れ単位へ分ける。機能間でゲーム挙動・Def・データ依存を共有するときは、関係機能と既存1.6/1.7ソースを確認し、一つの主ブランチ/mainに合流させる。完成済み機能と未完成機能を同一のPASS扱いにしない。未実装機能を先行して公開済みと書かない。
