@@ -373,6 +373,8 @@ namespace AMJ.Culture.Test
                             "Untranslated nonadjacent entrance warning");
                 Log.Message("AMJ_CULTURE_ENTRANCE16_WARNING_LOCALIZED_OK");
                 Call(entranceDesignator, "DesignateSingleCell", invalid);
+                UnityEngine.ScreenCapture.CaptureScreenshot(
+                    Path.Combine(GenFilePaths.SaveDataFolderPath, "AMJEntrance16Warning.png"));
                 ctx.Require((bool)Call(zone, "Contains", invalid), "Designator failed to mark entrance");
                 ctx.Require(!(bool)Call(zone, "HasConnectedNoShoesContact", invalid),
                             "Entrance without no-shoes area should be inactive");
@@ -545,6 +547,51 @@ namespace AMJ.Culture.Test
                 ctx.Require(!everPaused && !everBarefoot,
                             "Drafted pawn blocked by shoe-changing cast");
                 Log.Message("AMJ_CULTURE_ENTRANCE16_DRAFTED_BYPASS_OK");
+            });
+
+            // A normal, undrafted colonist must show a real progress cast at
+            // the very same active boundary that the drafted pawn bypassed.
+            Pawn ordinary = null;
+            IntVec3 ordinaryDestination = IntVec3.Invalid;
+            bool sawCast = false, sawBarefoot = false, reached = false;
+            await EntranceMainThread.Run(delegate
+            {
+                Map map = Find.CurrentMap;
+                EntranceReloadProbe probe = Current.Game.GetComponent<EntranceReloadProbe>();
+                IntVec3 start = probe.EntranceCell + IntVec3.West;
+                ordinaryDestination = probe.NoShoesCell;
+                ordinary = PawnGenerator.GeneratePawn(
+                    DefDatabase<PawnKindDef>.GetNamed("Colonist"), Faction.OfPlayer);
+                ctx.Require(ordinary != null, "Undrafted colonist not generated");
+                GenSpawn.Spawn(ordinary, start, map, WipeMode.Vanish);
+                MethodInfo jump = Find.CameraDriver.GetType().GetMethod(
+                    "JumpToCurrentMapLoc", new[] { typeof(IntVec3) });
+                if (jump != null) jump.Invoke(Find.CameraDriver, new object[] { start });
+                Walk(ordinary, ordinaryDestination);
+            });
+            for (int i = 0; i < 115; i++)
+            {
+                await ctx.WaitTicks(4);
+                await EntranceMainThread.Run(delegate
+                {
+                    if (ordinary == null || !ordinary.Spawned) return;
+                    if (Casting(state, ordinary) && !sawCast)
+                    {
+                        sawCast = true;
+                        UnityEngine.ScreenCapture.CaptureScreenshot(
+                            Path.Combine(GenFilePaths.SaveDataFolderPath,
+                                         "AMJEntrance16Progress.png"));
+                    }
+                    sawBarefoot |= Barefoot(state, ordinary);
+                    reached |= ordinary.Position == ordinaryDestination;
+                });
+                if (sawCast && sawBarefoot && reached) break;
+            }
+            await EntranceMainThread.Run(delegate
+            {
+                ctx.Require(sawCast && sawBarefoot && reached,
+                            "Ordinary active entrance failed cast/progress or Goto");
+                Log.Message("AMJ_CULTURE_ENTRANCE16_PROGRESS_CAPTURED_OK");
             });
         }
     }
