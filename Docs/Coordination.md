@@ -1,5 +1,9 @@
 # AMJ Culture Coordination
 
+## CULTURE-CHARACTERS-P2-IMPLANT-TRAITS-20261019 — Characters owns source; loaded acceptance OPEN
+
+**Author decided:** disable new ordinary `Transhumanist` and `BodyPurist` including their known original forced backgrounds, not existing saved traits or limb/prosthetic systems. Source+formal status: [Characters PR #8](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Culture-Characters/pull/8), main `961711edb675560041e3aca1c58d8f225dcca1ff` and selector-correction [PR #9](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Culture-Characters/pull/9), main `b236577ca9c37bb433fa309e61b91968154c0bd0`. Current Character commonalities: both zero; known forced XML selector now supports key / traitDef entry forms. **Actual loaded 1.6/1.7 validation has not occurred** and an old direct-XPath 1.6 failure remains historical evidence. Culture runtime source/DLL unmodified. Canonical spec: Culture `Docs/Design.md` cross-owner note, Characters `Docs/Design.md`, original Characters patches. No user relay or Steam release.
+
 ## CULTURE-GRAINS-OPTIONAL-EXPECTATIONS-20261019 — explicit author activation rule
 
 **Decision:** refined-food/white-rice and coarse-grain **negative** meal thoughts must be evaluated only while AMJ Grains (actual packageId `sucro.ancientmedievaljapan.core`) is active. Culture's `RefinedFoodExpectationPatch.Postfix` short-circuits on `ModsConfig.IsActive` **before** meal classification, resource/wealth checks or memory creation. Culture without Grains must never award any new expectation penalty; no hard Grains dependency is added. Retain the existing 3-day/10-day/silver-80000 conditions and rich-childhood/Gourmand/Ascetic behavior. Formal specification and source live in Culture `Docs/Design.md` and `Source/AMJ.Culture/RefinedFoodExpectationPatch.cs`. Original-game verification and new 1.6/1.7 built products remain **OPEN**; this source change does not certify the previously merged DLLs.
