@@ -306,20 +306,20 @@ namespace AMJ.Culture.Test
                 await OnGameThread(delegate
                 {
                     LoadedLanguage japaneseLanguage =
-                        LanguageDatabase.AllLoadedLanguages.FirstOrDefault(x => x.folderName == "Japanese");
+                        LanguageDatabase.AllLoadedLanguages.FirstOrDefault(x => x.folderName == "Japanese (日本語)");
                     ctx.Require(japaneseLanguage != null,
                         "Japanese is absent from the running game's loaded language metadata");
                     if (LanguageDatabase.activeLanguage != japaneseLanguage)
                     {
                         Log.Message("AMJ_CULTURE_BACKGROUND_JA_SWITCH previous="
-                            + LanguageDatabase.activeLanguage + " target=Japanese");
+                            + LanguageDatabase.activeLanguage + " target=Japanese (日本語)");
                         LanguageDatabase.SelectLanguage(japaneseLanguage);
                     }
                 });
                 await ctx.WaitUntil(() =>
                 {
                     if (LanguageDatabase.activeLanguage == null ||
-                        LanguageDatabase.activeLanguage.folderName != "Japanese") return false;
+                        LanguageDatabase.activeLanguage.folderName != "Japanese (日本語)") return false;
                     var first = DefDatabase<BackstoryDef>.GetNamedSilentFail("AddictionCounsel60");
                     return first != null && LoadedText(first, "title") == "村の世話役";
                 }, 90f);
