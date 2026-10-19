@@ -216,6 +216,7 @@ namespace AMJ.Culture.Test
             // Scoped 1.7 visual acceptance only; previous 1.6 paths are unchanged.
             bool visual17 = Environment.GetEnvironmentVariable("AMJ_ENTRANCE_17_VISUAL") == "1";
             bool visualCaptured = false;
+            bool visualBoosted = false;
             int visualCastTick = -1;
 
             await ctx.WaitUntil(() =>
@@ -320,6 +321,17 @@ namespace AMJ.Culture.Test
                     observedExit |= pawn.Position == end;
                     observedShoes |= pawn.Position == end && !Barefoot(state, pawn);
                 });
+                if (visual17 && visualCaptured && !visualBoosted)
+                {
+                    // CaptureScreenshot writes on a later render frame. Preserve
+                    // three normal-speed GUI frames, then finish real traversal
+                    // at Ultrafast instead of timing out on slow headless 1.7.
+                    await ctx.WaitFrames(3);
+                    await EntranceMainThread.Run(delegate {
+                        Find.TickManager.CurTimeSpeed = TimeSpeed.Ultrafast;
+                    });
+                    visualBoosted = true;
+                }
                 if (observedRemoveCast && observedPutOnCast && observedShoes) break;
             }
 
