@@ -489,7 +489,7 @@ namespace AMJ.Culture.Test
                 Log.Message("AMJ_CULTURE_ENTRANCE_SAVE_KEYS_OK");
                 Log.Message("AMJ_CULTURE_ENTRANCE_REMAINING_OK");
             });
-
+        }
 
         [Then("drafted crossing does not delay emergency movement")]
         public async Task CheckDraftedCrossing(PickleContext ctx)
@@ -539,7 +539,6 @@ namespace AMJ.Culture.Test
                             "Drafted pawn blocked by shoe-changing cast");
                 Log.Message("AMJ_CULTURE_ENTRANCE16_DRAFTED_BYPASS_OK");
             });
-        }
         }
     }
 }
