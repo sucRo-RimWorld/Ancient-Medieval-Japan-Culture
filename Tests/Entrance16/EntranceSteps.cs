@@ -35,6 +35,102 @@ namespace AMJ.Culture.Test
         }
     }
 
+
+    // Disposable test-only component. Serialized by the actual RimWorld save loader,
+    // and used in a separate native process to verify reload and resumed Goto.
+    public sealed class EntranceReloadProbe : GameComponent
+    {
+        public Pawn Subject;
+        public IntVec3 EntranceCell = IntVec3.Invalid;
+        public IntVec3 NoShoesCell = IntVec3.Invalid;
+        public IntVec3 ResumeTarget = IntVec3.Invalid;
+        private int phase;
+        private int ticks;
+        public EntranceReloadProbe(Game game) { }
+
+        public override void ExposeData()
+        {
+            Scribe_References.Look(ref Subject, "entranceProbeSubject");
+            Scribe_Values.Look(ref EntranceCell, "entranceProbeThreshold", IntVec3.Invalid);
+            Scribe_Values.Look(ref NoShoesCell, "entranceProbeNoShoes", IntVec3.Invalid);
+            Scribe_Values.Look(ref ResumeTarget, "entranceProbeTarget", IntVec3.Invalid);
+        }
+
+        private static object GetCultureComponent(object owner, string name)
+        {
+            Type type = Type.GetType("AMJ.Culture." + name + ", AMJ.Culture", true);
+            foreach (MethodInfo m in owner.GetType().GetMethods(BindingFlags.Instance | BindingFlags.Public))
+                if (m.Name == "GetComponent" && m.IsGenericMethodDefinition &&
+                    m.GetParameters().Length == 0)
+                    return m.MakeGenericMethod(type).Invoke(owner, null);
+            throw new MissingMethodException("Cannot find GetComponent<T> for " + name);
+        }
+
+        public override void GameComponentUpdate()
+        {
+            if (Environment.GetEnvironmentVariable("AMJ_CULTURE_ENTRANCE16_RELOAD") != "1" ||
+                phase == 3 || Find.CurrentMap == null || Find.TickManager == null)
+                return;
+            if (++ticks < 45) return;
+            try
+            {
+                if (phase == 0)
+                {
+                    Map map = Find.CurrentMap;
+                    object zones = GetCultureComponent(map, "EntranceZoneMap");
+                    object state = GetCultureComponent(Current.Game, "EntranceFootwearState");
+                    bool intact = Subject != null && Subject.Spawned && Subject.Map == map &&
+                                  EntranceCell.IsValid && NoShoesCell.IsValid &&
+                                  ResumeTarget.IsValid &&
+                                  (bool)zones.GetType().GetMethod("Contains", new[] { typeof(IntVec3) })
+                                    .Invoke(zones, new object[] { EntranceCell }) &&
+                                  (bool)zones.GetType().GetMethod("IsNoShoes", new[] { typeof(IntVec3) })
+                                    .Invoke(zones, new object[] { NoShoesCell }) &&
+                                  (bool)state.GetType().GetMethod("IsBarefoot", new[] { typeof(Pawn) })
+                                    .Invoke(state, new object[] { Subject });
+                    Log.Message("AMJ_CULTURE_ENTRANCE16_RELOAD_STATE intact=" + intact);
+                    if (!intact) throw new InvalidOperationException("Saved entrance/no-shoes/footwear not restored");
+                    Find.TickManager.CurTimeSpeed = TimeSpeed.Ultrafast;
+                    Job move = JobMaker.MakeJob(JobDefOf.Goto, ResumeTarget);
+                    move.playerForced = true;
+                    Subject.jobs.StartJob(move, JobCondition.InterruptForced);
+                    phase = 1;
+                }
+                else if (phase == 1 && Subject != null && Subject.Spawned &&
+                         Subject.Position == ResumeTarget)
+                {
+                    Log.Message("AMJ_CULTURE_ENTRANCE16_RELOAD_OK resumedGoto=true");
+                    phase = 3;
+                    UnityEngine.Application.Quit();
+                }
+                else if (ticks > 1800)
+                    throw new InvalidOperationException("Reloaded Goto did not reach target");
+            }
+            catch (Exception error)
+            {
+                Log.Error("AMJ_CULTURE_ENTRANCE16_RELOAD_FAIL " + error);
+                phase = 3;
+                UnityEngine.Application.Quit();
+            }
+        }
+    }
+
+    [UnityEngine.Scripting.Preserve]
+    [StaticConstructorOnStartup]
+    public static class EntranceReloadBoot
+    {
+        static EntranceReloadBoot()
+        {
+            if (Environment.GetEnvironmentVariable("AMJ_CULTURE_ENTRANCE16_RELOAD") != "1")
+                return;
+            LongEventHandler.ExecuteWhenFinished(delegate
+            {
+                Log.Message("AMJ_CULTURE_ENTRANCE16_RELOAD_START");
+                GameDataSaveLoader.LoadGame("AMJEntrance16BoundaryFunctional");
+            });
+        }
+    }
+
     [PickleSteps]
     public sealed class EntranceSteps
     {
@@ -272,6 +368,10 @@ namespace AMJ.Culture.Test
                 IntVec3 gap = invalid + new IntVec3(2, 0, 0);
                 IntVec3 adjacent = invalid + IntVec3.East;
                 object entranceDesignator = Activator.CreateInstance(CultureType("Designator_EntranceAdd"));
+                ctx.Require(!"AMJ_Culture_EntranceNotAdjacent".Translate().ToString()
+                            .Contains("AMJ_Culture_EntranceNotAdjacent"),
+                            "Untranslated nonadjacent entrance warning");
+                Log.Message("AMJ_CULTURE_ENTRANCE16_WARNING_LOCALIZED_OK");
                 Call(entranceDesignator, "DesignateSingleCell", invalid);
                 ctx.Require((bool)Call(zone, "Contains", invalid), "Designator failed to mark entrance");
                 ctx.Require(!(bool)Call(zone, "HasConnectedNoShoesContact", invalid),
@@ -359,6 +459,16 @@ namespace AMJ.Culture.Test
                 ctx.Require(!carried.Contains(dirt), "Dirt remained carried after shoes removed");
                 ctx.Require(carried.Contains(blood), "Blood was incorrectly removed with dirt");
                 Log.Message("AMJ_CULTURE_ENTRANCE_BOUNDARY_FILTH_OK");
+
+                // Persist a test-only identity and the actual boundary for second-process reload.
+                EntranceReloadProbe probe = Current.Game.GetComponent<EntranceReloadProbe>();
+                ctx.Require(probe != null, "Test-only reload probe missing from game");
+                probe.Subject = pawn;
+                probe.EntranceCell = valid;
+                probe.NoShoesCell = valid + IntVec3.East;
+                probe.ResumeTarget = origin + new IntVec3(11, 0, 3);
+                ctx.Require(probe.ResumeTarget.Standable(Find.CurrentMap),
+                            "No open post-reload Goto target");
 
                 // Real game save to the isolated temporary profile; verify
                 // both zone keys and pawn state serialized to the .rws file.
