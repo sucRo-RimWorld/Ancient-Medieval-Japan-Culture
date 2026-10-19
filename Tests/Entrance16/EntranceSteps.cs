@@ -87,6 +87,7 @@ namespace AMJ.Culture.Test
         private static void Walk(Pawn pawn, IntVec3 destination)
         {
             Job job = JobMaker.MakeJob(JobDefOf.Goto, destination);
+            job.playerForced = true; // Do not let autonomous wandering replace a player-ordered crossing.
             pawn.jobs.StartJob(job, JobCondition.InterruptForced);
         }
 
@@ -180,16 +181,16 @@ namespace AMJ.Culture.Test
                             " second=" + second + " noShoes=3..5 invalid=" + invalid);
             });
 
-            for (int cycle = 0; cycle < 65; cycle++)
+            for (int cycle = 0; cycle < 200; cycle++)
             {
-                await ctx.WaitTicks(15);
+                await ctx.WaitTicks(5);
                 await EntranceMainThread.Run(delegate
                 {
                     observedRemoveCast |= Casting(state, pawn) && !Barefoot(state, pawn);
                     observedPutOnCast |= Casting(state, pawn) && Barefoot(state, pawn);
                     observedBarefoot |= Barefoot(state, pawn);
                     observedExit |= pawn.Position == end;
-                    observedShoes |= observedExit && !Barefoot(state, pawn);
+                    observedShoes |= pawn.Position == end && !Barefoot(state, pawn);
                 });
                 if (observedRemoveCast && observedPutOnCast && observedShoes) break;
             }
@@ -205,7 +206,7 @@ namespace AMJ.Culture.Test
                 ctx.Require(observedBarefoot, "Pawn never became barefoot inside no-shoes area");
                 ctx.Require(observedPutOnCast, "No put-on-shoes cast occurred at second entrance");
                 ctx.Require(observedShoes, "Pawn did not reach the destination wearing shoes");
-                ctx.Require(pawn.Position == end, "Original Goto job never reached its destination");
+                ctx.Require(observedExit, "Original Goto job never reached its destination");
                 Log.Message("AMJ_CULTURE_ENTRANCE_FUNCTION_OK");
             });
         }
