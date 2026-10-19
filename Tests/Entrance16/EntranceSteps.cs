@@ -429,15 +429,27 @@ namespace AMJ.Culture.Test
                     await ctx.WaitFrames(3);
                     await EntranceMainThread.Run(delegate
                     {
-                        CaptureFrame(Path.Combine(GenFilePaths.SaveDataFolderPath,
-                            "AMJEntrance17Progress.png"));
-                        visualCaptured = true;
-                    });
-                    await ctx.WaitFrames(3);
-                    await EntranceMainThread.Run(delegate {
-                        Find.TickManager.CurTimeSpeed = TimeSpeed.Ultrafast;
+                        try
+                        {
+                            CaptureFrame(Path.Combine(GenFilePaths.SaveDataFolderPath,
+                                "AMJEntrance17Progress.png"));
+                            visualCaptured = true;
+                        }
+                        finally
+                        {
+                            // Never leave the game paused while waiting for more
+                            // Waylith frames or ticks after screenshot capture.
+                            Find.TickManager.CurTimeSpeed = TimeSpeed.Ultrafast;
+                        }
+                        ctx.Require(Find.TickManager.CurTimeSpeed == TimeSpeed.Ultrafast,
+                            "Entrance screenshot captured but 1.7 gameplay did not resume");
+                        Log.Message("AMJ_CULTURE_ENTRANCE17_CAPTURE_RESUMED tick=" +
+                            Find.TickManager.TicksGame);
                     });
                     visualBoosted = true;
+                    // Screenshot encoding can finish on subsequent render frames.
+                    // Do not hold the simulation paused while awaiting those frames.
+                    await ctx.WaitFrames(3);
                 }
                 else if (visual17 && visualCaptured && !visualBoosted)
                 {
