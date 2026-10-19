@@ -621,5 +621,114 @@ namespace AMJ.Culture.Test
                 Log.Message("AMJ_CULTURE_ENTRANCE16_PROGRESS_CAPTURED_OK");
             });
         }
+        private static async Task<double> SampleEntrancesTps(
+            PickleContext ctx, Pawn pawn, IntVec3 a, IntVec3 b)
+        {
+            // Same pawn, same alternating Goto jobs and 960 actual game ticks
+            // for each configuration. Stopwatch captures loaded-game throughput,
+            // not a synthetic Prefix microbenchmark.
+            await EntranceMainThread.Run(delegate {
+                Find.TickManager.CurTimeSpeed = TimeSpeed.Ultrafast;
+            });
+            await ctx.WaitTicks(120);
+            var clock = System.Diagnostics.Stopwatch.StartNew();
+            for (int step = 0; step < 8; step++)
+            {
+                IntVec3 destination = (step % 2 == 0) ? b : a;
+                await EntranceMainThread.Run(delegate { Walk(pawn, destination); });
+                await ctx.WaitTicks(120);
+            }
+            clock.Stop();
+            return 960.0 / clock.Elapsed.TotalSeconds;
+        }
+
+        private static void ReplaceEntrances(object zone,
+            IEnumerable<IntVec3> gates, IEnumerable<IntVec3> indoors)
+        {
+            // All edits occur before sampling, not during timed movement.
+            var priorGates = new List<IntVec3>(
+                (IEnumerable<IntVec3>)zone.GetType().GetProperty("Cells").GetValue(zone, null));
+            var priorIndoor = new List<IntVec3>(
+                (IEnumerable<IntVec3>)zone.GetType().GetProperty("NoShoesCells").GetValue(zone, null));
+            foreach (IntVec3 c in priorGates) Call(zone, "Set", c, false);
+            foreach (IntVec3 c in priorIndoor) Call(zone, "SetNoShoes", c, false);
+            foreach (IntVec3 c in gates) Call(zone, "Set", c, true);
+            foreach (IntVec3 c in indoors) Call(zone, "SetNoShoes", c, true);
+        }
+
+        [Then("entrance TPS comparison across zero one and multiple thresholds")]
+        public async Task CheckEntranceTps(PickleContext ctx)
+        {
+            object zone = null;
+            Pawn walker = null;
+            IntVec3 left = IntVec3.Invalid;
+            IntVec3 right = IntVec3.Invalid;
+            List<IntVec3> gates = null;
+            List<IntVec3> indoors = null;
+            List<IntVec3> manyGates = null;
+            List<IntVec3> manyIndoors = null;
+            await EntranceMainThread.Run(delegate
+            {
+                Map map = Find.CurrentMap;
+                EntranceReloadProbe probe = Current.Game.GetComponent<EntranceReloadProbe>();
+                ctx.Require(map != null && probe != null && probe.EntranceCell.IsValid,
+                            "The loaded 1.6 entrance fixture is missing");
+                zone = Component(map, "EntranceZoneMap");
+                gates = new List<IntVec3>((IEnumerable<IntVec3>)
+                    zone.GetType().GetProperty("Cells").GetValue(zone, null));
+                indoors = new List<IntVec3>((IEnumerable<IntVec3>)
+                    zone.GetType().GetProperty("NoShoesCells").GetValue(zone, null));
+                ctx.Require(gates.Count > 0 && indoors.Count > 0, "Expected active threshold fixture");
+                left = probe.EntranceCell + IntVec3.West;
+                right = probe.EntranceCell + new IntVec3(3, 0, 0);
+                ctx.Require(left.Standable(map) && right.Standable(map),
+                            "Benchmark Goto endpoints not passable");
+                walker = PawnGenerator.GeneratePawn(
+                    DefDatabase<PawnKindDef>.GetNamed("Colonist"), Faction.OfPlayer);
+                GenSpawn.Spawn(walker, left, map, WipeMode.Vanish);
+                ctx.Require(walker != null && walker.Spawned, "Benchmark colonist missing");
+                manyGates = new List<IntVec3>(gates);
+                manyIndoors = new List<IntVec3>(indoors);
+                for (int x = probe.EntranceCell.x - 18; x < probe.EntranceCell.x + 19 &&
+                     manyGates.Count < gates.Count + 8; x += 3)
+                for (int z = probe.EntranceCell.z - 18; z < probe.EntranceCell.z + 19 &&
+                     manyGates.Count < gates.Count + 8; z += 3)
+                {
+                    IntVec3 entry = new IntVec3(x, 0, z);
+                    IntVec3 inner = new IntVec3(x + 1, 0, z);
+                    if (!entry.InBounds(map) || !inner.InBounds(map) ||
+                        !entry.Standable(map) || !inner.Standable(map) ||
+                        gates.Contains(entry) || gates.Contains(inner) ||
+                        indoors.Contains(entry) || indoors.Contains(inner) ||
+                        manyGates.Contains(entry) || manyGates.Contains(inner) ||
+                        manyIndoors.Contains(entry) || manyIndoors.Contains(inner)) continue;
+                    manyGates.Add(entry);
+                    manyIndoors.Add(inner);
+                }
+                ctx.Require(manyGates.Count >= gates.Count + 5,
+                            "Insufficient separate cells for multi-entrance sample");
+                ReplaceEntrances(zone, new IntVec3[0], new IntVec3[0]);
+            });
+            double without = await SampleEntrancesTps(ctx, walker, left, right);
+            await EntranceMainThread.Run(delegate { ReplaceEntrances(zone, gates, indoors); });
+            double single = await SampleEntrancesTps(ctx, walker, left, right);
+            await EntranceMainThread.Run(delegate {
+                ReplaceEntrances(zone, manyGates, manyIndoors);
+            });
+            double multiple = await SampleEntrancesTps(ctx, walker, left, right);
+            await EntranceMainThread.Run(delegate
+            {
+                ReplaceEntrances(zone, gates, indoors);
+                ctx.Require(without > 0 && single > 0 && multiple > 0,
+                            "TPS sample invalid");
+                Log.Message("AMJ_CULTURE_ENTRANCE_TPS16_SAMPLES " +
+                    "zero=" + without.ToString("F1", System.Globalization.CultureInfo.InvariantCulture) +
+                    " normal=" + single.ToString("F1", System.Globalization.CultureInfo.InvariantCulture) +
+                    " multi=" + multiple.ToString("F1", System.Globalization.CultureInfo.InvariantCulture) +
+                    " ticks_each=960 same_map=true same_pawn=true speed=Ultrafast");
+                Log.Message("AMJ_CULTURE_ENTRANCE_TPS16_OK");
+            });
+        }
+
     }
 }
