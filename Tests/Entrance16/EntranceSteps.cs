@@ -566,6 +566,7 @@ namespace AMJ.Culture.Test
             Pawn ordinary = null;
             IntVec3 ordinaryDestination = IntVec3.Invalid;
             bool sawCast = false, sawBarefoot = false, reached = false;
+            int firstCastTick = -1;
             await EntranceMainThread.Run(delegate
             {
                 Map map = Find.CurrentMap;
@@ -588,12 +589,19 @@ namespace AMJ.Culture.Test
                 await EntranceMainThread.Run(delegate
                 {
                     if (ordinary == null || !ordinary.Spawned) return;
-                    if (Casting(state, ordinary) && !sawCast)
+                    if (Casting(state, ordinary))
                     {
-                        sawCast = true;
-                        CaptureFrame(
-                            Path.Combine(GenFilePaths.SaveDataFolderPath,
-                                         "AMJEntrance16Progress.png"));
+                        if (firstCastTick < 0)
+                            firstCastTick = Find.TickManager.TicksGame;
+                        // Capture after the draw path has had many actual frames,
+                        // rather than at the very first PatherTick that starts the cast.
+                        if (!sawCast && Find.TickManager.TicksGame - firstCastTick >= 30)
+                        {
+                            sawCast = true;
+                            CaptureFrame(
+                                Path.Combine(GenFilePaths.SaveDataFolderPath,
+                                             "AMJEntrance16Progress.png"));
+                        }
                     }
                     sawBarefoot |= Barefoot(state, ordinary);
                     reached |= ordinary.Position == ordinaryDestination;
