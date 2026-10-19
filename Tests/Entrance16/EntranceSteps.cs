@@ -216,6 +216,8 @@ namespace AMJ.Culture.Test
             // Scoped 1.7 visual acceptance only; previous 1.6 paths are unchanged.
             bool visual17 = Environment.GetEnvironmentVariable("AMJ_ENTRANCE_17_VISUAL") == "1";
             bool pausedCapture = Environment.GetEnvironmentVariable("AMJ_ENTRANCE_17_PAUSED_CAPTURE") == "1";
+            // A separate, opt-in MO-only diagnostic; functional assertions remain unchanged.
+            bool moStallProbe = Environment.GetEnvironmentVariable("AMJ_ENTRANCE_17_MO_DIAGNOSTIC") == "1";
             bool captureReady = false;
             bool visualCaptured = false;
             bool visualBoosted = false;
@@ -302,9 +304,14 @@ namespace AMJ.Culture.Test
                             " second=" + second + " noShoes=3..5 invalid=" + invalid);
             });
 
-            for (int cycle = 0; cycle < 200; cycle++)
+            var stallWatch = System.Diagnostics.Stopwatch.StartNew();
+            int firstProbeTick = -1;
+            for (int cycle = 0; cycle < (moStallProbe ? 450 : 200); cycle++)
             {
-                await ctx.WaitTicks(5);
+                // A stalled game tick makes WaitTicks(5) hang until Pickle times out.
+                // In this one diagnostic lane, sample real rendered frames instead.
+                if (moStallProbe) await ctx.WaitFrames(4);
+                else await ctx.WaitTicks(5);
                 await EntranceMainThread.Run(delegate
                 {
                     if (visual17 && Casting(state, pawn))
@@ -331,6 +338,21 @@ namespace AMJ.Culture.Test
                     observedBarefoot |= Barefoot(state, pawn);
                     observedExit |= pawn.Position == end;
                     observedShoes |= pawn.Position == end && !Barefoot(state, pawn);
+                    if (moStallProbe && (cycle % 16 == 0 || observedShoes))
+                    {
+                        int nowTick = Find.TickManager.TicksGame;
+                        if (firstProbeTick < 0) firstProbeTick = nowTick;
+                        Log.Message("AMJ_CULTURE_ENTRANCE17_MO_STALL_PROBE"
+                            + " elapsed_ms=" + stallWatch.ElapsedMilliseconds
+                            + " ticks=" + nowTick + " tick_delta=" + (nowTick - firstProbeTick)
+                            + " speed=" + Find.TickManager.CurTimeSpeed
+                            + " spawned=" + pawn.Spawned
+                            + " pos=" + pawn.Position + " target=" + end
+                            + " job=" + (pawn.CurJob == null ? "none" : pawn.CurJob.def.defName)
+                            + " cast=" + Casting(state, pawn) + " barefoot=" + Barefoot(state, pawn)
+                            + " removeCast=" + observedRemoveCast
+                            + " putOnCast=" + observedPutOnCast + " shoesAtExit=" + observedShoes);
+                    }
                 });
                 if (pausedCapture && captureReady && !visualCaptured)
                 {
@@ -359,6 +381,17 @@ namespace AMJ.Culture.Test
                     visualBoosted = true;
                 }
                 if (observedRemoveCast && observedPutOnCast && observedShoes) break;
+                // Bound the diagnostic to protect the native runner. Do not count a
+                // test timeout or incomplete path as an accepted functional PASS.
+                if (moStallProbe && stallWatch.ElapsedMilliseconds >= 90000)
+                {
+                    Log.Message("AMJ_CULTURE_ENTRANCE17_MO_STALL_WATCHDOG"
+                        + " elapsed_ms=" + stallWatch.ElapsedMilliseconds
+                        + " observed_remove=" + observedRemoveCast
+                        + " observed_put_on=" + observedPutOnCast
+                        + " shoes_at_exit=" + observedShoes);
+                    break;
+                }
             }
 
             await EntranceMainThread.Run(delegate
