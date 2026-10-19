@@ -1,5 +1,9 @@
 # AMJ Culture Coordination
 
+## CULTURE-CHARACTERS-ALCOHOL-PREFERENCE-20261019 — new Characters Trait Stage 2 implemented; runtime pending
+
+**Author decision and canonical source:** Replace ordinary Vanilla `DrugDesire`/teetotaler generation with separately modeled alcohol-only liking and aversion in [Culture Characters Design](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Culture-Characters/blob/main/Docs/Design.md). [Characters PR #7](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Culture-Characters/pull/7) merged to Characters main `8c499a0aade85a101689a9258a257aee3a4ddbb9`: old DrugDesire Def stays, commonality 0, and three original forced-background DrugDesire links removed; new 酒好き / 酒嫌い traits respond +2/−2 Mood only to original AlcoholHigh. No abstinence penalty, drug binging or physiological tolerance changes. **Culture** still owns recreational drug supply, alcohol and addiction/withdrawal source; **no Culture production XML/C#/DLL change** for this handoff. Loaded-game effect and legacy-save migration remain unverified; do not label the earlier cutover PASS as this new behavior's PASS or publish to Steam.
+
 ## CULTURE-C01-CHARACTERS-CUTOVER-20261019 — completed main extraction; bounded original-game PASS
 
 **Canonical ownership:** [Culture Design](Design.md#2026-10-19-author-exception--split-only-backgrounds-and-traits-as-amj-culture--characters) and [Characters Design](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Culture-Characters/blob/main/Docs/Design.md). **Only** backgrounds/Traits, their 6 generation patches, 2 Japanese BackstoryDef files and Solid-child Harmony gate were moved. Culture retains chemical addiction and drug rules, Greedy/Jealous lodging Thoughts, entrances, seating, bedding and all other Culture features.
