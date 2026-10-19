@@ -13,32 +13,261 @@ namespace AMJ.Culture.Test
     [PickleSteps]
     public sealed class Background16Steps
     {
+        // Exact owner sources: 76 adult XML exclusions + separately restricted Fervent.
         private static readonly string[] Adult =
         {
-            "FerventResearcher72", "AerospaceEngineer44", "ComputerEngineer10",
-            "ComputerEngineer36", "DeepSpaceSurveyor1", "GlitterworldSurgeon15",
-            "OrbitalReservist22", "SpaceMarine51", "SpaceMarineMedic10",
-            "SpaceNavyTech37", "SpaceResearcher25", "SpaceTechnician29",
-            "SpaceshipSalesman34", "StarshipJanitor33", "AIProgrammer22",
-            "AIResearcher94", "AceFighterPilot54", "ArchotechSpy75",
-            "BattleMechanic27", "BattlefieldTech52", "CombatMedtech59",
-            "CorpResearcher71", "EngineeredPilot75", "GeneticEngineer89",
-            "GeneticScientist66", "MechWarVeteran77", "NetworkEngineer34",
-            "Roboticist1", "Roboticist41", "RocketEngineer53", "RocketPioneer19",
-            "CasketBuilder52",             "ChiefEngineer62",             "ColonyEngineer7",             "CorpResearcher93",             "ExecutiveOfficer5",             "BiosphereManager95",             "ArtifactHunter48",             "ShadowMarine63",             "GameTester77",             "Adventurer19",             "Explorer49",             "ExplorerWriter10", "TestSubject90", "HunterOfTheKing53", "SpaceBartender0", "JoywireArtist8", "VRDesigner87"
+            "FerventResearcher72",
+            "AerospaceEngineer44",
+            "ComputerEngineer10",
+            "ComputerEngineer36",
+            "DeepSpaceSurveyor1",
+            "GlitterworldSurgeon15",
+            "OrbitalReservist22",
+            "SpaceMarine51",
+            "SpaceMarineMedic10",
+            "SpaceNavyTech37",
+            "SpaceResearcher25",
+            "SpaceTechnician29",
+            "SpaceshipSalesman34",
+            "StarshipJanitor33",
+            "AIProgrammer22",
+            "AIResearcher94",
+            "AceFighterPilot54",
+            "ArchotechSpy75",
+            "BattleMechanic27",
+            "BattlefieldTech52",
+            "CombatMedtech59",
+            "CorpResearcher71",
+            "EngineeredPilot75",
+            "GeneticEngineer89",
+            "GeneticScientist66",
+            "MechWarVeteran77",
+            "NetworkEngineer34",
+            "Roboticist1",
+            "Roboticist41",
+            "RocketEngineer53",
+            "RocketPioneer19",
+            "CasketBuilder52",
+            "ChiefEngineer62",
+            "ColonyEngineer7",
+            "CorpResearcher93",
+            "ExecutiveOfficer5",
+            "BiosphereManager95",
+            "ArtifactHunter48",
+            "ShadowMarine63",
+            "GameTester77",
+            "Adventurer19",
+            "Explorer49",
+            "ExplorerWriter10",
+            "TestSubject90",
+            "HunterOfTheKing53",
+            "SpaceBartender0",
+            "JoywireArtist8",
+            "VRDesigner87",
+            "ArmyScientist35",
+            "CloneFarmer58",
+            "DoomsdayPariah18",
+            "Gnomebiologist96",
+            "LazyProgrammer3",
+            "MilitaryEngineer45",
+            "NavyScientist52",
+            "RugbyPlayer71",
+            "StarfighterPilot79",
+            "Technician9",
+            "TestSubject92",
+            "UrbworldRebel56",
+            "WhiteHatHacker82",
+            "AlcoholicTrucker93",
+            "BloodgameSurvivor6",
+            "MedicalScientist16",
+            "IllegalShipwright76",
+            "VideoProducer83",
+            "CosmeticSurgeon36",
+            "NeuroScientist19",
+            "SoftwareDeveloper84",
+            "ExiledResearcher44",
+            "EnergyResearcher89",
+            "MadScientist31",
+            "JoeCustomAdulthood",
+            "LiamCustomAdulthood",
+            "OskarCustomAdulthood",
+            "TynanCustomAdulthood",
+            "Streamer52"
         };
 
+        // Exact production SolidChildBioGatePatch exclusions.
         private static readonly HashSet<string> Child = new HashSet<string>
         {
-            "ComputerGeek62", "GlitterworldKid85", "GlitterworldNerd20",
-            "MechanoidNerd10", "SpaceCadet77", "SpaceFanboy22",
-            "SpaceNerd97", "CorporateSlave22", "HackerKid98",
-            "HackerProdigy84", "MechanoidHacker93", "VideoGamer16",
-            "FallenProdigy40",             "ChildResearcher32",             "HeadjackAddict4",             "WealthyStudent59",             "CorpBredStudent54",             "CorpStudent95",             "OffworldRecruit91",             "AwkwardNerd48",             "DataDecoder39",             "Bookworm3",             "FarmMechanic1",             "DiscardedYouth93"
+            "ComputerGeek62",
+            "GlitterworldKid85",
+            "GlitterworldNerd20",
+            "MechanoidNerd10",
+            "SpaceCadet77",
+            "SpaceFanboy22",
+            "SpaceNerd97",
+            "CorporateSlave22",
+            "HackerKid98",
+            "HackerProdigy84",
+            "MechanoidHacker93",
+            "VideoGamer16",
+            "FallenProdigy40",
+            "ChildResearcher32",
+            "HeadjackAddict4",
+            "WealthyStudent59",
+            "CorpBredStudent54",
+            "CorpStudent95",
+            "OffworldRecruit91",
+            "AwkwardNerd48",
+            "DataDecoder39",
+            "Bookworm3",
+            "FarmMechanic1",
+            "DiscardedYouth93",
+            "CloneFarmed21",
+            "VatgrownAssassin20",
+            "VatgrownScientist91",
+            "JoywireAddict76",
+            "LabGrownChild22",
+            "DreadedBaby56",
+            "GameFanatic86",
+            "ReclusiveProdigy96",
+            "AbandonedChild30",
+            "AspiringPhysicist47",
+            "CaravanChild53",
+            "ChildScientist30",
+            "Colonist22",
+            "CrimeBossChild39",
+            "DiplomatsChild97",
+            "FeralChild85",
+            "LogicalChild2",
+            "MidworldCadet83",
+            "MidworldGeek18",
+            "PilotFan16",
+            "ProfessionalGamer76",
+            "RebelWriter82",
+            "ShipChild46",
+            "SocialPariah3",
+            "StarforceCadet79",
+            "StudentEngineer34",
+            "ToxicChild96",
+            "VatgrownSlavegirl8",
+            "VideoGamer55",
+            "VidtubeStar98",
+            "VoyagerChild94"
         };
 
-        // Shuffled childhood categories are patched in XML, not by the Solid-name gate.
-        private static readonly string[] ShuffledChild = { "OrganFarm67", "VatgrownSoldier8" };
+        // Exact shuffled-child XML exclusions.
+        private static readonly string[] ShuffledChild = {
+            "OrganFarm67",
+            "VatgrownSoldier8",
+            "TestSubject15"
+        };
+
+        // Approved Culture Phase 2 titles, mapped by unchanged original DefName.
+        // Every title must load from the actual 1.6/1.7 game XML, not merely exist in source.
+        private static readonly Dictionary<string, string> AdaptedTitles =
+            new Dictionary<string, string>
+        {
+            { "AddictionCounsel60", "village helper" },
+            { "Architect28", "temple scholar" },
+            { "BountyHunter41", "battle-hardened warrior" },
+            { "Castaway81", "mountain village life" },
+            { "CharityWorker36", "compassionate monk" },
+            { "CorporateBuilder58", "veteran construction laborer" },
+            { "ExpertHandyman8", "skilled craftsperson" },
+            { "FurnitureBuilder83", "mountain carpenter" },
+            { "GangSoldier39", "veteran bandit" },
+            { "LanguageAnalyst27", "wise cultivator" },
+            { "MasterChef48", "manor cook" },
+            { "MedicSoldier54", "healing monk" },
+            { "MilitaryOfficer17", "castle guard" },
+            { "Minister88", "lord's retainer" },
+            { "Model99", "beautiful performer" },
+            { "NinjaAssassin31", "hired tough" },
+            { "Novelist7", "tale writer" },
+            { "PirateTrooper73", "fierce warrior" },
+            { "PlanetaryDiplomat7", "envoy" },
+            { "PrisonerOfWar2", "ashigaru commander" },
+            { "ReligiousHierarch16", "temple abbot" },
+            { "RunawayDancer35", "traveling performer" },
+            { "Sculptor63", "Buddhist sculptor" },
+            { "SoleSurvivor85", "battle-scarred veteran" },
+            { "StationSecurity38", "checkpoint watchman" },
+            { "ChildStar74", "performer's child" },
+            { "CrashBaby32", "merchant's child" },
+            { "UrbworldUrchin61", "town troublemaker" },
+            { "UrbworldDrone32", "stonemason" },
+            { "UrbworldEntrepreneur14", "market merchant" },
+            { "ConstructionEngineer32", "experienced carpenter" },
+            { "MafiaBoss17", "bandit leader" },
+            { "ContractMiner86", "skilled miner" },
+            { "Taxonomist0", "naturalist" },
+            { "CaveworldIlluminator95", "mine veteran" },
+            { "AmateurEngineer3", "curious tinkerer" },
+            { "ArtStudent79", "painter" },
+            { "ArtisanFarmer23", "field-raised child" },
+            { "AspiringPopIdol28", "raised in the arts" },
+            { "Athlete47", "martial student" },
+            { "BehaviourResearch74", "master physician" },
+            { "CivilServant2", "estate scribe" },
+            { "ClassClown96", "young artist" },
+            { "CoreDilettante33", "wealthy child" },
+            { "CoreworldStudent50", "self-styled child" },
+            { "DesertRat47", "mountain temple child" },
+            { "DestroyerGeneral26", "warlord" },
+            { "EnergeticPopIdol61", "talented young performer" },
+            { "FelineScientist76", "medical apprentice" },
+            { "FoundryApprentice76", "forge-raised child" },
+            { "Fugitive4", "wanderer" },
+            { "GunDealer14", "arms merchant" },
+            { "Gymnast48", "sumo-loving child" },
+            { "HedgeFundManager54", "shrewd painter" },
+            { "HillbillyProdigy60", "mountain eccentric" },
+            { "IcePlanetChild95", "snow-country child" },
+            { "IndworldUrchin73", "alley-raised child" },
+            { "LaborCampOrphan91", "construction-yard child" },
+            { "MadScientist47", "cold prodigy" },
+            { "MarineCadet73", "warrior-household child" },
+            { "Mathematician6", "arithmetician" },
+            { "MechanicsEngineer64", "ingenious carpenter" },
+            { "MedicalStudent38", "healing monk's apprentice" },
+            { "MedicalStudent96", "physician's child" },
+            { "MilitaryGunsmith27", "military armorer" },
+            { "MilitaryInventor35", "camp fortification artisan" },
+            { "MindwipedAssassin50", "merciless assassin" },
+            { "Nerd92", "inquisitive child" },
+            { "Orphan15", "kindhearted orphan" },
+            { "Osteologist74", "military strategist" },
+            { "Pampered87", "sheltered child" },
+            { "Philosopher82", "debate-loving child" },
+            { "PrivilegedProdigy70", "court noble's child" },
+            { "PsychiatricPatient94", "recluse" },
+            { "PyroAssistant82", "fire-loving child" },
+            { "RebelSlave14", "defiant servant" },
+            { "ScienceProdigy65", "bright child" },
+            { "SewerKid57", "kitchen-raised child" },
+            { "Sheriff52", "town patrol" },
+            { "SlaveChemist84", "herbal physician" },
+            { "Smuggler23", "illicit peddler" },
+            { "StationWhelp94", "bandit-raised child" },
+            { "StreetPeddler66", "peddler's child" },
+            { "Student65", "young medical scholar" },
+            { "StudentSocialite89", "eloquent child" },
+            { "ToolMechanic77", "master woodworker" },
+            { "TragicLoner87", "mountain hut child" },
+            { "TransferStudent10", "temple ward" },
+            { "WarshipCaptain67", "naval captain" }
+        };
+
+        private static string LoadedText(BackstoryDef backstory, string fieldName)
+        {
+            const BindingFlags flags = BindingFlags.Instance | BindingFlags.Public |
+                                       BindingFlags.NonPublic;
+            FieldInfo field = typeof(BackstoryDef).GetField(fieldName, flags);
+            if (field != null)
+                return field.GetValue(backstory) as string;
+            PropertyInfo property = typeof(BackstoryDef).GetProperty(fieldName, flags);
+            return property == null ? null : property.GetValue(backstory, null) as string;
+        }
 
         private static Task OnGameThread(Action action)
         {
@@ -75,7 +304,7 @@ namespace AMJ.Culture.Test
             await ctx.WaitFrames(2);
             await OnGameThread(delegate
             {
-                ctx.Require(Adult.Length == 48 && Child.Count == 24 && ShuffledChild.Length == 2,
+                ctx.Require(Adult.Length == 77 && Child.Count == 55 && ShuffledChild.Length == 3,
                     "Incorrect feature population");
                 foreach (string id in Adult)
                 {
@@ -100,6 +329,29 @@ namespace AMJ.Culture.Test
                         backstory.spawnCategories[0] == "AMJ_CultureExcluded",
                         "Shuffled child category not restricted: " + id);
                 }
+                ctx.Require(AdaptedTitles.Count == 89,
+                    "Phase 2 accepted background mapping incomplete");
+                foreach (KeyValuePair<string, string> expected in AdaptedTitles)
+                {
+                    BackstoryDef biography =
+                        DefDatabase<BackstoryDef>.GetNamedSilentFail(expected.Key);
+                    ctx.Require(biography != null, "Approved background Def absent: " + expected.Key);
+                    ctx.Require(LoadedText(biography, "title") == expected.Value,
+                        "Approved English title not loaded: " + expected.Key);
+                    string body = LoadedText(biography, "description");
+                    ctx.Require(!string.IsNullOrWhiteSpace(body),
+                        "Approved background description missing: " + expected.Key);
+                }
+                foreach (string reopened in new[] { "AddictionCounsel60", "Architect28" })
+                {
+                    BackstoryDef biography = DefDatabase<BackstoryDef>.GetNamedSilentFail(reopened);
+                    ctx.Require(biography != null && biography.spawnCategories != null &&
+                        biography.spawnCategories.Count > 0 &&
+                        !biography.spawnCategories.Contains("AMJ_CultureExcluded"),
+                        "Reopened original biography is still restricted: " + reopened);
+                }
+                Log.Message("AMJ_CULTURE_BACKGROUNDS16_TEXTS_OK count=" + AdaptedTitles.Count);
+
                 TraitDef trait = DefDatabase<TraitDef>.GetNamedSilentFail("Transhumanist");
                 FieldInfo commonality = typeof(TraitDef).GetField("commonality",
                     BindingFlags.Instance | BindingFlags.NonPublic);
