@@ -16,6 +16,9 @@ namespace AMJ.Culture
         private const float DaysWithNoWealthRequirement = 10f;
         private const float HighColonyWealth = 80000f;
 
+        // Grains is optional. Its own About.xml retains the historical Core package ID.
+        private const string GrainsPackageId = "sucro.ancientmedievaljapan.core";
+
         private const string BrownRiceMeal = "AMJC_RiceMeal";
         private const string BrownRicePorridge = "AMJC_RicePorridge";
         private const string MixedMeal = "AMJC_MixedGrainMeal";
@@ -111,6 +114,10 @@ namespace AMJ.Culture
         // Original Thing.Ingested returns 0 for unsuccessful consumption.
         public static void Postfix(Thing __instance, Pawn ingester, float __result)
         {
+            // Culture alone must never evaluate or grant Grains-specific coarse food thoughts.
+            if (!ModsConfig.IsActive(GrainsPackageId))
+                return;
+
             if (__result <= 0f || ingester == null ||
                 ingester.Faction != Faction.OfPlayer || ingester.IsPrisoner ||
                 ingester.IsSlave || ingester.Map == null ||
