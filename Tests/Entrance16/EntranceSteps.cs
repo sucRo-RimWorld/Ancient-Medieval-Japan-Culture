@@ -612,12 +612,13 @@ namespace AMJ.Culture.Test
             {
                 ctx.Require(sawCast && sawBarefoot && reached,
                             "Ordinary active entrance failed cast/progress or Goto");
-                FieldInfo filledField = CultureType("EntranceZoneMap").GetField(
-                    "progressFilled", BindingFlags.Static | BindingFlags.NonPublic);
-                ctx.Require(filledField != null, "Entrance draw-material reflection field missing");
-                bool drawPathEntered = filledField.GetValue(null) != null;
-                Log.Message("AMJ_CULTURE_ENTRANCE16_DRAW_PATH_CALLED=" + drawPathEntered);
-                ctx.Require(drawPathEntered, "MapComponentDraw never created progress bar material during active cast");
+                FieldInfo lastGuiTick = CultureType("EntranceZoneMap").GetField(
+                    "lastProgressGuiTick", BindingFlags.Static | BindingFlags.NonPublic);
+                ctx.Require(lastGuiTick != null, "Entrance GUI draw marker missing");
+                int renderedTick = (int)lastGuiTick.GetValue(null);
+                Log.Message("AMJ_CULTURE_ENTRANCE16_GUI_RENDER_TICK=" + renderedTick);
+                ctx.Require(renderedTick >= firstCastTick,
+                            "MapComponentOnGUI never rendered during active footwear cast");
                 Log.Message("AMJ_CULTURE_ENTRANCE16_PROGRESS_CAPTURED_OK");
             });
         }
