@@ -361,8 +361,14 @@ namespace AMJ.Culture.Test
                             fields.Count == 4, "Japanese localized fields missing for " + id);
                         BackstoryDef bio = DefDatabase<BackstoryDef>.GetNamedSilentFail(id);
                         ctx.Require(bio != null, "Approved Japanese background not loaded: " + id);
-                        ctx.Require(LoadedText(bio, "title") == fields["title"],
-                            "Japanese title mismatch: " + id);
+                        string loadedTitle = LoadedText(bio, "title");
+                        object activeLanguage = typeof(LanguageDatabase).GetField(
+                            "activeLanguage", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static)
+                            ?.GetValue(null);
+                        ctx.Require(loadedTitle == fields["title"],
+                            "Japanese title mismatch: " + id + " actual=" + loadedTitle
+                            + " expected=" + fields["title"]
+                            + " activeLanguage=" + (activeLanguage == null ? "(unknown)" : activeLanguage.ToString()));
                         ctx.Require(LoadedText(bio, "titleShort") == fields["titleShort"],
                             "Japanese short title mismatch: " + id);
                         string body = LoadedText(bio, "description");
