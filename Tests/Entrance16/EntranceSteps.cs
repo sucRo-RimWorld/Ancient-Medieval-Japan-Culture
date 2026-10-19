@@ -213,6 +213,10 @@ namespace AMJ.Culture.Test
             bool observedShoes = false;
             bool observedExit = false;
             bool validAfterPainting = false;
+            // Scoped 1.7 visual acceptance only; previous 1.6 paths are unchanged.
+            bool visual17 = Environment.GetEnvironmentVariable("AMJ_ENTRANCE_17_VISUAL") == "1";
+            bool visualCaptured = false;
+            int visualCastTick = -1;
 
             await ctx.WaitUntil(() =>
             {
@@ -283,7 +287,13 @@ namespace AMJ.Culture.Test
                 ctx.Require(pawn != null, "Colonist pawn generation failed");
                 GenSpawn.Spawn(pawn, start, map, WipeMode.Vanish);
                 end = start + new IntVec3(8, 0, 0);
-                Find.TickManager.CurTimeSpeed = TimeSpeed.Ultrafast;
+                if (visual17)
+                {
+                    CameraJumper.TryJumpAndSelect(pawn);
+                    Find.TickManager.CurTimeSpeed = TimeSpeed.Normal;
+                }
+                else
+                    Find.TickManager.CurTimeSpeed = TimeSpeed.Ultrafast;
                 Walk(pawn, end);
                 Log.Message("AMJ_CULTURE_ENTRANCE_TEST_READY first=" + first +
                             " second=" + second + " noShoes=3..5 invalid=" + invalid);
@@ -294,6 +304,16 @@ namespace AMJ.Culture.Test
                 await ctx.WaitTicks(5);
                 await EntranceMainThread.Run(delegate
                 {
+                    if (visual17 && Casting(state, pawn))
+                    {
+                        if (visualCastTick < 0) visualCastTick = Find.TickManager.TicksGame;
+                        if (!visualCaptured && Find.TickManager.TicksGame - visualCastTick >= 30)
+                        {
+                            CaptureFrame(Path.Combine(GenFilePaths.SaveDataFolderPath,
+                                "AMJEntrance17Progress.png"));
+                            visualCaptured = true;
+                        }
+                    }
                     observedRemoveCast |= Casting(state, pawn) && !Barefoot(state, pawn);
                     observedPutOnCast |= Casting(state, pawn) && Barefoot(state, pawn);
                     observedBarefoot |= Barefoot(state, pawn);
@@ -315,6 +335,16 @@ namespace AMJ.Culture.Test
                 ctx.Require(observedPutOnCast, "No put-on-shoes cast occurred at second entrance");
                 ctx.Require(observedShoes, "Pawn did not reach the destination wearing shoes");
                 ctx.Require(observedExit, "Original Goto job never reached its destination");
+                if (visual17)
+                {
+                    FieldInfo guiTick = CultureType("EntranceZoneMap").GetField(
+                        "lastProgressGuiTick", BindingFlags.Static | BindingFlags.NonPublic);
+                    ctx.Require(guiTick != null && visualCastTick >= 0 && visualCaptured,
+                        "No mid-cast visual capture on current 1.7 product");
+                    ctx.Require((int)guiTick.GetValue(null) >= visualCastTick,
+                        "Current 1.7 MapComponentOnGUI did not draw the cast progress");
+                    Log.Message("AMJ_CULTURE_ENTRANCE17_GUI_CAPTURE_OK");
+                }
                 Log.Message("AMJ_CULTURE_ENTRANCE_FUNCTION_OK");
             });
         }
