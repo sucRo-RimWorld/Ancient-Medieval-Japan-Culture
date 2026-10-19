@@ -98,8 +98,9 @@ namespace AMJ.Culture
             for (int i = 0; i < buildings.Count; i++)
             {
                 Thing chair = buildings[i];
-                if (!TablelessChairMealPatch.IsUsableChair(actor, chair) ||
-                    (chair.Position - actor.Position).LengthHorizontal > radius)
+                if (chair == null ||
+                    (chair.Position - actor.Position).LengthHorizontal > radius ||
+                    !TablelessChairMealPatch.IsUsableChair(actor, chair))
                     continue;
                 MealSite candidate = Score(chair, actor);
                 if (!Better(candidate, best) ||
