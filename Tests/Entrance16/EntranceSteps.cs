@@ -464,8 +464,8 @@ namespace AMJ.Culture.Test
                 EntranceReloadProbe probe = Current.Game.GetComponent<EntranceReloadProbe>();
                 ctx.Require(probe != null, "Test-only reload probe missing from game");
                 probe.Subject = pawn;
-                probe.EntranceCell = valid;
-                probe.NoShoesCell = valid + IntVec3.East;
+                probe.EntranceCell = origin + new IntVec3(9, 0, 3);
+                probe.NoShoesCell = probe.EntranceCell + IntVec3.East;
                 probe.ResumeTarget = origin + new IntVec3(11, 0, 3);
                 ctx.Require(probe.ResumeTarget.Standable(Find.CurrentMap),
                             "No open post-reload Goto target");
