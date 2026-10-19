@@ -134,6 +134,18 @@ namespace AMJ.Culture.Test
     [PickleSteps]
     public sealed class EntranceSteps
     {
+        private static void CaptureFrame(string path)
+        {
+            // UnityEngine.ScreenCapture is in the optional ScreenCaptureModule,
+            // intentionally not a compile-time reference of the existing test DLL.
+            Type type = Type.GetType("UnityEngine.ScreenCapture, UnityEngine.ScreenCaptureModule");
+            MethodInfo take = type == null ? null :
+                type.GetMethod("CaptureScreenshot", new[] { typeof(string) });
+            if (take == null)
+                throw new InvalidOperationException("Unity screenshot module/API unavailable");
+            take.Invoke(null, new object[] { path });
+        }
+
         private static Type CultureType(string name)
         {
             Type result = Type.GetType("AMJ.Culture." + name + ", AMJ.Culture");
@@ -373,7 +385,7 @@ namespace AMJ.Culture.Test
                             "Untranslated nonadjacent entrance warning");
                 Log.Message("AMJ_CULTURE_ENTRANCE16_WARNING_LOCALIZED_OK");
                 Call(entranceDesignator, "DesignateSingleCell", invalid);
-                UnityEngine.ScreenCapture.CaptureScreenshot(
+                CaptureFrame(
                     Path.Combine(GenFilePaths.SaveDataFolderPath, "AMJEntrance16Warning.png"));
                 ctx.Require((bool)Call(zone, "Contains", invalid), "Designator failed to mark entrance");
                 ctx.Require(!(bool)Call(zone, "HasConnectedNoShoesContact", invalid),
@@ -578,7 +590,7 @@ namespace AMJ.Culture.Test
                     if (Casting(state, ordinary) && !sawCast)
                     {
                         sawCast = true;
-                        UnityEngine.ScreenCapture.CaptureScreenshot(
+                        CaptureFrame(
                             Path.Combine(GenFilePaths.SaveDataFolderPath,
                                          "AMJEntrance16Progress.png"));
                     }
