@@ -322,6 +322,13 @@ namespace AMJ.Culture.MatFeasibility16
                             "Actual game room impressiveness scoring failed");
                 Log.Message("AMJ_MAT_FEASIBLE_BUFF_COMPARATOR_OK loadedStages="+
                     stages.Count+" nativeRoomMood="+actual);
+                // Newly generated healthy pawns may be fully rested and cancel
+                // a direct LayDown job before the next 20-tick observation.
+                // Hold ordinary Rest low to test actual bed use, not job timing.
+                ctx.Require(ownerA.needs.rest!=null && ownerB.needs.rest!=null,
+                            "Generated owners must have ordinary rest needs");
+                ownerA.needs.rest.CurLevel=0.05f;
+                ownerB.needs.rest.CurLevel=0.05f;
                 ownerA.jobs.StartJob(JobMaker.MakeJob(JobDefOf.LayDown,matA),
                                      JobCondition.InterruptForced);
                 ownerB.jobs.StartJob(JobMaker.MakeJob(JobDefOf.LayDown,matB),
@@ -341,6 +348,18 @@ namespace AMJ.Culture.MatFeasibility16
                 if(laidA&&laidB)break;
             }
             await GameThread.Run(()=>{
+                if (!laidA || !laidB)
+                    Log.Warning("AMJ_MAT_FEASIBLE_LAYDOWN_DIAGNOSTIC"+
+                        " Ajob="+(ownerA.CurJob==null?"null":ownerA.CurJob.def.defName)+
+                        " Aposture="+ownerA.GetPosture()+
+                        " Arest="+ownerA.needs.rest.CurLevel+
+                        " Apos="+ownerA.Position+
+                        " Aowned="+(ownerA.ownership.OwnedBed==matA)+
+                        " Bjob="+(ownerB.CurJob==null?"null":ownerB.CurJob.def.defName)+
+                        " Bposture="+ownerB.GetPosture()+
+                        " Brest="+ownerB.needs.rest.CurLevel+
+                        " Bpos="+ownerB.Position+
+                        " Bowned="+(ownerB.ownership.OwnedBed==matB));
                 ctx.Require(laidA&&laidB,
                             "Existing LayDown failed after both owner-only meals");
                 ctx.Require(matA.Spawned&&matB.Spawned &&
