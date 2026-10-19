@@ -725,6 +725,16 @@ Cultureは人物背景・特性・心情・食事習慣・嗜好品・玄関の�
 
 **報告と判定**：実測環境・対象コミット・1.6／1.7のバージョン・比較シナリオ・測定値・差分・観測限界を記録する。負荷が目立つ場合は、改善対象となる処理箇所を特定し、実装を修正してから影響箇所のみ再測定する。事前に根拠のないTPS低下許容率や「影響ゼロ」を保証しない。性能測定をPASSと称して実ゲームの機能確認を代替しない。
 
+### 玄関のRimWorld 1.7＋MO 1.6.2.2限定通行受け入れ（2026-10-19）
+
+**実ゲーム結果：** [Project Actions #39253445043](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39253445043) **SUCCESS**。正規RimWorld **1.7.4977 rev1248（Waylith）**の使い捨てゲーム複製に、**MO 1.6.2.2＋VEF／SYR** をステージングして確認した限定的な互換経路。背景／特性分離後のCulture 1.7製品DLL SHA-256 `d149fbab74f9abb0d59f899fb202bc69d7cb2cb09eddc60d881190d374b53ba2`、Cultureテストソース main `2c92f2c9da61bf72436d1037c12b0c46a7445852`、Project実行コード `581b59c9090e14773954c870f8381b250f6ffd68`。製品DLL・ゲーム本体・セーブは変更していない。
+
+**観測方法と合格事項：** 二つの辺接触玄関／間の土足禁止エリアを配置し、プレイヤー強制の元Goto Jobで通行。MO併用ではheadless描画の4フレーム間に多数のゲームtickが進み、90tickの脱着および目的地到達を観測し損なうため、テスト専用Harmony **Postfix** で`Pawn_PathFollower.PatherTick`を対象ポーンに限り記録した。実際の`ActivePauses`と裸足状態、目的地到達をtickごとにラッチ。**removeCast=True、putOnCast=True、barefoot=True、shoesAtExit=True、valid=True、`AMJ_CULTURE_ENTRANCE_FUNCTION_OK` 1回、Pickle 1/1 PASS、failed/skipped/flaky 0、Unity/raw ERROR0、FMOD0、exit0**。最終ログに`GotoWander`が現れていても、元Gotoの到達はtick単位で先に記録しており、通行失敗と扱わない。
+
+**旧失敗の記録：** [#39242419508](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39242419508) は`WaitTicks(5)`による260秒のタイムアウト。[#39251106844](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39251106844) はゲームtick進行を確認したが、描画フレーム単位の観測で短い脱着・到達を取り逃がしてFAIL。[#39252488504](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39252488504) はゲーム起動後に読み込まれたテスト用GameComponentが登録されず、検証fixture起因のFAIL。過去の失敗をPASSへ読み替えず、上記別実行で改めて合格した。
+
+**受け入れ境界：** これは**MO 1.6.2.2をRimWorld 1.7へ導入した互換テストの単一代表経路**であり、MOそのものの正式な1.7対応、MOの全機能、CultureとCharacters両方のMO併用、旧セーブ移行、大規模TPS、1.7進捗バー画像表示は検証していない。後者の視覚受け入れは1.6の実画像PASSと区別する。機能ソース／DLLに問題がある証拠は得られていないため、この受け入れを理由とした製品改修・同条件の追加runは不要。
+
 ### 玄関進捗バー描画修正・TPS限定受け入れ（2026-10-19）
 
 **実装済み／1.6画面表示PASS：** 従来の`GenDraw`によるワールド空間の描画は、ポーンが実際に90 ticksの脱着キャスト中でもスクリーンショットに見えなかった。描画コールバック自体は動作していたため、[Culture PR #153](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Culture/pull/153)（mainへのマージ `824b5591b73a5bd5b324038c352aef3d9daafa53`）で、`Source/AMJ.Culture/EntranceZoneSystem.cs` の `EntranceZoneMap.MapComponentOnGUI` にカメラ投影したGUIバーを描く方式へ変更した。バーは有効なキャスト中だけ描画し、進捗は既存の開始tickと90 ticksから算出。履物状態、ゾーン、汚れ、移動Job、予約、セーブ仕様は変更していない。
