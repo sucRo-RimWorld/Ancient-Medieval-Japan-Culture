@@ -8,6 +8,7 @@ using RimWorks.Pickle;
 using RimWorld;
 using Verse;
 using Verse.AI;
+using HarmonyLib;
 
 namespace AMJ.Culture.Test
 {
@@ -36,40 +37,61 @@ namespace AMJ.Culture.Test
     }
 
 
+    // Temporary MO-on-1.7 test-only observer. A Harmony postfix sees every
+    // actual movement tick even when Waylith runs many ticks between GUI frames.
+    internal static class EntrancePatherTickObserver
+    {
+        private static Pawn pawn;
+        private static object state;
+        private static IDictionary pauses;
+        private static MethodInfo barefootMethod;
+        private static IntVec3 destination;
+        public static int Samples;
+        public static bool RemoveCast;
+        public static bool PutOnCast;
+        public static bool Barefoot;
+        public static bool Reached;
+        public static bool ShoesAtExit;
+
+        internal static void Install(Pawn subject, object footwearState, IDictionary activePauses,
+                                     IntVec3 target)
+        {
+            pawn = subject;
+            state = footwearState;
+            pauses = activePauses;
+            destination = target;
+            barefootMethod = footwearState.GetType().GetMethod("IsBarefoot",
+                BindingFlags.Instance | BindingFlags.Public);
+            if (barefootMethod == null) throw new MissingMethodException("IsBarefoot");
+            Samples = 0;
+            RemoveCast = PutOnCast = Barefoot = Reached = ShoesAtExit = false;
+            MethodInfo movement = AccessTools.Method(typeof(Pawn_PathFollower), "PatherTick");
+            if (movement == null) throw new MissingMethodException("Pawn_PathFollower.PatherTick");
+            new Harmony("sucro.amj.culture.test.entrance17.moobserver").Patch(
+                movement, postfix: new HarmonyMethod(typeof(EntrancePatherTickObserver),
+                    nameof(Postfix)));
+        }
+
+        public static void Postfix(Pawn_PathFollower __instance)
+        {
+            if (pawn == null || pawn.pather != __instance || state == null || pauses == null)
+                return;
+            Samples++;
+            bool isBarefoot = (bool)barefootMethod.Invoke(state, new object[] { pawn });
+            bool casting = pauses.Contains(pawn);
+            RemoveCast |= casting && !isBarefoot;
+            PutOnCast |= casting && isBarefoot;
+            Barefoot |= isBarefoot;
+            Reached |= pawn.Position == destination;
+            ShoesAtExit |= pawn.Position == destination && !isBarefoot;
+        }
+    }
+
     // Disposable test-only component. Serialized by the actual RimWorld save loader,
     // and used in a separate native process to verify reload and resumed Goto.
     public sealed class EntranceReloadProbe : GameComponent
     {
         public Pawn Subject;
-        // MO-on-1.7 diagnostic only: sample actual game ticks instead of
-        // rendered frames, which can skip an entire 90-tick cast at Ultrafast.
-        public Pawn DiagnosticPawn;
-        public IntVec3 DiagnosticTarget = IntVec3.Invalid;
-        public IDictionary DiagnosticPauses;
-        public object DiagnosticState;
-        public int DiagnosticTickCount;
-        public bool DiagnosticRemoveCast;
-        public bool DiagnosticPutOnCast;
-        public bool DiagnosticBarefoot;
-        public bool DiagnosticReached;
-        public bool DiagnosticShoesAtExit;
-
-        public override void GameComponentTick()
-        {
-            if (DiagnosticPawn == null || DiagnosticState == null ||
-                DiagnosticPauses == null || !DiagnosticPawn.Spawned) return;
-            DiagnosticTickCount++;
-            bool barefoot = (bool)DiagnosticState.GetType()
-                .GetMethod("IsBarefoot").Invoke(DiagnosticState, new object[] { DiagnosticPawn });
-            bool casting = DiagnosticPauses.Contains(DiagnosticPawn);
-            DiagnosticRemoveCast |= casting && !barefoot;
-            DiagnosticPutOnCast |= casting && barefoot;
-            DiagnosticBarefoot |= barefoot;
-            DiagnosticReached |= DiagnosticPawn.Position == DiagnosticTarget;
-            DiagnosticShoesAtExit |= DiagnosticReached &&
-                                     DiagnosticPawn.Position == DiagnosticTarget && !barefoot;
-        }
-
         public IntVec3 EntranceCell = IntVec3.Invalid;
         public IntVec3 NoShoesCell = IntVec3.Invalid;
         public IntVec3 ResumeTarget = IntVec3.Invalid;
@@ -234,7 +256,6 @@ namespace AMJ.Culture.Test
             Pawn pawn = null;
             object zone = null;
             object state = null;
-            EntranceReloadProbe tickObserver = null;
             IntVec3 start = IntVec3.Invalid;
             IntVec3 end = IntVec3.Invalid;
             bool observedRemoveCast = false;
@@ -324,17 +345,12 @@ namespace AMJ.Culture.Test
                 end = start + new IntVec3(8, 0, 0);
                 if (moStallProbe)
                 {
-                    tickObserver = Current.Game.GetComponent<EntranceReloadProbe>();
-                    ctx.Require(tickObserver != null, "Per-tick diagnostic GameComponent absent");
-                    tickObserver.DiagnosticPawn = pawn;
-                    tickObserver.DiagnosticTarget = end;
-                    tickObserver.DiagnosticState = state;
                     PropertyInfo pausesProperty = state.GetType().GetProperty(
                         "ActivePauses", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
                     ctx.Require(pausesProperty != null, "Cast dictionary not available for diagnosis");
-                    tickObserver.DiagnosticPauses =
-                        pausesProperty.GetValue(state, null) as IDictionary;
-                    ctx.Require(tickObserver.DiagnosticPauses != null, "Cast dictionary unavailable");
+                    IDictionary active = pausesProperty.GetValue(state, null) as IDictionary;
+                    ctx.Require(active != null, "Cast dictionary unavailable");
+                    EntrancePatherTickObserver.Install(pawn, state, active, end);
                 }
                 if (visual17)
                 {
@@ -385,11 +401,11 @@ namespace AMJ.Culture.Test
                     if (moStallProbe)
                     {
                         // These latches survive many ticks between two GUI frames.
-                        observedRemoveCast |= tickObserver.DiagnosticRemoveCast;
-                        observedPutOnCast |= tickObserver.DiagnosticPutOnCast;
-                        observedBarefoot |= tickObserver.DiagnosticBarefoot;
-                        observedExit |= tickObserver.DiagnosticReached;
-                        observedShoes |= tickObserver.DiagnosticShoesAtExit;
+                        observedRemoveCast |= EntrancePatherTickObserver.RemoveCast;
+                        observedPutOnCast |= EntrancePatherTickObserver.PutOnCast;
+                        observedBarefoot |= EntrancePatherTickObserver.Barefoot;
+                        observedExit |= EntrancePatherTickObserver.Reached;
+                        observedShoes |= EntrancePatherTickObserver.ShoesAtExit;
                     }
                     if (moStallProbe && (cycle % 16 == 0 || observedShoes))
                     {
@@ -403,7 +419,7 @@ namespace AMJ.Culture.Test
                             + " pos=" + pawn.Position + " target=" + end
                             + " job=" + (pawn.CurJob == null ? "none" : pawn.CurJob.def.defName)
                             + " cast=" + Casting(state, pawn) + " barefoot=" + Barefoot(state, pawn)
-                            + " tick_observer=" + tickObserver.DiagnosticTickCount
+                            + " path_ticks_observed=" + EntrancePatherTickObserver.Samples
                             + " removeCast=" + observedRemoveCast
                             + " putOnCast=" + observedPutOnCast + " shoesAtExit=" + observedShoes);
                     }
