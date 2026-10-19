@@ -159,8 +159,10 @@ namespace AMJ.Culture
                 if (pawn != null && pawn.Spawned && pawn.Map == map)
                     GenDraw.DrawFillableBar(new GenDraw.FillableBarRequest
                     {
-                        center = pawn.DrawPos + new Vector3(0f, 0.1f, 0.7f),
-                        size = new Vector2(0.7f, 0.1f),
+                        // Render above Pawn graphics and terrain, not at a low world Y altitude.
+                        center = new Vector3(pawn.DrawPos.x,
+                            AltitudeLayer.MoteOverhead.AltitudeFor(), pawn.DrawPos.z + 0.7f),
+                        size = new Vector2(0.8f, 0.12f),
                         fillPercent = Mathf.Clamp01((now - pause.StartTick) / (float)EntranceFootwearState.CastTicks),
                         filledMat = ProgressFilled,
                         unfilledMat = ProgressEmpty,
