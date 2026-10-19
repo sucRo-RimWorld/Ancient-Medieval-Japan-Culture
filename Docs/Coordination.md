@@ -1,5 +1,9 @@
 # AMJ Culture Coordination
 
+## CULTURE-WHITE-RICE-EXPECTATION-20261019 — conditional luxury-food reaction proposed
+
+Grains [PR #163](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Grains/pull/163) introduced `AMJC_WhiteRice`, rice/white rice meal and porridge variants, and white-rice meal +3 mood (porridge +1) using ingredient-specific Thought. The author asks whether characters accustomed to privileged food should dislike coarser everyday rice. Candidate rule only: selected backgrounds reflecting habitual refined food may receive a **small** negative thought from common/low-polish meals, never a universal penalty for all wealthy backgrounds or a global white-rice-only hunger restriction; consider Ascetic and competing traits. Approved background identification belongs to Culture Characters; ingredient production and white-rice meals belong to Grains. **No negative Thought implementation or numerical effect approved yet.** This is a cross-owner proposal, not a new Culture code or release gate.
+
 ## CULTURE-C05-ENTRANCE-20261019 — scoped original 1.6 function/visual/TPS PASS; complete in approved 1.6 scope
 
 **Canonical spec and exact evidence:** [Design.md](Design.md#玄関ゾーン擬似履物脱着2026-10-17-作者承認両版dllビルド済実機未検証) and [its 2026-10-19 visual/TPS acceptance section](Design.md#玄関進捗バー描画修正tps限定受け入れ2026-10-19). Overlapping threshold/no-shoes areas, required cardinal contact, normal 90-tick cast, original Job/pather retained, dirt-only filtering, emergency/drafted bypass, persisted area/barefoot state remain unchanged.
