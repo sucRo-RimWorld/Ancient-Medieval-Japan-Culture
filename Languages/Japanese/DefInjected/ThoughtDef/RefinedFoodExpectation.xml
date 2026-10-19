@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <AMJ_ExpectedRefinedFoodBrown.stages.0.label>もう少し上等な飯が欲しい</AMJ_ExpectedRefinedFoodBrown.stages.0.label>
+  <AMJ_ExpectedRefinedFoodBrown.stages.0.description>食料には余裕があるのだから、もう少し上等な米を食べたい。</AMJ_ExpectedRefinedFoodBrown.stages.0.description>
+  <AMJ_ExpectedRefinedFoodCoarse.stages.0.label>粗い穀物の飯</AMJ_ExpectedRefinedFoodCoarse.stages.0.label>
+  <AMJ_ExpectedRefinedFoodCoarse.stages.0.description>これだけ食料があるのに、いつもの粗い穀物飯では物足りない。</AMJ_ExpectedRefinedFoodCoarse.stages.0.description>
+  <AMJ_GourmandCoarseRice.stages.0.label>平凡な米の飯</AMJ_GourmandCoarseRice.stages.0.label>
+  <AMJ_GourmandCoarseRice.stages.0.description>食料が豊かなのだから、もう少し工夫を凝らした飯が欲しい。</AMJ_GourmandCoarseRice.stages.0.description>
+  <AMJ_GourmandCoarseGrains.stages.0.label>物足りない雑穀飯</AMJ_GourmandCoarseGrains.stages.0.label>
+  <AMJ_GourmandCoarseGrains.stages.0.description>食料が豊かなのに、ありきたりな雑穀飯だけでは満足できない。</AMJ_GourmandCoarseGrains.stages.0.description>
+</LanguageData>
