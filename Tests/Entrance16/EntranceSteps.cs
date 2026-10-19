@@ -435,6 +435,13 @@ namespace AMJ.Culture.Test
                 ctx.Require(!Casting(state, pawn),
                             "Editing no-shoes zone failed to cancel pending cast");
 
+                // Restore the edited contact before saving and before the drafted
+                // crossing. Otherwise the fixture tests a disconnected entrance.
+                Call(zone, "SetNoShoes", origin + new IntVec3(10, 0, 3), true);
+                ctx.Require((bool)Call(zone, "HasConnectedNoShoesContact",
+                                      origin + new IntVec3(9, 0, 3)),
+                            "Saved control entrance must be active after cancellation");
+
                 // Emulate shoes carrying both dirt and blood: only dirt must
                 // be discarded when a successful cast switches to barefoot.
                 FieldInfo carriedField = typeof(Pawn_FilthTracker).GetField("carriedFilth",
