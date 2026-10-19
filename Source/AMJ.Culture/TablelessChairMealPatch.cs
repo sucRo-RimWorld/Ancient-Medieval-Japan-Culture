@@ -22,7 +22,7 @@ namespace AMJ.Culture
         new Type[] { typeof(Pawn), typeof(TargetIndex) })]
     public static class TablelessChairMealPatch
     {
-        private static bool IsUsableChair(Pawn pawn, Thing chair)
+        internal static bool IsUsableChair(Pawn pawn, Thing chair)
         {
             if (chair == null || !chair.Spawned || chair.def.building == null ||
                 !chair.def.building.isSittable ||
@@ -88,6 +88,12 @@ namespace AMJ.Culture
                 }
 
                 float radius = food.def.ingestible.chairSearchRadius;
+
+                // C-06 may replace the usual chair/table route only when this
+                // pawn owns a specifically dedicated Culture mat. Ordinary
+                // chairs and other pawns retain exactly the existing C-03 flow.
+                if (MultipurposeMatMealSelector.TryRedirect(actor, radius))
+                    return;
 
                 // This is Vanilla's actual table condition: a valid seat
                 // ADJACENT TO an Eat surface, not the mere existence of a table.
