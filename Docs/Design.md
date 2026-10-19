@@ -725,6 +725,15 @@ Cultureは人物背景・特性・心情・食事習慣・嗜好品・玄関の�
 
 **残る受け入れ：** 新1.6 DLLと実画面のキャスト進捗バーおよびERROR0を1回の既存手動試験で確認する（Project source [PR #737](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/pull/737)、run [#39201260871](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39201260871) は記録時点で待機中）。合格後に、作者が指定したマッチ条件で実TPS負荷を評価する。過去の旧DLLロジックPASSを新DLL全体PASSには転用しない。MO玄関通過・RimWorld 1.7実ゲーム・自然の土汚れ生成・緊急救助は未確認。
 
+
+### 玄関進捗バーの描画幾何修正・追加受け入れ（2026-10-19）
+
+**旧設定の可視性は未合格：** 完全な1.6製品DLL `6657b33e4c4232a03b7e4ce01efbeb874e4ca219f892cd110c39744fad356014` について[Project #39201861113](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39201861113)でキャスト発生30tick後に再撮影した。Pickle 1/1・セーブ別プロセス再ロード・徴兵通過・ERROR0はPASSしたが進捗バーは画像上で判読できなかった。続く[Project #39202266025](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39202266025)で、実ゲーム中に`MapComponentDraw`が実行され、バー素材が初期化されたことを`AMJ_CULTURE_ENTRANCE16_DRAW_PATH_CALLED=True`で確認した。コールバック欠落ではなく、描画幾何・視認性に残る問題として扱い、旧テストPASSを表示PASSに読み替えない。
+
+**修正内容：** 旧`GenDraw.DrawFillableBar`は高さ`0.10`に対して余白`0.07`で、上下の余白を差し引くと塗りつぶし領域を確保できない。サイズ`0.85×0.18`、余白`0.02`、描画高度オフセット`0.25`へ変更。Zone指定／隣接、保存キー、90tick、Job・泥/血、徴兵バイパスには触れない。新コードの基準コミット`57b6ce4f05bcd949ff78ead30248df7a986d8022`。
+
+**正規両版ビルド（描画の実ゲーム未受け入れ）：** 1.6 [Project #39202615579](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39202615579) は完全なCulture DLL 27,648 bytes、SHA-256`f6f674eaffbd028415389783d47128fe6721bd6fe5da5c6e5633b24b56f423b6`、Git Blob`e0552c10370e47519be5e323f8ba602245de6528`。1.7 [Project #39202619759](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39202619759) は完全なCulture DLL 27,648 bytes、SHA-256`96476073b9d2eae0c006553274cf586c28cd629191dcd55ee4e2bd8ccd465415`、Git Blob`dc8c438367e01835063d4fe89101c03e32f336e0`。両者とも元ゲームを改変しないビルド成功であり、更新したゲーム画像とTPSは別途判定する。
+
 ### 第2段階・第6修正群 — Solid幼少期8件と低頻度Solid_Rare成人期4件（2026-10-17）
 
 **通常経路と実装：** 名前付き `Solid` Bioは通常Pawn生成でも候補になるため、`Solid` ファイル所属や固定人物名だけを理由に監査除外しない。過去のRimWorld生成経路・開発者由来Rare人物の抽選について確認したうえで、SFの人工培養児童、快楽回路依存、核動力の宇宙船、VR訓練などを述べる既存Solid幼少期**8件**について `Source/AMJ.Culture/SolidChildBioGatePatch.cs` の既存 `TryGetRandomUnusedSolidBioFor` Postfix対象を24→32に追加。成人側でカテゴリ抽選されるNamed Bioに対し、選出結果の幼少 `defName` を条件に拒否する。元Def、元能力・仕事・強制Trait、固有人物への直接割当・既存セーブは維持。
