@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Defs>
-  <JobDef>
-    <defName>AMJ_BeddingPocDeploy</defName>
-    <driverClass>AMJ.Culture.BeddingPoC.ProbeDeployDriver</driverClass>
-    <reportString>deploying a test bedroll.</reportString>
-    <casualInterruptible>false</casualInterruptible>
-  </JobDef>
-</Defs>

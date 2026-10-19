@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using HarmonyLib;
 using RimWorld;
 
-namespace AMJ.Culture
+namespace AMJ.Culture.Characters
 {
     // A Solid biography is a fixed name + childhood + adulthood pair.
     // RimWorld checks the ADULT background's category when it selects the

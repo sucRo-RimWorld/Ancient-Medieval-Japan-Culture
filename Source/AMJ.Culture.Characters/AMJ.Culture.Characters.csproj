@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>net481</TargetFramework>
     <LangVersion>7.3</LangVersion>
-    <AssemblyName>AMJ.Culture</AssemblyName>
+    <AssemblyName>AMJ.Culture.Characters</AssemblyName>
     <OutputType>Library</OutputType>
     <Deterministic>true</Deterministic>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
@@ -18,14 +18,6 @@
       <HintPath>$(RimWorldManagedDir)/UnityEngine.CoreModule.dll</HintPath>
       <Private>false</Private>
     </Reference>
-    <Reference Include="UnityEngine.IMGUIModule">
-      <HintPath>$(RimWorldManagedDir)/UnityEngine.IMGUIModule.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-    <Reference Include="Unity.Mathematics">
-      <HintPath>$(RimWorldManagedDir)/Unity.Mathematics.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
     <Reference Include="netstandard">
       <HintPath>$(RimWorldManagedDir)/netstandard.dll</HintPath>
       <Private>false</Private>
@@ -35,8 +27,8 @@
       <Private>false</Private>
     </Reference>
   </ItemGroup>
-  <Target Name="CopyCultureDll" AfterTargets="Build"
-          Condition="'$(CultureOutputDir)' != ''">
-    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(CultureOutputDir)" />
+  <Target Name="CopyCharactersDll" AfterTargets="Build"
+          Condition="'$(CharactersOutputDir)' != ''">
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(CharactersOutputDir)" />
   </Target>
 </Project>

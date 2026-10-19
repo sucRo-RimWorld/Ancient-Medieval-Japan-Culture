@@ -1,7 +1,8 @@
-# AMJ Culture Agent Instructions
+# AMJ Culture – Characters agent instructions
 
-1. Read this file and `main:Docs/Coordination.md` first. Inspect later corrections and actual owner source before any edit.
-2. Follow Project [`AGENTS.md`](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/blob/main/AGENTS.md), [`Docs/SharedRules.md`](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/blob/main/Docs/SharedRules.md), and owner `Docs/Design.md` for applicable gates.
-3. All ordinary writes use a topic branch and PR. Do not write directly to `main` or publish to Steam without separate approval.
-4. Actual Culture production source/design/tests belong here, not in the Project research repository. `Docs/Coordination.md` is for handoff/status, not final specifications.
-5. The `AteWithoutTable` neutral-mood XML prototype is source-complete but unvalidated; do not make native test automation the next task by default. Follow `Docs/Design.md` for the approved Culture-wide purpose, drug/Trait specification priority and scoped ownership. Enza, Backstory, Trait and drug implementations need their own explicit per-feature decisions.
+1. Start by reading this file and **main:Docs/Coordination.md** in the eventual Characters owner repository; use the Project main AGENTS.md, SharedRules.md and architecture. This is presently only an isolated extraction branch in Culture, **not yet a final owner repository**.
+2. The approved scope is exclusively backgrounds and traits. Do not import the Culture drug, entrance, shared lodging, chair, or bedding behavior.
+3. Preserve original BackstoryDef/TraitDef identities, loaded-game eligibility, original spawn slots, forced Traits and starting item references. Japanese author-approved biography source: Docs/Stage2JapaneseReviewDraft.md.
+4. Never copy Culture production DLLs into this module: rebuild separate AMJ.Culture.Characters.dll against the two licensed original RimWorld Managed sets. Never publish or mark runtime PASS from source staging.
+5. Do not merge the independent candidate branch into Culture main; do not duplicate production patches in a live profile. Coordinate the cutover with Culture via each repository's main-only Docs/Coordination.md and formal design.
+6. All normal main updates require topic branch/PR, recorded actual commits, test-cost discipline, and separate author publication approval.

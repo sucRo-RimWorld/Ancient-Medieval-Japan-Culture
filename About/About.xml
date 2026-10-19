@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
-  <name>Ancient &amp; Medieval Japan - Culture（中世日本 - 文化）</name>
+  <name>Ancient &amp; Medieval Japan - Culture Characters（中世日本 - 文化・人物）</name>
   <author>sucRo0629</author>
-  <packageId>sucro.ancientmedievaljapan.culture</packageId>
+  <packageId>sucro.ancientmedievaljapan.culture.characters</packageId>
   <supportedVersions>
     <li>1.6</li>
     <li>1.7</li>
@@ -17,7 +17,7 @@
     <li>DankPyon.Medieval.Overhaul</li>
   </loadAfter>
   <modVersion>0.1.0-dev</modVersion>
-  <description>Ancient &amp; Medieval Japan - Culture adapts character generation and everyday life to ancient and medieval Japan. It adjusts ordinary pawn backgrounds and starting possessions, limits the ordinary supply of anachronistic recreational and combat drugs while retaining alcohol, and modifies selected social moods, chair dining, and player-designated entrance/no-shoes areas. Harmony is required; Medieval Overhaul is optional. New game recommended because generation changes do not apply retroactively. Adding or removing Culture mid-save is untested and not recommended. Existing Def identities, held items and addictions are preserved where possible, but existing-save compatibility is not guaranteed. Development build for RimWorld 1.6 and 1.7; not all features and optional combinations are game-verified.
+  <description>Ancient &amp; Medieval Japan - Culture Characters adapts pawn backgrounds and traits for ancient-to-medieval Japanese play. It rewrites existing backgrounds, restricts anachronistic ordinary pawn generation, and adjusts selected starting possessions while preserving existing BackstoryDef and TraitDef identities. Harmony is required. Medieval Overhaul is optional. A new game is recommended. Do not install alongside an unseparated AMJ Culture build: until the migration cutover, that build contains the same background and trait generation rules. This is a development source package, not a released or native-tested new Mod.
 
-中世日本の人物生成と日常生活に合わせてRimWorldの一部の文化的挙動を変更する。通常の人物背景・初期所持品を調整し、時代に合わない娯楽薬・戦闘薬の通常供給を制限する一方、酒は維持する。特定の心情、イス単独での食事、プレイヤーが指定する玄関・土足禁止エリアにも対応する。Harmony必須、Medieval Overhaul任意。新規ゲーム・新規セーブ推奨。人物生成時の変更は既存セーブへ遡及しない。既存セーブへの途中導入・途中削除は未検証で推奨しない。既存の定義、所持品、依存症は可能な限り保持するが、旧セーブ互換性は保証しない。RimWorld 1.6／1.7向け開発版であり、一部機能・任意構成は実ゲーム未検証。</description>
+中世日本に合わせて人物の背景・特性と通常生成を調整する。既存背景の名称・説明、時代に合わない背景・特性の通常生成制限、初期所持品の置換を扱い、既存のBackstoryDef・TraitDefの識別子は保持する。Harmony必須、Medieval Overhaul任意。新規ゲーム推奨。旧AMJ Cultureには同じ人物生成規則が含まれるため、移管が完了するまで同時導入しない。開発中のソース構成であり、新しい独立Modとしての実ゲーム検証・公開は未実施。</description>
 </ModMetaData>
