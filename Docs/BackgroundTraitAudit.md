@@ -357,3 +357,7 @@ Anomaly／Royalty／Odyssey／Biotech限定元アイテムは、元XPathの存�
 上記の旧タイトル「盗賊狩り」は誤った転用だった。旧公式英語原文は裕福な依頼者のために内密の殺害を行う（glitterworldのbounty hunter）という趣旨であり、「盗賊を追う」／「誰から受注したか滅多に話さない」という叙述は原文の直訳でもなく、自然な中世日本の人物紹介でもない。原ゲームがSFのbounty hunterという職能を持つことと、ゲーム側に日本中世の賞金稼ぎという制度を新設することを混同しない。
 
 作者から刀／剣の語彙指摘もあり、原稿1件のtitle／shortTitle／descriptionを **「雇われの刺客」／「刺客」／「[PAWN_nameDef]は有力者に雇われ、敵対する者を密かに討ってきた。弓と剣に長け、狙った相手を逃すことは少なかった。」**に訂正した。ここで「剣」は一文上の広い刀剣表現であり、史実の鎌倉武士の具体的な佩刀の呼称「太刀」と同一とは主張しない。元の `Shooting+8;Melee+5` を維持。これは**まだ未承認の文章案**であり、ゲームの元Def、C#/XML、英語版、初期所持品、他の86原稿を変更していない。
+
+## Phase 2 — final approved Japanese texts and generation adjustment (2026-10-19)
+
+Author-approved Japanese originals: 89, including reopened AddictionCounsel60 and Architect28. [The approved canonical text](Stage2JapaneseReviewDraft.md) is implemented through English Core title/short/description patches and Japanese DefInjected; historical names no longer need to resemble original modern careers. All original mechanical effects, forced traits and item Defs remain. Two adult category-only exclusions removed: restricted total 135 (adult 77, child 58). Existing 34 bilingual rewrites and 23 possession substitutions unchanged. Native RimWorld 1.6/1.7+MO final acceptance and Steam publication not performed.

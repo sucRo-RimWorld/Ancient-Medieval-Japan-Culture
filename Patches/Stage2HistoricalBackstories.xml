@@ -1,0 +1,1607 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <!-- Author-approved Phase 2: original Vanilla Core 1.6/1.7 biographies.
+       Rewrite only title/titleShort/description, never mechanics or identity. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="AddictionCounsel60"]/title</xpath>
+    <value>
+      <title>village helper</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="AddictionCounsel60"]/titleShort</xpath>
+    <value>
+      <titleShort>helper</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="AddictionCounsel60"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] was relied upon by villagers for settling disputes and caring for the sick, and helped make ornaments and tools for festivals.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Architect28"]/title</xpath>
+    <value>
+      <title>temple scholar</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Architect28"]/titleShort</xpath>
+    <value>
+      <titleShort>scholar</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Architect28"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] studied at a temple and helped plan halls and pagodas. Skilled at drawing plans and designing buildings, [PAWN_nameDef] left routine chores to others.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="BountyHunter41"]/title</xpath>
+    <value>
+      <title>battle-hardened warrior</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="BountyHunter41"]/titleShort</xpath>
+    <value>
+      <titleShort>warrior</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="BountyHunter41"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] fought in many battles and honed skill with the bow and sword.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Castaway81"]/title</xpath>
+    <value>
+      <title>mountain village life</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Castaway81"]/titleShort</xpath>
+    <value>
+      <titleShort>villager</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Castaway81"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] grew crops and repaired a house in a mountain village, taking care of daily cooking and work in the hills.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="CharityWorker36"]/title</xpath>
+    <value>
+      <title>compassionate monk</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="CharityWorker36"]/titleShort</xpath>
+    <value>
+      <titleShort>monk</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="CharityWorker36"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] listened to people's troubles, gave alms to the poor and cared for the sick at a temple, firmly refusing to take up arms.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="CorporateBuilder58"]/title</xpath>
+    <value>
+      <title>veteran construction laborer</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="CorporateBuilder58"]/titleShort</xpath>
+    <value>
+      <titleShort>laborer</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="CorporateBuilder58"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] spent years digging earth, laying stone and building structures at construction sites, never working as an artist.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="ExpertHandyman8"]/title</xpath>
+    <value>
+      <title>skilled craftsperson</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="ExpertHandyman8"]/titleShort</xpath>
+    <value>
+      <titleShort>craftsperson</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="ExpertHandyman8"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] spent years repairing houses and farm tools, diagnosing problems and improvising repairs with whatever tools were at hand.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="FurnitureBuilder83"]/title</xpath>
+    <value>
+      <title>mountain carpenter</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="FurnitureBuilder83"]/titleShort</xpath>
+    <value>
+      <titleShort>carpenter</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="FurnitureBuilder83"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] selected and cut trees in the mountains and used the timber to build houses and sheds, often being called to repair neighbors' homes.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="GangSoldier39"]/title</xpath>
+    <value>
+      <title>veteran bandit</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="GangSoldier39"]/titleShort</xpath>
+    <value>
+      <titleShort>bandit</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="GangSoldier39"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] raided with bandits for many years, learning not only to fight but also to prepare camp and tend comrades' wounds.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="LanguageAnalyst27"]/title</xpath>
+    <value>
+      <title>wise cultivator</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="LanguageAnalyst27"]/titleShort</xpath>
+    <value>
+      <titleShort>cultivator</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="LanguageAnalyst27"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] worked the fields while experimenting with crops, comparing soil, fertilizer and sowing dates and recording the results.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="MasterChef48"]/title</xpath>
+    <value>
+      <title>manor cook</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="MasterChef48"]/titleShort</xpath>
+    <value>
+      <titleShort>cook</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="MasterChef48"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] ran a manor kitchen, preparing everyday meals and banquet dishes with exacting tastes and a gift for presentation.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="MedicSoldier54"]/title</xpath>
+    <value>
+      <title>healing monk</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="MedicSoldier54"]/titleShort</xpath>
+    <value>
+      <titleShort>healer</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="MedicSoldier54"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] studied medicine at a temple and tended the sick and injured, devoting life to treatment instead of taking up arms.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="MilitaryOfficer17"]/title</xpath>
+    <value>
+      <title>castle guard</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="MilitaryOfficer17"]/titleShort</xpath>
+    <value>
+      <titleShort>guard</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="MilitaryOfficer17"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] guarded a castle for years, excelling with bows and repairing palisades and earthworks, but was unsociable and left nursing to others.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Minister88"]/title</xpath>
+    <value>
+      <title>lord's retainer</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Minister88"]/titleShort</xpath>
+    <value>
+      <titleShort>retainer</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Minister88"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] served a lord by managing letters and supplies and dealing with people, while also practicing arms and making tools.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Model99"]/title</xpath>
+    <value>
+      <title>beautiful performer</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Model99"]/titleShort</xpath>
+    <value>
+      <titleShort>performer</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Model99"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] mastered singing and dancing and performed at feasts and festivals, captivating others with beauty and artistry.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="NinjaAssassin31"]/title</xpath>
+    <value>
+      <title>hired tough</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="NinjaAssassin31"]/titleShort</xpath>
+    <value>
+      <titleShort>tough</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="NinjaAssassin31"]/description</xpath>
+    <value>
+      <description>Serving no particular lord, [PAWN_nameDef] took jobs as a guard or enforcer, handling weapons, bargaining with clients and caring for personal equipment.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Novelist7"]/title</xpath>
+    <value>
+      <title>tale writer</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Novelist7"]/titleShort</xpath>
+    <value>
+      <titleShort>writer</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Novelist7"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] loved books and devoted life to writing tales, leaving negotiations and chores to others to focus on the brush.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="PirateTrooper73"]/title</xpath>
+    <value>
+      <title>fierce warrior</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="PirateTrooper73"]/titleShort</xpath>
+    <value>
+      <titleShort>warrior</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="PirateTrooper73"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] fought many battles with bow and blade. Though skilled in combat, [PAWN_nameDef] neither negotiates nor tends the wounded.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="PlanetaryDiplomat7"]/title</xpath>
+    <value>
+      <title>envoy</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="PlanetaryDiplomat7"]/titleShort</xpath>
+    <value>
+      <titleShort>envoy</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="PlanetaryDiplomat7"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] negotiated with powerful figures as a lord's envoy, managing correspondence and persuading others with words.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="PrisonerOfWar2"]/title</xpath>
+    <value>
+      <title>ashigaru commander</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="PrisonerOfWar2"]/titleShort</xpath>
+    <value>
+      <titleShort>commander</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="PrisonerOfWar2"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] led foot soldiers through many battles, mastering weapons and directing comrades on the battlefield.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="ReligiousHierarch16"]/title</xpath>
+    <value>
+      <title>temple abbot</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="ReligiousHierarch16"]/titleShort</xpath>
+    <value>
+      <titleShort>abbot</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="ReligiousHierarch16"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] led a temple, advised people and tended the sick, preparing medicines and meals but remaining unfamiliar with warfare and heavy labor.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="RunawayDancer35"]/title</xpath>
+    <value>
+      <title>traveling performer</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="RunawayDancer35"]/titleShort</xpath>
+    <value>
+      <titleShort>performer</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="RunawayDancer35"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] left a troupe and traveled the provinces performing song and dance, making friends easily and learning archery for self-defense.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Sculptor63"]/title</xpath>
+    <value>
+      <title>Buddhist sculptor</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Sculptor63"]/titleShort</xpath>
+    <value>
+      <titleShort>sculptor</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Sculptor63"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] spent years carving stone Buddhas, learning the properties of stone and leaving chores to apprentices to concentrate on art.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SoleSurvivor85"]/title</xpath>
+    <value>
+      <title>battle-scarred veteran</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SoleSurvivor85"]/titleShort</xpath>
+    <value>
+      <titleShort>veteran</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SoleSurvivor85"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] survived many battles and became a formidable fighter but remains unsociable and slow to trust others.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="StationSecurity38"]/title</xpath>
+    <value>
+      <title>checkpoint watchman</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="StationSecurity38"]/titleShort</xpath>
+    <value>
+      <titleShort>watchman</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="StationSecurity38"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] watched travelers and cargo passing a checkpoint, settling disputes and treating injuries, but feared fire and refused to help extinguish it.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="ChildStar74"]/title</xpath>
+    <value>
+      <title>performer's child</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="ChildStar74"]/titleShort</xpath>
+    <value>
+      <titleShort>performer</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="ChildStar74"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] performed song and dance with a troupe from childhood, becoming comfortable before crowds but learning little scholarship or household work.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="CrashBaby32"]/title</xpath>
+    <value>
+      <title>merchant's child</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="CrashBaby32"]/titleShort</xpath>
+    <value>
+      <titleShort>merchant child</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="CrashBaby32"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] grew up in a merchant household, meeting customers and naturally learning to converse and keep accounts.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="UrbworldUrchin61"]/title</xpath>
+    <value>
+      <title>town troublemaker</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="UrbworldUrchin61"]/titleShort</xpath>
+    <value>
+      <titleShort>troublemaker</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="UrbworldUrchin61"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] grew up playing in town alleys, fighting often and learning to throw stones and wield sticks.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="UrbworldDrone32"]/title</xpath>
+    <value>
+      <title>stonemason</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="UrbworldDrone32"]/titleShort</xpath>
+    <value>
+      <titleShort>mason</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="UrbworldDrone32"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] quarried stone and built foundations and stone walls, speaking little and preferring quiet work.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="UrbworldEntrepreneur14"]/title</xpath>
+    <value>
+      <title>market merchant</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="UrbworldEntrepreneur14"]/titleShort</xpath>
+    <value>
+      <titleShort>merchant</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="UrbworldEntrepreneur14"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] bought and sold goods at markets, mastering prices, accounts and negotiation.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="ConstructionEngineer32"]/title</xpath>
+    <value>
+      <title>experienced carpenter</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="ConstructionEngineer32"]/titleShort</xpath>
+    <value>
+      <titleShort>carpenter</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="ConstructionEngineer32"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] spent many years building houses, shrines and temples, with skill in working timber and assembling buildings.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="MafiaBoss17"]/title</xpath>
+    <value>
+      <title>bandit leader</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="MafiaBoss17"]/titleShort</xpath>
+    <value>
+      <titleShort>leader</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="MafiaBoss17"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] led bandits who robbed travelers and merchants, adept at fighting and commanding men and leaving routine chores to followers.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="ContractMiner86"]/title</xpath>
+    <value>
+      <title>skilled miner</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="ContractMiner86"]/titleShort</xpath>
+    <value>
+      <titleShort>miner</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="ContractMiner86"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] dug ore for years and could judge where to tunnel by reading the rock.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Taxonomist0"]/title</xpath>
+    <value>
+      <title>naturalist</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Taxonomist0"]/titleShort</xpath>
+    <value>
+      <titleShort>naturalist</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Taxonomist0"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] studied plants and animals in the wild and in books, disliking harm to living things and violence.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="CaveworldIlluminator95"]/title</xpath>
+    <value>
+      <title>mine veteran</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="CaveworldIlluminator95"]/titleShort</xpath>
+    <value>
+      <titleShort>veteran</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="CaveworldIlluminator95"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] spent years in mines, learning the tunnels and mining routines, enjoying underground life and getting to know fellow workers.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="AmateurEngineer3"]/title</xpath>
+    <value>
+      <title>curious tinkerer</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="AmateurEngineer3"]/titleShort</xpath>
+    <value>
+      <titleShort>tinkerer</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="AmateurEngineer3"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] was fascinated by tools and buildings from childhood and made things by imitation, ignoring fieldwork and cleaning.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="ArtStudent79"]/title</xpath>
+    <value>
+      <title>painter</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="ArtStudent79"]/titleShort</xpath>
+    <value>
+      <titleShort>painter</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="ArtStudent79"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] trained as a painter and earned a living with the brush, but was unfamiliar with farming and construction.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="ArtisanFarmer23"]/title</xpath>
+    <value>
+      <title>field-raised child</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="ArtisanFarmer23"]/titleShort</xpath>
+    <value>
+      <titleShort>field-raised</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="ArtisanFarmer23"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] grew up in a farm family helping with crops and cooking, with little schooling and a dislike of fighting.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="AspiringPopIdol28"]/title</xpath>
+    <value>
+      <title>raised in the arts</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="AspiringPopIdol28"]/titleShort</xpath>
+    <value>
+      <titleShort>performer</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="AspiringPopIdol28"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] learned song and dance in a wealthy household, blessed with beauty and accustomed to audiences rather than chores or labor.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Athlete47"]/title</xpath>
+    <value>
+      <title>martial student</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Athlete47"]/titleShort</xpath>
+    <value>
+      <titleShort>martial child</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Athlete47"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] devoted childhood to martial practice and studies, taking little interest in socializing or the arts.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="BehaviourResearch74"]/title</xpath>
+    <value>
+      <title>master physician</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="BehaviourResearch74"]/titleShort</xpath>
+    <value>
+      <titleShort>physician</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="BehaviourResearch74"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] studied old and new medical texts and treated many patients, spending much time on medicine rather than farm or kitchen work.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="CivilServant2"]/title</xpath>
+    <value>
+      <title>estate scribe</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="CivilServant2"]/titleShort</xpath>
+    <value>
+      <titleShort>scribe</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="CivilServant2"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] managed accounts, letters and dues for an estate, becoming adept at reading, writing and negotiation rather than repairs.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="ClassClown96"]/title</xpath>
+    <value>
+      <title>young artist</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="ClassClown96"]/titleShort</xpath>
+    <value>
+      <titleShort>artist</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="ClassClown96"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] often painted alone as a child. Though shy and averse to conflict, [PAWN_nameDef] showed recognized talent.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="CoreDilettante33"]/title</xpath>
+    <value>
+      <title>wealthy child</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="CoreDilettante33"]/titleShort</xpath>
+    <value>
+      <titleShort>privileged child</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="CoreDilettante33"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] grew up with books, arts and lessons in manners, but little exposure to labor or fighting.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="CoreworldStudent50"]/title</xpath>
+    <value>
+      <title>self-styled child</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="CoreworldStudent50"]/titleShort</xpath>
+    <value>
+      <titleShort>self-styled</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="CoreworldStudent50"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] struggled with the dress others expected and began making clothing and ornaments that felt right, preferring crafts to cooking or farming.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="DesertRat47"]/title</xpath>
+    <value>
+      <title>mountain temple child</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="DesertRat47"]/titleShort</xpath>
+    <value>
+      <titleShort>temple child</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="DesertRat47"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] grew up at an austere mountain temple, studying books, martial arts and wound care and learning to live without luxuries.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="DestroyerGeneral26"]/title</xpath>
+    <value>
+      <title>warlord</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="DestroyerGeneral26"]/titleShort</xpath>
+    <value>
+      <titleShort>commander</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="DestroyerGeneral26"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] led troops in many battles and earned fame for archery and command, leaving mundane chores to subordinates.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="EnergeticPopIdol61"]/title</xpath>
+    <value>
+      <title>talented young performer</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="EnergeticPopIdol61"]/titleShort</xpath>
+    <value>
+      <titleShort>performer</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="EnergeticPopIdol61"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] showed talent at song and dance and attracted notice for beauty, being headstrong, good at fighting and fond of praise and rewards.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="FelineScientist76"]/title</xpath>
+    <value>
+      <title>medical apprentice</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="FelineScientist76"]/titleShort</xpath>
+    <value>
+      <titleShort>apprentice</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="FelineScientist76"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] studied medical texts and helped care for patients, becoming accustomed to dealing with their families.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="FoundryApprentice76"]/title</xpath>
+    <value>
+      <title>forge-raised child</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="FoundryApprentice76"]/titleShort</xpath>
+    <value>
+      <titleShort>forge child</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="FoundryApprentice76"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] grew up in a forge, making tools and helping with repairs, favoring strong and useful things over ornaments.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Fugitive4"]/title</xpath>
+    <value>
+      <title>wanderer</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Fugitive4"]/titleShort</xpath>
+    <value>
+      <titleShort>wanderer</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Fugitive4"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] traveled among villages, doing fieldwork, cooking and tending injuries, but remained uncomfortable around others.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="GunDealer14"]/title</xpath>
+    <value>
+      <title>arms merchant</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="GunDealer14"]/titleShort</xpath>
+    <value>
+      <titleShort>merchant</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="GunDealer14"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] sold bows, swords and spears, familiar with weapons and negotiating prices.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Gymnast48"]/title</xpath>
+    <value>
+      <title>sumo-loving child</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Gymnast48"]/titleShort</xpath>
+    <value>
+      <titleShort>sumo lover</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Gymnast48"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] loved sumo, testing strength with village children and chatting readily with adults.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="HedgeFundManager54"]/title</xpath>
+    <value>
+      <title>shrewd painter</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="HedgeFundManager54"]/titleShort</xpath>
+    <value>
+      <titleShort>painter</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="HedgeFundManager54"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] received commissions from temples and manors, negotiated high payments, read widely and sought greater wealth.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="HillbillyProdigy60"]/title</xpath>
+    <value>
+      <title>mountain eccentric</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="HillbillyProdigy60"]/titleShort</xpath>
+    <value>
+      <titleShort>eccentric</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="HillbillyProdigy60"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] grew up in the mountains, enjoying books and martial practice and learning to treat wounds while avoiding socializing and art.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="IcePlanetChild95"]/title</xpath>
+    <value>
+      <title>snow-country child</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="IcePlanetChild95"]/titleShort</xpath>
+    <value>
+      <titleShort>snow child</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="IcePlanetChild95"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] grew up in a snowy region, studying books and how buildings and tools work while preferring solitude.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="IndworldUrchin73"]/title</xpath>
+    <value>
+      <title>alley-raised child</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="IndworldUrchin73"]/titleShort</xpath>
+    <value>
+      <titleShort>alley child</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="IndworldUrchin73"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] grew up in back alleys, repairing discarded tools and getting into fights, with little knowledge of farming.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="LaborCampOrphan91"]/title</xpath>
+    <value>
+      <title>construction-yard child</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="LaborCampOrphan91"]/titleShort</xpath>
+    <value>
+      <titleShort>yard child</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="LaborCampOrphan91"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] worked from childhood at construction sites, digging and carrying stone and helping build structures, with little time for the arts.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="MadScientist47"]/title</xpath>
+    <value>
+      <title>cold prodigy</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="MadScientist47"]/titleShort</xpath>
+    <value>
+      <titleShort>prodigy</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="MadScientist47"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] learned quickly and loved books, skilled at dealing with people but indifferent to their suffering.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="MarineCadet73"]/title</xpath>
+    <value>
+      <title>warrior-household child</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="MarineCadet73"]/titleShort</xpath>
+    <value>
+      <titleShort>warrior child</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="MarineCadet73"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] grew up in a warrior household and practiced archery and swordsmanship from childhood, excelling at both.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Mathematician6"]/title</xpath>
+    <value>
+      <title>arithmetician</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Mathematician6"]/titleShort</xpath>
+    <value>
+      <titleShort>arithmetician</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Mathematician6"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] handled accounts and calendar calculations with skill and loved learning but disliked menial tasks and warfare.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="MechanicsEngineer64"]/title</xpath>
+    <value>
+      <title>ingenious carpenter</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="MechanicsEngineer64"]/titleShort</xpath>
+    <value>
+      <titleShort>carpenter</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="MechanicsEngineer64"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] built structures, waterwheels and wooden tools and excelled at figuring out and repairing mechanisms.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="MedicalStudent38"]/title</xpath>
+    <value>
+      <title>healing monk's apprentice</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="MedicalStudent38"]/titleShort</xpath>
+    <value>
+      <titleShort>apprentice</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="MedicalStudent38"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] studied medical texts and patient care with a healing monk and learned to welcome visitors but rarely did physical labor.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="MedicalStudent96"]/title</xpath>
+    <value>
+      <title>physician's child</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="MedicalStudent96"]/titleShort</xpath>
+    <value>
+      <titleShort>physician child</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="MedicalStudent96"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] grew up in a family of physicians, learning medicines and wound care and honing skills while helping family.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="MilitaryGunsmith27"]/title</xpath>
+    <value>
+      <title>military armorer</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="MilitaryGunsmith27"]/titleShort</xpath>
+    <value>
+      <titleShort>armorer</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="MilitaryGunsmith27"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] followed armies making and repairing arms and armor, and could fight, cook at camp and tend injuries.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="MilitaryInventor35"]/title</xpath>
+    <value>
+      <title>camp fortification artisan</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="MilitaryInventor35"]/titleShort</xpath>
+    <value>
+      <titleShort>artisan</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="MilitaryInventor35"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] helped armies build palisades and camps and made sturdy and practical tools for the work.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="MindwipedAssassin50"]/title</xpath>
+    <value>
+      <title>merciless assassin</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="MindwipedAssassin50"]/titleShort</xpath>
+    <value>
+      <titleShort>assassin</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="MindwipedAssassin50"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] killed for a living, mastered ranged and close combat and remained indifferent to others' pain and daily chores and art.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Nerd92"]/title</xpath>
+    <value>
+      <title>inquisitive child</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Nerd92"]/titleShort</xpath>
+    <value>
+      <titleShort>inquisitive</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Nerd92"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] studied tools and bodies with books and experiments, often talking endlessly about interests but finding social life difficult.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Orphan15"]/title</xpath>
+    <value>
+      <title>kindhearted orphan</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Orphan15"]/titleShort</xpath>
+    <value>
+      <titleShort>orphan</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Orphan15"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] grew up helping other orphans, defending vulnerable children and learning wound care.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Osteologist74"]/title</xpath>
+    <value>
+      <title>military strategist</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Osteologist74"]/titleShort</xpath>
+    <value>
+      <titleShort>strategist</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Osteologist74"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] studied strategy and martial arts and understood formations and directing troops but was unused to heavy labor.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Pampered87"]/title</xpath>
+    <value>
+      <title>sheltered child</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Pampered87"]/titleShort</xpath>
+    <value>
+      <titleShort>sheltered</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Pampered87"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] was carefully raised in a wealthy household, taught books, manners and medicines but not cooking or fighting.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Philosopher82"]/title</xpath>
+    <value>
+      <title>debate-loving child</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Philosopher82"]/titleShort</xpath>
+    <value>
+      <titleShort>debater</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Philosopher82"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] read books in a temple and joined discussions with adults, preferring words over violence.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="PrivilegedProdigy70"]/title</xpath>
+    <value>
+      <title>court noble's child</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="PrivilegedProdigy70"]/titleShort</xpath>
+    <value>
+      <titleShort>noble child</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="PrivilegedProdigy70"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] grew up in a court noble's family learning scholarship, arts and a little medicine, without manual work or martial training.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="PsychiatricPatient94"]/title</xpath>
+    <value>
+      <title>recluse</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="PsychiatricPatient94"]/titleShort</xpath>
+    <value>
+      <titleShort>recluse</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="PsychiatricPatient94"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] withdrew from society and lived far from settlements, avoiding people and conflict and knowing little about cooking or crafts.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="PyroAssistant82"]/title</xpath>
+    <value>
+      <title>fire-loving child</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="PyroAssistant82"]/titleShort</xpath>
+    <value>
+      <titleShort>fire lover</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="PyroAssistant82"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] grew up around kilns and learned repairs and burn treatment but always loved flames and refused to extinguish them.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="RebelSlave14"]/title</xpath>
+    <value>
+      <title>defiant servant</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="RebelSlave14"]/titleShort</xpath>
+    <value>
+      <titleShort>servant</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="RebelSlave14"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] worked for others from childhood, tending fields and tools but resisting unjust orders and supporting fellow servants.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="ScienceProdigy65"]/title</xpath>
+    <value>
+      <title>bright child</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="ScienceProdigy65"]/titleShort</xpath>
+    <value>
+      <titleShort>bright child</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="ScienceProdigy65"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] learned quickly, studying books, medicine and art, and avoided fights and dangerous fires.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SewerKid57"]/title</xpath>
+    <value>
+      <title>kitchen-raised child</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SewerKid57"]/titleShort</xpath>
+    <value>
+      <titleShort>kitchen child</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SewerKid57"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] helped cook since childhood, learning to prepare rice, vegetables and daily meals.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Sheriff52"]/title</xpath>
+    <value>
+      <title>town patrol</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Sheriff52"]/titleShort</xpath>
+    <value>
+      <titleShort>patrol</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Sheriff52"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] patrolled town, caught thieves, broke up fights and learned to settle disputes through both martial skill and discussion.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SlaveChemist84"]/title</xpath>
+    <value>
+      <title>herbal physician</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SlaveChemist84"]/titleShort</xpath>
+    <value>
+      <titleShort>herbalist</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="SlaveChemist84"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] read medical books and prepared herbal remedies, becoming knowledgeable about medicine but poor at physical labor and fighting.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Smuggler23"]/title</xpath>
+    <value>
+      <title>illicit peddler</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Smuggler23"]/titleShort</xpath>
+    <value>
+      <titleShort>peddler</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Smuggler23"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] traveled trading discreetly, bargaining skillfully and learning some self-defense and wound care.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="StationWhelp94"]/title</xpath>
+    <value>
+      <title>bandit-raised child</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="StationWhelp94"]/titleShort</xpath>
+    <value>
+      <titleShort>bandit child</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="StationWhelp94"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] grew up among bandits and learned bow and blade, but struggled with socializing and caring for others.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="StreetPeddler66"]/title</xpath>
+    <value>
+      <title>peddler's child</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="StreetPeddler66"]/titleShort</xpath>
+    <value>
+      <titleShort>peddler child</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="StreetPeddler66"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] traveled with family peddlers, making and selling goods, haggling and learning to fight off trouble on the road.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Student65"]/title</xpath>
+    <value>
+      <title>young medical scholar</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Student65"]/titleShort</xpath>
+    <value>
+      <titleShort>scholar</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="Student65"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] grew up wealthy and studied medicine, books and treatments while leaving cleaning and hauling to others.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="StudentSocialite89"]/title</xpath>
+    <value>
+      <title>eloquent child</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="StudentSocialite89"]/titleShort</xpath>
+    <value>
+      <titleShort>eloquent</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="StudentSocialite89"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] grew up hosting guests in a high-status family, mastering conversation but leaving ordinary work to others.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="ToolMechanic77"]/title</xpath>
+    <value>
+      <title>master woodworker</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="ToolMechanic77"]/titleShort</xpath>
+    <value>
+      <titleShort>woodworker</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="ToolMechanic77"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] worked in wood for years, from farm tools to house timbers, becoming known for fine craftsmanship and sought-after skill.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="TragicLoner87"]/title</xpath>
+    <value>
+      <title>mountain hut child</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="TragicLoner87"]/titleShort</xpath>
+    <value>
+      <titleShort>mountain child</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="TragicLoner87"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] grew up in a remote hut reading books and tending animals, with little social contact and a lasting preference for solitude.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="TransferStudent10"]/title</xpath>
+    <value>
+      <title>temple ward</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="TransferStudent10"]/titleShort</xpath>
+    <value>
+      <titleShort>ward</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="TransferStudent10"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] was entrusted to a temple by a powerful family, learning literacy and scholarship from monks and greeting visitors but doing little physical work.</description>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="WarshipCaptain67"]/title</xpath>
+    <value>
+      <title>naval captain</title>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="WarshipCaptain67"]/titleShort</xpath>
+    <value>
+      <titleShort>captain</titleShort>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BackstoryDef[defName="WarshipCaptain67"]/description</xpath>
+    <value>
+      <description>[PAWN_nameDef] led a naval ship through sea battles, understanding construction and sea routes and commanding the soldiers aboard.</description>
+    </value>
+  </Operation>
+</Patch>

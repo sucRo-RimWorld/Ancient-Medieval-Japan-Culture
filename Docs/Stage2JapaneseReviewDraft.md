@@ -1,551 +1,455 @@
-# Phase 2 既存背景・日本語改稿候補（全面改稿第2稿／作者一括確認待ち）
+# AMJ Culture Phase 2 — Author-approved Japanese backgrounds
+
+**Author approval: 2026-10-19.** All 89 original Vanilla Core 1.6/1.7 backstory Japanese titles, short titles and descriptions were reviewed and accepted in chat. These include 87 previously drafted candidates and two reconsidered originals (`AddictionCounsel60` and `Architect28`). This supersedes the former unapproved 87-entry file. No new Defs or Traits.
+
+This file is the approved Japanese text source of truth. The corresponding English translation resides in `Patches/Stage2HistoricalBackstories.xml`; Japanese DefInjected in `Languages/Japanese/DefInjected/BackstoryDef/Stage2HistoricalBackstories.xml` includes matching `baseDesc` and `description`. Original Core reference: [Project Core 1.6/1.7 character metadata audit](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/blob/main/Docs/Research/VanillaCoreCharacterDefsSourceAudit20261016.md).
+
+Do not alter original Def identities, slot, skillGains, disabled/required work tags, forced traits or possessions. Two approved originals must retain original generation categories. Existing 34 historical rewrites and 23 possession replacements stay unchanged. Japanese approval and source implementation are **not** native 1.6/1.7 + MO game acceptance or release permission.
+
+## Approved Japanese texts
+
+### 01. `AddictionCounsel60`
+- **title:** 村の世話役
+- **titleShort:** 世話役
+- **description:** [PAWN_nameDef]は村の人々から頼りにされ、揉め事の仲裁や病人の世話をしてきた。祭りの支度では飾りや道具作りにも手を貸していた。
+
+### 02. `Architect28`
+- **title:** 寺の学僧
+- **titleShort:** 学僧
+- **description:** [PAWN_nameDef]は寺で学問を修め、堂塔の造営にも関わってきた。建物の絵図を描き、構造や意匠を考えることに長けていた。日々の雑役はほかの者に任せていた。
+
+### 03. `BountyHunter41`
+- **title:** 歴戦の武士
+- **titleShort:** 武士
+- **description:** [PAWN_nameDef]は幾度も戦場に立ち、弓と太刀の腕を磨いてきた。
+
+### 04. `Castaway81`
+- **title:** 山里の暮らし
+- **titleShort:** 山里暮らし
+- **description:** [PAWN_nameDef]は山里で畑を耕し、住まいを直しながら暮らしていた。日々の炊事や山仕事も自分でこなしてきた。
+
+### 05. `CharityWorker36`
+- **title:** 慈悲深い僧
+- **titleShort:** 僧
+- **description:** [PAWN_nameDef]は寺で人々の相談に乗り、貧しい者に施し、病人を看てきた。武器を取ることは固く拒んだ。
+
+### 06. `CorporateBuilder58`
+- **title:** 古参の普請人足
+- **titleShort:** 普請人足
+- **description:** [PAWN_nameDef]は長く普請場で働き、土を掘り、石を据え、建物を建ててきた。美術品を作る仕事には携わらなかった。
+
+### 07. `ExpertHandyman8`
+- **title:** 腕利きの職人
+- **titleShort:** 職人
+- **description:** [PAWN_nameDef]は家屋や農具の修繕を長く続けてきた。どこが悪いかを見抜き、手持ちの道具で工夫して直すことが得意だった。
+
+### 08. `FurnitureBuilder83`
+- **title:** 山里の大工
+- **titleShort:** 大工
+- **description:** [PAWN_nameDef]は山で木を選んで伐り、その材を使って家や小屋を建ててきた。家々の修繕にもよく呼ばれていた。
+
+### 09. `GangSoldier39`
+- **title:** 古参の野盗
+- **titleShort:** 野盗
+- **description:** [PAWN_nameDef]は長く野盗の一味に加わり、襲撃を繰り返してきた。戦いに慣れているだけでなく、野営の支度や仲間の傷の手当てもできた。
+
+### 10. `LanguageAnalyst27`
+- **title:** 田畑の知恵者
+- **titleShort:** 知恵者
+- **description:** [PAWN_nameDef]は田畑を耕しながら、作物の育て方を工夫してきた。土や肥料、種まきの時期による違いを調べ、試したことを記録している。
+
+### 11. `MasterChef48`
+- **title:** 館の料理人
+- **titleShort:** 料理人
+- **description:** [PAWN_nameDef]は館の台所を任され、日々の食事から宴の膳まで作ってきた。味へのこだわりが強く、料理の盛り付けにも優れていた。
+
+### 12. `MedicSoldier54`
+- **title:** 医僧
+- **titleShort:** 医僧
+- **description:** [PAWN_nameDef]は寺で医術を学び、病人や負傷者の手当てを重ねてきた。自ら武器を取ることはなく、治療に専念していた。
+
+### 13. `MilitaryOfficer17`
+- **title:** 城番
+- **titleShort:** 城番
+- **description:** [PAWN_nameDef]は長く城の守備を務めてきた。弓の腕に優れ、柵や土塁の補修にも詳しい。人付き合いは苦手で、負傷者の世話は他人に任せていた。
+
+### 14. `Minister88`
+- **title:** 郎党
+- **titleShort:** 郎党
+- **description:** [PAWN_nameDef]は領主に仕え、書状や物資の管理、人々との折衝に励んできた。武芸の心得があり、道具作りにも通じている。
+
+### 15. `Model99`
+- **title:** 見目麗しい舞人
+- **titleShort:** 舞人
+- **description:** [PAWN_nameDef]は歌や舞の芸を身につけ、宴や祭礼で披露してきた。その容姿の美しさと優れた芸で、多くの人々を魅了していた。
+
+### 16. `NinjaAssassin31`
+- **title:** 荒事屋
+- **titleShort:** 荒事屋
+- **description:** [PAWN_nameDef]は特定の主君に仕えず、護衛や揉め事の始末を請け負って暮らしてきた。弓や刀の扱いに慣れ、依頼人との交渉や武具の手入れも自分でこなしている。
+
+### 17. `Novelist7`
+- **title:** 物語の書き手
+- **titleShort:** 書き手
+- **description:** [PAWN_nameDef]は書物に親しみ、物語を綴ることに打ち込んできた。人との交渉や日々の雑用は周囲に任せ、筆を執ることに専念していた。
+
+### 18. `PirateTrooper73`
+- **title:** 荒武者
+- **titleShort:** 荒武者
+- **description:** [PAWN_nameDef]は幾度も戦場に立ち、弓と刀で戦ってきた。武芸には優れているが、人との交渉や負傷者の世話はしない。
+
+### 19. `PlanetaryDiplomat7`
+- **title:** 使者
+- **titleShort:** 使者
+- **description:** [PAWN_nameDef]は主君の使いとして各地の有力者と交渉してきた。書状の扱いに通じ、言葉で相手を説得することに長けている。
+
+### 20. `PrisonerOfWar2`
+- **title:** 足軽頭
+- **titleShort:** 足軽頭
+- **description:** [PAWN_nameDef]は幾度も戦に出て、足軽たちを率いてきた。武芸に通じ、仲間をまとめ、戦場で指示を出すことにも慣れている。
+
+### 21. `ReligiousHierarch16`
+- **title:** 寺の住職
+- **titleShort:** 住職
+- **description:** [PAWN_nameDef]は寺を預かり、人々の相談に乗りながら、病人の世話もしてきた。薬や食事を用意することにも慣れているが、武芸や力仕事には疎い。
+
+### 22. `RunawayDancer35`
+- **title:** 旅芸人
+- **titleShort:** 旅芸人
+- **description:** [PAWN_nameDef]は一座を離れ、歌や舞を披露しながら諸国を渡り歩いてきた。人付き合いが得意で、道中の危険に備えて弓も覚えた。
+
+### 23. `Sculptor63`
+- **title:** 仏師
+- **titleShort:** 仏師
+- **description:** [PAWN_nameDef]は石仏を彫ることに長年打ち込んできた。石材の性質にも詳しく、身の回りの雑事は弟子たちに任せ、制作に専念していた。
+
+### 24. `SoleSurvivor85`
+- **title:** 古強者
+- **titleShort:** 古強者
+- **description:** [PAWN_nameDef]は数多くの戦を経験してきた。武芸の腕は確かだが、無愛想で他人と打ち解けることは少ない。
+
+### 25. `StationSecurity38`
+- **title:** 関所の番人
+- **titleShort:** 番人
+- **description:** [PAWN_nameDef]は関所で人や荷の出入りを見張ってきた。争いを収めたり、負傷者の手当てをしたりすることにも慣れている。ただし火をひどく恐れ、火消しには加わらない。
+
+### 26. `ChildStar74`
+- **title:** 芸人の子
+- **titleShort:** 芸人の子
+- **description:** [PAWN_nameDef]は幼い頃から一座で歌や舞を披露してきた。人前に立つことには慣れていたが、学問を習う機会は少なく、家の雑用もほとんど経験しなかった。
+
+### 27. `CrashBaby32`
+- **title:** 商家の子
+- **titleShort:** 商家の子
+- **description:** [PAWN_nameDef]は商人の家に生まれ、幼い頃から店先で人々と接してきた。客との話し方や品物の勘定も自然と覚えた。
+
+### 28. `UrbworldUrchin61`
+- **title:** 町の悪童
+- **titleShort:** 悪童
+- **description:** [PAWN_nameDef]は町の路地を遊び場にして育った。喧嘩が絶えず、石投げや棒を振り回すことにも慣れていた。
+
+### 29. `UrbworldDrone32`
+- **title:** 石工
+- **titleShort:** 石工
+- **description:** [PAWN_nameDef]は石を切り出し、建物の土台や石垣を築いてきた。口数は少なく、黙々と働くことを好む。
+
+### 30. `UrbworldEntrepreneur14`
+- **title:** 市の商人
+- **titleShort:** 商人
+- **description:** [PAWN_nameDef]は各地の市で品物を売り買いしてきた。相場や勘定に明るく、取引相手との駆け引きにも長けている。
+
+### 31. `ConstructionEngineer32`
+- **title:** 熟練の大工
+- **titleShort:** 大工
+- **description:** [PAWN_nameDef]は長年にわたり家屋や寺社の建築に携わってきた。木材の加工から建物の組み立てまで、確かな腕を持っている。
+
+### 32. `MafiaBoss17`
+- **title:** 野盗の頭目
+- **titleShort:** 頭目
+- **description:** [PAWN_nameDef]は野盗の一団を率い、旅人や商人から金品を奪ってきた。武芸と人心掌握に長け、雑用は手下に任せていた。
+
+### 33. `ContractMiner86`
+- **title:** 腕利きの鉱夫
+- **titleShort:** 鉱夫
+- **description:** [PAWN_nameDef]は長く鉱山で働き、鉱石を掘り出してきた。岩盤の様子を見れば、どこを掘り進めればよいか見当がつく。
+
+### 34. `Taxonomist0`
+- **title:** 山野の物知り
+- **titleShort:** 物知り
+- **description:** [PAWN_nameDef]は山野を歩き、草木や獣の種類と習性を調べてきた。書物にも親しみ、生き物を傷つけることや争い事を嫌っている。
+
+### 35. `CaveworldIlluminator95`
+- **title:** 鉱山の古株
+- **titleShort:** 古株
+- **description:** [PAWN_nameDef]は長く鉱山で働き、坑道の様子や採掘の段取りに詳しい。坑内で過ごすことを好み、仕事仲間にも顔が広い。
+
+### 36. `AmateurEngineer3`
+- **title:** 道具好きの子
+- **titleShort:** 道具好き
+- **description:** [PAWN_nameDef]は幼い頃から道具や建物の仕組みに興味を持ち、見よう見まねで物を作っていた。畑仕事や掃除には見向きもせず、興味のあることばかりに熱中していた。
+
+### 37. `ArtStudent79`
+- **title:** 絵師
+- **titleShort:** 絵師
+- **description:** [PAWN_nameDef]は絵師のもとで修業を重ね、絵を描いて生計を立てるようになった。筆を扱う腕は確かだが、田畑や普請場での仕事には不慣れだった。
+
+### 38. `ArtisanFarmer23`
+- **title:** 田畑育ち
+- **titleShort:** 田畑育ち
+- **description:** [PAWN_nameDef]は百姓の家に生まれ、幼いうちから田畑の仕事を手伝ってきた。作物の世話や炊事には慣れているが、学問を習う機会は少なく、争い事を嫌っていた。
+
+### 39. `AspiringPopIdol28`
+- **title:** 芸事育ち
+- **titleShort:** 芸事育ち
+- **description:** [PAWN_nameDef]は裕福な家に生まれ、幼い頃から歌や舞を習ってきた。容姿にも恵まれ、人前に立つことには慣れているが、家事や力仕事には縁がなかった。
+
+### 40. `Athlete47`
+- **title:** 武芸に励む子
+- **titleShort:** 武芸好き
+- **description:** [PAWN_nameDef]は幼い頃から武芸の稽古と学問に励んできた。人付き合いや芸事には関心を示さず、黙々と鍛錬を重ねていた。
+
+### 41. `BehaviourResearch74`
+- **title:** 医術の大家
+- **titleShort:** 医家
+- **description:** [PAWN_nameDef]は古今の医書を読み、病人の診察と治療を重ねてきた。医術の探究に多くの時間を費やし、田畑や台所の仕事には不慣れだった。
+
+### 42. `CivilServant2`
+- **title:** 荘園の書記
+- **titleShort:** 書記
+- **description:** [PAWN_nameDef]は荘園で帳簿や書状を扱い、年貢の取りまとめに携わってきた。読み書きと人との折衝に慣れているが、建物の修繕などは不得手だった。
+
+### 43. `ClassClown96`
+- **title:** 絵好きの子
+- **titleShort:** 絵好き
+- **description:** [PAWN_nameDef]は幼い頃から、一人で絵を描いて過ごすことが多かった。人付き合いや争い事は苦手だが、絵を描く腕は周囲にも認められていた。
+
+### 44. `CoreDilettante33`
+- **title:** 裕福な家の子
+- **titleShort:** 富家の子
+- **description:** [PAWN_nameDef]は裕福な家に育ち、書物や芸事に親しんできた。人との付き合い方も教わったが、力仕事や争い事には縁がなかった。
+
+### 45. `CoreworldStudent50`
+- **title:** 装いを工夫する子
+- **titleShort:** 装い好き
+- **description:** [PAWN_nameDef]は周囲から求められる装いになじめず、自分に合った衣服や飾りを作るようになった。細工や物作りには熱心だったが、炊事や畑仕事はほとんど経験しなかった。
+
+### 46. `DesertRat47`
+- **title:** 山寺育ち
+- **titleShort:** 山寺育ち
+- **description:** [PAWN_nameDef]は山寺の質素な暮らしの中で育った。書物を学ぶほか、武芸の稽古や怪我の手当ても教わり、贅沢を求めない性分になった。
+
+### 47. `DestroyerGeneral26`
+- **title:** 武将
+- **titleShort:** 武将
+- **description:** [PAWN_nameDef]は軍勢を率いて幾度も戦い、弓の腕と優れた采配で名を上げてきた。人を率いることに長け、日々の雑務は配下に任せていた。
+
+### 48. `EnergeticPopIdol61`
+- **title:** 芸達者な子
+- **titleShort:** 芸達者
+- **description:** [PAWN_nameDef]は幼い頃から歌や舞が得意で、その容姿も人目を引いていた。勝ち気で喧嘩にも強く、褒められることや褒美をもらうことが好きだった。
+
+### 49. `FelineScientist76`
+- **title:** 医術の見習い
+- **titleShort:** 医術見習い
+- **description:** [PAWN_nameDef]は医術を志し、医書を読みながら病人の手当てを手伝ってきた。患者やその家族とのやり取りにも慣れている。
+
+### 50. `FoundryApprentice76`
+- **title:** 鍛冶場育ち
+- **titleShort:** 鍛冶場育ち
+- **description:** [PAWN_nameDef]は鍛冶場で育ち、幼い頃から道具作りや仕事場の修繕を手伝ってきた。飾り物よりも、丈夫で役に立つ品を作ることを好んでいた。
+
+### 51. `Fugitive4`
+- **title:** 流れ者
+- **titleShort:** 流れ者
+- **description:** [PAWN_nameDef]は各地の村を渡り歩き、畑仕事や炊事をしながら暮らしてきた。怪我の手当ても自分でこなせるが、人付き合いはあまり得意ではない。
+
+### 52. `GunDealer14`
+- **title:** 武具商
+- **titleShort:** 武具商
+- **description:** [PAWN_nameDef]は弓や刀、槍などの武具を商ってきた。武具の扱いを心得ており、客との値段交渉にも長けている。
+
+### 53. `Gymnast48`
+- **title:** 相撲好きの子
+- **titleShort:** 相撲好き
+- **description:** [PAWN_nameDef]は幼い頃から相撲が好きで、村の子どもたちと力比べをしていた。人懐こい性格で、周囲の大人ともよく話していた。
+
+### 54. `HedgeFundManager54`
+- **title:** 商売上手の絵師
+- **titleShort:** 絵師
+- **description:** [PAWN_nameDef]は寺や館から絵の注文を受け、巧みな交渉で高い報酬を得てきた。書物にも親しみ、さらに財を築くことに熱心だった。
+
+### 55. `HillbillyProdigy60`
+- **title:** 山里の変わり者
+- **titleShort:** 変わり者
+- **description:** [PAWN_nameDef]は山里で育ち、書物を読むことや武芸の稽古を好んだ。怪我の手当てにも詳しかったが、人付き合いや芸事には関心を示さなかった。
+
+### 56. `IcePlanetChild95`
+- **title:** 雪国の子
+- **titleShort:** 雪国の子
+- **description:** [PAWN_nameDef]は雪深い土地で育ち、書物を読みながら家屋や道具の仕組みを学んだ。他人と関わることを好まず、物事を一人で考えることに熱中していた。
+
+### 57. `IndworldUrchin73`
+- **title:** 路地裏育ち
+- **titleShort:** 路地の子
+- **description:** [PAWN_nameDef]は町の路地裏で育ち、拾った道具を直して使っていた。喧嘩に巻き込まれることもあったが、畑仕事には縁がなかった。
+
+### 58. `LaborCampOrphan91`
+- **title:** 普請場育ち
+- **titleShort:** 普請場育ち
+- **description:** [PAWN_nameDef]は幼い頃から普請場で働き、土を掘り、石を運び、建物を建てる仕事を手伝ってきた。芸事を習う機会はほとんどなかった。
+
+### 59. `MadScientist47`
+- **title:** 冷淡な秀才
+- **titleShort:** 秀才
+- **description:** [PAWN_nameDef]は幼い頃から物覚えがよく、書物に親しんでいた。人との駆け引きは得意だったが、他人の苦しみには無頓着だった。
+
+### 60. `MarineCadet73`
+- **title:** 武家育ち
+- **titleShort:** 武家育ち
+- **description:** [PAWN_nameDef]は武士の家に育ち、幼い頃から弓と剣術の稽古を重ねてきた。どちらの腕も年齢の割に優れていた。
+
+### 61. `Mathematician6`
+- **title:** 算術家
+- **titleShort:** 算術家
+- **description:** [PAWN_nameDef]は算術に優れ、帳簿や暦の計算を任されてきた。学問には熱心だが、単純な雑用や武芸は苦手だった。
+
+### 62. `MechanicsEngineer64`
+- **title:** 器用な番匠
+- **titleShort:** 番匠
+- **description:** [PAWN_nameDef]は建物の普請に携わるかたわら、水車や木製の道具も作ってきた。仕組みを考え、壊れたものを工夫して直すことが得意だった。
+
+### 63. `MedicalStudent38`
+- **title:** 医僧の弟子
+- **titleShort:** 医僧の弟子
+- **description:** [PAWN_nameDef]は医僧のもとで医書を読み、病人の手当てを学んできた。寺を訪れる人々との接し方にも慣れていたが、力仕事はほとんど経験していない。
+
+### 64. `MedicalStudent96`
+- **title:** 医家育ち
+- **titleShort:** 医家の子
+- **description:** [PAWN_nameDef]は医術を家業とする家で育ち、幼い頃から薬の扱いや傷の手当てを教わってきた。家族の仕事を手伝ううちに、医術の腕を磨いた。
+
+### 65. `MilitaryGunsmith27`
+- **title:** 武具職人
+- **titleShort:** 武具職人
+- **description:** [PAWN_nameDef]は軍勢に同行し、武具の製作や修理を担ってきた。自らも武芸に通じ、野営での炊事や負傷者の手当てもできた。
+
+### 66. `MilitaryInventor35`
+- **title:** 陣普請の職人
+- **titleShort:** 普請職人
+- **description:** [PAWN_nameDef]は軍勢に従い、柵や陣地の設営に携わってきた。現場で使う道具も自ら作り、丈夫で使いやすいものになるよう工夫していた。
+
+### 67. `MindwipedAssassin50`
+- **title:** 冷酷な刺客
+- **titleShort:** 刺客
+- **description:** [PAWN_nameDef]は人を討つ仕事を重ね、弓と近接戦闘に熟達した。他人の苦しみには無頓着で、日々の暮らしや芸事にもほとんど関心を示さない。
+
+### 68. `Nerd92`
+- **title:** 理屈好きの子
+- **titleShort:** 理屈好き
+- **description:** [PAWN_nameDef]は道具や人の体の仕組みに興味を持ち、書物を読んでは自分で確かめていた。興味のある話になると長々と語り、人付き合いは苦手だった。
+
+### 69. `Orphan15`
+- **title:** 仲間思いの孤児
+- **titleShort:** 孤児
+- **description:** [PAWN_nameDef]は幼くして親を失い、同じ境遇の子どもたちと助け合って育った。弱い者がいじめられれば身を挺してかばい、怪我の手当ても覚えた。
+
+### 70. `Osteologist74`
+- **title:** 兵法家
+- **titleShort:** 兵法家
+- **description:** [PAWN_nameDef]は兵法を学び、武芸の稽古にも励んできた。戦の陣立てや人を動かすことに詳しいが、力仕事には不慣れだった。
+
+### 71. `Pampered87`
+- **title:** 箱入り育ち
+- **titleShort:** 箱入り育ち
+- **description:** [PAWN_nameDef]は裕福な家で大切に育てられ、読み書きや人との接し方、薬の扱いを教わった。一方、炊事や武芸を習うことはなかった。
+
+### 72. `Philosopher82`
+- **title:** 問答好きの子
+- **titleShort:** 問答好き
+- **description:** [PAWN_nameDef]は寺で書物を読み、大人に混じって問答することを好んだ。争いになっても手を出さず、言葉で解決しようとした。
+
+### 73. `PrivilegedProdigy70`
+- **title:** 公家の子
+- **titleShort:** 公家の子
+- **description:** [PAWN_nameDef]は公家の家に生まれ、幼い頃から学問や芸事を教わってきた。薬の知識も少し身につけたが、力仕事や武芸とは無縁の暮らしだった。
+
+### 74. `PsychiatricPatient94`
+- **title:** 世捨て人
+- **titleShort:** 世捨て人
+- **description:** [PAWN_nameDef]は俗世を離れ、長く人里から離れて暮らしてきた。他人と関わることや争い事を避け、炊事や物作りにも不慣れだった。
+
+### 75. `PyroAssistant82`
+- **title:** 火好きの子
+- **titleShort:** 火好き
+- **description:** [PAWN_nameDef]は窯場で育ち、幼い頃から火と窯の仕組みに強い興味を持っていた。窯の修繕や職人の火傷の手当ても覚えたが、火を消すことは嫌がった。
+
+### 76. `RebelSlave14`
+- **title:** 気骨ある下人
+- **titleShort:** 下人
+- **description:** [PAWN_nameDef]は幼い頃から人に使われ、畑仕事や道具の手入れをしてきた。理不尽な命令には黙って従わず、仲間と助け合いながら暮らしていた。
+
+### 77. `ScienceProdigy65`
+- **title:** 利発な子
+- **titleShort:** 利発な子
+- **description:** [PAWN_nameDef]は幼い頃から物覚えがよく、書物を読み、医術や絵を学んできた。争い事を嫌い、火事などの危険な場面にも近づこうとしなかった。
+
+### 78. `SewerKid57`
+- **title:** 台所育ち
+- **titleShort:** 台所育ち
+- **description:** [PAWN_nameDef]は幼い頃から家の炊事を手伝ってきた。飯を炊き、野菜を煮るなど、日々の食事作りには慣れていた。
+
+### 79. `Sheriff52`
+- **title:** 町の見回り役
+- **titleShort:** 見回り役
+- **description:** [PAWN_nameDef]は町の見回りを務め、盗人を捕らえたり、喧嘩を収めたりしてきた。武芸だけでなく、揉め事を話し合いで収めることにも慣れている。
+
+### 80. `SlaveChemist84`
+- **title:** 薬師
+- **titleShort:** 薬師
+- **description:** [PAWN_nameDef]は医書を読み、薬草を選んで薬を調える仕事を重ねてきた。医術と薬の知識は豊富だが、力仕事や武芸は苦手だった。
+
+### 81. `Smuggler23`
+- **title:** 裏商いの行商人
+- **titleShort:** 裏商い
+- **description:** [PAWN_nameDef]は人目を避けて品物を売り買いし、各地を渡り歩いてきた。取引相手との駆け引きに長け、護身のための武芸や怪我の手当てにも少し通じている。
+
+### 82. `StationWhelp94`
+- **title:** 野盗育ち
+- **titleShort:** 野盗育ち
+- **description:** [PAWN_nameDef]は幼い頃から野盗の一味に囲まれて育った。早くから弓や刀の扱いを覚えたが、人付き合いや他人の世話は苦手だった。
+
+### 83. `StreetPeddler66`
+- **title:** 行商の子
+- **titleShort:** 行商の子
+- **description:** [PAWN_nameDef]は幼い頃から家族の行商に付き添い、小物を作って売っていた。客との値段交渉に慣れ、旅先での喧嘩にも強くなった。
+
+### 84. `Student65`
+- **title:** 医書好きの子
+- **titleShort:** 医書好き
+- **description:** [PAWN_nameDef]は裕福な家で育ち、学問の中でも医術に強い興味を持った。書物を読み、薬や治療法を熱心に学んだが、掃除や荷運びは周囲の者に任せていた。
+
+### 85. `StudentSocialite89`
+- **title:** 口達者な子
+- **titleShort:** 口達者
+- **description:** [PAWN_nameDef]は身分の高い家で育ち、幼い頃から多くの客人と接してきた。話術に優れる一方、身の回りの仕事は他人に任せ、実務をほとんど経験しなかった。
+
+### 86. `ToolMechanic77`
+- **title:** 木工の名人
+- **titleShort:** 木工職人
+- **description:** [PAWN_nameDef]は木を扱う仕事に長く携わり、農具から家屋の部材まで作ってきた。細かな細工にも優れ、その腕を買われて各地から仕事を頼まれていた。
+
+### 87. `TragicLoner87`
+- **title:** 山小屋育ち
+- **titleShort:** 山小屋育ち
+- **description:** [PAWN_nameDef]は人里離れた山小屋で育ち、書物を読み、身近な動物の世話をして過ごした。人と接する機会は少なく、今も他人との付き合いを避けている。
+
+### 88. `TransferStudent10`
+- **title:** 寺の預かり子
+- **titleShort:** 預かり子
+- **description:** [PAWN_nameDef]は有力者の家から寺に預けられ、僧たちに読み書きや学問を教わった。寺を訪れる人々との応対にも慣れていたが、力仕事はほとんど経験しなかった。
+
+### 89. `WarshipCaptain67`
+- **title:** 水軍の船大将
+- **titleShort:** 船大将
+- **description:** [PAWN_nameDef]は水軍の船を率い、海での戦いを重ねてきた。船の造りや海路に詳しく、兵をまとめて指揮することにも長けていた。
 
-> **全件未承認。製品には適用しない。** ユーザー指示により、日本語文面のレビューは Phase 2 の文章以外の対応を終えた後に**一括**で行う。承認前の英訳・DefInjected/XML製品変更・Steam反映を禁止する。
-
-## 用途と証拠
-
-**この版の全面修正方針（2026-10-18、全件未承認）:** 旧稿は直訳風・架空の職名・技能を説明するための不自然な逸話が多く、作者からtitle・略称だけでなくdescriptionも全面的に再作成するよう指示があった。元89候補のうち `AddictionCounsel60`（中世日本の独立した依存症専門職として不適切）と `Architect28`（大工とは独立した近代的設計専門職と元の知的／非単純作業の組合せをそのまま転用できない）を生成制限に回し、**本資料は87件**とする。残りは**すべて**元の技能・禁止作業・強制特性の変更なしに、短く自然な題名・略称・本文へ再作成した。合成の職名を無理に作らない。架空の事故や理由をゲーム値の説明用に付け足さない。原のゲームプレイ効果や歴史的背景との整合を改めて確認し、**この87件もまだ作者の承認を得ていない**。
-
-
-下表はVanilla既存BackstoryDefの**同じDef名・技能・WorkDisables・requiredWorkTags・forcedTraits・initial possessions・spawnCategories**を維持し、元のSF・現代的叙述のみを古代～中世日本へ置き換える日本語原稿案である。新規日本専用Defではない。初期所持品が存在する定義は改稿確定時に別途史実素材への置換/維持を照合する（現時点で変更しない）。
-
-- 原定義に関する直接資料：過去のProject 原Core 1.6/1.7 metadata v2（[source audit](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/blob/main/Docs/Research/VanillaCoreCharacterDefsSourceAudit20261016.md)）で既存33件（成人30件・幼少期3件）の元スロット・生成カテゴリと技能を照合。追加54件についても同じ元Coreメタデータと旧公式英語原文コメントを個別照合した。元ファイルのメタデータは両版一致。これは通常生成での各Solid個体採用を個別立証するものではない。
-- 物語内容に関する参考：[Ludeonの旧英語原文コメント](https://github.com/Ludeon/RimWorld-Finnish/blob/master/Backstories/Backstories.xml)。**現在配布されているCore 1.6/1.7本文との完全一致は未立証。**
-- 既存33件と追加54件は現在137件の生成制限、34件の実装済み英日改稿と**重複しない**。
-- 元Core両版で強制Traitを持つ原稿候補は13件。`MasterChef48`（`Gourmand=0`）、`Minister88`（`Industriousness=1`）、`Model99`（`Beauty=2`）、`CaveworldIlluminator95`（`Undergrounder=0`）、`AspiringPopIdol28`（`Beauty=2`）、`DesertRat47`（`Ascetic=0`）、`EnergeticPopIdol61`（`Beauty=2;Greedy=0`）、`HedgeFundManager54`（`Greedy=0`）、`MadScientist47`（`Psychopath=0`）、`MindwipedAssassin50`（`Psychopath=0`）、`Nerd92`（`AnnoyingVoice=0`）、`Orphan15`（`Kind=0`）、`PyroAssistant82`（`Pyromaniac=0`）。これらのゲーム効果は変更しない。
-- 以下の本文は未承認の史実・ゲーム描写案であり、特定時代・地域の役職名や語感について最終作者レビュー後に調整する。薬物の具体的種類・商品・緊急対処の機構はここで確定しない。
-
-## 日本語原稿案（再検討した33件・第一候補）
-
-### 01. `BountyHunter41`
-
-- **title案：** 雇われの刺客
-- **titleShort案：** 刺客
-- **description案：** [PAWN_nameDef]は有力者に雇われ、敵対する者を密かに討ってきた。弓と剣に長け、狙った相手を逃すことは少なかった。
-
-### 02. `Castaway81`
-
-- **title案：** 難破の生存者
-- **titleShort案：** 難破者
-- **description案：** [PAWN_nameDef]の乗った船は嵐で沈み、本人だけが浜に流れ着いた。助けが来るまで、食べられる草木を探し、風雨をしのいで生き延びた。
-
-### 03. `CharityWorker36`
-
-- **title案：** 施しの僧
-- **titleShort案：** 施しの僧
-- **description案：** [PAWN_nameDef]は寺で貧しい人や病人に食べ物を分け、相談に乗っていた。人と話し世話をすることには慣れているが、争い事をひどく嫌う。
-
-### 04. `CorporateBuilder58`
-
-- **title案：** 普請人足
-- **titleShort案：** 人足
-- **description案：** [PAWN_nameDef]は寺や館の普請場で働き、土を掘り、石や材木を運んできた。長年の仕事で建築には詳しくなったが、飾り物を作ることには興味がない。
-
-### 05. `ExpertHandyman8`
-
-- **title案：** 腕利きの職人
-- **titleShort案：** 職人
-- **description案：** [PAWN_nameDef]は家屋から農具まで、壊れた物ならたいてい直せた。あちこちの村に呼ばれ、見慣れない仕組みの道具でも工夫して修理してきた。
-
-### 06. `FurnitureBuilder83`
-
-- **title案：** 家具職人
-- **titleShort案：** 家具職人
-- **description案：** [PAWN_nameDef]は木を選び、棚や箱などの家具を作って暮らした。丈夫で使いやすい品を作る腕を買われ、遠方からも注文が来た。
-
-### 07. `GangSoldier39`
-
-- **title案：** 古参の野盗
-- **titleShort案：** 野盗
-- **description案：** [PAWN_nameDef]は長く野盗の一味に加わり、襲撃や野営に慣れきっている。武器を扱うほか、仲間の傷の手当てや食事の支度も覚えた。
-
-### 08. `LanguageAnalyst27`
-
-- **title案：** 書記
-- **titleShort案：** 書記
-- **description案：** [PAWN_nameDef]は書状を書き写し、難しい文面を読み解く仕事をしていた。諸国の言葉や古い文書にも詳しく、暇があれば草木を育てていた。
-
-### 09. `MasterChef48`
-
-- **title案：** 館の料理人
-- **titleShort案：** 料理人
-- **description案：** [PAWN_nameDef]は館の台所を任されるほどの腕を持つ料理人だった。ある宴で料理に毒が混じり、疑いを掛けられて職を追われた。
-
-### 10. `MedicSoldier54`
-
-- **title案：** 陣中の医者
-- **titleShort案：** 医者
-- **description案：** [PAWN_nameDef]は戦場で負傷者を手当てしていた。刀傷や矢傷の治療には慣れているが、自ら武器を持って戦うことはない。
-
-### 11. `MilitaryOfficer17`
-
-- **title案：** 武士の大将
-- **titleShort案：** 大将
-- **description案：** [PAWN_nameDef]は武士たちを率いて戦に出た。陣立てや武芸を心得ているが、部下には厳しく、負傷者の世話をするような性分ではない。
-
-### 12. `Minister88`
-
-- **title案：** 奉行
-- **titleShort案：** 奉行
-- **description案：** [PAWN_nameDef]は領主に仕え、年貢や訴訟の取りまとめを担った。帳簿にも人の扱いにも慣れ、主人から重く用いられていた。
-
-### 13. `Model99`
-
-- **title案：** 舞人
-- **titleShort案：** 舞人
-- **description案：** [PAWN_nameDef]は歌舞の宴に招かれ、容姿と芸で人目を引いていた。身の回りの雑用は付き人に任せ、芸を磨くことに暮らしの大半を費やした。
-
-### 14. `NinjaAssassin31`
-
-- **title案：** 刺客
-- **titleShort案：** 刺客
-- **description案：** [PAWN_nameDef]は人目を避けて標的に近づき、密かに討つ仕事をしていた。武芸だけでなく、変装や人から話を聞き出す術にも通じている。
-
-### 15. `Novelist7`
-
-- **title案：** 物語の作者
-- **titleShort案：** 作者
-- **description案：** [PAWN_nameDef]は物語を書いて暮らしていた。人前に出ることを好まず、筆を執っている間は食事も忘れてしまうことがあった。
-
-### 16. `PirateTrooper73`
-
-- **title案：** 海賊の手下
-- **titleShort案：** 海賊
-- **description案：** [PAWN_nameDef]は海賊の一味で敵船に乗り込む役を務めた。弓も刀も扱えるが、捕らえた相手への情けは持ち合わせていない。
-
-### 17. `PlanetaryDiplomat7`
-
-- **title案：** 使者
-- **titleShort案：** 使者
-- **description案：** [PAWN_nameDef]は主君の書状を携え、各地の有力者との交渉に赴いた。言葉で争いを収めることを得意とし、武力に訴えるのを避けていた。
-
-### 18. `PrisonerOfWar2`
-
-- **title案：** 戦の捕虜
-- **titleShort案：** 捕虜
-- **description案：** [PAWN_nameDef]は戦で捕らえられ、長く敵方に囚われていた。隙を突いて脱走し、ほかの捕虜たちも連れ出したという。
-
-### 19. `ReligiousHierarch16`
-
-- **title案：** 寺の住職
-- **titleShort案：** 住職
-- **description案：** [PAWN_nameDef]は寺を預かり、説法をし、寺の暮らしを取り仕切っていた。檀越や参詣人との付き合いは多いが、力仕事には縁がない。
-
-### 20. `RunawayDancer35`
-
-- **title案：** 旅芸人
-- **titleShort案：** 旅芸人
-- **description案：** [PAWN_nameDef]は一座を離れ、歌や舞を披露しながら諸国を渡り歩いてきた。口が達者で、危ない道中を切り抜ける度胸もある。
-
-### 21. `Sculptor63`
-
-- **title案：** 仏師
-- **titleShort案：** 仏師
-- **description案：** [PAWN_nameDef]は仏像を彫ることに打ち込んできた。石の扱いにも慣れ、寺から大きな石仏の仕事を請け負ったことがある。
-
-### 22. `SoleSurvivor85`
-
-- **title案：** 戦乱の生き残り
-- **titleShort案：** 生存者
-- **description案：** [PAWN_nameDef]の故郷は戦に巻き込まれ、家族も家も失われた。それ以来、他人に心を開くことが少なくなった。
-
-### 23. `StationSecurity38`
-
-- **title案：** 関所の番人
-- **titleShort案：** 番人
-- **description案：** [PAWN_nameDef]は関所で人と荷を調べ、通行を見張っていた。荒事にも慣れているが、かつて火事でひどい目に遭い、火消しだけは避けている。
-
-### 24. `ChildStar74`
-
-- **title案：** 芸人の子
-- **titleShort案：** 芸人の子
-- **description案：** [PAWN_nameDef]は幼い頃から一座に連れられ、人前で歌や舞を披露していた。大人との受け答えには慣れているが、学問を習う機会は少なかった。
-
-### 25. `CrashBaby32`
-
-- **title案：** 難破船の子
-- **titleShort案：** 難破の子
-- **description案：** [PAWN_nameDef]は赤子の頃に船が難破し、浜辺で助けられた。親のことは知らず、拾われた土地で育った。
-
-### 26. `UrbworldUrchin61`
-
-- **title案：** 町の孤児
-- **titleShort案：** 孤児
-- **description案：** [PAWN_nameDef]は町の裏通りで育った。食べ物を巡って喧嘩になることも多く、幼いうちから身を守る術を覚えた。
-
-### 27. `UrbworldDrone32`
-
-- **title案：** 苦役の人足
-- **titleShort案：** 人足
-- **description案：** [PAWN_nameDef]は長く普請場で働くことを強いられていた。穴を掘り、石を運び、建物を建てる仕事は覚えたが、自由に学ぶ機会はなかった。
-
-### 28. `UrbworldEntrepreneur14`
-
-- **title案：** 商人
-- **titleShort案：** 商人
-- **description案：** [PAWN_nameDef]は市で小さな商いを始め、やがて多くの品を扱うようになった。相場に明るく、取引相手との駆け引きにも長けている。
-
-### 29. `ConstructionEngineer32`
-
-- **title案：** 大工棟梁
-- **titleShort案：** 棟梁
-- **description案：** [PAWN_nameDef]は大工たちを率い、寺や屋敷の普請を手掛けた。材木の寸法から組み立てまで頭に入っているが、炊事は人任せだ。
-
-### 30. `MafiaBoss17`
-
-- **title案：** ならず者の親分
-- **titleShort案：** 親分
-- **description案：** [PAWN_nameDef]は町のならず者を束ね、商人から金を取り立てていた。脅しと取引で勢力を広げ、裏切る者には容赦しなかった。
-
-### 31. `ContractMiner86`
-
-- **title案：** 渡りの鉱夫
-- **titleShort案：** 鉱夫
-- **description案：** [PAWN_nameDef]は山から山へと鉱山を渡り歩き、鉱石を掘って暮らした。岩の割れ目を見れば、採れる鉱石のおよその見当がついた。
-
-### 32. `Taxonomist0`
-
-- **title案：** 生き物に詳しい学者
-- **titleShort案：** 学者
-- **description案：** [PAWN_nameDef]は草木や獣の種類と習性を調べ、書き留めてきた。山野を歩いては珍しい生き物を探すが、争い事は苦手だ。
-
-### 33. `CaveworldIlluminator95`
-
-- **title案：** 坑道の案内人
-- **titleShort案：** 案内人
-- **description案：** [PAWN_nameDef]は坑道の奥まで道を知り、暗い穴の中で働く者たちを案内した。掘り進める場所を見極める目も持っていた。
-
-## 日本語原稿案：残る史実転用候補54件（第二候補・未承認）
-
-以下54件は前半33件とは別に既存Core 1.6／1.7の対象Def/slotと公式アーカイブ英語原文を個別に照合した。時代に依存する制度・用語を再構成した**作者一括レビュー用の提案**であり、実ゲーム内テキスト・強制Trait・技能・仕事制限・元所有アイテムの変更を承認したものではない。新規独自Defを追加しない。原文の最新Core長文と旧アーカイブの一致は未検証である。
-
-### 34. `AmateurEngineer3`
-
-- **title案：** 道具好きの子
-- **titleShort案：** 道具好き
-- **description案：** [PAWN_nameDef]は道具を分解しては組み直す子どもだった。壊した物を叱られることもあったが、やがて簡単な修理を頼まれるようになった。
-
-### 35. `ArtStudent79`
-
-- **title案：** 絵師の弟子
-- **titleShort案：** 絵師見習い
-- **description案：** [PAWN_nameDef]は絵師のもとで筆を取り、絵の描き方を学んだ。長い修業の末、ようやく自分の仕事を任されるようになった。
-
-### 36. `ArtisanFarmer23`
-
-- **title案：** 農家の子
-- **titleShort案：** 農家の子
-- **description案：** [PAWN_nameDef]は農家に育ち、幼いうちから種まきと収穫を手伝った。作物の世話はよく覚えたが、学問を習う機会は少なかった。
-
-### 37. `AspiringPopIdol28`
-
-- **title案：** 舞の稽古を受けた子
-- **titleShort案：** 舞の弟子
-- **description案：** [PAWN_nameDef]は幼い頃から歌や舞の稽古を受けていた。人前に立つのは得意だったが、家の仕事はほとんど教わらなかった。
-
-### 38. `Athlete47`
-
-- **title案：** 武芸の得意な子
-- **titleShort案：** 武芸好き
-- **description案：** [PAWN_nameDef]は同じ年頃の子らと武芸を競い、めきめき腕を上げた。学問にも才を見せたが、芸事や人付き合いは苦手だった。
-
-### 39. `BehaviourResearch74`
-
-- **title案：** 犬の世話人
-- **titleShort案：** 犬の世話人
-- **description案：** [PAWN_nameDef]は犬と長く暮らし、その癖や仕草を誰よりもよく知っていた。病んだ獣の手当てを頼まれることもあった。
-
-### 40. `CivilServant2`
-
-- **title案：** 役所の書記
-- **titleShort案：** 書記
-- **description案：** [PAWN_nameDef]は役所で帳簿を付け、届け出や書状を扱っていた。人との折衝には慣れていたが、家を建てるような仕事には疎かった。
-
-### 41. `ClassClown96`
-
-- **title案：** ひょうきんな子
-- **titleShort案：** ひょうきん者
-- **description案：** [PAWN_nameDef]は人を笑わせることが好きで、いつも何かしらおどけていた。真面目な話になると口ごもるが、芸を見せるのは得意だった。
-
-### 42. `CoreDilettante33`
-
-- **title案：** 富家の道楽者
-- **titleShort案：** 道楽者
-- **description案：** [PAWN_nameDef]は裕福な家に生まれ、書物や芸事に囲まれて育った。働く必要がなかったため、興味の向くままに日々を過ごしていた。
-
-### 43. `CoreworldStudent50`
-
-- **title案：** 装いに悩んだ子
-- **titleShort案：** 装いに悩んだ子
-- **description案：** [PAWN_nameDef]は周囲から求められる姿と、自分が望む姿の違いに悩んでいた。身近な人の助けで好きな装いを選べるようになり、飾りを作ることにも親しんだ。
-
-### 44. `DesertRat47`
-
-- **title案：** 修行者に育てられた子
-- **titleShort案：** 修行者の子
-- **description案：** [PAWN_nameDef]は人里を離れた修行者たちと暮らした。粗末な食事と厳しい暮らしに慣れ、野山を歩きながら護身と薬の知識を学んだ。
-
-### 45. `DestroyerGeneral26`
-
-- **title案：** 水軍大将
-- **titleShort案：** 水軍大将
-- **description案：** [PAWN_nameDef]は水軍を率い、幾度も海戦を経験した。武芸と采配には優れているが、身の回りの雑事には手を出さない。
-
-### 46. `EnergeticPopIdol61`
-
-- **title案：** 評判の舞人
-- **titleShort案：** 舞人
-- **description案：** [PAWN_nameDef]は幼いうちから歌や舞を披露し、評判を集めていた。人に褒められるのが好きで、腕を磨いてもっと名を広めたいと考えている。
-
-### 47. `FelineScientist76`
-
-- **title案：** 猫の飼い手
-- **titleShort案：** 猫の飼い手
-- **description案：** [PAWN_nameDef]は猫を育て、その毛色や性質を熱心に調べていた。病気の猫を手当てした経験もあり、猫のことになると話が長い。
-
-### 48. `FoundryApprentice76`
-
-- **title案：** 鋳物師の弟子
-- **titleShort案：** 鋳物見習い
-- **description案：** [PAWN_nameDef]は鋳物師の仕事場で、炉の火を保ち、金属を流し込む手伝いをしていた。熱い炉のそばで過ごすうちに、道具を作る腕が身に付いた。
-
-### 49. `Fugitive4`
-
-- **title案：** 追われた家臣
-- **titleShort案：** 逃亡者
-- **description案：** [PAWN_nameDef]は主人と争い、その土地にいられなくなった。逃亡の道中は食べ物や傷の手当てを自分で工面し、他人を容易に信用しなくなった。
-
-### 50. `GunDealer14`
-
-- **title案：** 武具商
-- **titleShort案：** 武具商
-- **description案：** [PAWN_nameDef]は弓や刀、槍を商い、兵たちを相手に売り歩いていた。武具の扱いを心得ており、値の交渉も手慣れたものだ。
-
-### 51. `Gymnast48`
-
-- **title案：** 軽業の子
-- **titleShort案：** 軽業師
-- **description案：** [PAWN_nameDef]は幼い頃から軽業を習い、見物人の前で身軽な芸を見せていた。一座を離れてからも、その技は身に付いたままだ。
-
-### 52. `HedgeFundManager54`
-
-- **title案：** 金貸し
-- **titleShort案：** 金貸し
-- **description案：** [PAWN_nameDef]は人に銭を貸し、利を得て暮らしていた。帳尻には細かく、損をすることを何より嫌った。
-
-### 53. `HillbillyProdigy60`
-
-- **title案：** 山里の秀才
-- **titleShort案：** 秀才
-- **description案：** [PAWN_nameDef]は山里で育ち、学問の才を見いだされた。周囲との付き合いは苦手だったが、薬や手当ての知識をよく覚えた。
-
-### 54. `IcePlanetChild95`
-
-- **title案：** 雪国の子
-- **titleShort案：** 雪国の子
-- **description案：** [PAWN_nameDef]は雪深い土地で育った。人付き合いは少なかったが、道具の仕組みを覚えるのは早かった。
-
-### 55. `IndworldUrchin73`
-
-- **title案：** 路地の子
-- **titleShort案：** 路地の子
-- **description案：** [PAWN_nameDef]は町の路地で育ち、拾った物を直して使っていた。喧嘩に巻き込まれることも多く、幼くして身を守る術を覚えた。
-
-### 56. `LaborCampOrphan91`
-
-- **title案：** 普請場で育った子
-- **titleShort案：** 普請場の子
-- **description案：** [PAWN_nameDef]は身寄りを失い、普請場で働きながら育った。土を掘り、石を運ぶ仕事には慣れているが、遊ぶ暇はほとんどなかった。
-
-### 57. `MadScientist47`
-
-- **title案：** 冷酷な学徒
-- **titleShort案：** 学徒
-- **description案：** [PAWN_nameDef]は人里離れた学者に引き取られ、書物を読んで育った。人の痛みに頓着せず、知りたいことがあれば危ない真似も平気でする。
-
-### 58. `MarineCadet73`
-
-- **title案：** 水軍見習い
-- **titleShort案：** 水軍見習い
-- **description案：** [PAWN_nameDef]は水軍に入るため、弓や刀の稽古をしていた。ある日上役を傷つける騒ぎを起こし、隊を追い出された。
-
-### 59. `Mathematician6`
-
-- **title案：** 算術家
-- **titleShort案：** 算術家
-- **description案：** [PAWN_nameDef]は計算に優れ、帳簿や暦の仕事を頼まれていた。数の理屈を考えるのは好きだが、弓を実際に射るのはからきし苦手だ。
-
-### 60. `MechanicsEngineer64`
-
-- **title案：** 水車大工
-- **titleShort案：** 水車大工
-- **description案：** [PAWN_nameDef]は水車や巻き上げ装置を作り、壊れた仕掛けを直してきた。その腕を頼られる一方、仕事ぶりに口を出されるのを嫌っていた。
-
-### 61. `MedicalStudent38`
-
-- **title案：** 医術の弟子
-- **titleShort案：** 医術見習い
-- **description案：** [PAWN_nameDef]は医者について薬の扱いと傷の手当てを学んだ。知識は増えたが、重い荷を運んだり穴を掘ったりする仕事には慣れていない。
-
-### 62. `MedicalStudent96`
-
-- **title案：** 医家の子
-- **titleShort案：** 医家の子
-- **description案：** [PAWN_nameDef]は医者の家に育ち、家族から薬や治療の仕方を教わった。幼い頃から病人を見る機会が多く、手当ての覚えは早かった。
-
-### 63. `MilitaryGunsmith27`
-
-- **title案：** 武具職人
-- **titleShort案：** 武具職人
-- **description案：** [PAWN_nameDef]は軍勢に付き従い、弓や刀の手入れと修理を引き受けていた。武器の扱いにも慣れ、必要に迫られれば自ら戦うこともあった。
-
-### 64. `MilitaryInventor35`
-
-- **title案：** 軍具職人
-- **titleShort案：** 軍具職人
-- **description案：** [PAWN_nameDef]は軍勢に仕え、攻城や守りに使う道具を作っていた。使う者の話を聞き、壊れにくい形を考えるのが得意だった。
-
-### 65. `MindwipedAssassin50`
-
-- **title案：** 刺客として育った者
-- **titleShort案：** 刺客
-- **description案：** [PAWN_nameDef]は幼い頃から人を討つためだけに育てられた。命令に疑問を持つことはなかったが、やがて主に捨てられると知り、逃げ出した。
-
-### 66. `Nerd92`
-
-- **title案：** 本好きの子
-- **titleShort案：** 本好き
-- **description案：** [PAWN_nameDef]は遊びに出るよりも書物を読むことを好んだ。難しい話を始めると止まらず、同じ年頃の子とはなかなか話が合わなかった。
-
-### 67. `Orphan15`
-
-- **title案：** 孤児
-- **titleShort案：** 孤児
-- **description案：** [PAWN_nameDef]は親を失い、ほかの子どもたちと助け合って育った。弱い者がいじめられると放っておけず、喧嘩をしてでも守ろうとした。
-
-### 68. `Osteologist74`
-
-- **title案：** 骨を診る医者
-- **titleShort案：** 医者
-- **description案：** [PAWN_nameDef]は骨折や傷んだ関節を診てきた。骨の形には詳しいが、体を動かして治療するより、見立てを話すほうが得意だった。
-
-### 69. `Pampered87`
-
-- **title案：** 甘やかされた子
-- **titleShort案：** 富家の子
-- **description案：** [PAWN_nameDef]は裕福な家で何不自由なく育った。欲しい物は頼めば手に入り、食事の支度を自分ですることもなかった。
-
-### 70. `Philosopher82`
-
-- **title案：** 思索好きの子
-- **titleShort案：** 思索好き
-- **description案：** [PAWN_nameDef]は物事の理由を考え続ける子どもだった。言い争いに巻き込まれても手を出さず、相手の話を聞こうとした。
-
-### 71. `PrivilegedProdigy70`
-
-- **title案：** 名家の秀才
-- **titleShort案：** 秀才
-- **description案：** [PAWN_nameDef]は裕福な家で大切に育てられ、幼いうちから学問と芸事を教わった。働く者に囲まれて暮らし、自分で力仕事をすることはなかった。
-
-### 72. `PsychiatricPatient94`
-
-- **title案：** 長く療養した者
-- **titleShort案：** 療養者
-- **description案：** [PAWN_nameDef]は心の不調のため、長い間ほかの人との付き合いを絶って暮らしていた。少しずつ日々の生活を取り戻したが、人と接することは今も負担に感じる。
-
-### 73. `PyroAssistant82`
-
-- **title案：** 火好きの子
-- **titleShort案：** 火好き
-- **description案：** [PAWN_nameDef]は窯場で育ち、炎を眺めてはいつまでも離れなかった。火を扱う道具の仕組みには詳しいが、危ない火遊びを叱られることもあった。
-
-### 74. `RebelSlave14`
-
-- **title案：** 逃げ出した下人
-- **titleShort案：** 逃亡した下人
-- **description案：** [PAWN_nameDef]は人に使われる身で育った。仲間と逃げる機会をうかがい、ついに主人のもとから姿を消した。
-
-### 75. `ScienceProdigy65`
-
-- **title案：** 学問好きの子
-- **titleShort案：** 秀才
-- **description案：** [PAWN_nameDef]はさまざまなことに興味を持ち、医術や学問を熱心に学んだ。火を使った試みで怖い思いをしてからは、火消しには加わろうとしない。
-
-### 76. `SewerKid57`
-
-- **title案：** 虫好きの子
-- **titleShort案：** 虫好き
-- **description案：** [PAWN_nameDef]は町の溝や水路で虫を集めて遊んでいた。汚れた場所にも平気で入り、食事も自分で作っていた。
-
-### 77. `Sheriff52`
-
-- **title案：** 町の番人
-- **titleShort案：** 番人
-- **description案：** [PAWN_nameDef]は町の治安を守り、盗人を捕らえたり喧嘩を止めたりしてきた。武芸だけでなく、揉めた者をなだめる話術も身に付けた。
-
-### 78. `SlaveChemist84`
-
-- **title案：** 捕らわれの薬師
-- **titleShort案：** 薬師
-- **description案：** [PAWN_nameDef]は薬を調合する腕を見込まれ、捕らえられて働かされていた。自由はなかったが、薬の扱いだけは誰よりも詳しくなった。
-
-### 79. `Smuggler23`
-
-- **title案：** 密輸商人
-- **titleShort案：** 密輸商人
-- **description案：** [PAWN_nameDef]は禁じられた品を人目を避けて運び、港から港へ売り歩いてきた。見張りを出し抜く話術と、危険な相手にも物おじしない度胸がある。
-
-### 80. `StationWhelp94`
-
-- **title案：** 港の孤児
-- **titleShort案：** 孤児
-- **description案：** [PAWN_nameDef]は港の裏通りで育ち、盗みや喧嘩をして食いつないでいた。やがて海賊の一味に拾われ、そこで暮らすようになった。
-
-### 81. `StreetPeddler66`
-
-- **title案：** 行商の子
-- **titleShort案：** 行商の子
-- **description案：** [PAWN_nameDef]は小さな品を作り、市や道端で売って家計を助けていた。客との値の交渉も、喧嘩から身を守ることも早く覚えた。
-
-### 82. `Student65`
-
-- **title案：** 学問好きの子
-- **titleShort案：** 学問好き
-- **description案：** [PAWN_nameDef]は学問に熱中し、書物を読む時間を何よりも大事にしていた。家の掃除や荷運びを頼まれると、いつもうまく逃げていた。
-
-### 83. `StudentSocialite89`
-
-- **title案：** 礼法を学ぶ子
-- **titleShort案：** 礼法の子
-- **description案：** [PAWN_nameDef]は幼い頃から礼儀作法と人への接し方を教わった。人と話すのは上手だが、手を動かして物を作ることはほとんどなかった。
-
-### 84. `ToolMechanic77`
-
-- **title案：** 道具職人
-- **titleShort案：** 道具職人
-- **description案：** [PAWN_nameDef]は鋤や鎌、槌などを作り、壊れれば修理してきた。道具を見ればどこが傷んでいるか分かるが、畑仕事は人任せだった。
-
-### 85. `TragicLoner87`
-
-- **title案：** ひとりで育った子
-- **titleShort案：** 孤独な子
-- **description案：** [PAWN_nameDef]は幼くして家族を失い、人里離れた場所で暮らしてきた。人と話す機会は少なく、書物と動物を相手に日々を過ごした。
-
-### 86. `TransferStudent10`
-
-- **title案：** 寺で学んだ子
-- **titleShort案：** 寺の生徒
-- **description案：** [PAWN_nameDef]は家を離れ、寺で読み書きや学問を教わった。育ちはよく、学ぶことには熱心だが、体を使う雑用には慣れていない。
-
-### 87. `WarshipCaptain67`
-
-- **title案：** 水軍の船大将
-- **titleShort案：** 船大将
-- **description案：** [PAWN_nameDef]は戦船を率い、海での戦いを幾度も経験した。船の造りと潮の流れに通じ、船上の兵をまとめる腕があった。
-
-## 承認後に必要な工程（現在は実施しない）
-
-1. 本文・題名・略称をまとめて作者確認し、日本語の史実・語感と元技能・作業制限の整合を確定する。
-2. 承認済み日本語原稿に忠実に英訳し、既存原Defに対する `title`・`titleShort`・`description` XMLパッチ、`Languages/Japanese/DefInjected/BackstoryDef` の対応 `title/titleShort/baseDesc/description` を揃える。
-3. 強制Traitや初期所持品・追加DLC条件を変更する必要が発覚した候補は別途判断し、無承認変更しない。
-4. 他の既存背景候補・不明Solid経路の機械的確認が完了した後、必要最小限のVanilla 1.6/1.7 + MO受入れをまとめて実施する。
