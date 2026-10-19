@@ -331,16 +331,61 @@ namespace AMJ.Culture.Test
                 }
                 ctx.Require(AdaptedTitles.Count == 89,
                     "Phase 2 accepted background mapping incomplete");
-                foreach (KeyValuePair<string, string> expected in AdaptedTitles)
+                bool japanese = Environment.GetEnvironmentVariable("AMJ_BACKGROUND_JAPANESE") == "1";
+                if (japanese)
                 {
-                    BackstoryDef biography =
-                        DefDatabase<BackstoryDef>.GetNamedSilentFail(expected.Key);
-                    ctx.Require(biography != null, "Approved background Def absent: " + expected.Key);
-                    ctx.Require(LoadedText(biography, "title") == expected.Value,
-                        "Approved English title not loaded: " + expected.Key);
-                    string body = LoadedText(biography, "description");
-                    ctx.Require(!string.IsNullOrWhiteSpace(body),
-                        "Approved background description missing: " + expected.Key);
+                    string sourcePath = Environment.GetEnvironmentVariable("AMJ_BACKGROUND_JAPANESE_SOURCE");
+                    ctx.Require(!string.IsNullOrEmpty(sourcePath) &&
+                        System.IO.File.Exists(sourcePath), "Original approved Japanese XML unavailable");
+                    var xml = new System.Xml.XmlDocument();
+                    xml.Load(sourcePath);
+                    ctx.Require(xml.DocumentElement != null &&
+                        xml.DocumentElement.Name == "LanguageData", "Invalid Japanese DefInjected XML");
+                    var sourceEntries = new Dictionary<string, Dictionary<string, string>>();
+                    foreach (System.Xml.XmlNode node in xml.DocumentElement.ChildNodes)
+                    {
+                        if (node.NodeType != System.Xml.XmlNodeType.Element) continue;
+                        int dot = node.Name.LastIndexOf('.');
+                        ctx.Require(dot > 0, "Malformed Japanese translation entry: " + node.Name);
+                        string id = node.Name.Substring(0, dot);
+                        string field = node.Name.Substring(dot + 1);
+                        if (!sourceEntries.TryGetValue(id, out var fields))
+                            sourceEntries[id] = fields = new Dictionary<string, string>();
+                        ctx.Require(!fields.ContainsKey(field), "Duplicate localization field: " + node.Name);
+                        fields.Add(field, node.InnerText);
+                    }
+                    ctx.Require(sourceEntries.Count == 89, "Japanese source did not contain 89 Defs");
+                    foreach (string id in AdaptedTitles.Keys)
+                    {
+                        ctx.Require(sourceEntries.TryGetValue(id, out var fields) &&
+                            fields.Count == 4, "Japanese localized fields missing for " + id);
+                        BackstoryDef bio = DefDatabase<BackstoryDef>.GetNamedSilentFail(id);
+                        ctx.Require(bio != null, "Approved Japanese background not loaded: " + id);
+                        ctx.Require(LoadedText(bio, "title") == fields["title"],
+                            "Japanese title mismatch: " + id);
+                        ctx.Require(LoadedText(bio, "titleShort") == fields["titleShort"],
+                            "Japanese short title mismatch: " + id);
+                        string body = LoadedText(bio, "description");
+                        ctx.Require(body == fields["description"],
+                            "Japanese full description mismatch: " + id);
+                        ctx.Require(fields["baseDesc"] == fields["description"],
+                            "Canonical Japanese base description drift: " + id);
+                    }
+                    Log.Message("AMJ_CULTURE_BACKGROUNDS16_JAPANESE_OK count=89");
+                }
+                else
+                {
+                    foreach (KeyValuePair<string, string> expected in AdaptedTitles)
+                    {
+                        BackstoryDef biography =
+                            DefDatabase<BackstoryDef>.GetNamedSilentFail(expected.Key);
+                        ctx.Require(biography != null, "Approved background Def absent: " + expected.Key);
+                        ctx.Require(LoadedText(biography, "title") == expected.Value,
+                            "Approved English title not loaded: " + expected.Key);
+                        string body = LoadedText(biography, "description");
+                        ctx.Require(!string.IsNullOrWhiteSpace(body),
+                            "Approved background description missing: " + expected.Key);
+                    }
                 }
                 foreach (string reopened in new[] { "AddictionCounsel60", "Architect28" })
                 {
