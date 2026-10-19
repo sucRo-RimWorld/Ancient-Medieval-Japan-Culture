@@ -301,6 +301,29 @@ namespace AMJ.Culture.Test
                     "IsPostLoaded", BindingFlags.Public | BindingFlags.Static);
                 return prop != null && (bool)prop.GetValue(null, null);
             }, 90f);
+            if (Environment.GetEnvironmentVariable("AMJ_BACKGROUND_JAPANESE") == "1")
+            {
+                await OnGameThread(delegate
+                {
+                    LoadedLanguage japaneseLanguage =
+                        LanguageDatabase.AllLoadedLanguages.FirstOrDefault(x => x.folderName == "Japanese");
+                    ctx.Require(japaneseLanguage != null,
+                        "Japanese is absent from the running game's loaded language metadata");
+                    if (LanguageDatabase.activeLanguage != japaneseLanguage)
+                    {
+                        Log.Message("AMJ_CULTURE_BACKGROUND_JA_SWITCH previous="
+                            + LanguageDatabase.activeLanguage + " target=Japanese");
+                        LanguageDatabase.SelectLanguage(japaneseLanguage);
+                    }
+                });
+                await ctx.WaitUntil(() =>
+                {
+                    if (LanguageDatabase.activeLanguage == null ||
+                        LanguageDatabase.activeLanguage.folderName != "Japanese") return false;
+                    var first = DefDatabase<BackstoryDef>.GetNamedSilentFail("AddictionCounsel60");
+                    return first != null && LoadedText(first, "title") == "村の世話役";
+                }, 90f);
+            }
             await ctx.WaitFrames(2);
             await OnGameThread(delegate
             {
