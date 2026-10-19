@@ -215,6 +215,8 @@ namespace AMJ.Culture.Test
             bool validAfterPainting = false;
             // Scoped 1.7 visual acceptance only; previous 1.6 paths are unchanged.
             bool visual17 = Environment.GetEnvironmentVariable("AMJ_ENTRANCE_17_VISUAL") == "1";
+            bool pausedCapture = Environment.GetEnvironmentVariable("AMJ_ENTRANCE_17_PAUSED_CAPTURE") == "1";
+            bool captureReady = false;
             bool visualCaptured = false;
             bool visualBoosted = false;
             int visualCastTick = -1;
@@ -291,7 +293,7 @@ namespace AMJ.Culture.Test
                 if (visual17)
                 {
                     CameraJumper.TryJumpAndSelect(pawn);
-                    Find.TickManager.CurTimeSpeed = TimeSpeed.Normal;
+                    Find.TickManager.CurTimeSpeed = pausedCapture ? TimeSpeed.Ultrafast : TimeSpeed.Normal;
                 }
                 else
                     Find.TickManager.CurTimeSpeed = TimeSpeed.Ultrafast;
@@ -308,7 +310,16 @@ namespace AMJ.Culture.Test
                     if (visual17 && Casting(state, pawn))
                     {
                         if (visualCastTick < 0) visualCastTick = Find.TickManager.TicksGame;
-                        if (!visualCaptured && Find.TickManager.TicksGame - visualCastTick >= 30)
+                        if (pausedCapture && !visualCaptured && !captureReady &&
+                            Find.TickManager.TicksGame - visualCastTick >= 25)
+                        {
+                            // Keep the real cast state at ~one-third completion
+                            // while Waylith performs a few IMGUI paint frames.
+                            Find.TickManager.CurTimeSpeed = TimeSpeed.Paused;
+                            captureReady = true;
+                        }
+                        else if (!pausedCapture && !visualCaptured &&
+                                 Find.TickManager.TicksGame - visualCastTick >= 30)
                         {
                             CaptureFrame(Path.Combine(GenFilePaths.SaveDataFolderPath,
                                 "AMJEntrance17Progress.png"));
@@ -321,7 +332,22 @@ namespace AMJ.Culture.Test
                     observedExit |= pawn.Position == end;
                     observedShoes |= pawn.Position == end && !Barefoot(state, pawn);
                 });
-                if (visual17 && visualCaptured && !visualBoosted)
+                if (pausedCapture && captureReady && !visualCaptured)
+                {
+                    await ctx.WaitFrames(3);
+                    await EntranceMainThread.Run(delegate
+                    {
+                        CaptureFrame(Path.Combine(GenFilePaths.SaveDataFolderPath,
+                            "AMJEntrance17Progress.png"));
+                        visualCaptured = true;
+                    });
+                    await ctx.WaitFrames(3);
+                    await EntranceMainThread.Run(delegate {
+                        Find.TickManager.CurTimeSpeed = TimeSpeed.Ultrafast;
+                    });
+                    visualBoosted = true;
+                }
+                else if (visual17 && visualCaptured && !visualBoosted)
                 {
                     // CaptureScreenshot writes on a later render frame. Preserve
                     // three normal-speed GUI frames, then finish real traversal
