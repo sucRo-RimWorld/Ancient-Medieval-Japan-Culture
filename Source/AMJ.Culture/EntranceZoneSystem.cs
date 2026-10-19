@@ -18,32 +18,8 @@ namespace AMJ.Culture
         private List<IntVec3> noShoesCells = new List<IntVec3>();
         private HashSet<IntVec3> noShoesLookup = new HashSet<IntVec3>();
 
-        // MapComponents can be constructed by RimWorld's background map-loader.
-        // Do not allocate Unity Materials in a static type initializer: Unity
-        // requires material creation on the rendering/main thread. First use is
-        // MapComponentDraw(), which runs on that thread.
-        private static Material progressFilled;
-        private static Material progressEmpty;
-        private static Material ProgressFilled
-        {
-            get
-            {
-                if (progressFilled == null)
-                    progressFilled = SolidColorMaterials.SimpleSolidColorMaterial(
-                        new Color(0.76f, 0.72f, 0.45f));
-                return progressFilled;
-            }
-        }
-        private static Material ProgressEmpty
-        {
-            get
-            {
-                if (progressEmpty == null)
-                    progressEmpty = SolidColorMaterials.SimpleSolidColorMaterial(
-                        new Color(0.18f, 0.18f, 0.18f));
-                return progressEmpty;
-            }
-        }
+        // Verified by a focused real screenshot, not merely the cast-state assertion.
+        private static int lastProgressGuiTick = -1;
 
         public EntranceZoneMap(Map map) : base(map) { }
 
@@ -145,29 +121,49 @@ namespace AMJ.Culture
             }
         }
 
-        public override void MapComponentDraw()
+        public override void MapComponentOnGUI()
         {
-            if (Current.Game == null || Find.CurrentMap != map) return;
+            if (Current.Game == null || Find.CurrentMap != map ||
+                Event.current.type != EventType.Repaint) return;
             EntranceFootwearState state = Current.Game.GetComponent<EntranceFootwearState>();
             if (state == null || state.ActivePauses.Count == 0) return;
 
+            // GenDraw's world-space fillable bar was not visible in the genuine
+            // 1.6 screenshot despite its draw path running. Render a small,
+            // camera-projected overlay on the map GUI instead.
+            Camera camera = Find.Camera;
+            if (camera == null || Screen.height <= 0) return;
+            float screenToUi = UI.screenHeight / (float)Screen.height;
             int now = Find.TickManager.TicksGame;
-            foreach (KeyValuePair<Pawn, EntrancePause> pair in state.ActivePauses)
+            Color prior = GUI.color;
+            try
             {
-                Pawn pawn = pair.Key;
-                EntrancePause pause = pair.Value;
-                if (pawn != null && pawn.Spawned && pawn.Map == map)
-                    GenDraw.DrawFillableBar(new GenDraw.FillableBarRequest
-                    {
-                        // Render above Pawn graphics and terrain, not at a low world Y altitude.
-                        center = new Vector3(pawn.DrawPos.x,
-                            AltitudeLayer.MoteOverhead.AltitudeFor(), pawn.DrawPos.z + 0.7f),
-                        size = new Vector2(0.8f, 0.12f),
-                        fillPercent = Mathf.Clamp01((now - pause.StartTick) / (float)EntranceFootwearState.CastTicks),
-                        filledMat = ProgressFilled,
-                        unfilledMat = ProgressEmpty,
-                        margin = 0.07f
-                    });
+                foreach (KeyValuePair<Pawn, EntrancePause> pair in state.ActivePauses)
+                {
+                    Pawn pawn = pair.Key;
+                    if (pawn == null || !pawn.Spawned || pawn.Map != map) continue;
+                    Vector3 screen = camera.WorldToScreenPoint(
+                        pawn.DrawPos + new Vector3(0f, 0f, 0.65f));
+                    if (screen.z <= 0f) continue;
+                    float x = screen.x * screenToUi;
+                    float y = UI.screenHeight - screen.y * screenToUi;
+                    Rect bg = new Rect(x - 24f, y - 15f, 48f, 7f);
+                    if (bg.xMax < 0 || bg.yMax < 0 ||
+                        bg.xMin > UI.screenWidth || bg.yMin > UI.screenHeight) continue;
+
+                    GUI.color = new Color(0.12f, 0.12f, 0.12f, 0.95f);
+                    GUI.DrawTexture(bg, BaseContent.WhiteTex);
+                    float fraction = Mathf.Clamp01(
+                        (now - pair.Value.StartTick) / (float)EntranceFootwearState.CastTicks);
+                    GUI.color = new Color(0.76f, 0.72f, 0.45f, 1f);
+                    GUI.DrawTexture(new Rect(bg.x + 1f, bg.y + 1f,
+                        (bg.width - 2f) * fraction, bg.height - 2f), BaseContent.WhiteTex);
+                    lastProgressGuiTick = now;
+                }
+            }
+            finally
+            {
+                GUI.color = prior;
             }
         }
     }
