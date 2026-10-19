@@ -576,9 +576,10 @@ namespace AMJ.Culture.Test
                     DefDatabase<PawnKindDef>.GetNamed("Colonist"), Faction.OfPlayer);
                 ctx.Require(ordinary != null, "Undrafted colonist not generated");
                 GenSpawn.Spawn(ordinary, start, map, WipeMode.Vanish);
-                MethodInfo jump = Find.CameraDriver.GetType().GetMethod(
-                    "JumpToCurrentMapLoc", new[] { typeof(IntVec3) });
-                if (jump != null) jump.Invoke(Find.CameraDriver, new object[] { start });
+                // The earlier screenshot was centered on the quickstart map,
+                // not on the cast pawn. Jump the real camera to this pawn first.
+                CameraJumper.TryJumpAndSelect(ordinary);
+                Find.TickManager.CurTimeSpeed = TimeSpeed.Normal;
                 Walk(ordinary, ordinaryDestination);
             });
             for (int i = 0; i < 115; i++)
