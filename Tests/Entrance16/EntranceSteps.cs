@@ -137,19 +137,21 @@ namespace AMJ.Culture.Test
                 ctx.Require(entranceTool && forbiddenTool,
                     "Culture entrance and no-shoes designators absent from loaded Zone category");
 
-                for (int z = 8; z < map.Size.z - 8 && !start.IsValid; z++)
-                    for (int x = 8; x < map.Size.x - 19; x++)
+                for (int z = 4; z < map.Size.z - 5 && !start.IsValid; z++)
+                    for (int x = 4; x < map.Size.x - 9; x++)
                     {
                         IntVec3 candidate = new IntVec3(x, 0, z);
                         bool clear = true;
-                        for (int dx = 0; dx <= 12 && clear; dx++)
-                            for (int dz = -1; dz <= 4; dz++)
-                            {
-                                IntVec3 cell = candidate + new IntVec3(dx, 0, dz);
-                                if (!cell.InBounds(map) || !cell.Standable(map) ||
-                                    cell.GetEdifice(map) != null)
-                                { clear = false; break; }
-                            }
+                        // The two-threshold Goto occupies only x=0..8, z=0.
+                        // Do not require a much larger 13x6 empty rectangle in
+                        // original 1.7 maps; the off-path inactive probe is separate.
+                        for (int dx = 0; dx <= 8; dx++)
+                        {
+                            IntVec3 cell = candidate + new IntVec3(dx, 0, 0);
+                            if (!cell.InBounds(map) || !cell.Standable(map) ||
+                                cell.GetEdifice(map) != null)
+                            { clear = false; break; }
+                        }
                         if (clear) { start = candidate; break; }
                     }
                 ctx.Require(start.IsValid, "No open area for two painted thresholds");
