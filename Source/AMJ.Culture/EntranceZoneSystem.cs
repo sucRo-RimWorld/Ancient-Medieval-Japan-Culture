@@ -159,12 +159,12 @@ namespace AMJ.Culture
                 if (pawn != null && pawn.Spawned && pawn.Map == map)
                     GenDraw.DrawFillableBar(new GenDraw.FillableBarRequest
                     {
-                        center = pawn.DrawPos + new Vector3(0f, 0.1f, 0.7f),
-                        size = new Vector2(0.7f, 0.1f),
+                        center = pawn.DrawPos + new Vector3(0f, 0.25f, 0.7f),
+                        size = new Vector2(0.85f, 0.18f),
                         fillPercent = Mathf.Clamp01((now - pause.StartTick) / (float)EntranceFootwearState.CastTicks),
                         filledMat = ProgressFilled,
                         unfilledMat = ProgressEmpty,
-                        margin = 0.07f
+                        margin = 0.02f // Keep margin below half the bar height.
                     });
             }
         }
