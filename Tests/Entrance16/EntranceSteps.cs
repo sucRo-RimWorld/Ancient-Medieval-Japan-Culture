@@ -489,6 +489,57 @@ namespace AMJ.Culture.Test
                 Log.Message("AMJ_CULTURE_ENTRANCE_SAVE_KEYS_OK");
                 Log.Message("AMJ_CULTURE_ENTRANCE_REMAINING_OK");
             });
+
+
+        [Then("drafted crossing does not delay emergency movement")]
+        public async Task CheckDraftedCrossing(PickleContext ctx)
+        {
+            Pawn drafted = null;
+            object state = null;
+            IntVec3 destination = IntVec3.Invalid;
+            bool arrived = false, everPaused = false, everBarefoot = false;
+            await EntranceMainThread.Run(delegate
+            {
+                Map map = Find.CurrentMap;
+                ctx.Require(map != null, "Drafted test map not present");
+                EntranceReloadProbe probe = Current.Game.GetComponent<EntranceReloadProbe>();
+                ctx.Require(probe != null && probe.EntranceCell.IsValid,
+                            "Drafted test entrance not prepared");
+                state = Component(Current.Game, "EntranceFootwearState");
+                ctx.Require(state != null, "Footwear state unavailable");
+                IntVec3 start = probe.EntranceCell + IntVec3.West;
+                destination = probe.EntranceCell + new IntVec3(3, 0, 0);
+                ctx.Require(start.Standable(map) && destination.Standable(map),
+                            "Drafted crossing cells blocked");
+                drafted = PawnGenerator.GeneratePawn(
+                    DefDatabase<PawnKindDef>.GetNamed("Colonist"), Faction.OfPlayer);
+                ctx.Require(drafted != null, "Drafted colonist not generated");
+                GenSpawn.Spawn(drafted, start, map, WipeMode.Vanish);
+                ctx.Require(drafted.drafter != null, "Drafted colonist has no drafter");
+                drafted.drafter.Drafted = true;
+                Walk(drafted, destination);
+                Find.TickManager.CurTimeSpeed = TimeSpeed.Ultrafast;
+            });
+            for (int n = 0; n < 95; n++)
+            {
+                await ctx.WaitTicks(12);
+                await EntranceMainThread.Run(delegate
+                {
+                    if (drafted == null || !drafted.Spawned) return;
+                    everPaused |= Casting(state, drafted);
+                    everBarefoot |= Barefoot(state, drafted);
+                    arrived |= drafted.Position == destination;
+                });
+                if (arrived) break;
+            }
+            await EntranceMainThread.Run(delegate
+            {
+                ctx.Require(arrived, "Drafted Goto did not complete through threshold");
+                ctx.Require(!everPaused && !everBarefoot,
+                            "Drafted pawn blocked by shoe-changing cast");
+                Log.Message("AMJ_CULTURE_ENTRANCE16_DRAFTED_BYPASS_OK");
+            });
+        }
         }
     }
 }
