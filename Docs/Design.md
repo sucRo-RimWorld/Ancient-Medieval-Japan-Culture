@@ -896,3 +896,12 @@ Author approved **89 existing Core BackstoryDefs**, consisting of the earlier 87
 **実機受け入れ：** Project [Actions #39402364372](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39402364372) はPickle **1/1 PASS**、エラー0、終了コード0。検証ソースは `Tests/Entrance16/EntranceSteps.cs` の `CheckRescueCrossing`、専用の手動テストはProject `culture_chair16.py --suite entrance-rescue`。Culture製品コード・DLLは今回変更しない。
 
 **範囲制限：** 有効な玄関を挟む1つの救助シナリオのみ。RimWorld 1.7、複数救助者、大規模医療対応、他の緊急ジョブをこの結果からPASS扱いしない。
+
+
+### 玄関・緊急救助のRimWorld 1.7実ゲーム受け入れ（2026-10-20）
+
+**RimWorld 1.7.4977 rev1248、Culture製品DLL SHA256 `d149fbab74f9abb0d59f899fb202bc69d7cb2cb09eddc60d881190d374b53ba2`、Vanilla構成**にて、1.6受け入れと同じ `CheckRescueCrossing` を専用Pickleシナリオとして実行。救助者が麻酔によりダウンしたポーンを有効な玄関の内側から拾い、救助ジョブ中に履物脱着の停止を挟まず、玄関外の医療ベッドへの運搬を完了することを確認した。
+
+Project [Actions #39403725143](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39403725143)：**Pickle 1/1 PASS、テストマーカー1、ログエラー0、終了コード0、native_pass=true**。テストは `Tests/Entrance16/EntranceSteps.cs` にあり、実行経路はProjectの `culture_native17.py` の救助専用シナリオと手動Actions。従来の通常Goto/進捗バー複合テストを再実行しない。
+
+**範囲制限**：RimWorld 1.6・1.7の各1件の代表救助経路のみ受け入れ。MO併用救助、大量救助、戦闘中のあらゆる緊急ジョブ、長期セーブ互換を推定でPASSにしない。**製品コード・DLL・XMLは変更なし**。
