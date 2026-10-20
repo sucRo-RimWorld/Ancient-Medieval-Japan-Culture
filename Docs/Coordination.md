@@ -1,5 +1,10 @@
 # AMJ Culture Coordination
 
+## CULTURE-TEA-CHILD-OWNER-20261020 — author renamed Tea into Culture family
+
+**Boundary:** [Culture Tea](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Culture-Tea) is now an **optional, standalone Culture-family child Mod**, with distinct packageId `sucro.ancientmedievaljapan.culture.tea`. See parent canonical [Docs/Design.md](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Culture/blob/main/Docs/Design.md) (main `5ea46903dd1f3f3ae2af8bb15965c7ebf80cc620`) and [Tea Design](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Culture-Tea/blob/main/Docs/Design.md). This augments the Characters split; do not migrate Culture core's drugs, table Thoughts or alcohol to the child. Tea owns the existing non-drug tea/kogashi-yu source and Grains owns future edible kogashi. No new native test or required dependency; source is unverified.
+
+
 ## CULTURE-CHAIR17-ISOLATED-FAIL-20261020 — combined test did not reach Characters
 
 **Current unresolved Culture chair/meal test:** Original RimWorld **1.7.4977 rev1248**, exact separated Culture commit `f071f0602e9989a011f431f30a961499dcd38ee7`, current Characters source `a0022604affd644eeedb652226cfe58954f8edb8`. Project manually invoked **combined chair meal + backgrounds** [Actions #39398578851](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39398578851), artifact **12255145361**. It **FAILED**: after boot and Pickle Quickstart, it stalled on the **first chair Ingest step**, **before** any Characters background assertions; Pickle 0/0, watchdog timeout, crash/Unity errors at exit, process exit1. Initial Vulkan ICD messages and exit-time RunLoop exception are diagnostics, **not confirmed root cause**. Do not infer a historical-background regression or a proven Culture product failure from this run alone.
