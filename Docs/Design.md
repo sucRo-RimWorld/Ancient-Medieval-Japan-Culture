@@ -1,5 +1,11 @@
 # AMJ Culture — design and first acceptance
 
+## 2026-10-21 作者決定 — 信仰文化の将来実装を確定（非Ideology）
+
+**古代〜中世日本の信仰文化をAMJで実装することを決定する。Ideology DLCを必須とはしない。** Ideologyへの排他的な宗教所属を前提とせず、個人の信仰・神仏習合を含む重層的な信仰実践・祭祀・倫理／社会慣行の区別を尊重する。将来の具体的機能・所有Mod・新規リポジトリ・祭礼／芸能子Modとの統合／分離・実装時期・数値・依存・公開条件は**未決定**。Culture本体の既存範囲と初回公開条件は変更しない。宗教Need・宗派別所属・大規模な宗教制度・葬送再構築が採用された意味ではない。
+
+この決定は下記2026-10-20の「Ideology依存は未決定」という部分を**非必須と確定**させるが、祭礼・芸能子Modの具体的な仕様・責務を新たに確定するものではない。実装の所有先と詳細仕様が決まるまではProject [Roadmap](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/blob/main/Docs/Roadmap.md)で企画状態を管理する。
+
 ## 2026-10-20 作者決定 — 茶・こがし湯はCulture系列の子Mod
 
 作者が独立飲料リポジトリを [Ancient-Medieval-Japan-Culture-Tea](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Culture-Tea) に改称した。以後 **Culture Tea** は Culture系列の子Modとして扱う。既存のCulture-Charactersと同じく **別Package・任意併用** であり、Culture本体の必須依存とはしない。茶と米・大麦の「こがし湯」、栽培・加工・非ドラッグ娯楽・飲用は子Mod側の[確定仕様](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Culture-Tea/blob/main/Docs/Design.md)とXMLが所有し、Culture本体へ移植・重複定義しない。
