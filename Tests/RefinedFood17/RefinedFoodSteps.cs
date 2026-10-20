@@ -247,10 +247,13 @@ namespace AMJ.Culture.Test
                     ctx.Require(Abundant(map),
                         "12-day real food supplies did not reach abundance threshold: " +
                          map.resourceCounter.TotalHumanEdibleNutrition + " / colonists=" + colonists);
+                    Log.Message("AMJ_CULTURE_REFINED_ABUNDANCE_ASSERT_OK");
                 }
             });
             if (!grains) return;
-            await ctx.WaitTicks(2);
+            // Quickstart can leave the game paused: wait for rendered frames,
+            // not simulation ticks, before the next game-thread callback.
+            await ctx.WaitFrames(2);
             await OnGameThread(() => {
                 ctx.Require(Abundant(map), "Resource cache unexpectedly stale");
                 SetTraits(pawn);
