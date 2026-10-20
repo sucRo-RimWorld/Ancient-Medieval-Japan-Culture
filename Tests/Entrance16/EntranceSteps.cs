@@ -970,7 +970,7 @@ namespace AMJ.Culture.Test
                 anesthetic.Severity = 1f;
                 patient.health.AddHediff(anesthetic);
                 ctx.Require(patient.Downed, "Rescue patient not downed");
-                bed = ThingMaker.MakeThing(ThingDefOf.Bed) as Building_Bed;
+                bed = ThingMaker.MakeThing(ThingDefOf.Bed, ThingDefOf.WoodLog) as Building_Bed;
                 ctx.Require(bed != null, "Bed creation failed");
                 bed.SetFaction(Faction.OfPlayer);
                 GenSpawn.Spawn(bed, start + new IntVec3(0, 0, 2), map, WipeMode.Vanish);
