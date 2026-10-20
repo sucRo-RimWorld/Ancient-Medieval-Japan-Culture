@@ -269,6 +269,8 @@ namespace AMJ.Culture.Test
             bool pausedCapture = Environment.GetEnvironmentVariable("AMJ_ENTRANCE_17_PAUSED_CAPTURE") == "1";
             // A separate, opt-in MO-only diagnostic; functional assertions remain unchanged.
             bool moStallProbe = Environment.GetEnvironmentVariable("AMJ_ENTRANCE_17_MO_DIAGNOSTIC") == "1";
+            // The 1.7 visual lane also must not block on game ticks after capture.
+            bool frameProbe = moStallProbe || visual17;
             bool captureReady = false;
             bool visualCaptured = false;
             bool visualBoosted = false;
@@ -343,7 +345,7 @@ namespace AMJ.Culture.Test
                 ctx.Require(pawn != null, "Colonist pawn generation failed");
                 GenSpawn.Spawn(pawn, start, map, WipeMode.Vanish);
                 end = start + new IntVec3(8, 0, 0);
-                if (moStallProbe)
+                if (frameProbe)
                 {
                     PropertyInfo pausesProperty = state.GetType().GetProperty(
                         "ActivePauses", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
@@ -366,11 +368,11 @@ namespace AMJ.Culture.Test
 
             var stallWatch = System.Diagnostics.Stopwatch.StartNew();
             int firstProbeTick = -1;
-            for (int cycle = 0; cycle < (moStallProbe ? 450 : 200); cycle++)
+            for (int cycle = 0; cycle < (frameProbe ? 450 : 200); cycle++)
             {
                 // A stalled game tick makes WaitTicks(5) hang until Pickle times out.
                 // In this one diagnostic lane, sample real rendered frames instead.
-                if (moStallProbe) await ctx.WaitFrames(4);
+                if (frameProbe) await ctx.WaitFrames(4);
                 else await ctx.WaitTicks(5);
                 await EntranceMainThread.Run(delegate
                 {
@@ -398,7 +400,7 @@ namespace AMJ.Culture.Test
                     observedBarefoot |= Barefoot(state, pawn);
                     observedExit |= pawn.Position == end;
                     observedShoes |= pawn.Position == end && !Barefoot(state, pawn);
-                    if (moStallProbe)
+                    if (frameProbe)
                     {
                         // These latches survive many ticks between two GUI frames.
                         observedRemoveCast |= EntrancePatherTickObserver.RemoveCast;
@@ -407,11 +409,11 @@ namespace AMJ.Culture.Test
                         observedExit |= EntrancePatherTickObserver.Reached;
                         observedShoes |= EntrancePatherTickObserver.ShoesAtExit;
                     }
-                    if (moStallProbe && (cycle % 16 == 0 || observedShoes))
+                    if (frameProbe && (cycle % 16 == 0 || observedShoes))
                     {
                         int nowTick = Find.TickManager.TicksGame;
                         if (firstProbeTick < 0) firstProbeTick = nowTick;
-                        Log.Message("AMJ_CULTURE_ENTRANCE17_MO_STALL_PROBE"
+                        Log.Message("AMJ_CULTURE_ENTRANCE17_FRAME_STALL_PROBE"
                             + " elapsed_ms=" + stallWatch.ElapsedMilliseconds
                             + " ticks=" + nowTick + " tick_delta=" + (nowTick - firstProbeTick)
                             + " speed=" + Find.TickManager.CurTimeSpeed
@@ -465,9 +467,9 @@ namespace AMJ.Culture.Test
                 if (observedRemoveCast && observedPutOnCast && observedShoes) break;
                 // Bound the diagnostic to protect the native runner. Do not count a
                 // test timeout or incomplete path as an accepted functional PASS.
-                if (moStallProbe && stallWatch.ElapsedMilliseconds >= 90000)
+                if (frameProbe && stallWatch.ElapsedMilliseconds >= 90000)
                 {
-                    Log.Message("AMJ_CULTURE_ENTRANCE17_MO_STALL_WATCHDOG"
+                    Log.Message("AMJ_CULTURE_ENTRANCE17_FRAME_STALL_WATCHDOG"
                         + " elapsed_ms=" + stallWatch.ElapsedMilliseconds
                         + " observed_remove=" + observedRemoveCast
                         + " observed_put_on=" + observedPutOnCast
