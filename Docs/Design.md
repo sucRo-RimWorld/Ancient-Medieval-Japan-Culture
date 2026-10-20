@@ -1,6 +1,14 @@
 # AMJ Culture — design and first acceptance
 
 
+## 2026-10-20 作者追加決定 — 茶・こがし湯はCulture Tea子Modへ帰属
+
+**Culture系列の茶の子Mod**は、実在する [Ancient-Medieval-Japan-Culture-Tea](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Culture-Tea) が正式所有する（リポジトリ名は作者が変更済み）。この決定は既存Culture本体の機能をTeaへ移すものではない。**茶・こがし湯の2種類の非ドラッグ娯楽飲料**、茶木・茶葉・製茶・飲料レシピ・飲用処理・専用画像・狭い互換パッチはTea所有。文化一般の薬物制限、酒に関する処理、食事の座具・心情は引き続きCulture本体の所有、穀物栽培・食用こがしはGrains所有。
+
+Culture Teaは**別Modとして単独導入可能**で、親Cultureを実行時の必須依存にはしない。Teaの既存`packageId=sucro.ancientmedievaljapan.tea`と`AMJT_`のDef IDは変えない。Vanilla米によるこがし湯を維持し、Grainsの大麦は任意連携に留める。薬物、依存・離脱、強いMood/健康効果、現代の麦茶を茶製品へ追加しない。
+
+Teaは初期XML実装段階で、画像・数値・実ゲーム受け入れは未完了。**Culture本体の初回公開条件にはTeaの完成を追加しない**。Teaの製品仕様正本は[Tea Docs/Design.md](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Culture-Tea/blob/main/Docs/Design.md)。祭礼・芸能の将来子Modに関する別の決定も維持する。
+
 ## 2026-10-20 作者決定 — 祭礼・芸能はCultureの将来の子Modへ分離（設計構想のみ）
 
 古代〜中世日本の**祭礼・年中行事・民衆芸能／集団娯楽**は、Culture本体の新機能として抱え込まず、**一つの別Mod（Culture系列の子Mod）**として計画する。2026-10-19の「Characters以外に分離しない」という原則のうち、**既存のCulture実装の移管を禁止する部分は維持**しつつ、今回の**将来の新規機能に対する例外**を認める。現行Culture本体の玄関・食事・住居・心情・薬物機能は移管しない。背景・特性は引き続き独立したCulture-Charactersが所有する。
