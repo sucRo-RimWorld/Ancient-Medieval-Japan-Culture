@@ -15,6 +15,7 @@
 | 筵・菰の多用途敷物 | 1.6 Vanillaの技術検証PoCのみ成功。専用ThingDef・画像・製品実装は未完成 |
 | 自動収納する折り畳み寝具 | 旧案として保留。完成製品ではない |
 | 背景・特性 | 別Mod [Culture – Characters](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Culture-Characters)の担当 |
+| 茶・こがし湯 | [Culture Tea](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Culture-Tea) の子Mod。2種類の非ドラッグ飲料は専用Modが所有。初期XML実装あり、画像・実ゲーム確認は未完成。本体公開条件外 |
 | 祭礼・芸能 | 将来のCulture系列子Modで検討。本体には未実装、初回公開条件外 |
 
 ## 仕様の参照先
