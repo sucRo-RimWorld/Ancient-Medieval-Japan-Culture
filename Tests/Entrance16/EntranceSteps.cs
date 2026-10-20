@@ -916,5 +916,98 @@ namespace AMJ.Culture.Test
             });
         }
 
+        [Then("rescue carries a downed pawn across an active entrance without footwear cast")]
+        public async Task CheckRescueCrossing(PickleContext ctx)
+        {
+            Pawn rescuer = null, patient = null;
+            Building_Bed bed = null;
+            object zone = null, state = null;
+            IntVec3 start = IntVec3.Invalid;
+            bool finished = false, paused = false, carried = false;
+            await ctx.WaitUntil(() =>
+            {
+                Type quick = Type.GetType("AMJ.Culture.Test.ChairQuickstart, AMJ.Culture.Chair16.Quickstart");
+                PropertyInfo flag = quick == null ? null : quick.GetProperty("IsPostLoaded");
+                return flag != null && (bool)flag.GetValue(null, null);
+            }, 90f);
+            await ctx.WaitFrames(2);
+            await EntranceMainThread.Run(delegate
+            {
+                Map map = Find.CurrentMap;
+                ctx.Require(map != null, "Rescue quickstart map missing");
+                zone = Component(map, "EntranceZoneMap");
+                state = Component(Current.Game, "EntranceFootwearState");
+                ctx.Require(zone != null && state != null, "Rescue zone/state missing");
+                for (int z = 12; z < map.Size.z - 12 && !start.IsValid; z++)
+                    for (int x = 12; x < map.Size.x - 17; x++)
+                    {
+                        IntVec3 p = new IntVec3(x, 0, z);
+                        bool clear = true;
+                        for (int dx = 0; dx <= 10 && clear; dx++)
+                            for (int dz = -2; dz <= 2; dz++)
+                            {
+                                IntVec3 c = p + new IntVec3(dx, 0, dz);
+                                if (!c.Standable(map) || c.GetEdifice(map) != null)
+                                { clear = false; break; }
+                            }
+                        if (clear) { start = p; break; }
+                    }
+                ctx.Require(start.IsValid, "No open rescue test corridor");
+                IntVec3 gate = start + new IntVec3(2, 0, 0);
+                Call(zone, "Set", gate, true);
+                for (int dx = 3; dx <= 6; dx++)
+                    Call(zone, "SetNoShoes", start + new IntVec3(dx, 0, 0), true);
+                ctx.Require((bool)Call(zone, "HasConnectedNoShoesContact", gate),
+                            "Rescue entrance not activated");
+                rescuer = PawnGenerator.GeneratePawn(
+                    DefDatabase<PawnKindDef>.GetNamed("Colonist"), Faction.OfPlayer);
+                patient = PawnGenerator.GeneratePawn(
+                    DefDatabase<PawnKindDef>.GetNamed("Colonist"), Faction.OfPlayer);
+                ctx.Require(rescuer != null && patient != null, "Rescue pawns unavailable");
+                GenSpawn.Spawn(rescuer, start, map, WipeMode.Vanish);
+                GenSpawn.Spawn(patient, start + new IntVec3(5, 0, 0), map, WipeMode.Vanish);
+                Hediff anesthetic = HediffMaker.MakeHediff(HediffDefOf.Anesthetic, patient);
+                anesthetic.Severity = 1f;
+                patient.health.AddHediff(anesthetic);
+                ctx.Require(patient.Downed, "Rescue patient not downed");
+                bed = ThingMaker.MakeThing(ThingDefOf.Bed) as Building_Bed;
+                ctx.Require(bed != null, "Bed creation failed");
+                bed.SetFaction(Faction.OfPlayer);
+                GenSpawn.Spawn(bed, start + new IntVec3(0, 0, 2), map, WipeMode.Vanish);
+                bed.Medical = true;
+                Job job = JobMaker.MakeJob(JobDefOf.Rescue, patient, bed);
+                job.playerForced = true;
+                rescuer.jobs.StartJob(job, JobCondition.InterruptForced);
+                ctx.Require(rescuer.CurJob != null && rescuer.CurJob.def == JobDefOf.Rescue,
+                            "Actual Rescue job not started");
+                Find.TickManager.CurTimeSpeed = TimeSpeed.Ultrafast;
+                Log.Message("AMJ_CULTURE_ENTRANCE_RESCUE_STARTED gate=" + gate +
+                            " patient=" + patient.Position + " bed=" + bed.Position);
+            });
+            for (int n = 0; n < 240; n++)
+            {
+                await ctx.WaitTicks(8);
+                await EntranceMainThread.Run(delegate
+                {
+                    paused |= Casting(state, rescuer);
+                    carried |= rescuer.carryTracker != null && rescuer.carryTracker.CarriedThing == patient;
+                    finished |= patient.CurrentBed() == bed;
+                });
+                if (finished) break;
+            }
+            await EntranceMainThread.Run(delegate
+            {
+                Log.Message("AMJ_CULTURE_ENTRANCE_RESCUE_DIAGNOSTIC"
+                    + " carried=" + carried + " finished=" + finished
+                    + " footwear_cast=" + paused
+                    + " job=" + (rescuer.CurJob == null ? "none" : rescuer.CurJob.def.defName)
+                    + " rescuer=" + rescuer.Position + " patient=" + patient.Position);
+                ctx.Require(carried, "Rescuer never carried the downed pawn");
+                ctx.Require(finished, "Rescue job did not deliver patient to medical bed");
+                ctx.Require(!paused, "Emergency Rescue job was interrupted by a footwear cast");
+                Log.Message("AMJ_CULTURE_ENTRANCE_RESCUE16_OK");
+            });
+        }
+
     }
 }
