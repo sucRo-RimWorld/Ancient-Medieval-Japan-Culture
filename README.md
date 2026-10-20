@@ -9,6 +9,7 @@ RimWorld 1.6・1.7向けの生活文化調整Mod（開発版）。
 - **Harmony:** 必須
 - **Medieval Overhaul:** 任意
 - **Culture – Characters:** [背景・特性を担当する別Mod](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Culture-Characters)
+- **Culture – Tea:** [茶・こがし湯を担当する子Mod](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Culture-Tea)（独立導入可能・本体の必須機能ではありません）
 - **既存セーブ:** 途中導入は未検証。バックアップまたは新規ゲームを推奨。
 
 開発仕様の正本は[Docs/Design.md](Docs/Design.md)です。
