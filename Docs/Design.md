@@ -1,5 +1,16 @@
 # AMJ Culture — design and first acceptance
 
+
+## 2026-10-20 作者決定 — 祭礼・芸能はCultureの将来の子Modへ分離（設計構想のみ）
+
+古代〜中世日本の**祭礼・年中行事・民衆芸能／集団娯楽**は、Culture本体の新機能として抱え込まず、**一つの別Mod（Culture系列の子Mod）**として計画する。2026-10-19の「Characters以外に分離しない」という原則のうち、**既存のCulture実装の移管を禁止する部分は維持**しつつ、今回の**将来の新規機能に対する例外**を認める。現行Culture本体の玄関・食事・住居・心情・薬物機能は移管しない。背景・特性は引き続き独立したCulture-Charactersが所有する。
+
+- **Culture本体の初回公開に祭礼・芸能を要求しない。** 本体の公開可否は既存の実装済み機能と多用途筵の製品化・確認で判断する。将来子Modの未着手はブロッカーではない。
+- 子Modの**正式名称・packageId・リポジトリ・必須依存・歴史的対象行事・心情/娯楽効果・設備・発火/運営UI・数値**は未確定。新機能としての具体的な設計・実装は既存Mod（Vanilla、MO、Ideology、VE／非VE）の先行事例・重複監査を経て決める。
+- **宗教制度全体や葬送設備の一般的再構築を自動的に含めない。** Culture本体の葬送複雑化を採用しない既存判断を維持する。Ideologyを必須とするかどうかも決定していないので、現段階でDLC依存を追加しない。
+- 子Modの実体はまだ作成していない。企画・リポジトリ未設置の間の**所有とロードマップ管理はProject**、将来の確定仕様と実装は新規子Modリポジトリへ移す。本書は**Cultureとの責務境界**の正本とする。
+
+
 ## 2026-10-19 Character Trait P2 correction — artificial-body traits excluded from new generation
 
 **Latest author decision (supersedes 2026-10-17 provisional BodyPurist retention):** **both** Vanilla `Transhumanist` (body-modification desire) and `BodyPurist` (body-modification aversion) are to be absent from new ordinary period-Japanese pawn generation. The production XML and canonical Trait/Backstory design belong to independent [AMJ Culture – Characters](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Culture-Characters/blob/main/Docs/Design.md), implemented in [Characters PR #8](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Culture-Characters/pull/8) (main `961711edb675560041e3aca1c58d8f225dcca1ff`) and XPath source correction [PR #9](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Culture-Characters/pull/9) (main `b236577ca9c37bb433fa309e61b91968154c0bd0`). Both original TraitDef and BackstoryDef identities remain for old saves; ordinary generation commonality is 0, and known original forced-trait XML entries are conditionally targeted. `FerventResearcher72`, `HunterOfTheKing53`, `TestSubject90` retain their previously approved ordinary-backstory exclusions. The known 1.6 direct forced-XPath removal had previously failed, so exact current 1.6/1.7 loaded-game removal and generated-pawn behavior remain **unverified**, not PASS. This decision does not alter prosthetic treatment, old saved pawns, Culture ThoughtWorkers, or Culture's production C#/XML/DLL. The older below sections describing BodyPurist as retained for normal new generation are historic and superseded. No new required Mod dependency or Steam publication.
