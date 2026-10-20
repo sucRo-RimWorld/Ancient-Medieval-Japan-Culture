@@ -149,12 +149,9 @@ namespace AMJ.Culture.Test
                 BindingFlags.NonPublic | BindingFlags.Instance).FirstOrDefault(
                 x => x.Name == "UpdateResourceCounts" && x.GetParameters().Length == 0);
             if (update != null) update.Invoke(counter, new object[0]);
-            MethodInfo recount = map.wealthWatcher.GetType().GetMethods(
-                BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
-                .FirstOrDefault(x => x.Name == "ForceRecount" &&
-                    x.GetParameters().Length == 1 &&
-                    x.GetParameters()[0].ParameterType == typeof(bool));
-            if (recount != null) recount.Invoke(map.wealthWatcher, new object[] { true });
+            // The 12-day path short-circuits before the wealth threshold.
+            // Forcing a full map wealth recount during a Pickle game-thread
+            // callback is unnecessary and can hold the game loop for too long.
         }
 
         [Then("refined food expectations obey Grains and meal constraints")]
@@ -241,9 +238,12 @@ namespace AMJ.Culture.Test
                     Expect(ctx, pawn, null, 0);
                     Log.Message("AMJ_CULTURE_REFINED_SHORTAGE_OK");
                     int colonists = map.mapPawns.ColonistsSpawnedCount;
+                    Log.Message("AMJ_CULTURE_REFINED_STOCKPILE_START");
                     SeedFood(map, foodStocks, (int)Math.Ceiling(
                         colonists * 1.6f * 12f / 0.9f) + 20);
+                    Log.Message("AMJ_CULTURE_REFINED_STOCKPILE_READY");
                     Refresh(map);
+                    Log.Message("AMJ_CULTURE_REFINED_RESOURCE_REFRESH_READY");
                     ctx.Require(Abundant(map),
                         "12-day real food supplies did not reach abundance threshold: " +
                          map.resourceCounter.TotalHumanEdibleNutrition + " / colonists=" + colonists);
