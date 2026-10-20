@@ -887,3 +887,12 @@ Author approved **89 existing Core BackstoryDefs**, consisting of the earlier 87
 **通行機能**については、以前の独立した1.7 Vanilla [#39193821413](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39193821413) と、1.7＋MO 1.6.2.2 [#39253445043](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39253445043) の代表経路PASSを採用し、GUI撮影テストのFAILを通行成功へ読み替えない。[#39386428142](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39386428142) は260秒タイムアウトを回避したが、2つ目の履物キャストを観測せずPickle FAIL（画像も未取得）。撮影を伴う複合テストは費用対効果が低いため運用から外す。再テストは実プレイで新たな再現不具合または製品変更が生じた場合に限って別途設計する。
 
 **製品仕様・ソース・両版DLLへの変更はない。** 未受け入れの大規模TPS、1.7実セーブ再読込、緊急救助などは本記録でPASS扱いしない。
+
+
+### 玄関・緊急救助の実ゲーム受け入れ（2026-10-20）
+
+**RimWorld 1.6.4871 rev598、Culture製品DLL SHA256 `79507a668fce1c0b70da61ded1cc4029004cd36b8c1de3202999819ce432ac26`** で、救助者・麻酔によりダウンしたポーン・医療ベッド・有効な玄関を配置し、Vanillaの実際の `Rescue` ジョブを実行した。救助者による患者の拾い上げと医療ベッドへの搬送完了、救助中の履物脱着キャストによる中断が無いことを確認。
+
+**実機受け入れ：** Project [Actions #39402364372](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39402364372) はPickle **1/1 PASS**、エラー0、終了コード0。検証ソースは `Tests/Entrance16/EntranceSteps.cs` の `CheckRescueCrossing`、専用の手動テストはProject `culture_chair16.py --suite entrance-rescue`。Culture製品コード・DLLは今回変更しない。
+
+**範囲制限：** 有効な玄関を挟む1つの救助シナリオのみ。RimWorld 1.7、複数救助者、大規模医療対応、他の緊急ジョブをこの結果からPASS扱いしない。
