@@ -1,5 +1,7 @@
 # AMJ Culture — feature-by-feature specification and implementation plan
 
+**2026-10-20 後続決定（最新）：** 祭礼・芸能は**将来新設するCulture系列の子Mod**へ分離し、本体の初回公開条件に含めない。これは既存C-01以外の実装群を分割する承認ではない。正式な分離境界は[Design.md](Design.md#2026-10-20-作者決定--祭礼芸能はcultureの将来の子modへ分離設計構想のみ)を参照。現行のC-02〜C-07機能はCulture本体に残す。**子Modの実装・依存・数値は未確定**。
+
 **Current author decision (2026-10-19):** Split **only C-01 background/trait character-generation** into standalone **AMJ Culture – Characters**. No other Culture subfeatures are split. Characters is a separate source owner, with both versioned DLLs already compiled; Culture's XML and C# extraction plus separate 1.6/1.7 rebuilt DLLs are prepared on topic branch `refactor/characters-cutover` (commit `f071f0602e9989a011f431f30a961499dcd38ee7`), **not merged into Culture main pending native cutover acceptance**. Characters-alone native 1.6 and paired Vanilla 1.7 passed; paired 1.6 had a non-reproduced native Mono SIGSEGV in Project #39228255901, then **PASS** in focused Project #39229556343 (Pickle 1/1, ERROR0, exit0). See [Design](Design.md#2026-10-19-author-exception--split-only-backgrounds-and-traits-as-amj-culture--characters). Background Phase 2 remains closed; new Trait review remains open. No release or old-save conversion claimed.
 
 ## Workflow and completion labels
@@ -25,4 +27,4 @@
 
 **Cross-feature rule:** C-06's bedding placement may affect C-01/05 owned-bed and Greedy/Jealous comparisons, C-03 daytime room reuse, C-04 no-shoes zoning, and independent Shared Sleeping; preserve current behavior in the code that actually owns it. This is a dependency review, not a reason to move independent Mods into Culture. C-07 must not ship before C-06 works.
 
-No additional gameplay scope is authorized by this plan. Existing owner docs/source outrank this status index for each completed feature. New design proposals require their own decision; this plan does not make every historical candidate automatic Culture content.
+No additional gameplay scope inside Culture is authorized by this plan. The separate future festivals/performing-arts child Mod is an ownership decision only, not an approved implementation specification. Existing owner docs/source outrank this status index for each completed feature. New design proposals require their own decision; this plan does not make every historical candidate automatic Culture content.
