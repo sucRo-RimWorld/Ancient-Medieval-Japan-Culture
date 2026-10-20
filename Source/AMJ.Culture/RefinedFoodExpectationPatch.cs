@@ -133,7 +133,8 @@ namespace AMJ.Culture
             if (ingester.story.traits.HasTrait(TraitDefOf.Ascetic))
                 return;
 
-            bool gourmand = ingester.story.traits.HasTrait(TraitDefOf.Gourmand);
+            TraitDef gourmandDef = DefDatabase<TraitDef>.GetNamedSilentFail("Gourmand");
+            bool gourmand = gourmandDef != null && ingester.story.traits.HasTrait(gourmandDef);
             if (!gourmand && !HasPrivilegedFoodUpbringing(ingester))
                 return;
 
