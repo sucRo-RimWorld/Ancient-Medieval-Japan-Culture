@@ -128,9 +128,12 @@ namespace AMJ.Culture.Test
                 }
             if (cells.Count < count / Math.Max(1, meal.stackLimit) + 5)
                 throw new InvalidOperationException("Insufficient stock staging cells");
+            var stockpile = new Zone_Stockpile("AMJ test grain supplies", map.zoneManager);
+            map.zoneManager.RegisterZone(stockpile);
             int remaining = count;
             for (int i = 0; remaining > 0; i++)
             {
+                stockpile.AddCell(cells[i]);
                 Thing item = ThingMaker.MakeThing(meal);
                 item.stackCount = Math.Min(remaining, meal.stackLimit);
                 GenSpawn.Spawn(item, cells[i], map);
