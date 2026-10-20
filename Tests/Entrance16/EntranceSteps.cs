@@ -976,6 +976,7 @@ namespace AMJ.Culture.Test
                 GenSpawn.Spawn(bed, start + new IntVec3(0, 0, 2), map, WipeMode.Vanish);
                 bed.Medical = true;
                 Job job = JobMaker.MakeJob(JobDefOf.Rescue, patient, bed);
+                job.count = 1;
                 job.playerForced = true;
                 rescuer.jobs.StartJob(job, JobCondition.InterruptForced);
                 ctx.Require(rescuer.CurJob != null && rescuer.CurJob.def == JobDefOf.Rescue,
