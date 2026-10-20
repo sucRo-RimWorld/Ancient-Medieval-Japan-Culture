@@ -878,3 +878,12 @@ Author approved **89 existing Core BackstoryDefs**, consisting of the earlier 87
 
 
 **Phase 2 background work — author acceptance COMPLETE (2026-10-19).** The author explicitly **waived/skipped a separate Japanese glyph/screenshot display check**. This is an acceptance-scope decision, **not** a visual test PASS or a new claim that Linux CJK glyph rendering is correct. Approved 89 Japanese text rewrites and corresponding English patches, generation restrictions (77 adult + 58 childhood) and two restored ordinary background categories are implemented. Vanilla 1.6/1.7 and original MO 1.6 plus MO-1.6-on-1.7 compatibility native background paths are PASS as scoped above; Japanese in-game 89 title/titleShort/full-description equality is PASS in native 1.6 (Project run #39208562796). Original-game metadata and existing 23 possession substitutions were statically audited (not each generated pawn's inventory/traits). Individual grants, old-save reload and native MO 1.7 remain outside Phase 2 acceptance; keep the existing new-game recommendation and no guarantee of save compatibility. **Background Phase 2 is closed; Culture-wide Trait work and other feature/release approvals are separate.** No new runtime testing or Steam publication authorized by this closure.
+
+
+### 玄関1.7の画面表示と通行機能の受け入れ分離（2026-10-20）
+
+玄関の**進捗バー表示**と**脱着・通行機能**は独立した受け入れ項目として扱う。1.7 GUI描画は元ゲームを撮影したスクリーンショットでベージュ色のバーがポーン頭上に視認できた（Project Actions [#39274915004](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39274915004)、[#39306370705](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39306370705)）。これらの実行はPickle全体としてFAILであり、画像上の表示確認だけを限定的にPASSとする。画面表示を再検証するために90tick脱着・目的地到着まで全て同時に要求しない。
+
+**通行機能**については、以前の独立した1.7 Vanilla [#39193821413](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39193821413) と、1.7＋MO 1.6.2.2 [#39253445043](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39253445043) の代表経路PASSを採用し、GUI撮影テストのFAILを通行成功へ読み替えない。[#39386428142](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/39386428142) は260秒タイムアウトを回避したが、2つ目の履物キャストを観測せずPickle FAIL（画像も未取得）。撮影を伴う複合テストは費用対効果が低いため運用から外す。再テストは実プレイで新たな再現不具合または製品変更が生じた場合に限って別途設計する。
+
+**製品仕様・ソース・両版DLLへの変更はない。** 未受け入れの大規模TPS、1.7実セーブ再読込、緊急救助などは本記録でPASS扱いしない。
