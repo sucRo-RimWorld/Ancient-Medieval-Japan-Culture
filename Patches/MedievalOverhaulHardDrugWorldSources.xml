@@ -2,16 +2,16 @@
 <Patch>
   <!-- Existing MO loot shelves are not governed by drug tradeability.
        Keep the ruin furniture/loot system and other medical/food loot.
-       The six shelves stocked with excluded hard drugs yield ordinary
-       herbal medicine instead; no banned ThingDef is removed. -->
+       Seven shelves with excluded drugs, including Paregoric, yield
+       ordinary herbal medicine; no banned ThingDef is removed. -->
   <Operation Class="PatchOperationFindMod">
     <mods><li>Medieval Overhaul</li></mods>
     <match Class="PatchOperationSequence">
       <operations>
         <li Class="PatchOperationConditional">
-          <xpath>Defs/ThingDef[defName="DankPyon_LootableShelf_BattleElixir" or defName="DankPyon_LootableShelf_HappyPowder" or defName="DankPyon_LootableShelf_VigorPill" or defName="DankPyon_LootableShelf_Stardust" or defName="DankPyon_LootableShelf_Luhix" or defName="DankPyon_LootableShelf_AssortedDrugsA"]/modExtensions/li[@Class="MedievalOverhaul.BuildingLootableExtension"]/randomItems</xpath>
+          <xpath>Defs/ThingDef[defName="DankPyon_LootableShelf_BattleElixir" or defName="DankPyon_LootableShelf_HappyPowder" or defName="DankPyon_LootableShelf_VigorPill" or defName="DankPyon_LootableShelf_Stardust" or defName="DankPyon_LootableShelf_Luhix" or defName="DankPyon_LootableShelf_AssortedDrugsA" or defName="DankPyon_LootableShelf_Paregoric"]/modExtensions/li[@Class="MedievalOverhaul.BuildingLootableExtension"]/randomItems</xpath>
           <match Class="PatchOperationReplace">
-            <xpath>Defs/ThingDef[defName="DankPyon_LootableShelf_BattleElixir" or defName="DankPyon_LootableShelf_HappyPowder" or defName="DankPyon_LootableShelf_VigorPill" or defName="DankPyon_LootableShelf_Stardust" or defName="DankPyon_LootableShelf_Luhix" or defName="DankPyon_LootableShelf_AssortedDrugsA"]/modExtensions/li[@Class="MedievalOverhaul.BuildingLootableExtension"]/randomItems</xpath>
+            <xpath>Defs/ThingDef[defName="DankPyon_LootableShelf_BattleElixir" or defName="DankPyon_LootableShelf_HappyPowder" or defName="DankPyon_LootableShelf_VigorPill" or defName="DankPyon_LootableShelf_Stardust" or defName="DankPyon_LootableShelf_Luhix" or defName="DankPyon_LootableShelf_AssortedDrugsA" or defName="DankPyon_LootableShelf_Paregoric"]/modExtensions/li[@Class="MedievalOverhaul.BuildingLootableExtension"]/randomItems</xpath>
             <value><randomItems><li>MedicineHerbal</li></randomItems></value>
           </match>
         </li>
