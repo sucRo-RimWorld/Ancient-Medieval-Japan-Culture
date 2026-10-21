@@ -19,7 +19,10 @@ namespace AMJ.Culture.Test
             "DankPyon_BattleElixir", "DankPyon_Stardust", "DankPyon_Luhix",
             "DankPyon_HornetHoney", "DankPyon_Mixture_HappyPowder",
             "DankPyon_Mixture_BattleElixir", "DankPyon_Mixture_VigorPill",
-            "DankPyon_Mixture_Luhix", "DankPyon_Mixture_Stardust"
+            "DankPyon_Mixture_Luhix", "DankPyon_Mixture_Stardust",
+            "DankPyon_KnowledgePotion", "DankPyon_Paregoric", "DankPyon_Miracle",
+            "DankPyon_Mixture_Knowledge", "DankPyon_Mixture_Paregoric",
+            "DankPyon_Mixture_Miracle"
         };
 
         private static Task OnGameThread(Action work)

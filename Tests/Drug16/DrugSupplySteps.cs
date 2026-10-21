@@ -22,7 +22,9 @@ namespace AMJ.Culture.Test
         {
             "DankPyon_HappyPowder", "DankPyon_VigorPill",
             "DankPyon_BattleElixir", "DankPyon_Stardust",
-            "DankPyon_Luhix", "DankPyon_HornetHoney"
+            "DankPyon_Luhix", "DankPyon_HornetHoney",
+            "DankPyon_KnowledgePotion", "DankPyon_Paregoric",
+            "DankPyon_Miracle"
         };
 
         private static Task MainThread(Action action)
@@ -108,7 +110,10 @@ namespace AMJ.Culture.Test
                         "DankPyon_Mixture_BattleElixir",
                         "DankPyon_Mixture_VigorPill",
                         "DankPyon_Mixture_Luhix",
-                        "DankPyon_Mixture_Stardust"
+                        "DankPyon_Mixture_Stardust",
+                        "DankPyon_Mixture_Knowledge",
+                        "DankPyon_Mixture_Paregoric",
+                        "DankPyon_Mixture_Miracle"
                     })
                     {
                         ThingDef mixture = RequireThing(ctx, id);
@@ -117,15 +122,6 @@ namespace AMJ.Culture.Test
                         ctx.Require(mixture.tradeability.ToString() == "Sellable",
                             "Banned MO alchemy mixture still stockable: " + id);
                     }
-                    foreach (string id in new []
-                    {
-                        "DankPyon_Mixture_Miracle",
-                        "DankPyon_Mixture_Paregoric",
-                        "DankPyon_Mixture_Knowledge"
-                    })
-                        ctx.Require(RequireThing(ctx, id).recipeMaker != null,
-                            "Non-excluded medical mixture recipe missing: " + id);
-
                     ThingDef nest = RequireThing(ctx, "DankPyon_HornetNest");
                     ctx.Require(nest.comps != null &&
                         !nest.comps.Any(comp => comp.GetType().Name ==
