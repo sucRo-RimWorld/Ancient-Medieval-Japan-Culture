@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -121,6 +122,57 @@ namespace AMJ.Culture.Test
                             "Banned MO alchemy mixture bill still generated: " + id);
                         ctx.Require(mixture.tradeability.ToString() == "Sellable",
                             "Banned MO alchemy mixture still stockable: " + id);
+                    }
+                    // Retain real loaded cauldron ProcessDefs for old saved mixtures.
+                    Type processType = AppDomain.CurrentDomain.GetAssemblies()
+                        .Select(assembly => assembly.GetType("ProcessorFramework.ProcessDef", false))
+                        .FirstOrDefault(type => type != null);
+                    ctx.Require(processType != null, "MO cauldron ProcessDef type missing");
+                    Type processDatabase = typeof(DefDatabase<>).MakeGenericType(processType);
+                    MethodInfo getProcess = processDatabase.GetMethod(
+                        "GetNamedSilentFail", new[] { typeof(string) });
+                    ctx.Require(getProcess != null, "MO process Def lookup unavailable");
+                    foreach (string id in new[]
+                    {
+                        "DankPyon_Process_Knowledge",
+                        "DankPyon_Process_Paregoric",
+                        "DankPyon_Process_Miracle"
+                    })
+                        ctx.Require(getProcess.Invoke(null, new object[] { id }) != null,
+                            "Previously owned MO mixture process disappeared: " + id);
+
+                    // Original MO 1.6.2.2 has one direct Paregoric ruin shelf.
+                    ThingDef shelf = RequireThing(ctx, "DankPyon_LootableShelf_Paregoric");
+                    object lootExtension = shelf.modExtensions == null ? null :
+                        shelf.modExtensions.FirstOrDefault(extension =>
+                            extension.GetType().FullName ==
+                                "MedievalOverhaul.BuildingLootableExtension");
+                    ctx.Require(lootExtension != null, "MO Paregoric ruin shelf loot extension absent");
+                    FieldInfo lootItemsField = lootExtension.GetType().GetField(
+                        "randomItems", BindingFlags.Instance | BindingFlags.Public |
+                            BindingFlags.NonPublic);
+                    ctx.Require(lootItemsField != null, "MO ruin shelf randomItems absent");
+                    IEnumerable lootItems = lootItemsField.GetValue(lootExtension) as IEnumerable;
+                    ctx.Require(lootItems != null, "MO ruin shelf randomItems unpopulated");
+                    var itemNames = lootItems.Cast<object>()
+                        .Select(item => item is ThingDef def ? def.defName : item?.ToString())
+                        .ToList();
+                    ctx.Require(itemNames.Count == 1 && itemNames[0] == "MedicineHerbal",
+                        "MO Paregoric ruin shelf still yields an excluded drug");
+
+                    // Historical items must remain instantiable; does not claim that
+                    // old saves or complete manual ingest/UseEffect were exercised.
+                    foreach (string id in new[]
+                    {
+                        "DankPyon_KnowledgePotion",
+                        "DankPyon_Paregoric",
+                        "DankPyon_Miracle"
+                    })
+                    {
+                        Thing legacyItem = ThingMaker.MakeThing(RequireThing(ctx, id));
+                        ctx.Require(legacyItem != null && legacyItem.def.defName == id,
+                            "MO legacy item can no longer be instantiated: " + id);
+                        legacyItem.Destroy();
                     }
                     ThingDef nest = RequireThing(ctx, "DankPyon_HornetNest");
                     ctx.Require(nest.comps != null &&
