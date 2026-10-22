@@ -36,6 +36,46 @@
 
 **Remaining bounded product gate:** Culture main already owns `Source/AMJ.Culture/MultipurposeMatMealSelector.cs` and its call from `TablelessChairMealPatch.cs`, including the reserved `AMJ_CultureWovenMat` ID and an `isSittable=false`/original `OwnedBed` special path. **There is still no buildable Culture mat ThingDef or accepted texture**, so those source classes alone are not a playable feature. Before promoting a product, settle a valid 1×2 four-direction visual and the actual material quantity/rest/Comfort, choose whether the initial recipe is Vanilla Hay-only or accepts optional MO Straw via an audited alternative (do not express AND ingredients as OR), and check the two-cell job/reservation and source-owned meal/bed interactions. **No numerical value, graphics, XML recipe, release or new test is authorized by this comparison.**
 
+## 2026-10-22 numeric balance candidate — author acceptance OPEN
+
+**Decision status: PROPOSED, NOT APPROVED.** This section evaluates a candidate requested before the buildable ThingDef/art phase. It does **not** override the previously approved material alternatives, grant permission to add a building, finalize stats, create images or run native tests. The source data and conditional assumptions are kept separate from the optional candidate values.
+
+### Original-game baselines and accessibility
+
+| Existing item | 1×2 base reference | Resource need | Work to build | Base Rest effectiveness | Base Comfort |
+| --- | --- | --- | ---: | ---: | ---: |
+| Vanilla sleeping spot | free normal sleeping place | none | 0 | 0.80 | 0.40 |
+| Original MO `DankPyon_BedLog` | log-frame baseline; no research | `DankPyon_RawWood` stuff ×45 | 500 | 0.90 | 0.55 |
+| Original Vanilla Bedroll | portable bedroll, quality applies | Fabric/Leathery stuff ×40 | 600 | 0.95 | 0.68 |
+| Original MO `DankPyon_BedWicker` | requires `DankPyon_Lumber` | Woody stuff ×45 | 650 | 0.95 | 0.65 |
+| Original MO `DankPyon_StrawBed` | requires `DankPyon_Lumber` | furniture stuff ×45 **AND** `DankPyon_Straw` ×15 | 650 | 0.95 | 0.70 |
+
+Original MO data are directly checked in supplied `3219596926.zip`, `1.6/Defs/ThingDefs_Buildings/Buildings_Furniture.xml`. Vanilla comparators are from [Bedroll](https://rimworldwiki.com/wiki/Bedroll), [Rest effectiveness](https://rimworldwiki.com/wiki/Rest_Effectiveness) and [Comfort](https://rimworldwiki.com/wiki/Comfort); final resolved stats in other mod configurations may differ. Comfort values are normal-quality equivalent **bases**, not claims of all constructed item qualities. Critically, existing **Comfort >=0.60** crosses the game's normal `Comfortable` Mood +4 threshold; raising .55 to .60 is therefore *not* merely an unnoticed 0.05 numerical change. This is an existing Vanilla Thought, **not** a new custom Culture buff.
+
+Vanilla [Haygrass](https://rimworldwiki.com/wiki/Haygrass) has a **base yield of 18 Hay per full mature plant**, about 12.92 in-game days under the reference 100%-fertility light/day schedule. This is a **sown crop**, not an automatically abundant starting building material. One mat costing 18 Hay needs approximately one fully successful ordinary harvest; 24–36 Hay exceeds one plant's base yield and moves the practical player cost to two or more planted cells. Actual yields vary by growth, farming skill, difficulty and other Mods; this comparison does not assume a guaranteed 18. Existing original [Straw matting](https://rimworldwiki.com/wiki/Straw_matting) already consumes **2 Hay per flooring tile**; an 18-Hay dedicated two-cell sleeping/dining mat requires nine tiles' worth of that resource but gains a bed's rest/comfort and a dedicated owned dining seat.
+
+**Previously easy-to-miss authentic MO supply:** The same supplied MO package contains `1.6/Defs/ProcessorDef/ProcessDef_DryingRacks.xml` `DankPyon_StrawProcess`: **Hay → `DankPyon_Straw`**, listed `processDays=2.5`, `capacityFactor=1.0`, `efficiency=1.0`, weather/temperature modifiers. This is an **existing upstream drying process** and should not be duplicated as an AMJ Hay→Straw recipe. It does not prove every already-owned stack can convert without a rack, suitable weather, or loaded processing dependency. MO also has original Straw stock in certain caravan traders; direct quantities and AMJ Grains optional Straw routes are separate from this candidate. It is incorrect to assume every MO Straw is a free byproduct of grain threshing.
+
+### Bounded default candidate for review
+
+| Parameter | Proposed value | Comparison and design rationale |
+| --- | --- | --- |
+| Player-visible product | a stationary woven `筵`, 1×2, rotatable | one buildable sleeping Thing/owned day-meal site; no new flooring, rolling Job, container or Mood Thought |
+| Base material | **Hay ×18** | one base Haygrass harvest; avoids a two-harvest barrier for a first dedicated woven mat |
+| Optional MO material | **`DankPyon_Straw` ×18 instead of Hay**, not both | equal stats and resource units regardless of which dry grass was used; no MO hard dependency or invented conversion |
+| Work to build | **600** | same as Vanilla Bedroll; greater than MO LogBed 500, less than LogBed + RusticStool's combined 950 |
+| `BedRestEffectiveness` | **0.90** | equal to original MO LogBed; stronger than free sleeping spot, below Bedroll and researched MO beds |
+| `Comfort` | **0.60** at normal quality | above bare logs 0.55 and Vanilla Stool / MO RusticStool 0.50; meets existing Comfortable +4 *when need reaches the threshold*, below Bedroll 0.68 and researched MO beds 0.65/0.70 |
+| Research | none | differentiated by requiring harvested grass or existing Straw supplies rather than a new tech gate |
+| Use/access | only the original assigned `OwnedBed` may use it as a **meal seat** | unowned/other-owned still sleep by original rules; no prisoner/medical seating, no forced daily storage |
+| Extra bonuses | **none** | no ad hoc warmth, room-beauty, cleanliness, Cramped, new mood, storage or eating-speed bonus |
+
+**Balance judgment:** Compared with original MO LogBed alone, an 18-Hay woven mat trades immediate raw-wood construction for a crop-based gate and +100 build work, yielding a slightly better Comfort cap plus a second use. Compared with a LogBed **and** original MO `DankPyon_RusticStool` (Woody ×25, work450, Comfort0.50), it replaces three occupied cells with two, saves a second furniture/build action and reduces combined work950→600. It should still be inferior to Bedroll or higher researched beds for pure sleep, and it need not duplicate the separate dining chair for any other pawn. Avoid claiming a guaranteed +4 daily mood: need must actually fill to 60%, item quality alters the effective Comfort, and alternative furnishings or food locations may be preferred.
+
+**Rejected for this first candidate:** Hay ×36 (two full base Haygrass harvests) plus weak sleeping stats would defeat early utility; special wetness/rot/repair rules, automatic folding, arbitrary meal buffs, hard-required MO, turning Vanilla Hay into a new `StuffDef`, or using two `costList` entries as if they meant either/or are disproportionate technical/UX costs. A heavier 24–30-Hay candidate remains a legitimate alternative **if gameplay evidence shows dominance**, but is not the default proposed amount.
+
+**Implementation feasibility/UX gate (not yet implemented):** The existing code only recognizes the reserved `AMJ_CultureWovenMat` ThingDef. A small optional MO material variant implemented as its **own** ThingDef (e.g. `AMJ_CultureWovenMatStraw` under an MO-detection patch) would require extending `MultipurposeMatMealSelector.OwnUsableMat` to admit *only those two exact identities*, reusing identical graphics, material-independent stats and owner-only Job conditions; it may make two near-identical menu entries. One vanilla-only Def with an extra custom C# OR-ingredient worker is not automatically simpler. Favor the smallest user-comprehensible choice after checking the original designation UI. **No source, graphic or built 1.6/1.7 DLL is changed by this balance candidate.** Treat final quantity/stat adoption, 1×2 artwork and product XML as explicit future author decisions; after those, run the established single consolidated focused original-game product acceptance and report actual assertions, not an extra research/test campaign.
+
 ## Meal-location selection — actual existing buffs, no fixed irori/table/floor ranking (2026-10-18 author decision)
 
 **Three approved constraints:** (1) dedicated mat is exactly **1×2 cells**, (2) both North/South and East/West installation orientations work without changing bed ownership or eating behavior, and (3) when an actual valid **囲炉裏・低い食卓・床食** location competes, use the one offering the **greater existing in-game buff to the eater**. Do **not** grant the irori, a chabudai-style table, or the mat arbitrary new meal Mood stages or give one furniture class an unconditional precedence.
