@@ -1,5 +1,10 @@
 # AMJ Culture — design and first acceptance
 
+## 現行分担・名称（2026-10-23、作者改名の反映）
+
+背景・特性の所有者は、独立Mod **Ancient & Medieval Japan - Backgrounds & Traits（中世日本 - 背景と特性）**、現行リポジトリ [Ancient-Medieval-Japan-Backgrounds-and-Traits](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Backgrounds-and-Traits)。旧文書中の「Culture – Characters」「AMJ Culture – Characters」は**移管当時の歴史的名称**であり、現在の公開Mod名ではない。内部の既存 `packageId=sucro.ancientmedievaljapan.culture.characters` と `AMJ.Culture.Characters.dll` は互換性維持のためそのまま。Culture本体は背景・特性の生成パッチを含めず、独立Modは任意併用・非必須依存。初回Steam公開は別途承認が必要。
+
+
 ## 2026-10-21 作者決定 — 信仰文化の将来実装を確定（非Ideology）
 
 **古代〜中世日本の信仰文化をAMJで実装することを決定する。Ideology DLCを必須とはしない。** Ideologyへの排他的な宗教所属を前提とせず、個人の信仰・神仏習合を含む重層的な信仰実践・祭祀・倫理／社会慣行の区別を尊重する。将来の具体的機能・所有Mod・新規リポジトリ・祭礼／芸能子Modとの統合／分離・実装時期・数値・依存・公開条件は**未決定**。Culture本体の既存範囲と初回公開条件は変更しない。宗教Need・宗派別所属・大規模な宗教制度・葬送再構築が採用された意味ではない。

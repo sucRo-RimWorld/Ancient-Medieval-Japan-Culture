@@ -6,7 +6,7 @@ Ancient & Medieval Japan – Cultureは、RimWorldの生活文化に関係する
 
 - **必須Mod:** Harmony
 - **併用可能:** Medieval Overhaul（必須ではありません）
-- **人物の背景・特性:** 別Mod [AMJ Culture – Characters](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Culture-Characters)が担当します。
+- **人物の背景・特性:** 別Mod [AMJ Backgrounds & Traits](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Backgrounds-and-Traits)が担当します。
 - **セーブデータ:** 新規ゲーム推奨。既存セーブへの途中導入・削除の互換性は保証されません。
 
 ## ガイド
