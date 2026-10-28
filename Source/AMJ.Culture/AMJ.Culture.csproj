@@ -8,6 +8,10 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
   <ItemGroup>
+    <!-- Deferred to post-initial release: Agriculture-dependent food expectations.
+         Keep source and ThoughtDef IDs for future work/save references, but do not
+         compile the Harmony handler into the first-release assembly. -->
+    <Compile Remove="RefinedFoodExpectationPatch.cs" />
     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net481"
                       Version="1.0.3" PrivateAssets="all" />
     <Reference Include="Assembly-CSharp">
