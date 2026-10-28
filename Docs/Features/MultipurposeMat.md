@@ -1,5 +1,7 @@
 # C-06 — 多用途の筵・菰（AMJ Culture）
 
+**初回公開範囲（2026-10-28 作者決定）：本機能 C-06 はCulture本体の初回公開から除外する。** ThingDef／画像／数値の製品確定や筵固有の受け入れを初回公開条件にしない。技術PoC・未承認の設計候補を将来用に保持し、実装済みと案内しない。Culture本体の他の実装済み機能の公開判定は [Design.md](../Design.md) を正本とする。独立Modへの分割・筵機能の廃止・現行製品コード変更を意味しない。
+
 **Owner:** `sucRo-RimWorld/Ancient-Medieval-Japan-Culture`. **Current author preference (2026-10-18):** 同じ敷物を**夜は就寝用、昼は座具・食事場所**として使い、毎日の収納・運搬を不要にする。**Status:** 1.6 Vanillaの最小実ゲームPoCはPASS。専用の製品ThingDef／XML、画像、1.6／1.7製品DLLへの追加とMO対応は**未実装・未受入**。旧C-06自動収納案は[FoldableBedding.md](FoldableBedding.md)に保管するが、現在の製品実装の前提条件にはしない。
 
 ## Purpose and limits
