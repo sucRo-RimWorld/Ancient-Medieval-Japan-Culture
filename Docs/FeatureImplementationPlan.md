@@ -2,7 +2,7 @@
 
 **2026-10-28 初回公開対象の更新:** 多用途筵 C-06 に加え、Agriculture（旧Grains）料理依存の玄米・雑穀への食生活期待は初回公開対象から除外する。食生活期待のC#ハンドラは初回用ビルドで除外するが、保存参照のため元ThoughtDefsは保持する。両版の既存製品DLLには旧ハンドラが残っているため、1.6/1.7再ビルドまでは初回公開準備未完。靴脱着の表示名は「玄関ゾーン」でなく「履物の脱ぎ履き場所」とし、保存キー・C#型は不変。 [Design](Design.md) と [プレイヤーガイド](UserGuide/Entrance-And-No-Shoes.md) 参照。
 
-**2026-10-20 後続決定（最新）：** 祭礼・芸能は**将来新設するCulture系列の子Mod**へ分離し、本体の初回公開条件に含めない。これは既存C-01以外の実装群を分割する承認ではない。正式な分離境界は[Design.md](Design.md#2026-10-20-作者決定--祭礼芸能はcultureの将来の子modへ分離設計構想のみ)を参照。現行のC-02〜C-07機能はCulture本体に残す。**子Modの実装・依存・数値は未確定**。
+**2026-10-20 後続決定（当時）：** 祭礼・芸能は**将来新設するCulture系列の子Mod**へ分離し、本体の初回公開条件に含めない。これは既存C-01以外の実装群を分割する承認ではない。正式な分離境界は[Design.md](Design.md#2026-10-20-作者決定--祭礼芸能はcultureの将来の子modへ分離設計構想のみ)を参照。現行のC-02〜C-07機能はCulture本体に残す。**子Modの実装・依存・数値は未確定**。
 
 **Current author decision (2026-10-19):** Split **only C-01 background/trait character-generation** into standalone **AMJ Culture – Characters**. No other Culture subfeatures are split. Characters is a separate source owner, with both versioned DLLs already compiled; Culture's XML and C# extraction plus separate 1.6/1.7 rebuilt DLLs are prepared on topic branch `refactor/characters-cutover` (commit `f071f0602e9989a011f431f30a961499dcd38ee7`), **not merged into Culture main pending native cutover acceptance**. Characters-alone native 1.6 and paired Vanilla 1.7 passed; paired 1.6 had a non-reproduced native Mono SIGSEGV in Project #39228255901, then **PASS** in focused Project #39229556343 (Pickle 1/1, ERROR0, exit0). See [Design](Design.md#2026-10-19-author-exception--split-only-backgrounds-and-traits-as-amj-culture--characters). Background Phase 2 remains closed; new Trait review remains open. No release or old-save conversion claimed.
 
