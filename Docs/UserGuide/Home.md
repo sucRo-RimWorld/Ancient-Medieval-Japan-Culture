@@ -11,7 +11,7 @@ Ancient & Medieval Japan – Cultureは、RimWorldの生活文化に関係する
 
 ## ガイド
 
-- [玄関・土足禁止エリア](Entrance-And-No-Shoes.md) — ゾーンの配置と通行
+- [履物の脱ぎ履き場所・土足禁止エリア](Entrance-And-No-Shoes.md) — 境界の指定と通行
 - [イスと食事](Chair-And-Meals.md) — 食卓のない座具の利用
 - [機能の実装状況](Feature-Status.md) — 現行機能と開発予定
 
