@@ -741,6 +741,27 @@ The existing `LoadFolders.xml` selects these version-specific assemblies. The 1.
 
 Cultureは人物背景・特性・心情・食事習慣・嗜好品・玄関の生活作法を含む**総合的な日本文化オーバーホール**。この一貫した責務に属する限りCultureがAMJ内で最も大規模となっても許容し、Mod規模だけを理由に分割しない。ただし他の既存Modの実装責務を無条件に統合しない。
 
+### 指定UIの修正（2026-10-29、実プレイで判明した不具合）
+
+- **範囲指定:** 玄関（履物の脱ぎ履き場所）と土足禁止エリアの追加・解除4ツールは、RimWorld 1.6/1.7標準の `DrawStyleCategory`（追加は `Zones`、解除は `RemoveZones`）を明示して、矩形ドラッグによる一括指定・解除を可能にする。1マスずつの追加も可能。通常のゾーン・床とは別の `EntranceZoneMap` 保存モデルを維持する。
+- **双方の可視化:** 4ツールのいずれを選択しても、既存の玄関セル境界を水色、土足禁止セル境界を緑色で同時描画する。互いのセル重複は既存の `CanDesignateCell`／`Set`／`SetNoShoes` により拒否する。通常のZoneManagerや地形は上書きしない。
+- **アイコン:** 農業ゾーンの仮アイコン `ZoneCreate_Growing` を廃止し、2種の機能と追加・解除を区別する専用PNG（`Textures/UI/Designators/AMJ_*`）を使用する。4枚の64×64透過PNGを `Textures/UI/Designators/` と開発原本保管先 `Art/Sources/UI/Designators/` に同一バイナリで保持する。2026-10-29の続行承認を受けた採用候補。1.6ゲーム内で4ファイルのTexture2D読み込みとBadTex回避は確認済み。各ボタンの実表示・配布版への組み込みは別。
+- **非変更:** 玄関・土足禁止の旧セーブキー、辺隣接、擬似キャスト90tick、移動Job、汚れ・履物状態などのゲーム処理を変えない。ソース変更だけで実ゲームUIの確認や配布済みDLL更新を完了扱いにしない。
+
+### 2026-10-29 指定UIの実ゲーム受け入れ（1.6限定）
+
+- **実行:** [Project Actions #40884981312（第2試行）](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/40884981312)、[Project検証PR #1147](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/pull/1147)。本Culture PR #207の試験ソース `f3ae3ce041a4a1c3c70724a2b327c00f88425748` を取得。製品C#自体は先行ビルド対象 `7b0474b3ba2b7b863af4ccafa512174a072f7fa4` から不変で、1.6製品DLL SHA-256 `8661b219acecddecadc225fdc3feb6a340ec87b90c00dfcd129f52d354ed26f6` を明示照合したうえで隔離ゲームコピーへ適用。
+- **オリジナル RimWorld 1.6.4871 rev598:** Pickle 1/1 PASS、Unity/生ログ ERROR 0、終了コード0、marker `AMJ_CULTURE_ENTRANCE_ZONE_UI16_OK` 1回、元のゲームファイルは不変。追加・解除4ツールのゲーム内生成、全4アイコンのテクスチャ存在/非BadTex、矩形編集カテゴリ `Zones`/`RemoveZones`、3行×幅2の玄関領域と3行×幅3の土足禁止領域をDesignatorの実セル操作で追加・解除、相互上書き拒否、双方の `SelectedUpdate` が例外なく実行されることを確認。
+- **見た目:** 同じ実ゲームの1280×720フレーム `AMJEntranceZoneUi16.png`（上記Actions Artifact）に、水色の玄関境界と隣接する緑色の土足禁止境界が同時に描画された。選択中の土足禁止ツールで確認。
+- **未検証／別証拠:** 実マウスのドラッグ操作そのもの、4つのツールを順次選択した全画面スクリーンショットは未実施。1.7の実ゲーム検証は下節参照。現時点でPRには両版の製品DLLを含むが、既存の配布先へは未反映。前段の玄関通過シナリオは `#40884585543` でPutOnCast未観測（ポーンは自動徘徊へ移行）、`#40884981312` 初回はUnity SIGSEGVで失敗した。これらは今回のUI専用シナリオのPASSに読み替えない。既存の先行玄関通過受け入れも今回のソース版DLLの自動的なPASS証明にはならない。
+
+### 2026-10-29 指定UIの実ゲーム受け入れ（1.7限定）
+
+- **実行:** [Project Actions #40886588396](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/40886588396)、[Project 検証PR #1147](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/pull/1147)。Culture PR #207の試験ソース `11d7f6e4649d1b0e1f5e724330becad876d5d936` と、先行の正規1.7ビルドによる製品DLL SHA-256 `d3308351ab0266396e3a22c17742e1492dfffb4abf2bfc470e1ac7267506f87b` を使用。
+- **オリジナル RimWorld 1.7.4977 rev1248:** Pickle 1/1 PASS、Unity/生ログエラー0、FMODエラー0、ゲーム終了コード0、`AMJ_CULTURE_ENTRANCE_ZONE_UI17_OK` 1回、オリジナルゲーム不変。専用デジグネータ4種の生成、矩形カテゴリ定義、専用アイコンの読み込みとBadTex不使用、複数セルの追加・解除、相互上書き拒否、共通の両ゾーン描画処理を検証。
+- **スクリーンショット:** 同実行の `AMJEntranceZoneUi17.png`（Actions artifact `culture-zoneui17-40886588396`）に、水色の玄関領域と緑色の土足禁止領域の隣接する境界が同時表示されている。1.6の同趣旨スクリーンショットは #40884981312 第2試行を参照。
+- **確認していない事項:** 自動化された実際のマウスドラッグ操作と全4ボタンの画面上の目視確認、1.7+MOでのUI挙動、既存玄関通過・90tickの今回DLLでの完全回帰判定、Workshop配布とプレイヤー側の導入。したがって今回のPASSは **UI限定の実ゲーム受け入れ**であり、それ以外の動作や公開を保証しない。
+
 ### プレイヤーに見える確定方針
 
 1. 床や地形の種類に依存せず、任意の通行可能セルに重ねて設置できるプレイヤー指定「玄関ゾーン」を用意する。通常の建物運用で玄関なしでも問題なく移動・作業でき、倉庫・土間・作業場などは土足のまま使用できる。

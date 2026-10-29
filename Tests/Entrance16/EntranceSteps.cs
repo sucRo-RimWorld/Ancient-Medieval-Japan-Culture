@@ -1011,4 +1011,127 @@ namespace AMJ.Culture.Test
         }
 
     }
+
+    // Opt-in genuine-game UI check for the 2026-10-29 zone editing fix.
+    // Run as a focused UI-only Pickle scenario in the existing isolated game.
+    [PickleSteps]
+    public sealed class EntranceZoneUiSteps
+    {
+        [Then("entrance zone editors support rectangles and show both kinds")]
+        public async Task CheckZoneEditors(PickleContext ctx)
+        {
+            await EntranceMainThread.Run(delegate
+            {
+                Map map = Find.CurrentMap;
+                ctx.Require(map != null, "No real active map for UI test");
+                Type zoneType = Type.GetType("AMJ.Culture.EntranceZoneMap, AMJ.Culture", true);
+                MethodInfo mapGetter = null;
+                foreach (MethodInfo m in map.GetType().GetMethods(BindingFlags.Instance | BindingFlags.Public))
+                    if (m.Name == "GetComponent" && m.IsGenericMethodDefinition && m.GetParameters().Length == 0)
+                    { mapGetter = m; break; }
+                ctx.Require(mapGetter != null, "GetComponent<T> absent");
+                object zones = mapGetter.MakeGenericMethod(zoneType).Invoke(map, null);
+                MethodInfo isThreshold = zoneType.GetMethod("Contains", new[] { typeof(IntVec3) });
+                MethodInfo isBare = zoneType.GetMethod("IsNoShoes", new[] { typeof(IntVec3) });
+                MethodInfo setThreshold = zoneType.GetMethod("Set", new[] { typeof(IntVec3), typeof(bool) });
+                MethodInfo setBare = zoneType.GetMethod("SetNoShoes", new[] { typeof(IntVec3), typeof(bool) });
+                ctx.Require(zones != null && isThreshold != null && isBare != null &&
+                            setThreshold != null && setBare != null, "Zone component API absent");
+
+                string[] names = { "EntranceAdd", "EntranceRemove", "NoShoesAdd", "NoShoesRemove" };
+                Designator_Cells[] tools = new Designator_Cells[4];
+                for (int n = 0; n < 4; n++)
+                {
+                    Type t = Type.GetType("AMJ.Culture.Designator_" + names[n] + ", AMJ.Culture", true);
+                    tools[n] = (Designator_Cells)Activator.CreateInstance(t);
+                    DrawStyleCategoryDef style = tools[n].DrawStyleCategory;
+                    ctx.Require(style != null && style.defName == ((n % 2 == 0) ? "Zones" : "RemoveZones"),
+                                "Incorrect rectangle painting preset for " + names[n]);
+                    UnityEngine.Texture2D icon = ContentFinder<UnityEngine.Texture2D>.Get(
+                        "UI/Designators/AMJ_" + names[n], false);
+                    ctx.Require(icon != null && icon != BaseContent.BadTex,
+                                "Dedicated icon is missing/BadTex: " + names[n]);
+                }
+
+                // Build a small edge-adjacent rectangle, using the actual loaded designators.
+                // The standard Zone drawing category owns the user's drag operation;
+                // these calls verify that its cell painter edits a multi-cell range correctly.
+                IntVec3 site = IntVec3.Invalid;
+                for (int z = 6; z < map.Size.z - 7 && !site.IsValid; z++)
+                    for (int x = 6; x < map.Size.x - 8; x++)
+                    {
+                        bool ok = true;
+                        for (int dx = 0; dx < 5 && ok; dx++)
+                            for (int dz = 0; dz < 3; dz++)
+                            {
+                                IntVec3 cell = new IntVec3(x + dx, 0, z + dz);
+                                if (!cell.Standable(map) || cell.GetEdifice(map) != null ||
+                                    (bool)isThreshold.Invoke(zones, new object[]{ cell }) ||
+                                    (bool)isBare.Invoke(zones, new object[]{ cell }))
+                                { ok = false; break; }
+                            }
+                        if (ok) { site = new IntVec3(x, 0, z); break; }
+                    }
+                ctx.Require(site.IsValid, "No unused 5x3 cells for editing test");
+                for (int dz = 0; dz < 3; dz++)
+                    for (int dx = 2; dx < 5; dx++)
+                    {
+                        IntVec3 cell = site + new IntVec3(dx, 0, dz);
+                        ctx.Require(tools[2].CanDesignateCell(cell).Accepted, "No-shoes add rejects free cell");
+                        tools[2].DesignateSingleCell(cell);
+                    }
+                for (int dz = 0; dz < 3; dz++)
+                    for (int dx = 0; dx < 2; dx++)
+                    {
+                        IntVec3 cell = site + new IntVec3(dx, 0, dz);
+                        ctx.Require(tools[0].CanDesignateCell(cell).Accepted, "Entrance add rejects free cell");
+                        tools[0].DesignateSingleCell(cell);
+                    }
+                ctx.Require(!tools[0].CanDesignateCell(site + new IntVec3(2, 0, 0)).Accepted &&
+                            !tools[2].CanDesignateCell(site + new IntVec3(1, 0, 0)).Accepted,
+                            "Editing allows one zone to overwrite the other");
+                IntVec3 removed = site + new IntVec3(0, 0, 0);
+                ctx.Require(tools[1].CanDesignateCell(removed).Accepted, "Entrance remove tool not usable");
+                tools[1].DesignateSingleCell(removed);
+                ctx.Require(!(bool)isThreshold.Invoke(zones, new object[]{ removed }), "Removal failed");
+                tools[0].DesignateSingleCell(removed);
+                IntVec3 removedBare = site + new IntVec3(4, 0, 2);
+                ctx.Require(tools[3].CanDesignateCell(removedBare).Accepted, "No-shoes remove tool not usable");
+                tools[3].DesignateSingleCell(removedBare);
+                ctx.Require(!(bool)isBare.Invoke(zones, new object[]{ removedBare }), "No-shoes removal failed");
+                tools[2].DesignateSingleCell(removedBare);
+
+                // Both editor paths must invoke the shared overlay without exceptions;
+                // the following real rendered frame is captured with NoShoes selected.
+                tools[0].SelectedUpdate();
+                tools[2].SelectedUpdate();
+                object manager = Find.DesignatorManager;
+                MethodInfo select = null;
+                foreach (MethodInfo candidate in manager.GetType().GetMethods(BindingFlags.Instance | BindingFlags.Public))
+                    if (candidate.Name == "Select" && candidate.GetParameters().Length == 1 &&
+                        candidate.GetParameters()[0].ParameterType.IsAssignableFrom(tools[2].GetType()))
+                    { select = candidate; break; }
+                ctx.Require(select != null, "Unable to select real no-shoes drawing tool");
+                select.Invoke(manager, new object[]{ tools[2] });
+                Log.Message("AMJ_CULTURE_ZONE_UI_PREVIEW_READY cell=" + site +
+                            " category=Zones/RemoveZones entrance=6 noShoes=9");
+            });
+            await ctx.WaitFrames(8);
+            await EntranceMainThread.Run(delegate
+            {
+                Type camera = Type.GetType("UnityEngine.ScreenCapture, UnityEngine.ScreenCaptureModule");
+                MethodInfo capture = camera == null ? null :
+                    camera.GetMethod("CaptureScreenshot", new[]{typeof(string)});
+                ctx.Require(capture != null, "Unity screenshot API missing");
+                bool game17 = Environment.GetEnvironmentVariable("AMJ_ENTRANCE_ZONE_UI17_CHECK") == "1";
+                capture.Invoke(null, new object[]{
+                    Path.Combine(GenFilePaths.SaveDataFolderPath,
+                        game17 ? "AMJEntranceZoneUi17.png" : "AMJEntranceZoneUi16.png")});
+                Log.Message(game17 ? "AMJ_CULTURE_ENTRANCE_ZONE_UI17_OK" :
+                                      "AMJ_CULTURE_ENTRANCE_ZONE_UI16_OK");
+            });
+            await ctx.WaitFrames(5);
+        }
+    }
+
 }
