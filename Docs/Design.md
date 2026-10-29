@@ -753,7 +753,7 @@ Cultureは人物背景・特性・心情・食事習慣・嗜好品・玄関の�
 - **実行:** [Project Actions #40884981312（第2試行）](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/actions/runs/40884981312)、[Project検証PR #1147](https://github.com/sucRo-RimWorld/Ancient-Medieval-Japan-Project/pull/1147)。本Culture PR #207の試験ソース `f3ae3ce041a4a1c3c70724a2b327c00f88425748` を取得。製品C#自体は先行ビルド対象 `7b0474b3ba2b7b863af4ccafa512174a072f7fa4` から不変で、1.6製品DLL SHA-256 `8661b219acecddecadc225fdc3feb6a340ec87b90c00dfcd129f52d354ed26f6` を明示照合したうえで隔離ゲームコピーへ適用。
 - **オリジナル RimWorld 1.6.4871 rev598:** Pickle 1/1 PASS、Unity/生ログ ERROR 0、終了コード0、marker `AMJ_CULTURE_ENTRANCE_ZONE_UI16_OK` 1回、元のゲームファイルは不変。追加・解除4ツールのゲーム内生成、全4アイコンのテクスチャ存在/非BadTex、矩形編集カテゴリ `Zones`/`RemoveZones`、3行×幅2の玄関領域と3行×幅3の土足禁止領域をDesignatorの実セル操作で追加・解除、相互上書き拒否、双方の `SelectedUpdate` が例外なく実行されることを確認。
 - **見た目:** 同じ実ゲームの1280×720フレーム `AMJEntranceZoneUi16.png`（上記Actions Artifact）に、水色の玄関境界と隣接する緑色の土足禁止境界が同時に描画された。選択中の土足禁止ツールで確認。
-- **未検証／別証拠:** 実マウスのドラッグ操作そのもの、4つのツールを順次選択した全画面スクリーンショット、RimWorld 1.7でのゲーム読み込み、配布済み1.6/1.7製品DLLの更新は未実施。前段の玄関通過シナリオは `#40884585543` でPutOnCast未観測（ポーンは自動徘徊へ移行）、`#40884981312` 初回はUnity SIGSEGVで失敗した。これらは今回のUI専用シナリオのPASSに読み替えない。既存の先行玄関通過受け入れも今回のソース版DLLの自動的なPASS証明にはならない。
+- **未検証／別証拠:** 実マウスのドラッグ操作そのもの、4つのツールを順次選択した全画面スクリーンショットは未実施。1.7の実ゲーム検証は下節参照。現時点でPRには両版の製品DLLを含むが、既存の配布先へは未反映。前段の玄関通過シナリオは `#40884585543` でPutOnCast未観測（ポーンは自動徘徊へ移行）、`#40884981312` 初回はUnity SIGSEGVで失敗した。これらは今回のUI専用シナリオのPASSに読み替えない。既存の先行玄関通過受け入れも今回のソース版DLLの自動的なPASS証明にはならない。
 
 ### 2026-10-29 指定UIの実ゲーム受け入れ（1.7限定）
 
