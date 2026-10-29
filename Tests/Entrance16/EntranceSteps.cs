@@ -1013,7 +1013,7 @@ namespace AMJ.Culture.Test
     }
 
     // Opt-in genuine-game UI check for the 2026-10-29 zone editing fix.
-    // This runs after the existing entrance path test in the SAME loaded map.
+    // Run as a focused UI-only Pickle scenario in the existing isolated game.
     [PickleSteps]
     public sealed class EntranceZoneUiSteps
     {
