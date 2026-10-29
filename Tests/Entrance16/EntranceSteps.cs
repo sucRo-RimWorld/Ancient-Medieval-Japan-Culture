@@ -1123,9 +1123,12 @@ namespace AMJ.Culture.Test
                 MethodInfo capture = camera == null ? null :
                     camera.GetMethod("CaptureScreenshot", new[]{typeof(string)});
                 ctx.Require(capture != null, "Unity screenshot API missing");
+                bool game17 = Environment.GetEnvironmentVariable("AMJ_ENTRANCE_ZONE_UI17_CHECK") == "1";
                 capture.Invoke(null, new object[]{
-                    Path.Combine(GenFilePaths.SaveDataFolderPath, "AMJEntranceZoneUi16.png")});
-                Log.Message("AMJ_CULTURE_ENTRANCE_ZONE_UI16_OK");
+                    Path.Combine(GenFilePaths.SaveDataFolderPath,
+                        game17 ? "AMJEntranceZoneUi17.png" : "AMJEntranceZoneUi16.png")});
+                Log.Message(game17 ? "AMJ_CULTURE_ENTRANCE_ZONE_UI17_OK" :
+                                      "AMJ_CULTURE_ENTRANCE_ZONE_UI16_OK");
             });
             await ctx.WaitFrames(5);
         }
