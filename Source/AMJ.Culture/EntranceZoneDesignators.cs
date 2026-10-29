@@ -6,14 +6,34 @@ namespace AMJ.Culture
 {
     // The designation tools operate on an independent MapComponent grid,
     // not ZoneManager, so they can be painted over other zones and floors.
+    internal static class EntranceZoneDesignatorUI
+    {
+        // RimWorld 1.6+ uses DrawStyleCategory rather than DraggableDimensions.
+        // Keep the standard Zone shape palette, including filled rectangles.
+        internal static readonly DrawStyleCategoryDef AddStyle =
+            DefDatabase<DrawStyleCategoryDef>.GetNamed("Zones");
+        internal static readonly DrawStyleCategoryDef RemoveStyle =
+            DefDatabase<DrawStyleCategoryDef>.GetNamed("RemoveZones");
+
+        internal static void DrawBoth(Map map)
+        {
+            if (map == null) return;
+            EntranceZoneMap zones = map.GetComponent<EntranceZoneMap>();
+            // Draw both sets for all four tools, with distinct boundaries.
+            GenDraw.DrawFieldEdges(zones.NoShoesCells, new Color(0.28f, 0.86f, 0.38f));
+            GenDraw.DrawFieldEdges(zones.Cells, new Color(0.18f, 0.73f, 0.94f));
+        }
+    }
+
     public sealed class Designator_EntranceAdd : Designator_Cells
     {
+        public override DrawStyleCategoryDef DrawStyleCategory => EntranceZoneDesignatorUI.AddStyle;
         private static int lastWarningFrame = -100000;
         public Designator_EntranceAdd()
         {
             defaultLabel = "AMJ_Culture_EntranceAdd".Translate();
             defaultDesc = "AMJ_Culture_EntranceAddDesc".Translate();
-            icon = ContentFinder<Texture2D>.Get("UI/Designators/ZoneCreate_Growing", false)
+            icon = ContentFinder<Texture2D>.Get("UI/Designators/AMJ_EntranceAdd", false)
                    ?? BaseContent.BadTex;
         }
 
@@ -44,18 +64,18 @@ namespace AMJ.Culture
         {
             base.SelectedUpdate();
             Map map = Find.CurrentMap;
-            if (map != null)
-                GenDraw.DrawFieldEdges(map.GetComponent<EntranceZoneMap>().Cells, Color.cyan);
+            EntranceZoneDesignatorUI.DrawBoth(map);
         }
     }
 
     public sealed class Designator_EntranceRemove : Designator_Cells
     {
+        public override DrawStyleCategoryDef DrawStyleCategory => EntranceZoneDesignatorUI.RemoveStyle;
         public Designator_EntranceRemove()
         {
             defaultLabel = "AMJ_Culture_EntranceRemove".Translate();
             defaultDesc = "AMJ_Culture_EntranceRemoveDesc".Translate();
-            icon = ContentFinder<Texture2D>.Get("UI/Designators/ZoneDelete", false)
+            icon = ContentFinder<Texture2D>.Get("UI/Designators/AMJ_EntranceRemove", false)
                    ?? BaseContent.BadTex;
         }
 
@@ -75,8 +95,7 @@ namespace AMJ.Culture
         {
             base.SelectedUpdate();
             Map map = Find.CurrentMap;
-            if (map != null)
-                GenDraw.DrawFieldEdges(map.GetComponent<EntranceZoneMap>().Cells, Color.cyan);
+            EntranceZoneDesignatorUI.DrawBoth(map);
         }
     }
     // Like the entrance designators, these cells intentionally coexist with
@@ -84,11 +103,12 @@ namespace AMJ.Culture
     // on a separate, edge-adjacent cell, not inside the no-shoes area.
     public sealed class Designator_NoShoesAdd : Designator_Cells
     {
+        public override DrawStyleCategoryDef DrawStyleCategory => EntranceZoneDesignatorUI.AddStyle;
         public Designator_NoShoesAdd()
         {
             defaultLabel = "AMJ_Culture_NoShoesAdd".Translate();
             defaultDesc = "AMJ_Culture_NoShoesAddDesc".Translate();
-            icon = ContentFinder<Texture2D>.Get("UI/Designators/ZoneCreate_Growing", false)
+            icon = ContentFinder<Texture2D>.Get("UI/Designators/AMJ_NoShoesAdd", false)
                    ?? BaseContent.BadTex;
         }
 
@@ -109,18 +129,18 @@ namespace AMJ.Culture
         {
             base.SelectedUpdate();
             Map map = Find.CurrentMap;
-            if (map != null)
-                GenDraw.DrawFieldEdges(map.GetComponent<EntranceZoneMap>().NoShoesCells, Color.green);
+            EntranceZoneDesignatorUI.DrawBoth(map);
         }
     }
 
     public sealed class Designator_NoShoesRemove : Designator_Cells
     {
+        public override DrawStyleCategoryDef DrawStyleCategory => EntranceZoneDesignatorUI.RemoveStyle;
         public Designator_NoShoesRemove()
         {
             defaultLabel = "AMJ_Culture_NoShoesRemove".Translate();
             defaultDesc = "AMJ_Culture_NoShoesRemoveDesc".Translate();
-            icon = ContentFinder<Texture2D>.Get("UI/Designators/ZoneDelete", false)
+            icon = ContentFinder<Texture2D>.Get("UI/Designators/AMJ_NoShoesRemove", false)
                    ?? BaseContent.BadTex;
         }
 
@@ -140,8 +160,7 @@ namespace AMJ.Culture
         {
             base.SelectedUpdate();
             Map map = Find.CurrentMap;
-            if (map != null)
-                GenDraw.DrawFieldEdges(map.GetComponent<EntranceZoneMap>().NoShoesCells, Color.green);
+            EntranceZoneDesignatorUI.DrawBoth(map);
         }
     }
 
